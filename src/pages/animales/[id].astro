@@ -1,0 +1,105 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { animales, pesajesByAnimal, fmtNum, fmtFecha, fmtBs } from '../../lib/data';
+import { bigChart } from '../../lib/sparkline';
+
+export async function getStaticPaths() {
+  // Solo generamos páginas para animales con partidario (drill-down desde compras).
+  // Los demás se accederían con un `[id].html` client-side si se necesita.
+  return animales
+    .filter(a => a.partidario_id)
+    .map(a => ({ params: { id: String(a.id_animal) }, props: { animal: a } }));
+}
+
+const { animal: a } = Astro.props;
+const pesajes = pesajesByAnimal[String(a.id_animal)] || [];
+const chart = bigChart(pesajes, { width: 760, height: 300 });
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const racaSlug = a.raza_codigo || a.raza_descripcion || '';
+
+// Pesajes con delta vs anterior
+const filas = pesajes.map((p, i) => {
+  const prev = i > 0 ? pesajes[i-1] : null;
+  const delta = prev ? p[1] - prev[1] : null;
+  const dias = prev ? Math.max(1, (new Date(p[0]).getTime() - new Date(prev[0]).getTime()) / 86400000) : null;
+  const gmd = (delta != null && dias) ? delta / dias : null;
+  return { fecha: p[0], peso: p[1], delta, dias, gmd };
+}).reverse();
+---
+<Layout title={`Animal ${a.nro || a.id_animal}`}>
+  {racaSlug && (
+    <a href={base + '/compras/' + encodeURIComponent(racaSlug)} class="text-xs text-brand-600 hover:underline">
+      ← {a.raza_descripcion || 'Compra'}
+    </a>
+  )}
+
+  <div class="mt-2 flex flex-wrap items-end justify-between gap-4 mb-6">
+    <div>
+      <div class="flex items-center gap-2 mb-1 flex-wrap">
+        {a.partidario_id && <span class="pill bg-brand-100 text-brand-800">{a.partidario_id} · {a.partidario}</span>}
+        {a.categoria && <span class="pill bg-pink-100 text-pink-800">{a.categoria}</span>}
+        {a.sexo && <span class="pill bg-stone-100 text-stone-700">Sexo {a.sexo}</span>}
+        {a.estancia && <span class="pill bg-stone-100 text-stone-700">{a.estancia}</span>}
+      </div>
+      <h2 class="text-2xl font-bold text-stone-900 tabular-nums">N° {a.nro || a.id_animal}</h2>
+      {a.proveedor && <p class="text-sm text-stone-500">Origen: <span class="font-medium text-stone-700">{a.proveedor}</span></p>}
+    </div>
+    <div class="text-right">
+      <div class="kpi-label">Estado</div>
+      <div class="text-base font-semibold text-stone-900">{a.salida || 'En campo'}</div>
+      {a.last_sesion && <div class="text-xs text-stone-500 mt-0.5 max-w-xs truncate">{a.last_sesion}</div>}
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
+    <div class="kpi"><div class="kpi-label">1° peso</div><div class="kpi-value">{fmtNum(a.first_peso, 1)} kg</div><div class="kpi-sub">{fmtFecha(a.first_fecha)}</div></div>
+    <div class="kpi"><div class="kpi-label">Último</div><div class="kpi-value">{fmtNum(a.last_peso, 1)} kg</div><div class="kpi-sub">{fmtFecha(a.last_fecha)}</div></div>
+    <div class="kpi">
+      <div class="kpi-label">Ganancia</div>
+      <div class={`kpi-value ${a.ganancia_kg >= 0 ? 'stat-up' : 'stat-down'}`}>
+        {a.ganancia_kg >= 0 ? '+' : ''}{fmtNum(a.ganancia_kg, 1)} kg
+      </div>
+    </div>
+    <div class="kpi"><div class="kpi-label">GMD</div><div class="kpi-value">{a.gmd_kg != null ? fmtNum(a.gmd_kg, 3) : '—'}</div><div class="kpi-sub">kg/día</div></div>
+    <div class="kpi"><div class="kpi-label">Días en campo</div><div class="kpi-value">{a.dias_en_campo}</div><div class="kpi-sub">{a.n_pesajes} pesajes</div></div>
+  </div>
+
+  <section class="card p-5 mb-6">
+    <h3 class="section-title">Curva de peso</h3>
+    <div set:html={chart} />
+  </section>
+
+  <section>
+    <h3 class="section-title">Historial de pesajes</h3>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th class="num">Peso</th>
+            <th class="num">Δ vs anterior</th>
+            <th class="num">Días</th>
+            <th class="num">GMD período</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filas.map(f => (
+            <tr>
+              <td class="font-mono text-xs">{fmtFecha(f.fecha)}</td>
+              <td class="num font-medium">{fmtNum(f.peso, 1)} kg</td>
+              <td class="num">
+                {f.delta != null ? (
+                  <span class={f.delta >= 0 ? 'stat-up' : 'stat-down'}>
+                    {f.delta >= 0 ? '+' : ''}{fmtNum(f.delta, 1)} kg
+                  </span>
+                ) : '—'}
+              </td>
+              <td class="num text-stone-500">{f.dias != null ? Math.round(f.dias) : '—'}</td>
+              <td class="num">{f.gmd != null ? fmtNum(f.gmd, 3) : '—'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</Layout>

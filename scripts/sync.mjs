@@ -488,6 +488,17 @@ async function main() {
   };
   writeFileSync(join(OUT_DIR, 'meta.json'), JSON.stringify(meta, null, 2));
   writeFileSync(join(OUT_DIR, 'pesajes.json'), JSON.stringify(enriched));
+
+  // pesajes-by-animal.json — formato compacto { id_animal: [[fecha,peso], ...] }
+  const byAnimalPesajes = {};
+  for (const p of enriched) {
+    if (!p.fecha || p.peso == null) continue;
+    (byAnimalPesajes[p.id_animal] ??= []).push([p.fecha, p.peso]);
+  }
+  for (const id in byAnimalPesajes) {
+    byAnimalPesajes[id].sort((a, b) => a[0].localeCompare(b[0]));
+  }
+  writeFileSync(join(OUT_DIR, 'pesajes-by-animal.json'), JSON.stringify(byAnimalPesajes));
   writeFileSync(join(OUT_DIR, 'animales.json'), JSON.stringify(animales));
   writeFileSync(join(OUT_DIR, 'sesiones.json'), JSON.stringify(sesiones, null, 2));
 

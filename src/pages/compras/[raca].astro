@@ -1,0 +1,110 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { aggCompras, animalesByRaza, pesajesByAnimal, fmtNum, fmtBs, fmtFecha } from '../../lib/data';
+import { sparkline } from '../../lib/sparkline';
+
+export async function getStaticPaths() {
+  const compras = aggCompras();
+  return compras.map(c => ({ params: { raca: c.raza_codigo }, props: { compra: c } }));
+}
+
+const { compra } = Astro.props;
+const animals = animalesByRaza(compra.raza_codigo);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Sort by gain desc
+animals.sort((a, b) => b.ganancia_kg - a.ganancia_kg);
+
+const tieneOverride = compra.cabezas_real != null;
+---
+<Layout title={`Compra ${compra.raza_codigo}`}>
+  <a href={base + '/partidarios'} class="text-xs text-brand-600 hover:underline">← Partidarios</a>
+
+  <div class="mt-2 flex flex-wrap items-end justify-between gap-4 mb-6">
+    <div>
+      <div class="flex items-center gap-2 mb-1">
+        <span class="pill bg-stone-200 text-stone-700 font-mono">{compra.raza_codigo}</span>
+        {compra.partidario_id && (
+          <span class="pill bg-brand-100 text-brand-800">{compra.partidario_id} · {compra.partidario}</span>
+        )}
+        {compra.categoria && <span class="pill bg-pink-100 text-pink-800">{compra.categoria}</span>}
+      </div>
+      <h2 class="text-2xl font-bold text-stone-900">{compra.raza_descripcion}</h2>
+      <p class="text-sm text-stone-500 mt-1">
+        Ingresó {fmtFecha(compra.ingreso_fecha_min) || '—'} · {compra.dias_prom} días en campo (prom)
+      </p>
+    </div>
+    <div class="text-right">
+      <div class="text-3xl font-bold text-stone-900 tabular-nums">{fmtNum(compra.cabezas_efectivas)}</div>
+      <div class="text-xs text-stone-500">cabezas {tieneOverride ? '(real)' : '(SisGado)'}</div>
+      {tieneOverride && (
+        <div class="text-xs text-amber-600 mt-0.5">SisGado: {compra.cabezas_sisgado}</div>
+      )}
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+    <div class="kpi"><div class="kpi-label">Peso ingreso prom</div><div class="kpi-value">{fmtNum(compra.peso_ingreso_prom, 1)} kg</div></div>
+    <div class="kpi"><div class="kpi-label">Peso actual prom</div><div class="kpi-value">{fmtNum(compra.peso_actual_prom, 1)} kg</div></div>
+    <div class="kpi">
+      <div class="kpi-label">Ganancia prom</div>
+      <div class={`kpi-value ${compra.ganancia_kg_prom >= 0 ? 'stat-up' : 'stat-down'}`}>
+        {compra.ganancia_kg_prom >= 0 ? '+' : ''}{fmtNum(compra.ganancia_kg_prom, 1)} kg
+      </div>
+    </div>
+    <div class="kpi"><div class="kpi-label">GMD prom</div><div class="kpi-value">{compra.gmd_prom != null ? fmtNum(compra.gmd_prom, 3) : '—'}</div></div>
+  </div>
+
+  <h3 class="section-title">Animales en esta compra</h3>
+  <div class="table-wrap">
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>N° interno</th>
+          <th>Curva</th>
+          <th class="num">1° peso</th>
+          <th class="num">Último</th>
+          <th class="num">Ganancia</th>
+          <th class="num">GMD</th>
+          <th class="num">Días</th>
+          <th class="num">Pesajes</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {animals.map(a => {
+          const pts = pesajesByAnimal[String(a.id_animal)] || [];
+          const showDots = pts.length < 9;
+          const spark = sparkline(pts, { width: 90, height: 24, showDots });
+          const stateColor =
+            a.salida === 'VT' || a.salida === 'VTA' || a.salida === 'VNT' ? 'bg-emerald-100 text-emerald-800'
+            : a.salida === 'AUT' ? 'bg-orange-100 text-orange-800'
+            : a.salida === 'REFG' || a.salida === 'REFUG' ? 'bg-rose-100 text-rose-800'
+            : 'bg-sky-100 text-sky-800';
+          const stateLabel = a.salida || 'activo';
+          return (
+            <tr class="clickable" onclick={`location.href='${base}/animales/${a.id_animal}'`}>
+              <td class="font-mono text-xs">
+                <a href={base + '/animales/' + a.id_animal} class="text-stone-900 hover:text-brand-700 hover:underline">
+                  {a.nro || a.id_animal}
+                </a>
+              </td>
+              <td><span set:html={spark} /></td>
+              <td class="num text-stone-500">{fmtNum(a.first_peso, 1)}</td>
+              <td class="num font-medium">{fmtNum(a.last_peso, 1)}</td>
+              <td class="num">
+                <span class={a.ganancia_kg >= 0 ? 'stat-up font-medium' : 'stat-down font-medium'}>
+                  {a.ganancia_kg >= 0 ? '+' : ''}{fmtNum(a.ganancia_kg, 1)} kg
+                </span>
+              </td>
+              <td class="num">{a.gmd_kg != null ? fmtNum(a.gmd_kg, 3) : '—'}</td>
+              <td class="num text-stone-500">{a.dias_en_campo}</td>
+              <td class="num text-stone-500">{a.n_pesajes}</td>
+              <td><span class={'pill ' + stateColor}>{stateLabel}</span></td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  </div>
+</Layout>

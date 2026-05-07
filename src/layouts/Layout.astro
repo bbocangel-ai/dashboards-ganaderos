@@ -1,23 +1,32 @@
 ---
 import '../styles/global.css';
-import { meta, fmtFecha } from '../lib/data';
+import { meta } from '../lib/data';
 
 interface Props { title: string; }
 const { title } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const navItems = [
-  { href: '/',             label: 'Resumen' },
-  { href: '/proveedores',  label: 'Proveedores' },
-  { href: '/partidarios',  label: 'Partidarios' },
-  { href: '/comparativo',  label: 'Comparativo' },
-  { href: '/ventas',       label: 'Ventas' },
-  { href: '/trabajos',     label: 'Trabajos de corral' },
+  { href: '/',             label: 'Resumen',     icon: 'home' },
+  { href: '/proveedores',  label: 'Proveedores', icon: 'truck' },
+  { href: '/partidarios',  label: 'Partidarios', icon: 'users' },
+  { href: '/comparativo',  label: 'Comparativo', icon: 'columns' },
+  { href: '/ventas',       label: 'Ventas',      icon: 'tag' },
+  { href: '/trabajos',     label: 'Trabajos',    icon: 'clipboard' },
 ];
 const current = Astro.url.pathname.replace(base, '') || '/';
-const generated = new Date(meta.generated_at).toLocaleString('es-BO', {
-  dateStyle: 'medium', timeStyle: 'short',
-});
+
+const generatedDate = new Date(meta.generated_at);
+const ageMs = Date.now() - generatedDate.getTime();
+const ageH = Math.floor(ageMs / 3.6e6);
+const ageD = Math.floor(ageH / 24);
+const relAge =
+  ageMs < 60_000 ? 'hace segundos'
+  : ageMs < 3.6e6 ? `hace ${Math.floor(ageMs / 60_000)} min`
+  : ageH < 24 ? `hace ${ageH}h`
+  : ageD < 7 ? `hace ${ageD} d`
+  : generatedDate.toLocaleDateString('es-BO', { day: '2-digit', month: 'short', year: '2-digit' });
+const ageWarn = ageH > 24;
 ---
 <!doctype html>
 <html lang="es">
@@ -27,31 +36,53 @@ const generated = new Date(meta.generated_at).toLocaleString('es-BO', {
     <meta name="generator" content={Astro.generator} />
     <link rel="preconnect" href="https://rsms.me/" />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-    <title>{title} · Dashboards Agropecuaria RBO</title>
+    <title>{title} · Agropecuaria RBO</title>
+    <style is:global>
+      :root { font-family: 'Inter', system-ui, sans-serif; }
+      @supports (font-variation-settings: normal) {
+        :root { font-family: 'Inter var', system-ui, sans-serif; }
+      }
+    </style>
   </head>
-  <body class="min-h-screen bg-stone-50 text-stone-800 antialiased">
-    <header class="bg-white border-b border-stone-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
-        <div>
-          <div class="text-xs uppercase tracking-wider text-brand-600 font-semibold">Agropecuaria RBO</div>
-          <h1 class="text-xl sm:text-2xl font-bold text-stone-900">Dashboards Ganaderos</h1>
-        </div>
-        <div class="text-xs text-stone-500">
-          <div>Última sincronización: <span class="font-mono">{generated}</span></div>
-          <div>{meta.n_pesajes.toLocaleString('es-BO')} pesajes · {meta.n_animales.toLocaleString('es-BO')} animales · {meta.n_sesiones} sesiones</div>
+  <body class="min-h-screen antialiased">
+    <header class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-stone-200/80 sticky-shadow">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
+        <a href={base + '/'} class="flex items-center gap-3 group">
+          <div class="w-9 h-9 rounded-lg bg-brand-600 text-white flex items-center justify-center font-bold text-sm shadow-sm group-hover:bg-brand-700 transition">RBO</div>
+          <div class="hidden sm:block">
+            <div class="text-[11px] uppercase tracking-wider text-brand-600 font-semibold leading-none">Agropecuaria</div>
+            <div class="text-[15px] font-bold text-stone-900 leading-tight mt-0.5">Dashboards Ganaderos</div>
+          </div>
+        </a>
+
+        <div class="flex items-center gap-2">
+          <a
+            href={base + '/actualizar'}
+            class={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium border transition ${
+              ageWarn
+                ? 'border-amber-300 bg-amber-50 text-amber-800 hover:bg-amber-100'
+                : 'border-stone-200 bg-stone-50 text-stone-600 hover:bg-stone-100'
+            }`}
+            title={`Última: ${generatedDate.toLocaleString('es-BO')}`}
+          >
+            <span class={`w-2 h-2 rounded-full ${ageWarn ? 'bg-amber-500' : 'bg-emerald-500'} animate-pulse`}></span>
+            <span>Sync {relAge}</span>
+            {ageWarn && <span class="ml-1">↻</span>}
+          </a>
         </div>
       </div>
-      <nav class="max-w-7xl mx-auto px-4 sm:px-6 flex gap-1 -mb-px overflow-x-auto">
+
+      <nav class="max-w-7xl mx-auto px-2 sm:px-4 flex gap-0.5 overflow-x-auto -mb-px">
         {navItems.map(item => {
           const href = base + item.href;
           const isActive = current === item.href || (item.href !== '/' && current.startsWith(item.href));
           return (
             <a
               href={href}
-              class={`px-4 py-3 text-sm font-medium border-b-2 transition whitespace-nowrap ${
+              class={`relative px-3.5 py-2.5 text-sm font-medium border-b-2 transition whitespace-nowrap ${
                 isActive
-                  ? 'border-brand-500 text-brand-700'
-                  : 'border-transparent text-stone-500 hover:text-stone-800 hover:border-stone-300'
+                  ? 'border-brand-600 text-stone-900'
+                  : 'border-transparent text-stone-500 hover:text-stone-800'
               }`}
             >
               {item.label}
@@ -60,11 +91,19 @@ const generated = new Date(meta.generated_at).toLocaleString('es-BO', {
         })}
       </nav>
     </header>
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
       <slot />
     </main>
-    <footer class="max-w-7xl mx-auto px-4 sm:px-6 py-8 text-xs text-stone-400">
-      Datos: SisGado (Firebird) · Build estático · GitHub Pages
+
+    <footer class="max-w-7xl mx-auto px-4 sm:px-6 py-8 text-xs text-stone-400 flex flex-wrap items-center gap-x-4 gap-y-1 border-t border-stone-100 mt-8">
+      <span>{meta.n_pesajes.toLocaleString('es-BO')} pesajes</span>
+      <span>·</span>
+      <span>{meta.n_animales.toLocaleString('es-BO')} animales</span>
+      <span>·</span>
+      <span>{meta.n_sesiones} sesiones</span>
+      <span>·</span>
+      <span>SisGado (Firebird) → Astro → GitHub Pages</span>
     </footer>
   </body>
 </html>

@@ -6,7 +6,10 @@
 import animalesRaw from '../../public/data/animales.json';
 import sesionesRaw from '../../public/data/sesiones.json';
 import metaRaw from '../../public/data/meta.json';
+import pesajesByAnimalRaw from '../../public/data/pesajes-by-animal.json';
 import overridesRaw from '../data/overrides.json';
+
+export const pesajesByAnimal = pesajesByAnimalRaw as Record<string, [string, number][]>;
 
 type Overrides = { compras: Record<string, { cabezas_real?: number; nota?: string }> };
 export const overrides = (overridesRaw as unknown as Overrides);
@@ -435,6 +438,16 @@ export function totalesVentas(ventas: VentaSesion[]) {
     cabezas_con_precio_real: real.reduce((s, v) => s + v.n, 0),
     ingreso_bs_real: real.reduce((s, v) => s + v.ingreso_bs, 0),
   };
+}
+
+// Animals helpers
+export function animalesByRaza(raza_codigo: string): Animal[] {
+  return animales.filter(a => (a.raza_codigo || a.raza_descripcion || '') === raza_codigo);
+}
+
+export function getAnimal(id: number | string): Animal | undefined {
+  const idn = typeof id === 'string' ? Number(id) : id;
+  return animales.find(a => a.id_animal === idn);
 }
 
 // Distribución por tipo de trabajo
