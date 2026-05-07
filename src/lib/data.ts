@@ -6,6 +6,10 @@
 import animalesRaw from '../../public/data/animales.json';
 import sesionesRaw from '../../public/data/sesiones.json';
 import metaRaw from '../../public/data/meta.json';
+import overridesRaw from '../data/overrides.json';
+
+type Overrides = { compras: Record<string, { cabezas_real?: number; nota?: string }> };
+export const overrides = (overridesRaw as unknown as Overrides);
 
 export type Animal = {
   id_animal: number;
@@ -19,6 +23,9 @@ export type Animal = {
   ingreso_proveedor: string | null;
   partidario_id: string | null;
   partidario: string | null;
+  partidario_mes: string | null;
+  raza_codigo: string | null;
+  raza_descripcion: string | null;
   first_fecha: string;
   first_peso: number;
   last_fecha: string;
@@ -34,8 +41,20 @@ export type Animal = {
   last_sesion: string | null;
 };
 
+export type GroupRow = {
+  key: string;
+  label: string;
+  cabezas: number;
+  peso_prom: number;
+  peso_neto_total: number;
+  peso_ingreso_prom: number;
+  ganancia_kg_prom: number;
+  dias_prom: number;
+};
+
 export type Sesion = {
   sesion: string;
+  slug: string;
   trabajo_tipo: string | null;
   trabajo_tipo_label: string | null;
   trabajo_fecha: string | null;
@@ -47,6 +66,10 @@ export type Sesion = {
   peso_prom: number | null;
   peso_min: number | null;
   peso_max: number | null;
+  por_partidario: GroupRow[];
+  por_proveedor: GroupRow[];
+  por_categoria: GroupRow[];
+  por_raza: GroupRow[];
 };
 
 export type Meta = {
@@ -134,10 +157,36 @@ export function aggProveedores(): ProveedorAgg[] {
   return out.sort((a, b) => b.cabezas - a.cabezas);
 }
 
+export type Compra = {
+  raza_codigo: string;            // CODIGO en RACAS (key del override)
+  raza_descripcion: string;
+  partidario_id: string | null;
+  partidario: string | null;
+  mes: string | null;
+  categoria: string | null;
+  cabezas_sisgado: number;        // count real en SisGado
+  cabezas_real: number | null;    // override manual
+  cabezas_efectivas: number;      // real ?? sisgado
+  override_nota: string | null;
+  peso_ingreso_prom: number;
+  peso_actual_prom: number;
+  ganancia_kg_prom: number;
+  gmd_prom: number | null;
+  kg_totales_ganados: number;
+  dias_prom: number;
+  origenes: string[];
+  precio_compra_bs_prom: number | null;
+  ingreso_fecha_min: string | null;
+  vendidos: number;
+  activos: number;
+};
+
 export type PartidarioAgg = {
   id: string;
   nombre: string;
-  cabezas: number;
+  compras: Compra[];
+  cabezas_sisgado: number;
+  cabezas_efectivas: number;
   por_categoria: Record<string, number>;
   peso_ingreso_prom: number;
   peso_actual_prom: number;
@@ -150,68 +199,153 @@ export type PartidarioAgg = {
   dias_prom: number;
 };
 
-export function aggPartidarios(): PartidarioAgg[] {
+export function aggCompras(): Compra[] {
   const map = new Map<string, {
-    nombre: string;
+    raza_codigo: string;
+    raza_descripcion: string;
+    partidario_id: string | null;
+    partidario: string | null;
+    mes: string | null;
+    categoria: string | null;
     cabezas: number;
-    por_cat: Record<string, number>;
     peso_in_sum: number; peso_out_sum: number; gan_sum: number;
     gmd_sum: number; gmd_n: number;
+    dias_sum: number; dias_n: number;
     origenes: Set<string>;
     precio_sum: number; precio_n: number;
     ingreso_fecha_min: string | null;
-    dias_sum: number; dias_n: number;
+    vendidos: number;
   }>();
 
   for (const a of animales) {
-    if (!a.partidario_id) continue;
-    let g = map.get(a.partidario_id);
+    if (!a.partidario_id) continue;          // solo animales partidarios
+    const key = a.raza_codigo || a.raza_descripcion || a.partidario_id;
+    let g = map.get(key);
     if (!g) {
       g = {
-        nombre: a.partidario || a.partidario_id,
-        cabezas: 0, por_cat: {},
+        raza_codigo: a.raza_codigo || key,
+        raza_descripcion: a.raza_descripcion || a.partidario_id,
+        partidario_id: a.partidario_id,
+        partidario: a.partidario,
+        mes: a.partidario_mes,
+        categoria: a.categoria,
+        cabezas: 0,
         peso_in_sum: 0, peso_out_sum: 0, gan_sum: 0, gmd_sum: 0, gmd_n: 0,
+        dias_sum: 0, dias_n: 0,
         origenes: new Set(),
         precio_sum: 0, precio_n: 0,
         ingreso_fecha_min: null,
-        dias_sum: 0, dias_n: 0,
+        vendidos: 0,
       };
-      map.set(a.partidario_id, g);
+      map.set(key, g);
     }
     g.cabezas++;
-    const cat = a.categoria || '—';
-    g.por_cat[cat] = (g.por_cat[cat] || 0) + 1;
     g.peso_in_sum += a.first_peso;
     g.peso_out_sum += a.last_peso;
     g.gan_sum += a.ganancia_kg;
     if (a.gmd_kg != null) { g.gmd_sum += a.gmd_kg; g.gmd_n++; }
+    if (a.dias_en_campo > 0) { g.dias_sum += a.dias_en_campo; g.dias_n++; }
     if (a.proveedor) g.origenes.add(a.proveedor);
     if (a.proveedor_precio_bs != null) { g.precio_sum += a.proveedor_precio_bs; g.precio_n++; }
     if (a.ingreso_fecha) {
       if (!g.ingreso_fecha_min || a.ingreso_fecha < g.ingreso_fecha_min) g.ingreso_fecha_min = a.ingreso_fecha;
     }
-    if (a.dias_en_campo > 0) { g.dias_sum += a.dias_en_campo; g.dias_n++; }
+    if (a.vendido) g.vendidos++;
   }
 
-  const out: PartidarioAgg[] = [];
-  for (const [id, g] of map) {
+  const out: Compra[] = [];
+  for (const [, g] of map) {
+    const ov = overrides.compras?.[g.raza_codigo];
+    const real = ov?.cabezas_real ?? null;
     out.push({
-      id,
-      nombre: g.nombre,
-      cabezas: g.cabezas,
-      por_categoria: g.por_cat,
+      raza_codigo: g.raza_codigo,
+      raza_descripcion: g.raza_descripcion,
+      partidario_id: g.partidario_id,
+      partidario: g.partidario,
+      mes: g.mes,
+      categoria: g.categoria,
+      cabezas_sisgado: g.cabezas,
+      cabezas_real: real,
+      cabezas_efectivas: real ?? g.cabezas,
+      override_nota: ov?.nota ?? null,
       peso_ingreso_prom: Math.round((g.peso_in_sum / g.cabezas) * 10) / 10,
       peso_actual_prom: Math.round((g.peso_out_sum / g.cabezas) * 10) / 10,
       ganancia_kg_prom: Math.round((g.gan_sum / g.cabezas) * 10) / 10,
       gmd_prom: g.gmd_n > 0 ? Math.round((g.gmd_sum / g.gmd_n) * 1000) / 1000 : null,
       kg_totales_ganados: Math.round(g.gan_sum),
+      dias_prom: g.dias_n > 0 ? Math.round(g.dias_sum / g.dias_n) : 0,
       origenes: [...g.origenes],
       precio_compra_bs_prom: g.precio_n > 0 ? Math.round(g.precio_sum / g.precio_n) : null,
       ingreso_fecha_min: g.ingreso_fecha_min,
-      dias_prom: g.dias_n > 0 ? Math.round(g.dias_sum / g.dias_n) : 0,
+      vendidos: g.vendidos,
+      activos: g.cabezas - g.vendidos,
     });
   }
-  return out.sort((a, b) => b.cabezas - a.cabezas);
+  return out.sort((a, b) => {
+    const p = (a.partidario_id || '').localeCompare(b.partidario_id || '');
+    if (p !== 0) return p;
+    return (b.ingreso_fecha_min || '').localeCompare(a.ingreso_fecha_min || '');
+  });
+}
+
+export function aggPartidarios(): PartidarioAgg[] {
+  const compras = aggCompras();
+  const byPart = new Map<string, Compra[]>();
+  for (const c of compras) {
+    if (!c.partidario_id) continue;
+    let arr = byPart.get(c.partidario_id);
+    if (!arr) { arr = []; byPart.set(c.partidario_id, arr); }
+    arr.push(c);
+  }
+  const out: PartidarioAgg[] = [];
+  for (const [id, list] of byPart) {
+    let cab_sg = 0, cab_ef = 0;
+    let peso_in_w = 0, peso_out_w = 0, gan_w = 0;
+    let gmd_w = 0, gmd_n_w = 0;
+    let dias_w = 0, dias_n_w = 0;
+    let kg_total = 0;
+    const por_cat: Record<string, number> = {};
+    const origenes = new Set<string>();
+    let precio_w = 0, precio_n_w = 0;
+    let ingreso_fecha_min: string | null = null;
+
+    for (const c of list) {
+      cab_sg += c.cabezas_sisgado;
+      const w = c.cabezas_sisgado;       // ponderado por cabezas reales medidas
+      cab_ef += c.cabezas_efectivas;
+      peso_in_w += c.peso_ingreso_prom * w;
+      peso_out_w += c.peso_actual_prom * w;
+      gan_w += c.ganancia_kg_prom * w;
+      if (c.gmd_prom != null) { gmd_w += c.gmd_prom * w; gmd_n_w += w; }
+      if (c.dias_prom > 0) { dias_w += c.dias_prom * w; dias_n_w += w; }
+      kg_total += c.kg_totales_ganados;
+      const k = c.categoria || '—';
+      por_cat[k] = (por_cat[k] || 0) + c.cabezas_efectivas;
+      c.origenes.forEach(o => origenes.add(o));
+      if (c.precio_compra_bs_prom != null) { precio_w += c.precio_compra_bs_prom * w; precio_n_w += w; }
+      if (c.ingreso_fecha_min && (!ingreso_fecha_min || c.ingreso_fecha_min < ingreso_fecha_min)) {
+        ingreso_fecha_min = c.ingreso_fecha_min;
+      }
+    }
+    out.push({
+      id,
+      nombre: list[0].partidario || id,
+      compras: list,
+      cabezas_sisgado: cab_sg,
+      cabezas_efectivas: cab_ef,
+      por_categoria: por_cat,
+      peso_ingreso_prom: cab_sg > 0 ? Math.round((peso_in_w / cab_sg) * 10) / 10 : 0,
+      peso_actual_prom: cab_sg > 0 ? Math.round((peso_out_w / cab_sg) * 10) / 10 : 0,
+      ganancia_kg_prom: cab_sg > 0 ? Math.round((gan_w / cab_sg) * 10) / 10 : 0,
+      gmd_prom: gmd_n_w > 0 ? Math.round((gmd_w / gmd_n_w) * 1000) / 1000 : null,
+      kg_totales_ganados: Math.round(kg_total),
+      origenes: [...origenes],
+      precio_compra_bs_prom: precio_n_w > 0 ? Math.round(precio_w / precio_n_w) : null,
+      ingreso_fecha_min,
+      dias_prom: dias_n_w > 0 ? Math.round(dias_w / dias_n_w) : 0,
+    });
+  }
+  return out.sort((a, b) => b.cabezas_efectivas - a.cabezas_efectivas);
 }
 
 // ---------- KPIs globales para overview ------------------------------------

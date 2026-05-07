@@ -9,7 +9,7 @@ const lista = aggPartidarios();
 type Row = { label: string; render: (p: typeof lista[number]) => string; cls?: string };
 
 const rows: Row[] = [
-  { label: 'Cantidad', render: p => fmtNum(p.cabezas) + ' cab', cls: 'font-bold text-stone-900' },
+  { label: 'Cantidad', render: p => fmtNum(p.cabezas_efectivas) + ' cab' + (p.cabezas_efectivas !== p.cabezas_sisgado ? ` (SisGado: ${p.cabezas_sisgado})` : ''), cls: 'font-bold text-stone-900' },
   { label: 'Origen', render: p => p.origenes.length === 0 ? '—' : p.origenes.slice(0, 3).join(', ') + (p.origenes.length > 3 ? ` +${p.origenes.length - 3}` : '') },
   { label: 'Fecha ingreso', render: p => fmtFecha(p.ingreso_fecha_min) || '—' },
   { label: 'Precio compra', render: p => p.precio_compra_bs_prom != null ? `${fmtBs(p.precio_compra_bs_prom)} / USD ${fmtNum(p.precio_compra_bs_prom / USD_RATE, 0)}` : '—' },

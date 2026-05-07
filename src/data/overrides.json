@@ -1,0 +1,13 @@
+{
+  "_doc": {
+    "qué_es": "Overrides manuales cuando SisGado no coincide con la realidad. Esto se aplica al construir las vistas — los pesajes y demás datos se mantienen intactos.",
+    "cómo_usar_compras": "La key es el CODIGO de la fila en RACAS (lo ves en /partidarios al lado de cada compra). Ej: \"06\" sobreescribe la cantidad real de esa compra.",
+    "ejemplo": {
+      "compras": {
+        "06": { "cabezas_real": 28, "nota": "uno se murió en transporte" },
+        "MA": { "cabezas_real": 70, "nota": "real conteo del corral" }
+      }
+    }
+  },
+  "compras": {}
+}

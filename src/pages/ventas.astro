@@ -6,6 +6,7 @@ import { USD_RATE, DESBASTE, PRECIO_VENTA_BS_KG } from '../lib/config';
 
 const ventas = aggVentas();
 const t = totalesVentas(ventas);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 <Layout title="Ventas">
   <div class="flex items-end justify-between mb-6">
@@ -45,11 +46,12 @@ const t = totalesVentas(ventas);
           <th class="num">Ingreso Bs</th>
           <th class="num">USD</th>
           <th>Detalle</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         {ventas.map(v => (
-          <tr>
+          <tr class="cursor-pointer" onclick={`location.href='${base}/ventas/${v.slug}'`}>
             <td class="font-mono text-xs whitespace-nowrap">{fmtFecha(v.fecha_max)}</td>
             <td><span class="pill bg-emerald-100 text-emerald-800">{v.trabajo_tipo}</span></td>
             <td class="num font-semibold">{fmtNum(v.n)}</td>
@@ -65,6 +67,7 @@ const t = totalesVentas(ventas);
             <td class="num font-medium">{fmtBs(v.ingreso_bs)}</td>
             <td class="num text-stone-500">{fmtNum(v.ingreso_usd)}</td>
             <td class="text-stone-600 text-xs">{v.trabajo_detalle}</td>
+            <td><a href={base + '/ventas/' + v.slug} class="text-brand-600 text-xs hover:underline">ver →</a></td>
           </tr>
         ))}
       </tbody>

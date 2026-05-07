@@ -237,6 +237,7 @@ const SQL = `
     l.DESCRICAO                  AS lote_descripcion,
     lo.CODIGO                    AS local_codigo,
     lo.DESCRICAO                 AS local_descripcion,
+    rc.CODIGO                    AS raza_codigo,
     rc.DESCRICAO                 AS raza_descripcion,
     od.CODIGO                    AS estancia_codigo,
     od.NOME                      AS estancia_nombre,
@@ -290,6 +291,8 @@ async function main() {
       id_animal: r.ID_ANIMAL,
       nro: r.NRO_INTERNO != null ? String(r.NRO_INTERNO).trim() : null,
       sexo: r.SEXO,
+      raza_codigo: r.RAZA_CODIGO != null ? String(r.RAZA_CODIGO).trim() : null,
+      raza_descripcion: r.RAZA_DESCRIPCION,
       categoria: r.CAT_CODIGO,
       categoria_desc: r.CAT_DESCRIPCION,
       estancia: r.ESTANCIA_CODIGO,
@@ -345,6 +348,9 @@ async function main() {
         ingreso_proveedor: p.ingreso_proveedor,
         partidario_id: p.partidario_id,
         partidario: p.partidario,
+        partidario_mes: p.partidario_mes,
+        raza_codigo: p.raza_codigo,
+        raza_descripcion: p.raza_descripcion,
         first_fecha: p.fecha,
         first_peso: p.peso,
         last_fecha: p.fecha,
@@ -425,6 +431,52 @@ async function main() {
       peso_max: s.peso_max === -Infinity ? null : s.peso_max,
     }))
     .sort((a, b) => (b.fecha_max || '').localeCompare(a.fecha_max || ''));
+
+  // Per-sesion breakdowns: for sales/exits, group animals (by last sesion) by partidario, proveedor, categoria
+  const animalesByLastSesion = new Map();
+  for (const a of animales) {
+    if (!a.last_sesion) continue;
+    let arr = animalesByLastSesion.get(a.last_sesion);
+    if (!arr) { arr = []; animalesByLastSesion.set(a.last_sesion, arr); }
+    arr.push(a);
+  }
+  function group(animals, keyFn, labelFn) {
+    const m = new Map();
+    for (const a of animals) {
+      const k = keyFn(a);
+      if (k == null) continue;
+      let g = m.get(k);
+      if (!g) {
+        g = { key: String(k), label: labelFn ? labelFn(a) : String(k), cabezas: 0, peso_bruto_sum: 0, peso_in_sum: 0, ganancia_sum: 0, dias_sum: 0 };
+        m.set(k, g);
+      }
+      g.cabezas++;
+      g.peso_bruto_sum += a.last_peso;
+      g.peso_in_sum += a.first_peso;
+      g.ganancia_sum += a.ganancia_kg;
+      g.dias_sum += a.dias_en_campo;
+    }
+    return [...m.values()].map(g => ({
+      key: g.key,
+      label: g.label,
+      cabezas: g.cabezas,
+      peso_prom: Math.round((g.peso_bruto_sum / g.cabezas) * 10) / 10,
+      peso_neto_total: Math.round(g.peso_bruto_sum * (1 - 0.05)),
+      peso_ingreso_prom: Math.round((g.peso_in_sum / g.cabezas) * 10) / 10,
+      ganancia_kg_prom: Math.round((g.ganancia_sum / g.cabezas) * 10) / 10,
+      dias_prom: g.cabezas > 0 ? Math.round(g.dias_sum / g.cabezas) : 0,
+    })).sort((a, b) => b.cabezas - a.cabezas);
+  }
+  for (const s of sesiones) {
+    const animals = animalesByLastSesion.get(s.sesion) || [];
+    s.por_partidario = group(animals, a => a.partidario_id, a => a.partidario || a.partidario_id || '');
+    s.por_proveedor  = group(animals, a => a.proveedor || null);
+    s.por_categoria  = group(animals, a => a.categoria || null);
+    s.por_raza       = group(animals, a => a.raza_codigo || a.raza_descripcion || null, a => a.raza_descripcion || a.raza_codigo || '');
+    // slug for routing
+    s.slug = String(s.sesion).toLowerCase()
+      .replace(/[^\w]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80);
+  }
 
   // ---------- write --------------------------------------------------------
   mkdirSync(OUT_DIR, { recursive: true });

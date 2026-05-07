@@ -1,98 +1,131 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Kpi from '../components/Kpi.astro';
-import { aggPartidarios, fmtNum } from '../lib/data';
+import { aggPartidarios, fmtNum, fmtFecha, fmtBs } from '../lib/data';
 
-const lista = aggPartidarios();
-const totalCab = lista.reduce((s, p) => s + p.cabezas, 0);
-const totalGan = lista.reduce((s, p) => s + p.kg_totales_ganados, 0);
+const partidarios = aggPartidarios();
+const totalCab = partidarios.reduce((s, p) => s + p.cabezas_efectivas, 0);
+const totalSg  = partidarios.reduce((s, p) => s + p.cabezas_sisgado, 0);
+const totalGan = partidarios.reduce((s, p) => s + p.kg_totales_ganados, 0);
 
-// Categorias presentes (para columnas dinámicas)
-const cats = Array.from(new Set(lista.flatMap(p => Object.keys(p.por_categoria)))).sort();
+const catColor: Record<string, string> = {
+  VQ: 'bg-pink-100 text-pink-800',
+  TL: 'bg-sky-100 text-sky-800',
+  TO: 'bg-indigo-100 text-indigo-800',
+  TR: 'bg-amber-100 text-amber-800',
+  TA: 'bg-amber-100 text-amber-800',
+  NV: 'bg-violet-100 text-violet-800',
+};
 ---
 <Layout title="Partidarios">
   <div class="flex items-end justify-between mb-6">
     <div>
       <h2 class="text-lg font-semibold text-stone-900">Partidarios / Inversionistas</h2>
-      <p class="text-sm text-stone-500">BB · DB · MB · MA · FB — desempeño por inversionista</p>
+      <p class="text-sm text-stone-500">Cada compra (línea de RACAS) detallada por categoría y mes — totales rolled up por inversionista</p>
     </div>
     <div class="text-right text-xs text-stone-500">
-      {fmtNum(totalCab)} cabezas · {fmtNum(totalGan)} kg ganados en total
+      {fmtNum(totalCab)} cabezas (efectivas) · {fmtNum(totalSg)} en SisGado · {fmtNum(totalGan)} kg ganados
     </div>
   </div>
 
-  <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
-    {lista.map(p => (
-      <div class="kpi">
-        <div class="kpi-label">{p.id} · {p.nombre}</div>
-        <div class="kpi-value">{fmtNum(p.cabezas)}</div>
-        <div class="kpi-sub">cab · GMD {p.gmd_prom != null ? fmtNum(p.gmd_prom, 3) : '—'} · gan {fmtNum(p.ganancia_kg_prom, 1)} kg/cab</div>
-      </div>
-    ))}
+  <div class="space-y-8">
+    {partidarios.map(p => {
+      const tieneOverride = p.cabezas_efectivas !== p.cabezas_sisgado;
+      return (
+      <section class="card">
+        <header class="px-5 py-4 border-b border-stone-200 flex items-center justify-between">
+          <div>
+            <h3 class="text-base font-bold text-stone-900">{p.nombre}</h3>
+            <p class="text-xs text-stone-500">
+              {p.id} · {p.compras.length} compra{p.compras.length === 1 ? '' : 's'} · ingresó por primera vez el {fmtFecha(p.ingreso_fecha_min) || '—'}
+            </p>
+          </div>
+          <div class="text-right">
+            <div class="text-2xl font-bold text-stone-900">{fmtNum(p.cabezas_efectivas)}</div>
+            <div class="text-xs text-stone-500">
+              cabezas total
+              {tieneOverride && (
+                <span class="ml-1 text-amber-600">(SisGado: {fmtNum(p.cabezas_sisgado)})</span>
+              )}
+            </div>
+          </div>
+        </header>
+
+        <div class="overflow-x-auto">
+          <table class="tbl">
+            <thead>
+              <tr>
+                <th>Compra</th>
+                <th>Mes</th>
+                <th>Categoría</th>
+                <th>Origen</th>
+                <th class="num">Cab. real</th>
+                <th class="num">Cab. SisGado</th>
+                <th class="num">Bs/cab</th>
+                <th class="num">Peso ing.</th>
+                <th class="num">Peso act.</th>
+                <th class="num">Ganancia</th>
+                <th class="num">GMD</th>
+                <th class="num">Días</th>
+                <th class="num">Vendidas</th>
+              </tr>
+            </thead>
+            <tbody>
+              {p.compras.map(c => {
+                const overOk = c.cabezas_real != null;
+                const desigualdad = c.cabezas_real != null && c.cabezas_real !== c.cabezas_sisgado;
+                return (
+                <tr>
+                  <td class="font-mono text-xs">
+                    <div class="font-bold text-stone-900">{c.raza_codigo}</div>
+                    <div class="text-stone-400">{c.raza_descripcion}</div>
+                  </td>
+                  <td class="text-xs">{c.mes || '—'}</td>
+                  <td>
+                    <span class={'pill ' + (catColor[c.categoria || ''] || 'bg-stone-100 text-stone-700')}>
+                      {c.categoria || '—'}
+                    </span>
+                  </td>
+                  <td class="text-xs text-stone-600 max-w-xs truncate" title={c.origenes.join(', ')}>
+                    {c.origenes.length > 0 ? c.origenes.slice(0, 2).join(', ') : '—'}
+                    {c.origenes.length > 2 && <span class="text-stone-400"> +{c.origenes.length - 2}</span>}
+                  </td>
+                  <td class="num font-semibold">
+                    {overOk ? fmtNum(c.cabezas_real!) : fmtNum(c.cabezas_sisgado)}
+                    {overOk && <span class="ml-1 text-[10px] text-emerald-600 uppercase" title={c.override_nota || ''}>real</span>}
+                  </td>
+                  <td class="num">
+                    <span class={desigualdad ? 'text-amber-600' : 'text-stone-500'}>{fmtNum(c.cabezas_sisgado)}</span>
+                  </td>
+                  <td class="num">{c.precio_compra_bs_prom != null ? fmtBs(c.precio_compra_bs_prom) : '—'}</td>
+                  <td class="num">{fmtNum(c.peso_ingreso_prom, 1)} kg</td>
+                  <td class="num">{fmtNum(c.peso_actual_prom, 1)} kg</td>
+                  <td class="num">
+                    <span class={c.ganancia_kg_prom >= 0 ? 'text-emerald-700 font-medium' : 'text-rose-700 font-medium'}>
+                      {c.ganancia_kg_prom >= 0 ? '+' : ''}{fmtNum(c.ganancia_kg_prom, 1)} kg
+                    </span>
+                  </td>
+                  <td class="num">{c.gmd_prom != null ? fmtNum(c.gmd_prom, 3) : '—'}</td>
+                  <td class="num text-stone-500">{c.dias_prom > 0 ? c.dias_prom + ' d' : '—'}</td>
+                  <td class="num">
+                    {c.vendidos > 0 ? (
+                      <span class="text-emerald-700 font-medium">{c.vendidos}</span>
+                    ) : '—'}
+                    {c.activos > 0 && c.vendidos > 0 && (
+                      <span class="text-stone-400 text-xs"> / {c.activos} act.</span>
+                    )}
+                  </td>
+                </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </section>
+    )})}
   </div>
 
-  <div class="table-wrap mb-6">
-    <div class="px-5 py-3 border-b border-stone-200">
-      <h3 class="font-semibold text-stone-900">Resumen por partidario</h3>
-    </div>
-    <table class="tbl">
-      <thead>
-        <tr>
-          <th>Partidario</th>
-          <th class="num">Cabezas</th>
-          <th class="num">Peso ing.</th>
-          <th class="num">Peso act.</th>
-          <th class="num">Ganancia / cab</th>
-          <th class="num">GMD</th>
-          <th class="num">Kg ganados (total)</th>
-        </tr>
-      </thead>
-      <tbody>
-        {lista.map(p => (
-          <tr>
-            <td>
-              <div class="font-medium text-stone-900">{p.id}</div>
-              <div class="text-xs text-stone-500">{p.nombre}</div>
-            </td>
-            <td class="num font-semibold">{fmtNum(p.cabezas)}</td>
-            <td class="num">{fmtNum(p.peso_ingreso_prom, 1)} kg</td>
-            <td class="num">{fmtNum(p.peso_actual_prom, 1)} kg</td>
-            <td class="num">
-              <span class={p.ganancia_kg_prom >= 0 ? 'text-emerald-700 font-medium' : 'text-rose-700 font-medium'}>
-                {p.ganancia_kg_prom >= 0 ? '+' : ''}{fmtNum(p.ganancia_kg_prom, 1)} kg
-              </span>
-            </td>
-            <td class="num">{p.gmd_prom != null ? fmtNum(p.gmd_prom, 3) : '—'}</td>
-            <td class="num">{fmtNum(p.kg_totales_ganados)} kg</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
-
-  <div class="table-wrap">
-    <div class="px-5 py-3 border-b border-stone-200">
-      <h3 class="font-semibold text-stone-900">Distribución por categoría</h3>
-    </div>
-    <table class="tbl">
-      <thead>
-        <tr>
-          <th>Partidario</th>
-          {cats.map(c => <th class="num">{c}</th>)}
-          <th class="num">Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        {lista.map(p => (
-          <tr>
-            <td class="font-medium">{p.id}</td>
-            {cats.map(c => (
-              <td class="num">{p.por_categoria[c] ? fmtNum(p.por_categoria[c]) : '—'}</td>
-            ))}
-            <td class="num font-semibold">{fmtNum(p.cabezas)}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  </div>
+  <p class="mt-6 text-xs text-stone-400">
+    Para sobreescribir la cantidad real de una compra (cuando SisGado no coincide), editá <code>src/data/overrides.json</code> usando el código de RACAS, ej:
+    <code>{`{ "compras": { "06": { "cabezas_real": 28, "nota": "uno se murió" } } }`}</code>
+  </p>
 </Layout>
