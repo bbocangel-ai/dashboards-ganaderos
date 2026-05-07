@@ -1,0 +1,68 @@
+---
+import '../styles/global.css';
+import { meta, fmtFecha } from '../lib/data';
+
+interface Props { title: string; }
+const { title } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const navItems = [
+  { href: '/',             label: 'Resumen' },
+  { href: '/proveedores',  label: 'Proveedores' },
+  { href: '/partidarios',  label: 'Partidarios' },
+  { href: '/trabajos',     label: 'Trabajos de corral' },
+];
+const current = Astro.url.pathname.replace(base, '') || '/';
+const generated = new Date(meta.generated_at).toLocaleString('es-BO', {
+  dateStyle: 'medium', timeStyle: 'short',
+});
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <title>{title} · Dashboards Agropecuaria RBO</title>
+  </head>
+  <body class="min-h-screen bg-stone-50 text-stone-800 antialiased">
+    <header class="bg-white border-b border-stone-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
+        <div>
+          <div class="text-xs uppercase tracking-wider text-brand-600 font-semibold">Agropecuaria RBO</div>
+          <h1 class="text-xl sm:text-2xl font-bold text-stone-900">Dashboards Ganaderos</h1>
+        </div>
+        <div class="text-xs text-stone-500">
+          <div>Última sincronización: <span class="font-mono">{generated}</span></div>
+          <div>{meta.n_pesajes.toLocaleString('es-BO')} pesajes · {meta.n_animales.toLocaleString('es-BO')} animales · {meta.n_sesiones} sesiones</div>
+        </div>
+      </div>
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 flex gap-1 -mb-px overflow-x-auto">
+        {navItems.map(item => {
+          const href = base + item.href;
+          const isActive = current === item.href || (item.href !== '/' && current.startsWith(item.href));
+          return (
+            <a
+              href={href}
+              class={`px-4 py-3 text-sm font-medium border-b-2 transition whitespace-nowrap ${
+                isActive
+                  ? 'border-brand-500 text-brand-700'
+                  : 'border-transparent text-stone-500 hover:text-stone-800 hover:border-stone-300'
+              }`}
+            >
+              {item.label}
+            </a>
+          );
+        })}
+      </nav>
+    </header>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8">
+      <slot />
+    </main>
+    <footer class="max-w-7xl mx-auto px-4 sm:px-6 py-8 text-xs text-stone-400">
+      Datos: SisGado (Firebird) · Build estático · GitHub Pages
+    </footer>
+  </body>
+</html>

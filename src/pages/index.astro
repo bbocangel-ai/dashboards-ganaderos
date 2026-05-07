@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Kpi from '../components/Kpi.astro';
+import { aggGlobal, trabajosOrdenados, trabajosPorTipo, fmtFecha, fmtNum } from '../lib/data';
+
+const g = aggGlobal();
+const ultimas = trabajosOrdenados(10);
+const porTipo = trabajosPorTipo();
+---
+<Layout title="Resumen">
+  <h2 class="text-lg font-semibold text-stone-900 mb-4">Vista general</h2>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+    <Kpi label="Animales activos" value={fmtNum(g.total_cabezas)} sub="con al menos 1 pesaje" />
+    <Kpi label="Peso prom. actual" value={fmtNum(g.peso_prom_actual, 1) + ' kg'} sub="último pesaje por animal" />
+    <Kpi label="GMD promedio" value={g.gmd_prom != null ? fmtNum(g.gmd_prom, 3) + ' kg/d' : '—'} sub="ganancia diaria entre 1er y último pesaje" />
+    <Kpi label="Kg ganados (total)" value={fmtNum(g.total_kg_ganados) + ' kg'} sub="suma sobre todos los animales" />
+    <Kpi label="Cabezas vendidas" value={fmtNum(g.cabezas_vendidas)} sub="sesiones tipo VT/VTA/VNT" />
+    <Kpi label="Autoconsumo" value={fmtNum(g.autoconsumo)} sub="cabezas en sesiones AUT" />
+    <Kpi label="Refugo" value={fmtNum(g.refugo)} sub="cabezas en sesiones REFG" />
+    <Kpi label="Sesiones de corral" value={fmtNum(g.n_sesiones)} sub="trabajos registrados" />
+  </div>
+
+  <div class="grid lg:grid-cols-2 gap-6">
+    <div class="table-wrap">
+      <div class="px-5 py-3 border-b border-stone-200 flex items-center justify-between">
+        <h3 class="font-semibold text-stone-900">Últimos trabajos de corral</h3>
+        <a href={import.meta.env.BASE_URL.replace(/\/$/, '') + '/trabajos'} class="text-xs text-brand-600 hover:underline">Ver todos →</a>
+      </div>
+      <table class="tbl">
+        <thead><tr><th>Fecha</th><th>Tipo</th><th class="num">Cab</th><th class="num">Peso prom</th><th>Detalle</th></tr></thead>
+        <tbody>
+          {ultimas.map(s => (
+            <tr>
+              <td class="font-mono text-xs">{fmtFecha(s.fecha_max)}</td>
+              <td><span class="pill bg-brand-100 text-brand-800">{s.trabajo_tipo || '?'}</span></td>
+              <td class="num">{fmtNum(s.n)}</td>
+              <td class="num">{s.peso_prom != null ? fmtNum(s.peso_prom, 1) + ' kg' : '—'}</td>
+              <td class="text-stone-500 text-xs truncate max-w-xs">{s.trabajo_detalle}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="table-wrap">
+      <div class="px-5 py-3 border-b border-stone-200">
+        <h3 class="font-semibold text-stone-900">Trabajos por tipo</h3>
+      </div>
+      <table class="tbl">
+        <thead><tr><th>Tipo</th><th>Descripción</th><th class="num">Sesiones</th><th class="num">Cabezas</th></tr></thead>
+        <tbody>
+          {porTipo.map(t => (
+            <tr>
+              <td><span class="pill bg-brand-100 text-brand-800">{t.tipo}</span></td>
+              <td class="text-stone-600 text-xs">{t.tipo_label}</td>
+              <td class="num">{fmtNum(t.n_sesiones)}</td>
+              <td class="num font-semibold">{fmtNum(t.cabezas)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</Layout>

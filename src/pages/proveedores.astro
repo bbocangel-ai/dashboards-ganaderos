@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { aggProveedores, fmtNum, fmtBs } from '../lib/data';
+
+const lista = aggProveedores();
+const totalCab = lista.reduce((s, p) => s + p.cabezas, 0);
+const totalInv = lista.reduce((s, p) => s + (p.total_invertido_bs || 0), 0);
+---
+<Layout title="Proveedores">
+  <div class="flex items-end justify-between mb-6">
+    <div>
+      <h2 class="text-lg font-semibold text-stone-900">Proveedores</h2>
+      <p class="text-sm text-stone-500">Análisis de animales por proveedor: cantidad, costo, peso y ganancia</p>
+    </div>
+    <div class="text-right text-xs text-stone-500">
+      <div>{fmtNum(lista.length)} proveedores · {fmtNum(totalCab)} cabezas</div>
+      {totalInv > 0 && <div>Inversión estimada: {fmtBs(totalInv)}</div>}
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Proveedor</th>
+          <th class="num">Cabezas</th>
+          <th class="num">Bs/cab prom</th>
+          <th class="num">Bs/kg</th>
+          <th class="num">Peso ingreso</th>
+          <th class="num">Peso actual</th>
+          <th class="num">Ganancia</th>
+          <th class="num">GMD</th>
+          <th class="num">Inversión</th>
+        </tr>
+      </thead>
+      <tbody>
+        {lista.map(p => (
+          <tr>
+            <td class="font-medium text-stone-900">{p.proveedor}</td>
+            <td class="num font-semibold">{fmtNum(p.cabezas)}</td>
+            <td class="num">{p.precio_bs_prom != null ? fmtBs(p.precio_bs_prom) : '—'}</td>
+            <td class="num">{p.bs_kg_estimado != null ? 'Bs ' + fmtNum(p.bs_kg_estimado, 2) : '—'}</td>
+            <td class="num">{fmtNum(p.peso_ingreso_prom, 1)} kg</td>
+            <td class="num">{fmtNum(p.peso_actual_prom, 1)} kg</td>
+            <td class="num">
+              <span class={p.ganancia_kg_prom >= 0 ? 'text-emerald-700 font-medium' : 'text-rose-700 font-medium'}>
+                {p.ganancia_kg_prom >= 0 ? '+' : ''}{fmtNum(p.ganancia_kg_prom, 1)} kg
+              </span>
+            </td>
+            <td class="num">{p.gmd_prom != null ? fmtNum(p.gmd_prom, 3) : '—'}</td>
+            <td class="num text-stone-500">{p.total_invertido_bs != null ? fmtBs(p.total_invertido_bs) : '—'}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <p class="mt-4 text-xs text-stone-400">
+    Los proveedores y precios se extraen del campo LOCAL en SisGado (formato libre).
+    Si ves filas mal parseadas, ajustá el formato en SisGado o avísame para refinar el parser.
+  </p>
+</Layout>

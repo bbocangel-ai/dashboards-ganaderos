@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .card {
+    @apply bg-white rounded-xl border border-stone-200 shadow-sm;
+  }
+  .kpi {
+    @apply card p-5;
+  }
+  .kpi-label { @apply text-xs uppercase tracking-wider text-stone-500 font-medium; }
+  .kpi-value { @apply mt-1 text-2xl font-bold text-stone-900; }
+  .kpi-sub   { @apply mt-1 text-xs text-stone-500; }
+
+  .table-wrap { @apply card overflow-hidden; }
+  table.tbl   { @apply w-full text-sm; }
+  table.tbl thead th {
+    @apply bg-stone-50 text-stone-600 font-semibold text-xs uppercase tracking-wider px-4 py-3 text-left border-b border-stone-200;
+  }
+  table.tbl tbody td  { @apply px-4 py-3 border-b border-stone-100; }
+  table.tbl tbody tr:hover { @apply bg-stone-50; }
+  table.tbl .num { @apply tabular-nums text-right; }
+
+  .pill {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+}

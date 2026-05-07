@@ -1,0 +1,20 @@
+{
+  "name": "dashboards-ganaderos",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "sync": "node scripts/sync.mjs",
+    "sync:build": "node scripts/sync.mjs && astro build"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^5.1.5",
+    "astro": "^5.1.5",
+    "chart.js": "^4.4.7",
+    "node-firebird": "^2.3.1",
+    "tailwindcss": "^3.4.17"
+  }
+}

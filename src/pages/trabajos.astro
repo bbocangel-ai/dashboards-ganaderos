@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { trabajosOrdenados, trabajosPorTipo, fmtFecha, fmtNum } from '../lib/data';
+
+const todos = trabajosOrdenados();
+const porTipo = trabajosPorTipo();
+
+const tiposColor: Record<string, string> = {
+  CTRL:  'bg-sky-100 text-sky-800',
+  VTA:   'bg-emerald-100 text-emerald-800',
+  VT:    'bg-emerald-100 text-emerald-800',
+  VNT:   'bg-emerald-100 text-emerald-800',
+  ING:   'bg-amber-100 text-amber-800',
+  DOSIS: 'bg-violet-100 text-violet-800',
+  DS:    'bg-violet-100 text-violet-800',
+  AUT:   'bg-orange-100 text-orange-800',
+  REFG:  'bg-rose-100 text-rose-800',
+  REFUG: 'bg-rose-100 text-rose-800',
+};
+---
+<Layout title="Trabajos de corral">
+  <div class="flex items-end justify-between mb-6">
+    <div>
+      <h2 class="text-lg font-semibold text-stone-900">Trabajos de corral</h2>
+      <p class="text-sm text-stone-500">Cada sesión de pesaje subida a SisGado, ordenada por fecha</p>
+    </div>
+    <div class="text-right text-xs text-stone-500">
+      {fmtNum(todos.length)} sesiones registradas
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 mb-8">
+    {porTipo.map(t => (
+      <div class="kpi">
+        <div class="kpi-label">{t.tipo}</div>
+        <div class="kpi-value">{fmtNum(t.cabezas)}</div>
+        <div class="kpi-sub">{fmtNum(t.n_sesiones)} sesiones · {t.tipo_label}</div>
+      </div>
+    ))}
+  </div>
+
+  <div class="table-wrap">
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Tipo</th>
+          <th class="num">Cabezas</th>
+          <th class="num">Peso prom</th>
+          <th class="num">Peso min</th>
+          <th class="num">Peso max</th>
+          <th>Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        {todos.map(s => {
+          const cls = tiposColor[s.trabajo_tipo || ''] || 'bg-stone-100 text-stone-600';
+          return (
+            <tr>
+              <td class="font-mono text-xs whitespace-nowrap">{fmtFecha(s.fecha_max)}</td>
+              <td><span class={'pill ' + cls}>{s.trabajo_tipo || 'SIN'}</span></td>
+              <td class="num font-semibold">{fmtNum(s.n)}</td>
+              <td class="num">{s.peso_prom != null ? fmtNum(s.peso_prom, 1) + ' kg' : '—'}</td>
+              <td class="num text-stone-500">{s.peso_min != null ? fmtNum(s.peso_min, 1) : '—'}</td>
+              <td class="num text-stone-500">{s.peso_max != null ? fmtNum(s.peso_max, 1) : '—'}</td>
+              <td class="text-stone-600 text-xs">{s.trabajo_detalle}</td>
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
+  </div>
+</Layout>
