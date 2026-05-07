@@ -160,11 +160,12 @@ function parseRebanho(desc) {
 }
 
 /**
- * LOTES.DESCRICAO → fecha + tipo trabajo + detalle
+ * LOTES.DESCRICAO → fecha + tipo trabajo + detalle + precio Bs/kg (si es venta)
  * Examples:
- *   "05.05.26 VT TOR FRIG CALDAS"
- *   "25.04.26 VTA INDU VAQ 21,5"
- *   "11.11.25 CTRL AUT 8"
+ *   "05.05.26 VT TOR FRIG CALDAS"        → no precio
+ *   "25.04.26 VTA INDU VAQ 21,5"         → 21.5 Bs/kg
+ *   "09.03.25 VNT TOR INTERME 24BS"      → 24 Bs/kg
+ *   "11.11.25 CTRL AUT 8"                → no precio (es ctrl)
  */
 function parseLote(desc) {
   if (!desc) return {};
@@ -173,7 +174,6 @@ function parseLote(desc) {
 
   let resto = String(desc).replace(/\d{1,2}[./-]\d{1,2}[./-]\d{2,4}/, '').trim();
   const tokens = resto.split(/\s+/);
-  // Detect first matching tipo
   for (const t of tokens) {
     const upper = t.toUpperCase().replace(/[^A-Z]/g, '');
     if (TIPOS_TRABAJO[upper]) {
@@ -184,6 +184,16 @@ function parseLote(desc) {
   }
   out.categoria = parseCategoria(resto);
   out.detalle = resto;
+
+  // Bs/kg solo cuando es venta. Aceptamos formatos: 21,5  21.5  24  24BS
+  // Filtramos rango razonable [10..50] para no agarrar cantidades.
+  if (out.tipo === 'VT' || out.tipo === 'VTA' || out.tipo === 'VNT') {
+    const matches = [...resto.matchAll(/\b(\d{1,2}(?:[,.]\d{1,2})?)\s*(?:BS)?\b/gi)];
+    for (const m of matches) {
+      const n = parseFloat(m[1].replace(',', '.'));
+      if (n >= 10 && n <= 50) { out.precio_venta_bs_kg = n; break; }
+    }
+  }
   return out;
 }
 
@@ -303,6 +313,7 @@ async function main() {
       trabajo_tipo: lote.tipo,
       trabajo_tipo_label: lote.tipo_label,
       trabajo_detalle: lote.detalle,
+      trabajo_precio_venta_bs_kg: lote.precio_venta_bs_kg ?? null,
       trabajo_raw: lote.raw,
       // partidario (RAZA)
       partidario_id: raza.partidario_id,
@@ -316,7 +327,7 @@ async function main() {
   // ---------- aggregations -------------------------------------------------
   console.log('→ Building aggregations...');
 
-  // Per-animal: first/last weighing, days, GMD (gain per day)
+  // Per-animal: first/last weighing, days, GMD, sale info if last was a sale
   const byAnimal = new Map();
   for (const p of enriched) {
     if (!p.fecha || p.peso == null) continue;
@@ -338,6 +349,9 @@ async function main() {
         first_peso: p.peso,
         last_fecha: p.fecha,
         last_peso: p.peso,
+        last_trabajo_tipo: p.trabajo_tipo,
+        last_trabajo_precio_bs_kg: p.trabajo_precio_venta_bs_kg,
+        last_sesion: p.sesion,
         n_pesajes: 1,
       };
       byAnimal.set(p.id_animal, a);
@@ -345,18 +359,28 @@ async function main() {
     }
     a.n_pesajes++;
     if (p.fecha < a.first_fecha) { a.first_fecha = p.fecha; a.first_peso = p.peso; }
-    if (p.fecha > a.last_fecha)  { a.last_fecha  = p.fecha; a.last_peso  = p.peso; }
+    if (p.fecha > a.last_fecha)  {
+      a.last_fecha = p.fecha;
+      a.last_peso = p.peso;
+      a.last_trabajo_tipo = p.trabajo_tipo;
+      a.last_trabajo_precio_bs_kg = p.trabajo_precio_venta_bs_kg;
+      a.last_sesion = p.sesion;
+    }
   }
+  const SALIDAS = new Set(['VT', 'VTA', 'VNT', 'AUT', 'REFG', 'REFUG']);
   const animales = [...byAnimal.values()].map(a => {
     const dias = a.first_fecha && a.last_fecha
       ? Math.max(0, (new Date(a.last_fecha) - new Date(a.first_fecha)) / 86400000)
       : 0;
     const ganancia = a.last_peso - a.first_peso;
+    const salida = SALIDAS.has(a.last_trabajo_tipo) ? a.last_trabajo_tipo : null;
     return {
       ...a,
       dias_en_campo: Math.round(dias),
       ganancia_kg: Math.round(ganancia * 10) / 10,
       gmd_kg: dias > 0 ? Math.round((ganancia / dias) * 1000) / 1000 : null,
+      salida,                    // VT/VTA/VNT/AUT/REFG si ya salió, null si está activo
+      vendido: salida === 'VT' || salida === 'VTA' || salida === 'VNT',
     };
   });
 
@@ -372,6 +396,7 @@ async function main() {
         trabajo_tipo_label: p.trabajo_tipo_label,
         trabajo_fecha: p.trabajo_fecha,
         trabajo_detalle: p.trabajo_detalle,
+        precio_venta_bs_kg: p.trabajo_precio_venta_bs_kg,
         fecha_min: p.fecha,
         fecha_max: p.fecha,
         n: 0,

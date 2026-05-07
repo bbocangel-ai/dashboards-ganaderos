@@ -27,6 +27,11 @@ export type Animal = {
   dias_en_campo: number;
   ganancia_kg: number;
   gmd_kg: number | null;
+  salida: string | null;
+  vendido: boolean;
+  last_trabajo_tipo: string | null;
+  last_trabajo_precio_bs_kg: number | null;
+  last_sesion: string | null;
 };
 
 export type Sesion = {
@@ -35,6 +40,7 @@ export type Sesion = {
   trabajo_tipo_label: string | null;
   trabajo_fecha: string | null;
   trabajo_detalle: string | null;
+  precio_venta_bs_kg: number | null;
   fecha_min: string | null;
   fecha_max: string | null;
   n: number;
@@ -245,6 +251,56 @@ export function aggGlobal() {
 export function trabajosOrdenados(limit?: number) {
   const list = [...sesiones].sort((a, b) => (b.fecha_max || '').localeCompare(a.fecha_max || ''));
   return limit ? list.slice(0, limit) : list;
+}
+
+// ---------- ventas ---------------------------------------------------------
+
+import { DESBASTE, PRECIO_VENTA_BS_KG, USD_RATE } from './config';
+
+export type VentaSesion = Sesion & {
+  peso_total_bruto: number;
+  peso_total_neto: number;
+  precio_efectivo_bs_kg: number;       // real si lo tenemos, fallback a config
+  precio_es_estimado: boolean;
+  ingreso_bs: number;
+  ingreso_usd: number;
+};
+
+export function aggVentas(): VentaSesion[] {
+  const ventas = sesiones
+    .filter(s => ['VT', 'VTA', 'VNT'].includes(s.trabajo_tipo || ''))
+    .map(s => {
+      const peso_bruto = (s.peso_prom || 0) * s.n;
+      const peso_neto = peso_bruto * (1 - DESBASTE);
+      const real = s.precio_venta_bs_kg;
+      const precio = real ?? PRECIO_VENTA_BS_KG;
+      const ingreso_bs = peso_neto * precio;
+      return {
+        ...s,
+        peso_total_bruto: Math.round(peso_bruto),
+        peso_total_neto: Math.round(peso_neto),
+        precio_efectivo_bs_kg: precio,
+        precio_es_estimado: real == null,
+        ingreso_bs: Math.round(ingreso_bs),
+        ingreso_usd: Math.round(ingreso_bs / USD_RATE),
+      };
+    })
+    .sort((a, b) => (b.fecha_max || '').localeCompare(a.fecha_max || ''));
+  return ventas;
+}
+
+export function totalesVentas(ventas: VentaSesion[]) {
+  const real = ventas.filter(v => !v.precio_es_estimado);
+  return {
+    n_ventas: ventas.length,
+    cabezas: ventas.reduce((s, v) => s + v.n, 0),
+    peso_neto: ventas.reduce((s, v) => s + v.peso_total_neto, 0),
+    ingreso_bs: ventas.reduce((s, v) => s + v.ingreso_bs, 0),
+    ingreso_usd: ventas.reduce((s, v) => s + v.ingreso_usd, 0),
+    n_con_precio_real: real.length,
+    cabezas_con_precio_real: real.reduce((s, v) => s + v.n, 0),
+    ingreso_bs_real: real.reduce((s, v) => s + v.ingreso_bs, 0),
+  };
 }
 
 // Distribución por tipo de trabajo

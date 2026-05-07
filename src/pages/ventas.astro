@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Kpi from '../components/Kpi.astro';
+import { aggVentas, totalesVentas, fmtNum, fmtBs, fmtFecha } from '../lib/data';
+import { USD_RATE, DESBASTE, PRECIO_VENTA_BS_KG } from '../lib/config';
+
+const ventas = aggVentas();
+const t = totalesVentas(ventas);
+---
+<Layout title="Ventas">
+  <div class="flex items-end justify-between mb-6">
+    <div>
+      <h2 class="text-lg font-semibold text-stone-900">Ventas</h2>
+      <p class="text-sm text-stone-500">
+        Sesiones tipo VT/VTA/VNT — el Bs/kg sale del nombre del lote (ej. <code>VTA INDU VAQ 21,5</code>).
+        Si falta, se usa el estimado: <strong>{PRECIO_VENTA_BS_KG} Bs/kg</strong>.
+      </p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+    <Kpi label="Sesiones de venta" value={fmtNum(t.n_ventas)} sub={`${fmtNum(t.n_con_precio_real)} con precio real`} />
+    <Kpi label="Cabezas vendidas" value={fmtNum(t.cabezas)} sub={`${fmtNum(t.cabezas_con_precio_real)} con precio real`} />
+    <Kpi label="Peso neto vendido" value={fmtNum(t.peso_neto) + ' kg'} sub={`con −${Math.round(DESBASTE*100)}% de desbaste`} />
+    <Kpi label="Ingreso bruto" value={fmtBs(t.ingreso_bs)} sub={`USD ${fmtNum(t.ingreso_usd)} a ${USD_RATE} Bs/USD`} />
+  </div>
+
+  <div class="card p-4 mb-6 bg-amber-50 border-amber-200 text-sm text-amber-900">
+    💡 <strong>Tip:</strong> Para tener ingreso real, agregá el Bs/kg al final del nombre del LOTE en SisGado al subir la venta.
+    Formatos aceptados: <code>21,5</code> · <code>21.5</code> · <code>24</code> · <code>24BS</code>.
+    Hoy hay <strong>{ventas.filter(v => v.precio_es_estimado).length}</strong> sesiones sin precio detectado (usan estimado).
+  </div>
+
+  <div class="table-wrap overflow-x-auto">
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Tipo</th>
+          <th class="num">Cab</th>
+          <th class="num">Peso prom</th>
+          <th class="num">Peso bruto</th>
+          <th class="num">Peso neto</th>
+          <th class="num">Bs/kg</th>
+          <th class="num">Ingreso Bs</th>
+          <th class="num">USD</th>
+          <th>Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        {ventas.map(v => (
+          <tr>
+            <td class="font-mono text-xs whitespace-nowrap">{fmtFecha(v.fecha_max)}</td>
+            <td><span class="pill bg-emerald-100 text-emerald-800">{v.trabajo_tipo}</span></td>
+            <td class="num font-semibold">{fmtNum(v.n)}</td>
+            <td class="num">{v.peso_prom != null ? fmtNum(v.peso_prom, 1) + ' kg' : '—'}</td>
+            <td class="num text-stone-500">{fmtNum(v.peso_total_bruto)} kg</td>
+            <td class="num">{fmtNum(v.peso_total_neto)} kg</td>
+            <td class="num">
+              <span class={v.precio_es_estimado ? 'text-stone-400' : 'text-stone-900 font-medium'}>
+                {fmtNum(v.precio_efectivo_bs_kg, 1)}
+              </span>
+              {v.precio_es_estimado && <span class="ml-1 text-[10px] text-stone-400 uppercase">est</span>}
+            </td>
+            <td class="num font-medium">{fmtBs(v.ingreso_bs)}</td>
+            <td class="num text-stone-500">{fmtNum(v.ingreso_usd)}</td>
+            <td class="text-stone-600 text-xs">{v.trabajo_detalle}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</Layout>
