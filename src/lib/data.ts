@@ -138,6 +138,10 @@ export type PartidarioAgg = {
   ganancia_kg_prom: number;
   gmd_prom: number | null;
   kg_totales_ganados: number;
+  origenes: string[];
+  precio_compra_bs_prom: number | null;
+  ingreso_fecha_min: string | null;
+  dias_prom: number;
 };
 
 export function aggPartidarios(): PartidarioAgg[] {
@@ -147,6 +151,10 @@ export function aggPartidarios(): PartidarioAgg[] {
     por_cat: Record<string, number>;
     peso_in_sum: number; peso_out_sum: number; gan_sum: number;
     gmd_sum: number; gmd_n: number;
+    origenes: Set<string>;
+    precio_sum: number; precio_n: number;
+    ingreso_fecha_min: string | null;
+    dias_sum: number; dias_n: number;
   }>();
 
   for (const a of animales) {
@@ -157,6 +165,10 @@ export function aggPartidarios(): PartidarioAgg[] {
         nombre: a.partidario || a.partidario_id,
         cabezas: 0, por_cat: {},
         peso_in_sum: 0, peso_out_sum: 0, gan_sum: 0, gmd_sum: 0, gmd_n: 0,
+        origenes: new Set(),
+        precio_sum: 0, precio_n: 0,
+        ingreso_fecha_min: null,
+        dias_sum: 0, dias_n: 0,
       };
       map.set(a.partidario_id, g);
     }
@@ -167,6 +179,12 @@ export function aggPartidarios(): PartidarioAgg[] {
     g.peso_out_sum += a.last_peso;
     g.gan_sum += a.ganancia_kg;
     if (a.gmd_kg != null) { g.gmd_sum += a.gmd_kg; g.gmd_n++; }
+    if (a.proveedor) g.origenes.add(a.proveedor);
+    if (a.proveedor_precio_bs != null) { g.precio_sum += a.proveedor_precio_bs; g.precio_n++; }
+    if (a.ingreso_fecha) {
+      if (!g.ingreso_fecha_min || a.ingreso_fecha < g.ingreso_fecha_min) g.ingreso_fecha_min = a.ingreso_fecha;
+    }
+    if (a.dias_en_campo > 0) { g.dias_sum += a.dias_en_campo; g.dias_n++; }
   }
 
   const out: PartidarioAgg[] = [];
@@ -181,6 +199,10 @@ export function aggPartidarios(): PartidarioAgg[] {
       ganancia_kg_prom: Math.round((g.gan_sum / g.cabezas) * 10) / 10,
       gmd_prom: g.gmd_n > 0 ? Math.round((g.gmd_sum / g.gmd_n) * 1000) / 1000 : null,
       kg_totales_ganados: Math.round(g.gan_sum),
+      origenes: [...g.origenes],
+      precio_compra_bs_prom: g.precio_n > 0 ? Math.round(g.precio_sum / g.precio_n) : null,
+      ingreso_fecha_min: g.ingreso_fecha_min,
+      dias_prom: g.dias_n > 0 ? Math.round(g.dias_sum / g.dias_n) : 0,
     });
   }
   return out.sort((a, b) => b.cabezas - a.cabezas);

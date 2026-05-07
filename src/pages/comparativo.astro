@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { aggPartidarios, fmtNum, fmtBs, fmtFecha } from '../lib/data';
+import { USD_RATE, DESBASTE, PRECIO_VENTA_BS_KG } from '../lib/config';
+
+const lista = aggPartidarios();
+
+// Filas de la tabla — cada función recibe el partidario y devuelve el valor renderizado
+type Row = { label: string; render: (p: typeof lista[number]) => string; cls?: string };
+
+const rows: Row[] = [
+  { label: 'Cantidad', render: p => fmtNum(p.cabezas) + ' cab', cls: 'font-bold text-stone-900' },
+  { label: 'Origen', render: p => p.origenes.length === 0 ? '—' : p.origenes.slice(0, 3).join(', ') + (p.origenes.length > 3 ? ` +${p.origenes.length - 3}` : '') },
+  { label: 'Fecha ingreso', render: p => fmtFecha(p.ingreso_fecha_min) || '—' },
+  { label: 'Precio compra', render: p => p.precio_compra_bs_prom != null ? `${fmtBs(p.precio_compra_bs_prom)} / USD ${fmtNum(p.precio_compra_bs_prom / USD_RATE, 0)}` : '—' },
+  { label: 'Peso entrada', render: p => fmtNum(p.peso_ingreso_prom, 0) + ' kg' },
+  { label: 'Días en campo', render: p => p.dias_prom > 0 ? fmtNum(p.dias_prom) + ' días' : '—' },
+  { label: 'Peso actual', render: p => fmtNum(p.peso_actual_prom, 0) + ' kg' },
+  { label: `Peso neto (−${Math.round(DESBASTE * 100)}%)`, render: p => fmtNum(p.peso_actual_prom * (1 - DESBASTE), 0) + ' kg' },
+  { label: 'Ganancia peso', render: p => (p.ganancia_kg_prom >= 0 ? '+' : '') + fmtNum(p.ganancia_kg_prom, 0) + ' kg', cls: 'text-emerald-700 font-medium' },
+  { label: 'GMD', render: p => p.gmd_prom != null ? fmtNum(p.gmd_prom, 3) + ' kg/día' : '—' },
+  { label: 'Ingreso bruto est.', render: p => {
+      const peso_neto = p.peso_actual_prom * (1 - DESBASTE);
+      const bs = peso_neto * PRECIO_VENTA_BS_KG;
+      return fmtBs(Math.round(bs));
+  }, cls: 'font-medium' },
+  { label: 'Ingreso bruto USD', render: p => {
+      const peso_neto = p.peso_actual_prom * (1 - DESBASTE);
+      const bs = peso_neto * PRECIO_VENTA_BS_KG;
+      return 'USD ' + fmtNum(Math.round(bs / USD_RATE));
+  } },
+];
+---
+<Layout title="Comparativo">
+  <div class="flex items-end justify-between mb-6">
+    <div>
+      <h2 class="text-lg font-semibold text-stone-900">Comparativo por partidario</h2>
+      <p class="text-sm text-stone-500">
+        Promedios por cabeza para cada inversionista — peso, ganancia, GMD e ingreso estimado a {PRECIO_VENTA_BS_KG} Bs/kg con {Math.round(DESBASTE*100)}% de desbaste
+      </p>
+    </div>
+    <div class="text-right text-xs text-stone-500">
+      Tipo de cambio: 1 USD = {USD_RATE} Bs<br/>
+      <span class="text-stone-400">Editá <code>src/lib/config.ts</code> para cambiar</span>
+    </div>
+  </div>
+
+  <div class="table-wrap overflow-x-auto">
+    <table class="tbl min-w-full">
+      <thead>
+        <tr>
+          <th class="sticky left-0 bg-stone-50 z-10">&nbsp;</th>
+          {lista.map(p => (
+            <th class="text-left">
+              <div class="font-semibold text-stone-900">{p.nombre}</div>
+              <div class="text-xs font-normal text-stone-500 normal-case tracking-normal">({p.id})</div>
+            </th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map(r => (
+          <tr>
+            <td class="sticky left-0 bg-white z-10 font-semibold text-stone-700 whitespace-nowrap">{r.label}</td>
+            {lista.map(p => (
+              <td class={r.cls || ''}>{r.render(p)}</td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <p class="mt-4 text-xs text-stone-400">
+    "Peso actual" usa el último pesaje registrado de cada animal. Cuando el animal ya fue vendido, ese pesaje suele coincidir con el del corral de venta.
+    El ingreso bruto es <strong>estimación</strong> con precio fijo de referencia — para el ingreso real necesitamos el Bs/kg específico de cada venta (lo podemos sumar parseando los códigos VTA con valor en LOTES, ej. <code>VTA INDU VAQ 21,5</code>).
+  </p>
+</Layout>
