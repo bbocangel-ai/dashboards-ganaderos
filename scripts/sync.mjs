@@ -624,7 +624,15 @@ async function main() {
       if (k == null) continue;
       let g = m.get(k);
       if (!g) {
-        g = { key: String(k), label: labelFn ? labelFn(a) : String(k), cabezas: 0, peso_bruto_sum: 0, peso_in_sum: 0, ganancia_sum: 0, dias_sum: 0 };
+        g = {
+          key: String(k), label: labelFn ? labelFn(a) : String(k),
+          cabezas: 0, peso_bruto_sum: 0, peso_in_sum: 0, ganancia_sum: 0,
+          dias_sum: 0, gmd_sum: 0, gmd_n: 0,
+          precio_sum: 0, precio_n: 0,
+          ingreso_fecha_min: null, ingreso_fecha_max: null,
+          last_fecha_min: null, last_fecha_max: null,
+          origenes: new Set(),
+        };
         m.set(k, g);
       }
       g.cabezas++;
@@ -632,16 +640,34 @@ async function main() {
       g.peso_in_sum += a.first_peso;
       g.ganancia_sum += a.ganancia_kg;
       g.dias_sum += a.dias_en_campo;
+      if (a.gmd_kg != null) { g.gmd_sum += a.gmd_kg; g.gmd_n++; }
+      if (a.proveedor_precio_bs != null) { g.precio_sum += a.proveedor_precio_bs; g.precio_n++; }
+      if (a.ingreso_fecha) {
+        if (!g.ingreso_fecha_min || a.ingreso_fecha < g.ingreso_fecha_min) g.ingreso_fecha_min = a.ingreso_fecha;
+        if (!g.ingreso_fecha_max || a.ingreso_fecha > g.ingreso_fecha_max) g.ingreso_fecha_max = a.ingreso_fecha;
+      }
+      if (a.last_fecha) {
+        if (!g.last_fecha_min || a.last_fecha < g.last_fecha_min) g.last_fecha_min = a.last_fecha;
+        if (!g.last_fecha_max || a.last_fecha > g.last_fecha_max) g.last_fecha_max = a.last_fecha;
+      }
+      if (a.proveedor) g.origenes.add(a.proveedor);
     }
     return [...m.values()].map(g => ({
       key: g.key,
       label: g.label,
       cabezas: g.cabezas,
       peso_prom: Math.round((g.peso_bruto_sum / g.cabezas) * 10) / 10,
-      peso_neto_total: Math.round(g.peso_bruto_sum * (1 - 0.05)),
+      peso_neto_total: Math.round(g.peso_bruto_sum * 0.95),
+      peso_neto_prom: Math.round((g.peso_bruto_sum / g.cabezas) * 0.95 * 10) / 10,
+      peso_bruto_total: Math.round(g.peso_bruto_sum),
       peso_ingreso_prom: Math.round((g.peso_in_sum / g.cabezas) * 10) / 10,
       ganancia_kg_prom: Math.round((g.ganancia_sum / g.cabezas) * 10) / 10,
+      gmd_prom: g.gmd_n > 0 ? Math.round((g.gmd_sum / g.gmd_n) * 1000) / 1000 : null,
       dias_prom: g.cabezas > 0 ? Math.round(g.dias_sum / g.cabezas) : 0,
+      precio_compra_bs_prom: g.precio_n > 0 ? Math.round(g.precio_sum / g.precio_n) : null,
+      ingreso_fecha_min: g.ingreso_fecha_min,
+      last_fecha_max: g.last_fecha_max,
+      origenes: [...g.origenes],
     })).sort((a, b) => b.cabezas - a.cabezas);
   }
   // Convertir destinos del override a destinos calculados.

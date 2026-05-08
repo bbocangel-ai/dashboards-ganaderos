@@ -108,46 +108,59 @@ const ingreso_total_bs = peso_neto_total * precio;
 
   <!-- Por partidario -->
   <section class="mb-6">
-    <h3 class="text-sm font-semibold text-stone-900 mb-2">Por partidario</h3>
-    <div class="table-wrap">
-      <table class="tbl">
+    <h2 class="section-title">Por partidario</h2>
+    <div class="table-wrap overflow-x-auto">
+      <table class="tbl min-w-[1400px]">
         <thead>
           <tr>
             <th>Partidario</th>
             <th class="num">Cab</th>
-            <th class="num">Peso prom</th>
-            <th class="num">Peso ingreso</th>
-            <th class="num">Ganancia / cab</th>
+            <th>Fecha ing.</th>
+            <th class="num">Bs/cab compra</th>
+            <th class="num">Peso entrada</th>
             <th class="num">Días</th>
-            <th class="num">Peso neto total</th>
+            <th>Fecha venta</th>
+            <th class="num">P. venta bruto</th>
+            <th class="num">P. venta neto</th>
+            <th class="num">Ganancia</th>
+            <th class="num">GMD</th>
             <th class="num">Bs/kg</th>
             <th class="num">Ingreso Bs</th>
+            <th class="num">USD</th>
           </tr>
         </thead>
         <tbody>
           {sesion.por_partidario.length === 0 && (
-            <tr><td colspan="9" class="text-center text-stone-400 py-6 text-sm">Ningún animal partidario en esta venta</td></tr>
+            <tr><td colspan="14" class="text-center text-stone-400 py-6 text-sm">Ningún animal partidario en esta venta</td></tr>
           )}
-          {sesion.por_partidario.map(g => (
+          {sesion.por_partidario.map(g => {
+            const ingreso = Math.round(g.peso_neto_total * precio);
+            return (
             <tr>
               <td>
-                <div class="font-semibold text-stone-900">{g.label}</div>
+                <div class="font-semibold text-stone-900 whitespace-nowrap">{g.label}</div>
                 <div class="text-xs text-stone-500">{g.key}</div>
               </td>
               <td class="num font-bold">{fmtNum(g.cabezas)}</td>
-              <td class="num">{fmtNum(g.peso_prom, 1)} kg</td>
+              <td class="font-mono text-xs text-stone-600 whitespace-nowrap">{fmtFecha(g.ingreso_fecha_min) || '—'}</td>
+              <td class="num text-stone-700">{g.precio_compra_bs_prom != null ? fmtBs(g.precio_compra_bs_prom) : '—'}</td>
               <td class="num text-stone-500">{fmtNum(g.peso_ingreso_prom, 1)} kg</td>
+              <td class="num text-stone-500">{g.dias_prom} d</td>
+              <td class="font-mono text-xs text-stone-600 whitespace-nowrap">{fmtFecha(g.last_fecha_max) || '—'}</td>
+              <td class="num">{fmtNum(g.peso_prom, 1)} kg</td>
+              <td class="num">{fmtNum(g.peso_neto_prom, 1)} kg</td>
               <td class="num">
                 <span class={g.ganancia_kg_prom >= 0 ? 'stat-up font-semibold' : 'stat-down font-semibold'}>
                   {g.ganancia_kg_prom >= 0 ? '+' : ''}{fmtNum(g.ganancia_kg_prom, 1)} kg
                 </span>
               </td>
-              <td class="num text-stone-500">{g.dias_prom} d</td>
-              <td class="num">{fmtNum(g.peso_neto_total)} kg</td>
+              <td class="num">{g.gmd_prom != null ? fmtNum(g.gmd_prom, 3) : '—'}</td>
               <td class="num text-stone-700">{fmtNum(precio, 2)}</td>
-              <td class="num font-bold">{fmtBs(ingresoBs(g))}</td>
+              <td class="num font-bold text-stone-900">{fmtBs(ingreso)}</td>
+              <td class="num text-stone-500">USD {fmtNum(Math.round(ingreso / USD_RATE))}</td>
             </tr>
-          ))}
+            );
+          })}
         </tbody>
       </table>
     </div>
@@ -155,40 +168,53 @@ const ingreso_total_bs = peso_neto_total * precio;
 
   <!-- Por proveedor -->
   <section class="mb-6">
-    <h3 class="text-sm font-semibold text-stone-900 mb-2">Por proveedor (origen)</h3>
-    <div class="table-wrap">
-      <table class="tbl">
+    <h2 class="section-title">Por proveedor (origen)</h2>
+    <div class="table-wrap overflow-x-auto">
+      <table class="tbl min-w-[1400px]">
         <thead>
           <tr>
             <th>Proveedor</th>
             <th class="num">Cab</th>
-            <th class="num">Peso prom</th>
-            <th class="num">Peso ingreso</th>
-            <th class="num">Ganancia / cab</th>
+            <th>Fecha ing.</th>
+            <th class="num">Bs/cab compra</th>
+            <th class="num">Peso entrada</th>
             <th class="num">Días</th>
-            <th class="num">Peso neto total</th>
+            <th>Fecha venta</th>
+            <th class="num">P. venta bruto</th>
+            <th class="num">P. venta neto</th>
+            <th class="num">Ganancia</th>
+            <th class="num">GMD</th>
             <th class="num">Bs/kg</th>
             <th class="num">Ingreso Bs</th>
+            <th class="num">USD</th>
           </tr>
         </thead>
         <tbody>
-          {sesion.por_proveedor.map(g => (
+          {sesion.por_proveedor.map(g => {
+            const ingreso = Math.round(g.peso_neto_total * precio);
+            return (
             <tr>
-              <td class="font-semibold text-stone-900 max-w-xs truncate">{g.label}</td>
+              <td class="font-semibold text-stone-900 max-w-[180px] truncate">{g.label}</td>
               <td class="num font-bold">{fmtNum(g.cabezas)}</td>
-              <td class="num">{fmtNum(g.peso_prom, 1)} kg</td>
+              <td class="font-mono text-xs text-stone-600 whitespace-nowrap">{fmtFecha(g.ingreso_fecha_min) || '—'}</td>
+              <td class="num text-stone-700">{g.precio_compra_bs_prom != null ? fmtBs(g.precio_compra_bs_prom) : '—'}</td>
               <td class="num text-stone-500">{fmtNum(g.peso_ingreso_prom, 1)} kg</td>
+              <td class="num text-stone-500">{g.dias_prom} d</td>
+              <td class="font-mono text-xs text-stone-600 whitespace-nowrap">{fmtFecha(g.last_fecha_max) || '—'}</td>
+              <td class="num">{fmtNum(g.peso_prom, 1)} kg</td>
+              <td class="num">{fmtNum(g.peso_neto_prom, 1)} kg</td>
               <td class="num">
                 <span class={g.ganancia_kg_prom >= 0 ? 'stat-up font-semibold' : 'stat-down font-semibold'}>
                   {g.ganancia_kg_prom >= 0 ? '+' : ''}{fmtNum(g.ganancia_kg_prom, 1)} kg
                 </span>
               </td>
-              <td class="num text-stone-500">{g.dias_prom} d</td>
-              <td class="num">{fmtNum(g.peso_neto_total)} kg</td>
+              <td class="num">{g.gmd_prom != null ? fmtNum(g.gmd_prom, 3) : '—'}</td>
               <td class="num text-stone-700">{fmtNum(precio, 2)}</td>
-              <td class="num font-bold">{fmtBs(ingresoBs(g))}</td>
+              <td class="num font-bold text-stone-900">{fmtBs(ingreso)}</td>
+              <td class="num text-stone-500">USD {fmtNum(Math.round(ingreso / USD_RATE))}</td>
             </tr>
-          ))}
+            );
+          })}
         </tbody>
       </table>
     </div>

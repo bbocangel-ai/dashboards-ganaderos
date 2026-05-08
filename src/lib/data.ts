@@ -55,9 +55,16 @@ export type GroupRow = {
   cabezas: number;
   peso_prom: number;
   peso_neto_total: number;
+  peso_neto_prom: number;
+  peso_bruto_total: number;
   peso_ingreso_prom: number;
   ganancia_kg_prom: number;
+  gmd_prom: number | null;
   dias_prom: number;
+  precio_compra_bs_prom: number | null;
+  ingreso_fecha_min: string | null;
+  last_fecha_max: string | null;
+  origenes: string[];
 };
 
 export type SplitDestino = {
