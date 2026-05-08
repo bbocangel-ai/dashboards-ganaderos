@@ -513,14 +513,14 @@
     "trabajo_tipo_label": "Venta",
     "trabajo_fecha": "2026-04-25",
     "trabajo_detalle": "VTA INDU VAQ 21,5",
-    "precio_venta_bs_kg": 21.1,
+    "precio_venta_bs_kg": null,
     "fecha_min": "2026-04-25",
     "fecha_max": "2026-04-25",
-    "n": 74,
+    "n": 70,
     "peso_sum": 29363,
     "peso_min": 369,
     "peso_max": 458,
-    "peso_prom": 396.8,
+    "peso_prom": 397,
     "por_partidario": [
       {
         "key": "MA",
@@ -701,6 +701,26 @@
         ]
       }
     ],
+    "split": {
+      "nota": "Venta vaquillas a Inducarne",
+      "destinos": [
+        {
+          "comprador": "Inducarne",
+          "cabezas": 70,
+          "peso_prom_bruto": 397,
+          "peso_prom_neto": 377,
+          "peso_total_bruto": 27790,
+          "peso_total_neto": 26390,
+          "bs_kg": 21.1,
+          "fecha": "2026-04-25",
+          "ingreso_bs": 556829
+        }
+      ]
+    },
+    "peso_neto_total": 26390,
+    "peso_bruto_total": 27790,
+    "ingreso_bs_total": 556829,
+    "precio_avg_bs_kg": 21.1,
     "slug": "dados-0-06-05-26-19-32"
   },
   {

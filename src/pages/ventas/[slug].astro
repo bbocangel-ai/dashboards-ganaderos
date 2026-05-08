@@ -52,8 +52,8 @@ const ingreso_total_bs = peso_neto_total * precio;
       </div>
       <div class="kpi card-accent-amber">
         <div class="kpi-label">Bs/kg</div>
-        <div class="kpi-value">{sesion.split ? 'split' : fmtNum(precio, 1)}</div>
-        <div class="kpi-sub">{sesion.split ? 'distinto por comprador' : (precioEstimado ? 'estimado' : 'real')}</div>
+        <div class="kpi-value">{(sesion.split && sesion.split.destinos.length > 1) ? 'split' : fmtNum(precio, 1)}</div>
+        <div class="kpi-sub">{(sesion.split && sesion.split.destinos.length > 1) ? 'distinto por comprador' : (precioEstimado ? 'estimado' : 'real')}</div>
       </div>
       <div class="kpi card-accent-emerald">
         <div class="kpi-label">Ingreso bruto</div>
