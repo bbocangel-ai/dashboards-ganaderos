@@ -532,6 +532,22 @@ async function main() {
     if (!arr) { arr = []; animalesByLastSesion.set(a.last_sesion, arr); }
     arr.push(a);
   }
+
+  // Reemplazar s.n (pesajes) por count de animales únicos cuya last_sesion = esta.
+  // Y recalcular peso_prom sobre los unique animals.
+  for (const s of sesiones) {
+    const ans = animalesByLastSesion.get(s.sesion) || [];
+    if (ans.length > 0) {
+      s.n = ans.length;
+      const pesos = ans.map(a => a.last_peso).filter(p => p != null);
+      if (pesos.length > 0) {
+        s.peso_sum = pesos.reduce((x, y) => x + y, 0);
+        s.peso_prom = Math.round((s.peso_sum / pesos.length) * 10) / 10;
+        s.peso_min = Math.min(...pesos);
+        s.peso_max = Math.max(...pesos);
+      }
+    }
+  }
   function group(animals, keyFn, labelFn) {
     const m = new Map();
     for (const a of animals) {

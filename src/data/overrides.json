@@ -8,38 +8,38 @@
   "compras": {},
 
   "ghost_animals": [
-    { "id": "MA-G1", "partidario_id": "MA", "categoria": "VQ", "peso": 379, "vendido_en_sesion": null, "nota": "chip caído" },
-    { "id": "MA-G2", "partidario_id": "MA", "categoria": "VQ", "peso": 382, "vendido_en_sesion": null, "nota": "chip caído" },
+    { "id": "MA-G1", "partidario_id": "MA", "categoria": "VQ", "peso": 379, "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:23", "nota": "vendido 05/05" },
+    { "id": "MA-G2", "partidario_id": "MA", "categoria": "VQ", "peso": 382, "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:23", "nota": "vendido 05/05" },
 
-    { "id": "FB-G1", "partidario_id": "FB", "categoria": "VQ", "peso": "promedio", "nota": "chip caído" },
-    { "id": "FB-G2", "partidario_id": "FB", "categoria": "VQ", "peso": "promedio", "nota": "chip caído" },
-    { "id": "FB-G3", "partidario_id": "FB", "categoria": "VQ", "peso": "promedio", "nota": "chip caído" },
+    { "id": "FB-G1", "partidario_id": "FB", "categoria": "VQ", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:23", "nota": "vendido 05/05" },
+    { "id": "FB-G2", "partidario_id": "FB", "categoria": "VQ", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:23", "nota": "vendido 05/05" },
+    { "id": "FB-G3", "partidario_id": "FB", "categoria": "VQ", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:23", "nota": "vendido 05/05" },
 
-    { "id": "DB-G1", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05, mismo origen que el lote" },
+    { "id": "DB-G1", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
     { "id": "DB-G2", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
     { "id": "DB-G3", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
     { "id": "DB-G4", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
     { "id": "DB-G5", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
     { "id": "DB-G6", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
 
-    { "id": "BB-G1", "partidario_id": "BB", "categoria": "TL", "peso": "promedio", "nota": "chip caído" },
-    { "id": "BB-G2", "partidario_id": "BB", "categoria": "TL", "peso": "promedio", "nota": "chip caído" },
-    { "id": "BB-G3", "partidario_id": "BB", "categoria": "TL", "peso": "promedio", "nota": "chip caído" },
-    { "id": "BB-G4", "partidario_id": "BB", "categoria": "TL", "peso": "promedio", "nota": "chip caído" },
+    { "id": "BB-G1", "partidario_id": "BB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
+    { "id": "BB-G2", "partidario_id": "BB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
+    { "id": "BB-G3", "partidario_id": "BB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
+    { "id": "BB-G4", "partidario_id": "BB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
 
-    { "id": "MB-G1", "partidario_id": "MB", "categoria": "TL", "peso": "promedio", "nota": "chip caído" }
+    { "id": "MB-G1", "partidario_id": "MB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" }
   ],
 
   "ventas_split": {
     "DADOS - 0 - 07/05/26 05:22": {
-      "nota": "Venta del 04/05/26 — split por peso: ≥470kg → Frigosi (23 Bs/kg), <470kg → Roberto Caldas confinamiento (23,5 Bs/kg)",
+      "nota": "Venta 04/05/26 — split por peso: ≥470kg → Frigosi (23 Bs/kg), <470kg → Roberto Caldas confinamiento (23,5 Bs/kg)",
       "destinos": [
         { "comprador": "Frigosi", "criterio_peso_min": 470, "bs_kg": 23,   "fecha": "2026-05-03" },
         { "comprador": "Roberto Caldas (confinamiento)", "criterio_peso_max": 470, "bs_kg": 23.5, "fecha": "2026-05-04" }
       ]
     },
     "DADOS - 0 - 07/05/26 05:23": {
-      "nota": "Venta del 05/05/26 — split por peso: ≥470kg → Frigosi (23 Bs/kg), <470kg → Roberto Caldas confinamiento (23,5 Bs/kg)",
+      "nota": "Venta 05/05/26 — split por peso: ≥470kg → Frigosi (23 Bs/kg), <470kg → Roberto Caldas confinamiento (23,5 Bs/kg)",
       "destinos": [
         { "comprador": "Frigosi", "criterio_peso_min": 470, "bs_kg": 23,   "fecha": "2026-05-06" },
         { "comprador": "Roberto Caldas (confinamiento)", "criterio_peso_max": 470, "bs_kg": 23.5, "fecha": "2026-05-05" }
