@@ -696,7 +696,11 @@ async function main() {
   }
 
   const ventasSplit = overrides.ventas_split || {};
+  const priceOverrides = overrides.sesion_price_overrides || {};
   for (const s of sesiones) {
+    if (priceOverrides[s.sesion] != null) {
+      s.precio_venta_bs_kg = priceOverrides[s.sesion];
+    }
     const animals = animalesByLastSesion.get(s.sesion) || [];
     s.por_partidario = group(animals, a => a.partidario_id, a => a.partidario || a.partidario_id || '');
     s.por_proveedor  = group(animals, a => a.proveedor || null);
