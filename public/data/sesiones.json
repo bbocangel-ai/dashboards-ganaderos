@@ -31,7 +31,10 @@
         "last_fecha_max": "2026-05-05",
         "origenes": [
           "NANCHI"
-        ]
+        ],
+        "bs_kg": 23.5,
+        "fecha_venta": "2026-05-05",
+        "comprador": "Roberto Caldas (confinamiento)"
       }
     ],
     "por_proveedor": [

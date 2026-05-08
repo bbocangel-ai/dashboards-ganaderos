@@ -60,7 +60,10 @@
       "destinos": [
         { "comprador": "Roberto Caldas (confinamiento)", "cabezas": 300, "peso_bruto_prom": 426, "peso_neto_prom": 405, "bs_kg": 23.5, "fecha": "2026-05-05" },
         { "comprador": "Frigosi", "cabezas": 45, "peso_bruto_prom": 503, "peso_neto_prom": 478, "bs_kg": 23, "fecha": "2026-05-06" }
-      ]
+      ],
+      "partidario_destino": {
+        "MB": "Roberto Caldas (confinamiento)"
+      }
     }
   }
 }
