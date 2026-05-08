@@ -11,12 +11,21 @@
  */
 
 import Firebird from 'node-firebird';
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = join(__dirname, '..', 'public', 'data');
+const OVERRIDES_PATH = join(__dirname, '..', 'src', 'data', 'overrides.json');
+
+function loadOverrides() {
+  try {
+    return JSON.parse(readFileSync(OVERRIDES_PATH, 'utf-8'));
+  } catch {
+    return { compras: {}, ghost_animals: [], ventas_split: {} };
+  }
+}
 
 const options = {
   host: '127.0.0.1',
@@ -36,7 +45,7 @@ const PARTIDARIOS = {
   DB: 'Diego Bocangel',
   MB: 'Moira Bocangel',
   MA: 'Moira Eguez Avila',
-  FB: 'Fabio',
+  FB: 'Fabio Bocangel',
 };
 
 const TIPOS_TRABAJO = {
@@ -373,8 +382,10 @@ async function main() {
       a.last_sesion = p.sesion;
     }
   }
+  const overrides = loadOverrides();
+
   const SALIDAS = new Set(['VT', 'VTA', 'VNT', 'AUT', 'REFG', 'REFUG']);
-  const animales = [...byAnimal.values()].map(a => {
+  let animales = [...byAnimal.values()].map(a => {
     const dias = a.first_fecha && a.last_fecha
       ? Math.max(0, (new Date(a.last_fecha) - new Date(a.first_fecha)) / 86400000)
       : 0;
@@ -387,8 +398,89 @@ async function main() {
       gmd_kg: dias > 0 ? Math.round((ganancia / dias) * 1000) / 1000 : null,
       salida,                    // VT/VTA/VNT/AUT/REFG si ya salió, null si está activo
       vendido: salida === 'VT' || salida === 'VTA' || salida === 'VNT',
+      ghost: false,
     };
   });
+
+  // ---------- ghost animals (chips caídos) ----------
+  // Se inyectan al stream de animales con peso resuelto. Si peso === "promedio",
+  // se calcula el promedio del partidario+categoria.
+  const ghostList = overrides.ghost_animals || [];
+  if (ghostList.length > 0) {
+    // Helper: promedio con fallback en cascada
+    function promedio(partidario_id, categoria, field, sesion = null) {
+      // 1) Mejor fuente: animales del mismo partidario en la sesión específica
+      if (sesion) {
+        const ms = animales.filter(a => a.partidario_id === partidario_id && a.last_sesion === sesion);
+        if (ms.length > 0) {
+          return Math.round((ms.reduce((s, a) => s + (a[field] || 0), 0) / ms.length) * 10) / 10;
+        }
+      }
+      // 2) Por partidario (la categoria real en SisGado es NI casi siempre, así que
+      //    no filtramos por categoría — el partidario mismo tiene su perfil de peso)
+      const ms = animales.filter(a => a.partidario_id === partidario_id);
+      if (ms.length === 0) return 0;
+      return Math.round((ms.reduce((s, a) => s + (a[field] || 0), 0) / ms.length) * 10) / 10;
+    }
+
+    // Template: si está vendido en sesion, copiamos de un animal de esa sesion (mismo proveedor)
+    // Si no, copiamos de cualquier animal del partidario
+    function findTemplate(partidario_id, sesion = null) {
+      if (sesion) {
+        const t = animales.find(a => a.partidario_id === partidario_id && a.last_sesion === sesion);
+        if (t) return t;
+      }
+      return animales.find(a => a.partidario_id === partidario_id);
+    }
+
+    let nextGhostId = -1;
+    for (const g of ghostList) {
+      const cat = g.categoria || null;
+      const pid = g.partidario_id;
+      const partidario_nombre = PARTIDARIOS[pid] || pid;
+      const sesion = g.vendido_en_sesion || null;
+      const tpl = findTemplate(pid, sesion);
+
+      let firstP = g.first_peso ?? g.peso;
+      let lastP  = g.last_peso  ?? g.peso;
+      if (firstP === 'promedio' || firstP == null) firstP = promedio(pid, cat, 'first_peso', sesion);
+      if (lastP  === 'promedio' || lastP  == null) lastP  = promedio(pid, cat, 'last_peso',  sesion);
+
+      const ghost = {
+        id_animal: nextGhostId--,
+        nro: g.nro || `${pid}-G${Math.abs(nextGhostId + 1)}`,
+        sexo: g.sexo || tpl?.sexo || null,
+        categoria: cat,
+        estancia: g.estancia || tpl?.estancia || 'LFA',
+        proveedor: g.proveedor || tpl?.proveedor || null,
+        proveedor_precio_bs: g.proveedor_precio_bs || tpl?.proveedor_precio_bs || null,
+        ingreso_fecha: g.ingreso_fecha || tpl?.ingreso_fecha || null,
+        ingreso_proveedor: g.ingreso_proveedor || tpl?.ingreso_proveedor || null,
+        partidario_id: pid,
+        partidario: partidario_nombre,
+        partidario_mes: g.partidario_mes || tpl?.partidario_mes || null,
+        raza_codigo: g.raza_codigo || tpl?.raza_codigo || pid,
+        raza_descripcion: g.raza_descripcion || tpl?.raza_descripcion || null,
+        first_fecha: g.first_fecha || tpl?.first_fecha || null,
+        first_peso: firstP,
+        last_fecha: g.last_fecha || tpl?.last_fecha || null,
+        last_peso: lastP,
+        last_trabajo_tipo: g.vendido_en_sesion ? 'VT' : (tpl?.last_trabajo_tipo || null),
+        last_trabajo_precio_bs_kg: null,
+        last_sesion: g.vendido_en_sesion || null,
+        n_pesajes: 1,
+        dias_en_campo: g.dias_en_campo || tpl?.dias_en_campo || 0,
+        ganancia_kg: Math.round((lastP - firstP) * 10) / 10,
+        gmd_kg: null,
+        salida: g.vendido_en_sesion ? 'VT' : null,
+        vendido: !!g.vendido_en_sesion,
+        ghost: true,
+        ghost_nota: g.nota || null,
+      };
+      animales.push(ghost);
+    }
+    console.log(`  +${ghostList.length} ghost animals inyectados`);
+  }
 
   // Sessions (corral jobs)
   const bySesion = new Map();
@@ -467,13 +559,59 @@ async function main() {
       dias_prom: g.cabezas > 0 ? Math.round(g.dias_sum / g.cabezas) : 0,
     })).sort((a, b) => b.cabezas - a.cabezas);
   }
+  // Helper: split animals into destinos by criterio (peso threshold)
+  function splitByCriterio(animals, destinos) {
+    const buckets = destinos.map(d => ({ ...d, animals: [] }));
+    const restoBucket = buckets.find(b => !('criterio_peso_min' in b) && !('criterio_peso_max' in b));
+    for (const a of animals) {
+      let placed = false;
+      for (const b of buckets) {
+        if (b.criterio_peso_min != null && a.last_peso >= b.criterio_peso_min) { b.animals.push(a); placed = true; break; }
+        if (b.criterio_peso_max != null && a.last_peso < b.criterio_peso_max)  { b.animals.push(a); placed = true; break; }
+      }
+      if (!placed && restoBucket) restoBucket.animals.push(a);
+    }
+    return buckets.map(b => {
+      const ans = b.animals;
+      const peso_bruto_sum = ans.reduce((s, a) => s + a.last_peso, 0);
+      const peso_neto_sum = peso_bruto_sum * 0.95;
+      const ingreso_bs = peso_neto_sum * (b.bs_kg || 0);
+      return {
+        comprador: b.comprador,
+        criterio: b.criterio_peso_min != null ? `peso ≥ ${b.criterio_peso_min} kg`
+                : b.criterio_peso_max != null ? `peso < ${b.criterio_peso_max} kg`
+                : 'resto',
+        bs_kg: b.bs_kg ?? null,
+        fecha: b.fecha || null,
+        cabezas: ans.length,
+        peso_prom_bruto: ans.length > 0 ? Math.round((peso_bruto_sum / ans.length) * 10) / 10 : 0,
+        peso_total_bruto: Math.round(peso_bruto_sum),
+        peso_total_neto: Math.round(peso_neto_sum),
+        ingreso_bs: Math.round(ingreso_bs),
+        // Sub-breakdowns por comprador
+        por_partidario: group(ans, a => a.partidario_id, a => a.partidario || a.partidario_id || ''),
+        por_proveedor:  group(ans, a => a.proveedor || null),
+      };
+    });
+  }
+
+  const ventasSplit = overrides.ventas_split || {};
   for (const s of sesiones) {
     const animals = animalesByLastSesion.get(s.sesion) || [];
     s.por_partidario = group(animals, a => a.partidario_id, a => a.partidario || a.partidario_id || '');
     s.por_proveedor  = group(animals, a => a.proveedor || null);
     s.por_categoria  = group(animals, a => a.categoria || null);
     s.por_raza       = group(animals, a => a.raza_codigo || a.raza_descripcion || null, a => a.raza_descripcion || a.raza_codigo || '');
-    // slug for routing
+
+    // splits por comprador (si hay override)
+    const split = ventasSplit[s.sesion];
+    if (split && split.destinos) {
+      s.split = {
+        nota: split.nota || null,
+        destinos: splitByCriterio(animals, split.destinos),
+      };
+    }
+
     s.slug = String(s.sesion).toLowerCase()
       .replace(/[^\w]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80);
   }

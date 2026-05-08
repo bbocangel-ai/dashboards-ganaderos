@@ -61,6 +61,7 @@ const tieneOverride = compra.cabezas_real != null;
       <thead>
         <tr>
           <th>N° interno</th>
+          <th>Origen</th>
           <th>Curva</th>
           <th class="num">1° peso</th>
           <th class="num">Último</th>
@@ -88,7 +89,9 @@ const tieneOverride = compra.cabezas_real != null;
                 <a href={base + '/animales/' + a.id_animal} class="text-stone-900 hover:text-brand-700 hover:underline">
                   {a.nro || a.id_animal}
                 </a>
+                {a.ghost && <span class="ml-1 pill pill-sm bg-amber-100 text-amber-800" title={a.ghost_nota || 'chip caído'}>ghost</span>}
               </td>
+              <td class="text-xs text-stone-700 max-w-[160px] truncate" title={a.proveedor || ''}>{a.proveedor || '—'}</td>
               <td><span set:html={spark} /></td>
               <td class="num text-stone-500">{fmtNum(a.first_peso, 1)}</td>
               <td class="num font-medium">{fmtNum(a.last_peso, 1)}</td>

@@ -101,6 +101,99 @@
         "dias_prom": 369
       }
     ],
+    "split": {
+      "nota": "Venta del 05/05/26 — split por peso: ≥470kg → Frigosi (23 Bs/kg), <470kg → Roberto Caldas confinamiento (23,5 Bs/kg)",
+      "destinos": [
+        {
+          "comprador": "Frigosi",
+          "criterio": "peso ≥ 470 kg",
+          "bs_kg": 23,
+          "fecha": "2026-05-06",
+          "cabezas": 1,
+          "peso_prom_bruto": 481,
+          "peso_total_bruto": 481,
+          "peso_total_neto": 457,
+          "ingreso_bs": 10510,
+          "por_partidario": [],
+          "por_proveedor": []
+        },
+        {
+          "comprador": "Roberto Caldas (confinamiento)",
+          "criterio": "peso < 470 kg",
+          "bs_kg": 23.5,
+          "fecha": "2026-05-05",
+          "cabezas": 488,
+          "peso_prom_bruto": 375.6,
+          "peso_total_bruto": 183296,
+          "peso_total_neto": 174131,
+          "ingreso_bs": 4092072,
+          "por_partidario": [
+            {
+              "key": "MB",
+              "label": "Moira Bocangel",
+              "cabezas": 1,
+              "peso_prom": 438,
+              "peso_neto_total": 416,
+              "peso_ingreso_prom": 256,
+              "ganancia_kg_prom": 182,
+              "dias_prom": 369
+            }
+          ],
+          "por_proveedor": [
+            {
+              "key": "GUIT",
+              "label": "GUIT",
+              "cabezas": 25,
+              "peso_prom": 399.7,
+              "peso_neto_total": 9493,
+              "peso_ingreso_prom": 227.7,
+              "ganancia_kg_prom": 172,
+              "dias_prom": 390
+            },
+            {
+              "key": "FERCOGAN",
+              "label": "FERCOGAN",
+              "cabezas": 12,
+              "peso_prom": 433.2,
+              "peso_neto_total": 4938,
+              "peso_ingreso_prom": 242.8,
+              "ganancia_kg_prom": 190.4,
+              "dias_prom": 369
+            },
+            {
+              "key": "GRY",
+              "label": "GRY",
+              "cabezas": 4,
+              "peso_prom": 377.5,
+              "peso_neto_total": 1435,
+              "peso_ingreso_prom": 379.3,
+              "ganancia_kg_prom": -1.7,
+              "dias_prom": 294
+            },
+            {
+              "key": "NANCHI",
+              "label": "NANCHI",
+              "cabezas": 3,
+              "peso_prom": 437,
+              "peso_neto_total": 1245,
+              "peso_ingreso_prom": 258.7,
+              "ganancia_kg_prom": 178.3,
+              "dias_prom": 369
+            },
+            {
+              "key": "PESADOS",
+              "label": "PESADOS",
+              "cabezas": 1,
+              "peso_prom": 417,
+              "peso_neto_total": 396,
+              "peso_ingreso_prom": 142,
+              "ganancia_kg_prom": 275,
+              "dias_prom": 1146
+            }
+          ]
+        }
+      ]
+    },
     "slug": "dados-0-07-05-26-05-23"
   },
   {
@@ -119,6 +212,16 @@
     "peso_prom": 436.5,
     "por_partidario": [
       {
+        "key": "DB",
+        "label": "Diego Bocangel",
+        "cabezas": 7,
+        "peso_prom": 524,
+        "peso_neto_total": 3485,
+        "peso_ingreso_prom": 303,
+        "ganancia_kg_prom": 221,
+        "dias_prom": 368
+      },
+      {
         "key": "BB",
         "label": "Bruno Bocangel",
         "cabezas": 2,
@@ -127,16 +230,6 @@
         "peso_ingreso_prom": 248.5,
         "ganancia_kg_prom": 185,
         "dias_prom": 379
-      },
-      {
-        "key": "DB",
-        "label": "Diego Bocangel",
-        "cabezas": 1,
-        "peso_prom": 524,
-        "peso_neto_total": 498,
-        "peso_ingreso_prom": 303,
-        "ganancia_kg_prom": 221,
-        "dias_prom": 368
       }
     ],
     "por_proveedor": [
@@ -163,11 +256,11 @@
       {
         "key": "NANCHI",
         "label": "NANCHI",
-        "cabezas": 10,
-        "peso_prom": 503,
-        "peso_neto_total": 4779,
-        "peso_ingreso_prom": 296.8,
-        "ganancia_kg_prom": 206.2,
+        "cabezas": 16,
+        "peso_prom": 510.9,
+        "peso_neto_total": 7765,
+        "peso_ingreso_prom": 299.1,
+        "ganancia_kg_prom": 211.8,
         "dias_prom": 368
       }
     ],
@@ -191,9 +284,29 @@
         "peso_ingreso_prom": 343.5,
         "ganancia_kg_prom": 120.3,
         "dias_prom": 161
+      },
+      {
+        "key": "TL",
+        "label": "TL",
+        "cabezas": 6,
+        "peso_prom": 524,
+        "peso_neto_total": 2987,
+        "peso_ingreso_prom": 303,
+        "ganancia_kg_prom": 221,
+        "dias_prom": 368
       }
     ],
     "por_raza": [
+      {
+        "key": "07",
+        "label": "DB ABR TOR 11",
+        "cabezas": 7,
+        "peso_prom": 524,
+        "peso_neto_total": 3485,
+        "peso_ingreso_prom": 303,
+        "ganancia_kg_prom": 221,
+        "dias_prom": 368
+      },
       {
         "key": "06",
         "label": "BB ABR TOR 10",
@@ -203,18 +316,123 @@
         "peso_ingreso_prom": 248.5,
         "ganancia_kg_prom": 185,
         "dias_prom": 379
-      },
-      {
-        "key": "07",
-        "label": "DB ABR TOR 11",
-        "cabezas": 1,
-        "peso_prom": 524,
-        "peso_neto_total": 498,
-        "peso_ingreso_prom": 303,
-        "ganancia_kg_prom": 221,
-        "dias_prom": 368
       }
     ],
+    "split": {
+      "nota": "Venta del 04/05/26 — split por peso: ≥470kg → Frigosi (23 Bs/kg), <470kg → Roberto Caldas confinamiento (23,5 Bs/kg)",
+      "destinos": [
+        {
+          "comprador": "Frigosi",
+          "criterio": "peso ≥ 470 kg",
+          "bs_kg": 23,
+          "fecha": "2026-05-03",
+          "cabezas": 90,
+          "peso_prom_bruto": 508.4,
+          "peso_total_bruto": 45753,
+          "peso_total_neto": 43465,
+          "ingreso_bs": 999703,
+          "por_partidario": [
+            {
+              "key": "DB",
+              "label": "Diego Bocangel",
+              "cabezas": 7,
+              "peso_prom": 524,
+              "peso_neto_total": 3485,
+              "peso_ingreso_prom": 303,
+              "ganancia_kg_prom": 221,
+              "dias_prom": 368
+            },
+            {
+              "key": "BB",
+              "label": "Bruno Bocangel",
+              "cabezas": 1,
+              "peso_prom": 494,
+              "peso_neto_total": 469,
+              "peso_ingreso_prom": 291,
+              "ganancia_kg_prom": 203,
+              "dias_prom": 368
+            }
+          ],
+          "por_proveedor": [
+            {
+              "key": "NANCHI",
+              "label": "NANCHI",
+              "cabezas": 16,
+              "peso_prom": 510.9,
+              "peso_neto_total": 7765,
+              "peso_ingreso_prom": 299.1,
+              "ganancia_kg_prom": 211.8,
+              "dias_prom": 368
+            },
+            {
+              "key": "FERCOGAN",
+              "label": "FERCOGAN",
+              "cabezas": 2,
+              "peso_prom": 512,
+              "peso_neto_total": 973,
+              "peso_ingreso_prom": 278.5,
+              "ganancia_kg_prom": 233.5,
+              "dias_prom": 368
+            },
+            {
+              "key": "GUIT",
+              "label": "GUIT",
+              "cabezas": 1,
+              "peso_prom": 485,
+              "peso_neto_total": 461,
+              "peso_ingreso_prom": 263,
+              "ganancia_kg_prom": 222,
+              "dias_prom": 389
+            }
+          ]
+        },
+        {
+          "comprador": "Roberto Caldas (confinamiento)",
+          "criterio": "peso < 470 kg",
+          "bs_kg": 23.5,
+          "fecha": "2026-05-04",
+          "cabezas": 277,
+          "peso_prom_bruto": 415.1,
+          "peso_total_bruto": 114985,
+          "peso_total_neto": 109236,
+          "ingreso_bs": 2567040,
+          "por_partidario": [
+            {
+              "key": "BB",
+              "label": "Bruno Bocangel",
+              "cabezas": 1,
+              "peso_prom": 373,
+              "peso_neto_total": 354,
+              "peso_ingreso_prom": 206,
+              "ganancia_kg_prom": 167,
+              "dias_prom": 389
+            }
+          ],
+          "por_proveedor": [
+            {
+              "key": "GUIT",
+              "label": "GUIT",
+              "cabezas": 64,
+              "peso_prom": 415.5,
+              "peso_neto_total": 25261,
+              "peso_ingreso_prom": 195.7,
+              "ganancia_kg_prom": 219.8,
+              "dias_prom": 389
+            },
+            {
+              "key": "FERCOGAN",
+              "label": "FERCOGAN",
+              "cabezas": 44,
+              "peso_prom": 411,
+              "peso_neto_total": 17179,
+              "peso_ingreso_prom": 202.5,
+              "ganancia_kg_prom": 208.5,
+              "dias_prom": 368
+            }
+          ]
+        }
+      ]
+    },
     "slug": "dados-0-07-05-26-05-22"
   },
   {
@@ -244,7 +462,7 @@
       },
       {
         "key": "FB",
-        "label": "Fabio",
+        "label": "Fabio Bocangel",
         "cabezas": 1,
         "peso_prom": 381,
         "peso_neto_total": 362,
@@ -492,7 +710,7 @@
       },
       {
         "key": "FB",
-        "label": "Fabio",
+        "label": "Fabio Bocangel",
         "cabezas": 6,
         "peso_prom": 311.2,
         "peso_neto_total": 1774,
@@ -696,7 +914,7 @@
       },
       {
         "key": "FB",
-        "label": "Fabio",
+        "label": "Fabio Bocangel",
         "cabezas": 2,
         "peso_prom": 348.5,
         "peso_neto_total": 662,
@@ -1328,7 +1546,7 @@
     "por_partidario": [
       {
         "key": "FB",
-        "label": "Fabio",
+        "label": "Fabio Bocangel",
         "cabezas": 3,
         "peso_prom": 279.3,
         "peso_neto_total": 796,
@@ -2144,7 +2362,7 @@
       },
       {
         "key": "FB",
-        "label": "Fabio",
+        "label": "Fabio Bocangel",
         "cabezas": 1,
         "peso_prom": 280,
         "peso_neto_total": 266,

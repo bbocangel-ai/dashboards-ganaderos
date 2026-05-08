@@ -35,10 +35,63 @@ const ingreso_total_bs = peso_neto_total * precio;
 
   <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
     <Kpi label="Cabezas" value={fmtNum(sesion.n)} sub="en esta venta" />
-    <Kpi label="Peso prom" value={(sesion.peso_prom != null ? fmtNum(sesion.peso_prom, 1) : '—') + ' kg'} sub={`bruto · neto ${fmtNum((sesion.peso_prom||0) * (1-DESBASTE), 1)} kg`} />
-    <Kpi label="Bs/kg" value={fmtNum(precio, 1) + (precioEstimado ? ' (est)' : '')} sub={precioEstimado ? 'agregar al nombre del LOTE para usar real' : 'real, leído del nombre del LOTE'} />
-    <Kpi label="Ingreso bruto" value={fmtBs(Math.round(ingreso_total_bs))} sub={`USD ${fmtNum(Math.round(ingreso_total_bs / USD_RATE))}`} />
+    <Kpi label="Peso prom" value={(sesion.peso_prom != null ? fmtNum(sesion.peso_prom, 1) : '—') + ' kg'} sub={`bruto · neto ${fmtNum((sesion.peso_prom||0) * (1-DESBASTE), 1)} kg (−${Math.round(DESBASTE*100)}%)`} />
+    <Kpi label="Bs/kg" value={sesion.split ? 'split' : fmtNum(precio, 1) + (precioEstimado ? ' (est)' : '')} sub={sesion.split ? 'distintos por comprador' : (precioEstimado ? 'estimado · agregá Bs/kg al nombre del LOTE' : 'real')} />
+    <Kpi label="Ingreso bruto" value={sesion.split ? fmtBs(sesion.split.destinos.reduce((s,d) => s + d.ingreso_bs, 0)) : fmtBs(Math.round(ingreso_total_bs))} sub={`USD ${fmtNum(Math.round((sesion.split ? sesion.split.destinos.reduce((s,d) => s + d.ingreso_bs, 0) : ingreso_total_bs) / USD_RATE))}`} />
   </div>
+
+  {sesion.split && (
+    <section class="mb-6">
+      <h3 class="section-title flex items-center gap-2">
+        <span>Repartición por comprador</span>
+        <span class="pill bg-indigo-100 text-indigo-800">SPLIT</span>
+      </h3>
+      {sesion.split.nota && <p class="text-xs text-stone-500 mb-3">{sesion.split.nota}</p>}
+      <div class="grid md:grid-cols-2 gap-4 mb-4">
+        {sesion.split.destinos.map(d => (
+          <div class="card p-5">
+            <div class="flex items-center justify-between mb-2">
+              <h4 class="font-bold text-stone-900">{d.comprador}</h4>
+              <span class="pill bg-stone-100 text-stone-700">{d.criterio}</span>
+            </div>
+            <div class="grid grid-cols-3 gap-3 mb-3">
+              <div>
+                <div class="kpi-label">Cabezas</div>
+                <div class="text-2xl font-bold tabular-nums">{fmtNum(d.cabezas)}</div>
+              </div>
+              <div>
+                <div class="kpi-label">Peso bruto prom</div>
+                <div class="text-lg font-semibold tabular-nums">{fmtNum(d.peso_prom_bruto, 1)} kg</div>
+                <div class="text-xs text-stone-500">neto {fmtNum(d.peso_total_neto)} kg</div>
+              </div>
+              <div>
+                <div class="kpi-label">Bs/kg · Fecha</div>
+                <div class="text-lg font-semibold tabular-nums">{d.bs_kg != null ? fmtNum(d.bs_kg, 1) : '—'}</div>
+                <div class="text-xs text-stone-500">{fmtFecha(d.fecha)}</div>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-stone-100 flex items-end justify-between">
+              <div>
+                <div class="kpi-label">Ingreso (con −{Math.round(DESBASTE*100)}% desbaste)</div>
+                <div class="text-xl font-bold tabular-nums">{fmtBs(d.ingreso_bs)}</div>
+                <div class="text-xs text-stone-500">USD {fmtNum(Math.round(d.ingreso_bs / USD_RATE))}</div>
+              </div>
+              <div class="text-xs text-right">
+                {d.por_partidario.length > 0 && (
+                  <div class="space-y-0.5">
+                    <div class="kpi-label mb-0.5">Partidarios</div>
+                    {d.por_partidario.map(p => (
+                      <div class="text-stone-700"><span class="font-medium">{p.label}</span>: {p.cabezas}</div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
 
   <!-- Por partidario -->
   <section class="mb-6">

@@ -42,6 +42,8 @@ export type Animal = {
   last_trabajo_tipo: string | null;
   last_trabajo_precio_bs_kg: number | null;
   last_sesion: string | null;
+  ghost?: boolean;
+  ghost_nota?: string | null;
 };
 
 export type GroupRow = {
@@ -53,6 +55,20 @@ export type GroupRow = {
   peso_ingreso_prom: number;
   ganancia_kg_prom: number;
   dias_prom: number;
+};
+
+export type SplitDestino = {
+  comprador: string;
+  criterio: string;
+  bs_kg: number | null;
+  fecha: string | null;
+  cabezas: number;
+  peso_prom_bruto: number;
+  peso_total_bruto: number;
+  peso_total_neto: number;
+  ingreso_bs: number;
+  por_partidario: GroupRow[];
+  por_proveedor: GroupRow[];
 };
 
 export type Sesion = {
@@ -73,6 +89,7 @@ export type Sesion = {
   por_proveedor: GroupRow[];
   por_categoria: GroupRow[];
   por_raza: GroupRow[];
+  split?: { nota: string | null; destinos: SplitDestino[] };
 };
 
 export type Meta = {
