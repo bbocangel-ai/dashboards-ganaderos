@@ -24,21 +24,42 @@ const peso_neto_total = peso_bruto_total * (1 - DESBASTE);
 const ingreso_total_bs = peso_neto_total * precio;
 ---
 <Layout title={`Venta · ${fmtFecha(sesion.fecha_max)}`}>
-  <div class="mb-6">
-    <a href={base + '/ventas'} class="text-xs text-brand-600 hover:underline">← Volver a Ventas</a>
-    <h2 class="mt-2 text-lg font-semibold text-stone-900">
-      <span class="pill bg-emerald-100 text-emerald-800 mr-2">{sesion.trabajo_tipo}</span>
-      {sesion.trabajo_detalle}
-    </h2>
-    <p class="text-sm text-stone-500">{fmtFecha(sesion.fecha_max)} · {sesion.sesion}</p>
-  </div>
+  <a href={base + '/ventas'} class="btn-link">← Volver a Ventas</a>
 
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-    <Kpi label="Cabezas" value={fmtNum(sesion.n)} sub="en esta venta" />
-    <Kpi label="Peso prom" value={(sesion.peso_prom != null ? fmtNum(sesion.peso_prom, 1) : '—') + ' kg'} sub={`bruto · neto ${fmtNum((sesion.peso_prom||0) * (1-DESBASTE), 1)} kg (−${Math.round(DESBASTE*100)}%)`} />
-    <Kpi label="Bs/kg" value={sesion.split ? 'split' : fmtNum(precio, 1) + (precioEstimado ? ' (est)' : '')} sub={sesion.split ? 'distintos por comprador' : (precioEstimado ? 'estimado · agregá Bs/kg al nombre del LOTE' : 'real')} />
-    <Kpi label="Ingreso bruto" value={sesion.split ? fmtBs(sesion.split.destinos.reduce((s,d) => s + d.ingreso_bs, 0)) : fmtBs(Math.round(ingreso_total_bs))} sub={`USD ${fmtNum(Math.round((sesion.split ? sesion.split.destinos.reduce((s,d) => s + d.ingreso_bs, 0) : ingreso_total_bs) / USD_RATE))}`} />
-  </div>
+  <header class="page-header mt-2">
+    <div class="flex items-center gap-3 mb-2">
+      <span class="pill-emerald">{sesion.trabajo_tipo}</span>
+      <span class="text-xs text-stone-500 font-mono">{fmtFecha(sesion.fecha_max)}</span>
+    </div>
+    <h1 class="page-title">{sesion.trabajo_detalle}</h1>
+    <p class="page-subtitle font-mono text-xs">{sesion.sesion}</p>
+  </header>
+
+  <section class="mb-7">
+    <h2 class="section-title">Indicadores de la venta</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="kpi card-accent-brand">
+        <div class="kpi-label">Cabezas</div>
+        <div class="kpi-value">{fmtNum(sesion.n)}</div>
+        <div class="kpi-sub">en esta venta</div>
+      </div>
+      <div class="kpi card-accent-sky">
+        <div class="kpi-label">Peso prom</div>
+        <div class="kpi-value">{sesion.peso_prom != null ? fmtNum(sesion.peso_prom, 1) : '—'}<span class="text-base font-medium text-stone-400 ml-1">kg</span></div>
+        <div class="kpi-sub">bruto · neto {fmtNum((sesion.peso_prom||0) * (1-DESBASTE), 1)} kg (−{Math.round(DESBASTE*100)}%)</div>
+      </div>
+      <div class="kpi card-accent-amber">
+        <div class="kpi-label">Bs/kg</div>
+        <div class="kpi-value">{sesion.split ? 'split' : fmtNum(precio, 1)}</div>
+        <div class="kpi-sub">{sesion.split ? 'distinto por comprador' : (precioEstimado ? 'estimado' : 'real')}</div>
+      </div>
+      <div class="kpi card-accent-emerald">
+        <div class="kpi-label">Ingreso bruto</div>
+        <div class="kpi-value">{sesion.split ? fmtBs(sesion.split.destinos.reduce((s,d) => s + d.ingreso_bs, 0)) : fmtBs(Math.round(ingreso_total_bs))}</div>
+        <div class="kpi-sub">USD {fmtNum(Math.round((sesion.split ? sesion.split.destinos.reduce((s,d) => s + d.ingreso_bs, 0) : ingreso_total_bs) / USD_RATE))}</div>
+      </div>
+    </div>
+  </section>
 
   {sesion.split && (
     <section class="mb-6">
