@@ -4,55 +4,66 @@
 
 @layer base {
   html { font-feature-settings: "cv02", "cv03", "cv04", "cv11"; }
-  body { @apply bg-stone-50 text-stone-800; }
+  body {
+    @apply text-stone-800;
+    background:
+      radial-gradient(at 8% 0%, rgba(132, 160, 100, 0.07) 0px, transparent 50%),
+      radial-gradient(at 96% 12%, rgba(132, 197, 211, 0.06) 0px, transparent 50%),
+      linear-gradient(to bottom, #f5f4ee 0%, #faf9f5 100%);
+    min-height: 100vh;
+    background-attachment: fixed;
+  }
   code { @apply font-mono text-[0.85em] px-1 py-0.5 bg-stone-100 rounded text-stone-700; }
   ::selection { @apply bg-brand-200 text-brand-900; }
 }
 
 @layer components {
-  /* Card base — neutral, layered */
+  /* Card base */
   .card {
-    @apply bg-white rounded-xl border border-stone-200/80 shadow-[0_1px_2px_rgba(15,23,12,0.04)];
+    @apply bg-white rounded-xl border border-stone-200/70 shadow-[0_1px_2px_rgba(15,23,12,0.04),0_4px_16px_-8px_rgba(15,23,12,0.06)];
   }
   .card-hover { @apply transition-all hover:shadow-md hover:border-stone-300; }
-  .card-accent-emerald { @apply border-l-4 border-l-emerald-500 border-t border-r border-b border-stone-200; }
-  .card-accent-rose    { @apply border-l-4 border-l-rose-500    border-t border-r border-b border-stone-200; }
-  .card-accent-amber   { @apply border-l-4 border-l-amber-500   border-t border-r border-b border-stone-200; }
-  .card-accent-sky     { @apply border-l-4 border-l-sky-500     border-t border-r border-b border-stone-200; }
-  .card-accent-brand   { @apply border-l-4 border-l-brand-500   border-t border-r border-b border-stone-200; }
-  .card-accent-violet  { @apply border-l-4 border-l-violet-500  border-t border-r border-b border-stone-200; }
+
+  /* Card accents — colored left border + faint tint */
+  .card-accent-emerald { @apply border-l-[3px] border-l-emerald-500 bg-gradient-to-r from-emerald-50/40 to-white; }
+  .card-accent-rose    { @apply border-l-[3px] border-l-rose-500    bg-gradient-to-r from-rose-50/40    to-white; }
+  .card-accent-amber   { @apply border-l-[3px] border-l-amber-500   bg-gradient-to-r from-amber-50/40   to-white; }
+  .card-accent-sky     { @apply border-l-[3px] border-l-sky-500     bg-gradient-to-r from-sky-50/40     to-white; }
+  .card-accent-brand   { @apply border-l-[3px] border-l-brand-500   bg-gradient-to-r from-brand-50/40   to-white; }
+  .card-accent-violet  { @apply border-l-[3px] border-l-violet-500  bg-gradient-to-r from-violet-50/40  to-white; }
+  .card-accent-pink    { @apply border-l-[3px] border-l-pink-500    bg-gradient-to-r from-pink-50/40    to-white; }
+  .card-accent-indigo  { @apply border-l-[3px] border-l-indigo-500  bg-gradient-to-r from-indigo-50/40  to-white; }
 
   /* KPI */
-  .kpi { @apply card p-5; }
+  .kpi { @apply card p-5 relative; }
   .kpi-label { @apply text-[10px] uppercase tracking-[0.1em] text-stone-500 font-bold; }
-  .kpi-value { @apply mt-1.5 text-[28px] leading-none font-bold text-stone-900 tabular-nums tracking-tight; }
+  .kpi-value { @apply mt-1.5 text-[28px] leading-none font-extrabold text-stone-900 tabular-nums tracking-tight; }
   .kpi-sub   { @apply mt-2 text-[11px] text-stone-500 leading-snug; }
-  .kpi-up    { @apply text-emerald-700; }
-  .kpi-down  { @apply text-rose-700; }
 
   /* Page header */
   .page-header { @apply mb-7 pb-5 border-b border-stone-200/60; }
-  .page-title { @apply text-[26px] font-bold text-stone-900 tracking-tight leading-tight; }
+  .page-title { @apply text-[28px] font-extrabold text-stone-900 tracking-tight leading-tight; }
   .page-subtitle { @apply mt-1 text-sm text-stone-500; }
 
   /* Section */
   .section-title {
-    @apply text-[10px] uppercase tracking-[0.12em] text-stone-500 font-bold mb-3 flex items-center gap-2;
+    @apply text-[10px] uppercase tracking-[0.12em] text-stone-600 font-extrabold mb-3 flex items-center gap-2;
   }
   .section-title::before {
     content: '';
-    @apply inline-block w-1 h-3.5 bg-brand-500 rounded-full;
+    @apply inline-block w-1 h-3.5 bg-gradient-to-b from-brand-400 to-brand-600 rounded-full;
   }
 
   /* Tables */
   .table-wrap { @apply card overflow-hidden; }
   table.tbl   { @apply w-full text-sm; }
   table.tbl thead th {
-    @apply bg-stone-50/80 text-stone-600 font-bold text-[10px] uppercase tracking-[0.08em] px-4 py-2.5 text-left border-b border-stone-200 whitespace-nowrap;
+    @apply bg-gradient-to-b from-stone-50 to-stone-100/50 text-stone-700 font-bold text-[10px] uppercase tracking-[0.08em] px-4 py-2.5 text-left border-b border-stone-200 whitespace-nowrap;
   }
   table.tbl tbody td  { @apply px-4 py-2.5 border-b border-stone-100 align-middle; }
   table.tbl tbody tr:last-child td { @apply border-b-0; }
-  table.tbl tbody tr:hover { @apply bg-brand-50/40; }
+  table.tbl tbody tr:nth-child(even) { @apply bg-stone-50/40; }
+  table.tbl tbody tr:hover { @apply bg-brand-50/60; }
   table.tbl tbody tr.clickable { @apply cursor-pointer; }
   table.tbl .num { @apply tabular-nums text-right; }
 
@@ -72,21 +83,28 @@
 
   /* Buttons */
   .btn { @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold transition; }
-  .btn-primary { @apply btn bg-brand-600 text-white hover:bg-brand-700 active:bg-brand-800 shadow-sm; }
+  .btn-primary { @apply btn bg-brand-600 text-white hover:bg-brand-700 active:bg-brand-800 shadow-sm hover:shadow; }
   .btn-ghost   { @apply btn text-stone-700 hover:bg-stone-100 border border-stone-200; }
-  .btn-link    { @apply text-sm text-brand-600 hover:text-brand-800 hover:underline font-medium; }
+  .btn-link    { @apply text-sm text-brand-700 hover:text-brand-900 hover:underline font-semibold; }
 
   /* Stats colors */
   .stat-up   { @apply text-emerald-700; }
   .stat-down { @apply text-rose-700; }
   .stat-warn { @apply text-amber-700; }
 
-  /* Bar visualization (for cat distribution) */
+  /* Bar */
   .bar-track { @apply h-2 bg-stone-100 rounded-full overflow-hidden flex; }
   .bar-track > div { @apply h-full transition-all; }
 }
 
-.sticky-shadow { box-shadow: 0 1px 0 rgba(15, 23, 12, 0.06); }
+.sticky-shadow { box-shadow: 0 1px 2px rgba(15, 23, 12, 0.04), 0 4px 12px -8px rgba(15, 23, 12, 0.05); }
 
-/* Tabular numerals across the app for consistent alignment */
 .tabular { font-variant-numeric: tabular-nums; }
+
+/* KPI value color variants — match the accent */
+.kpi.card-accent-emerald .kpi-value { @apply text-emerald-900; }
+.kpi.card-accent-sky     .kpi-value { @apply text-sky-900; }
+.kpi.card-accent-amber   .kpi-value { @apply text-amber-900; }
+.kpi.card-accent-brand   .kpi-value { @apply text-brand-900; }
+.kpi.card-accent-rose    .kpi-value { @apply text-rose-900; }
+.kpi.card-accent-violet  .kpi-value { @apply text-violet-900; }

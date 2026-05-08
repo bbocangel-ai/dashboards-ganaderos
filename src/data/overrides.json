@@ -1,9 +1,8 @@
 {
   "_doc": {
-    "compras": "Override cantidad real por código de RACAS.",
-    "ghost_animals": "Animales explícitos uno por uno. vendido_en_sesion=null para que queden activos.",
-    "partidario_total_targets": "Targets declarativos por partidario × cat. Sync auto-genera ghosts ACTIVOS hasta llegar al total.",
-    "ventas_split": "Reparte una venta SisGado en N compradores con datos exactos."
+    "ghost_animals": "Animales explícitos. last_peso/first_peso explícitos o 'promedio'. Si vendido_en_sesion está, los datos faltantes se promedian de los reales del mismo partidario en esa sesión.",
+    "partidario_total_targets": "Targets totales por cat. Sync auto-genera ghosts ACTIVOS hasta llegar.",
+    "ventas_split": "Reparte una venta en N compradores con datos exactos."
   },
 
   "compras": {},
@@ -17,8 +16,12 @@
   },
 
   "ghost_animals": [
-    { "id": "MA-E1", "partidario_id": "MA", "categoria": "VQ", "peso": 379, "nota": "explícito 379 kg" },
-    { "id": "MA-E2", "partidario_id": "MA", "categoria": "VQ", "peso": 382, "nota": "explícito 382 kg" },
+    { "id": "MA-E1", "partidario_id": "MA", "categoria": "VQ", "last_peso": 379, "vendido_en_sesion": "DADOS - 0 - 06/05/26 19:32", "nota": "vendido 25/04 VAQ — peso 379" },
+    { "id": "MA-E2", "partidario_id": "MA", "categoria": "VQ", "last_peso": 382, "vendido_en_sesion": "DADOS - 0 - 06/05/26 19:32", "nota": "vendido 25/04 VAQ — peso 382" },
+
+    { "id": "FB-V1", "partidario_id": "FB", "categoria": "VQ", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 06/05/26 19:32", "nota": "vendido 25/04 VAQ" },
+    { "id": "FB-V2", "partidario_id": "FB", "categoria": "VQ", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 06/05/26 19:32", "nota": "vendido 25/04 VAQ" },
+    { "id": "FB-V3", "partidario_id": "FB", "categoria": "VQ", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 06/05/26 19:32", "nota": "vendido 25/04 VAQ" },
 
     { "id": "DB-V1", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
     { "id": "DB-V2", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },

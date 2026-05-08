@@ -11,8 +11,10 @@ export async function getStaticPaths() {
 }
 
 const { sesion } = Astro.props;
-const precio = sesion.precio_venta_bs_kg ?? PRECIO_VENTA_BS_KG;
-const precioEstimado = sesion.precio_venta_bs_kg == null;
+// Para venta sin split: precio = real o estimado.
+// Para venta con split: precio efectivo = promedio ponderado por peso neto.
+const precio = sesion.precio_venta_bs_kg ?? sesion.precio_avg_bs_kg ?? PRECIO_VENTA_BS_KG;
+const precioEstimado = sesion.precio_venta_bs_kg == null && sesion.precio_avg_bs_kg == null;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 function ingresoBs(g: GroupRow) {
@@ -118,30 +120,32 @@ const ingreso_total_bs = peso_neto_total * precio;
             <th class="num">Ganancia / cab</th>
             <th class="num">Días</th>
             <th class="num">Peso neto total</th>
+            <th class="num">Bs/kg</th>
             <th class="num">Ingreso Bs</th>
           </tr>
         </thead>
         <tbody>
           {sesion.por_partidario.length === 0 && (
-            <tr><td colspan="8" class="text-center text-stone-400 py-6 text-sm">Ningún animal partidario en esta venta</td></tr>
+            <tr><td colspan="9" class="text-center text-stone-400 py-6 text-sm">Ningún animal partidario en esta venta</td></tr>
           )}
           {sesion.por_partidario.map(g => (
             <tr>
               <td>
-                <div class="font-medium text-stone-900">{g.label}</div>
+                <div class="font-semibold text-stone-900">{g.label}</div>
                 <div class="text-xs text-stone-500">{g.key}</div>
               </td>
-              <td class="num font-semibold">{fmtNum(g.cabezas)}</td>
+              <td class="num font-bold">{fmtNum(g.cabezas)}</td>
               <td class="num">{fmtNum(g.peso_prom, 1)} kg</td>
               <td class="num text-stone-500">{fmtNum(g.peso_ingreso_prom, 1)} kg</td>
               <td class="num">
-                <span class={g.ganancia_kg_prom >= 0 ? 'text-emerald-700 font-medium' : 'text-rose-700 font-medium'}>
+                <span class={g.ganancia_kg_prom >= 0 ? 'stat-up font-semibold' : 'stat-down font-semibold'}>
                   {g.ganancia_kg_prom >= 0 ? '+' : ''}{fmtNum(g.ganancia_kg_prom, 1)} kg
                 </span>
               </td>
               <td class="num text-stone-500">{g.dias_prom} d</td>
               <td class="num">{fmtNum(g.peso_neto_total)} kg</td>
-              <td class="num font-medium">{fmtBs(ingresoBs(g))}</td>
+              <td class="num text-stone-700">{fmtNum(precio, 2)}</td>
+              <td class="num font-bold">{fmtBs(ingresoBs(g))}</td>
             </tr>
           ))}
         </tbody>
@@ -163,24 +167,26 @@ const ingreso_total_bs = peso_neto_total * precio;
             <th class="num">Ganancia / cab</th>
             <th class="num">Días</th>
             <th class="num">Peso neto total</th>
+            <th class="num">Bs/kg</th>
             <th class="num">Ingreso Bs</th>
           </tr>
         </thead>
         <tbody>
           {sesion.por_proveedor.map(g => (
             <tr>
-              <td class="font-medium text-stone-900 max-w-xs truncate">{g.label}</td>
-              <td class="num font-semibold">{fmtNum(g.cabezas)}</td>
+              <td class="font-semibold text-stone-900 max-w-xs truncate">{g.label}</td>
+              <td class="num font-bold">{fmtNum(g.cabezas)}</td>
               <td class="num">{fmtNum(g.peso_prom, 1)} kg</td>
               <td class="num text-stone-500">{fmtNum(g.peso_ingreso_prom, 1)} kg</td>
               <td class="num">
-                <span class={g.ganancia_kg_prom >= 0 ? 'text-emerald-700 font-medium' : 'text-rose-700 font-medium'}>
+                <span class={g.ganancia_kg_prom >= 0 ? 'stat-up font-semibold' : 'stat-down font-semibold'}>
                   {g.ganancia_kg_prom >= 0 ? '+' : ''}{fmtNum(g.ganancia_kg_prom, 1)} kg
                 </span>
               </td>
               <td class="num text-stone-500">{g.dias_prom} d</td>
               <td class="num">{fmtNum(g.peso_neto_total)} kg</td>
-              <td class="num font-medium">{fmtBs(ingresoBs(g))}</td>
+              <td class="num text-stone-700">{fmtNum(precio, 2)}</td>
+              <td class="num font-bold">{fmtBs(ingresoBs(g))}</td>
             </tr>
           ))}
         </tbody>

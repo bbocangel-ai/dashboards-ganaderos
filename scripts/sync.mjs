@@ -448,6 +448,10 @@ async function main() {
       if (firstP === 'promedio' || firstP == null) firstP = promedio(pid, cat, 'first_peso', sesion);
       if (lastP  === 'promedio' || lastP  == null) lastP  = promedio(pid, cat, 'last_peso',  sesion);
 
+      const dias = g.dias_en_campo ?? tpl?.dias_en_campo ?? 0;
+      const ganancia = Math.round((lastP - firstP) * 10) / 10;
+      const gmd = dias > 0 ? Math.round((ganancia / dias) * 1000) / 1000 : null;
+
       return {
         id_animal: nextGhostId--,
         nro: g.id || g.nro || `${pid}-G${Math.abs(nextGhostId + 1)}`,
@@ -468,12 +472,12 @@ async function main() {
         last_fecha: g.last_fecha || tpl?.last_fecha || null,
         last_peso: lastP,
         last_trabajo_tipo: sesion ? 'VT' : (tpl?.last_trabajo_tipo || null),
-        last_trabajo_precio_bs_kg: null,
+        last_trabajo_precio_bs_kg: tpl?.last_trabajo_precio_bs_kg ?? null,
         last_sesion: sesion,
         n_pesajes: 1,
-        dias_en_campo: g.dias_en_campo || tpl?.dias_en_campo || 0,
-        ganancia_kg: Math.round((lastP - firstP) * 10) / 10,
-        gmd_kg: null,
+        dias_en_campo: dias,
+        ganancia_kg: ganancia,
+        gmd_kg: gmd,
         salida: sesion ? 'VT' : null,
         vendido: !!sesion,
         ghost: true,
@@ -691,7 +695,9 @@ async function main() {
       s.peso_neto_total = totalNetoKg;
       s.peso_bruto_total = totalBrutoKg;
       s.ingreso_bs_total = totalIngreso;
-      s.precio_venta_bs_kg = null;  // ya no aplica un solo precio
+      s.precio_venta_bs_kg = null;
+      // Promedio ponderado Bs/kg (sobre peso neto) — para calcular ingreso por partidario
+      s.precio_avg_bs_kg = totalNetoKg > 0 ? Math.round((totalIngreso / totalNetoKg) * 100) / 100 : null;
     }
 
     s.slug = String(s.sesion).toLowerCase()

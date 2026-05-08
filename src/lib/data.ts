@@ -80,6 +80,7 @@ export type Sesion = {
   trabajo_fecha: string | null;
   trabajo_detalle: string | null;
   precio_venta_bs_kg: number | null;
+  precio_avg_bs_kg?: number | null;
   fecha_min: string | null;
   fecha_max: string | null;
   n: number;
