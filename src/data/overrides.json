@@ -2,7 +2,7 @@
   "_doc": {
     "compras": "Override cantidad real por código de RACAS (chips caídos / discrepancias).",
     "ghost_animals": "Animales que existen físicamente pero no están en SisGado. Se inyectan en sync con el partidario y peso indicado. peso puede ser número o 'promedio'.",
-    "ventas_split": "Una sesión de venta SisGado se reparte en múltiples compradores según criterio de peso. Key = sesion_descripcion exacta de SisGado."
+    "ventas_split": "Una sesión de venta SisGado se reparte en múltiples compradores con datos exactos (cabezas, peso bruto/neto, Bs/kg, fecha). Key = sesion_descripcion exacta de SisGado."
   },
 
   "compras": {},
@@ -32,17 +32,45 @@
 
   "ventas_split": {
     "DADOS - 0 - 07/05/26 05:22": {
-      "nota": "Venta 04/05/26 — split por peso: ≥470kg → Frigosi (23 Bs/kg), <470kg → Roberto Caldas confinamiento (23,5 Bs/kg)",
+      "nota": "Venta repartida entre 2 compradores",
       "destinos": [
-        { "comprador": "Frigosi", "criterio_peso_min": 470, "bs_kg": 23,   "fecha": "2026-05-03" },
-        { "comprador": "Roberto Caldas (confinamiento)", "criterio_peso_max": 470, "bs_kg": 23.5, "fecha": "2026-05-04" }
+        {
+          "comprador": "Frigosi",
+          "cabezas": 45,
+          "peso_bruto_prom": 504,
+          "peso_neto_prom": 479,
+          "bs_kg": 23,
+          "fecha": "2026-05-03"
+        },
+        {
+          "comprador": "Roberto Caldas (confinamiento)",
+          "cabezas": 300,
+          "peso_bruto_prom": 415,
+          "peso_neto_prom": 394,
+          "bs_kg": 23.5,
+          "fecha": "2026-05-04"
+        }
       ]
     },
     "DADOS - 0 - 07/05/26 05:23": {
-      "nota": "Venta 05/05/26 — split por peso: ≥470kg → Frigosi (23 Bs/kg), <470kg → Roberto Caldas confinamiento (23,5 Bs/kg)",
+      "nota": "Venta repartida entre 2 compradores",
       "destinos": [
-        { "comprador": "Frigosi", "criterio_peso_min": 470, "bs_kg": 23,   "fecha": "2026-05-06" },
-        { "comprador": "Roberto Caldas (confinamiento)", "criterio_peso_max": 470, "bs_kg": 23.5, "fecha": "2026-05-05" }
+        {
+          "comprador": "Roberto Caldas (confinamiento)",
+          "cabezas": 300,
+          "peso_bruto_prom": 426,
+          "peso_neto_prom": 405,
+          "bs_kg": 23.5,
+          "fecha": "2026-05-05"
+        },
+        {
+          "comprador": "Frigosi",
+          "cabezas": 45,
+          "peso_bruto_prom": 503,
+          "peso_neto_prom": 478,
+          "bs_kg": 23,
+          "fecha": "2026-05-06"
+        }
       ]
     }
   }

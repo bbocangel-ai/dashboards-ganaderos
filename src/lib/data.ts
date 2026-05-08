@@ -59,16 +59,14 @@ export type GroupRow = {
 
 export type SplitDestino = {
   comprador: string;
-  criterio: string;
-  bs_kg: number | null;
-  fecha: string | null;
   cabezas: number;
   peso_prom_bruto: number;
+  peso_prom_neto: number;
   peso_total_bruto: number;
   peso_total_neto: number;
+  bs_kg: number | null;
+  fecha: string | null;
   ingreso_bs: number;
-  por_partidario: GroupRow[];
-  por_proveedor: GroupRow[];
 };
 
 export type Sesion = {

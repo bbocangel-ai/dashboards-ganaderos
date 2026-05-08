@@ -575,38 +575,27 @@ async function main() {
       dias_prom: g.cabezas > 0 ? Math.round(g.dias_sum / g.cabezas) : 0,
     })).sort((a, b) => b.cabezas - a.cabezas);
   }
-  // Helper: split animals into destinos by criterio (peso threshold)
-  function splitByCriterio(animals, destinos) {
-    const buckets = destinos.map(d => ({ ...d, animals: [] }));
-    const restoBucket = buckets.find(b => !('criterio_peso_min' in b) && !('criterio_peso_max' in b));
-    for (const a of animals) {
-      let placed = false;
-      for (const b of buckets) {
-        if (b.criterio_peso_min != null && a.last_peso >= b.criterio_peso_min) { b.animals.push(a); placed = true; break; }
-        if (b.criterio_peso_max != null && a.last_peso < b.criterio_peso_max)  { b.animals.push(a); placed = true; break; }
-      }
-      if (!placed && restoBucket) restoBucket.animals.push(a);
-    }
-    return buckets.map(b => {
-      const ans = b.animals;
-      const peso_bruto_sum = ans.reduce((s, a) => s + a.last_peso, 0);
-      const peso_neto_sum = peso_bruto_sum * 0.95;
-      const ingreso_bs = peso_neto_sum * (b.bs_kg || 0);
+  // Convertir destinos del override a destinos calculados.
+  // Modo "explícito": se usan los valores hardcoded de cabezas/peso/bs_kg.
+  // No se intenta asignar animales individuales a un comprador específico.
+  function buildDestinos(destinos) {
+    return destinos.map(d => {
+      const cab = d.cabezas || 0;
+      const pesoBruto = d.peso_bruto_prom || 0;
+      const pesoNeto  = d.peso_neto_prom != null ? d.peso_neto_prom : Math.round(pesoBruto * 0.95);
+      const peso_total_bruto = Math.round(cab * pesoBruto);
+      const peso_total_neto  = Math.round(cab * pesoNeto);
+      const ingreso_bs = Math.round(peso_total_neto * (d.bs_kg || 0));
       return {
-        comprador: b.comprador,
-        criterio: b.criterio_peso_min != null ? `peso ≥ ${b.criterio_peso_min} kg`
-                : b.criterio_peso_max != null ? `peso < ${b.criterio_peso_max} kg`
-                : 'resto',
-        bs_kg: b.bs_kg ?? null,
-        fecha: b.fecha || null,
-        cabezas: ans.length,
-        peso_prom_bruto: ans.length > 0 ? Math.round((peso_bruto_sum / ans.length) * 10) / 10 : 0,
-        peso_total_bruto: Math.round(peso_bruto_sum),
-        peso_total_neto: Math.round(peso_neto_sum),
-        ingreso_bs: Math.round(ingreso_bs),
-        // Sub-breakdowns por comprador
-        por_partidario: group(ans, a => a.partidario_id, a => a.partidario || a.partidario_id || ''),
-        por_proveedor:  group(ans, a => a.proveedor || null),
+        comprador: d.comprador,
+        cabezas: cab,
+        peso_prom_bruto: pesoBruto,
+        peso_prom_neto:  pesoNeto,
+        peso_total_bruto,
+        peso_total_neto,
+        bs_kg: d.bs_kg ?? null,
+        fecha: d.fecha || null,
+        ingreso_bs,
       };
     });
   }
@@ -622,10 +611,22 @@ async function main() {
     // splits por comprador (si hay override)
     const split = ventasSplit[s.sesion];
     if (split && split.destinos) {
+      const destinos = buildDestinos(split.destinos);
       s.split = {
         nota: split.nota || null,
-        destinos: splitByCriterio(animals, split.destinos),
+        destinos,
       };
+      // Override del header: cabezas, peso_prom, ingreso vienen del split
+      const totalCab = destinos.reduce((x, d) => x + d.cabezas, 0);
+      const totalBrutoKg = destinos.reduce((x, d) => x + d.peso_total_bruto, 0);
+      const totalNetoKg  = destinos.reduce((x, d) => x + d.peso_total_neto, 0);
+      const totalIngreso = destinos.reduce((x, d) => x + d.ingreso_bs, 0);
+      s.n = totalCab;
+      s.peso_prom = totalCab > 0 ? Math.round((totalBrutoKg / totalCab) * 10) / 10 : null;
+      s.peso_neto_total = totalNetoKg;
+      s.peso_bruto_total = totalBrutoKg;
+      s.ingreso_bs_total = totalIngreso;
+      s.precio_venta_bs_kg = null;  // ya no aplica un solo precio
     }
 
     s.slug = String(s.sesion).toLowerCase()

@@ -42,49 +42,39 @@ const ingreso_total_bs = peso_neto_total * precio;
 
   {sesion.split && (
     <section class="mb-6">
-      <h3 class="section-title flex items-center gap-2">
-        <span>Repartición por comprador</span>
-        <span class="pill bg-indigo-100 text-indigo-800">SPLIT</span>
-      </h3>
-      {sesion.split.nota && <p class="text-xs text-stone-500 mb-3">{sesion.split.nota}</p>}
-      <div class="grid md:grid-cols-2 gap-4 mb-4">
+      <h3 class="section-title">Compradores</h3>
+      <div class="grid md:grid-cols-2 gap-4 mb-2">
         {sesion.split.destinos.map(d => (
           <div class="card p-5">
-            <div class="flex items-center justify-between mb-2">
-              <h4 class="font-bold text-stone-900">{d.comprador}</h4>
-              <span class="pill bg-stone-100 text-stone-700">{d.criterio}</span>
+            <div class="flex items-center justify-between mb-3">
+              <h4 class="font-bold text-stone-900 text-base">{d.comprador}</h4>
+              <span class="text-xs text-stone-500 font-mono">{fmtFecha(d.fecha)}</span>
             </div>
-            <div class="grid grid-cols-3 gap-3 mb-3">
+            <div class="grid grid-cols-2 gap-y-3 gap-x-4 text-sm">
               <div>
-                <div class="kpi-label">Cabezas</div>
-                <div class="text-2xl font-bold tabular-nums">{fmtNum(d.cabezas)}</div>
+                <div class="kpi-label">Cantidad</div>
+                <div class="text-2xl font-bold tabular-nums">{fmtNum(d.cabezas)} <span class="text-sm font-normal text-stone-500">cab</span></div>
               </div>
               <div>
-                <div class="kpi-label">Peso bruto prom</div>
-                <div class="text-lg font-semibold tabular-nums">{fmtNum(d.peso_prom_bruto, 1)} kg</div>
-                <div class="text-xs text-stone-500">neto {fmtNum(d.peso_total_neto)} kg</div>
+                <div class="kpi-label">Bs/kg</div>
+                <div class="text-2xl font-bold tabular-nums">{d.bs_kg != null ? fmtNum(d.bs_kg, 1) : '—'}</div>
               </div>
               <div>
-                <div class="kpi-label">Bs/kg · Fecha</div>
-                <div class="text-lg font-semibold tabular-nums">{d.bs_kg != null ? fmtNum(d.bs_kg, 1) : '—'}</div>
-                <div class="text-xs text-stone-500">{fmtFecha(d.fecha)}</div>
+                <div class="kpi-label">Peso bruto / cab</div>
+                <div class="text-base font-semibold tabular-nums">{fmtNum(d.peso_prom_bruto, 0)} kg</div>
+                <div class="text-xs text-stone-500">total {fmtNum(d.peso_total_bruto)} kg</div>
+              </div>
+              <div>
+                <div class="kpi-label">Peso neto / cab (−{Math.round(DESBASTE*100)}%)</div>
+                <div class="text-base font-semibold tabular-nums">{fmtNum(d.peso_prom_neto, 0)} kg</div>
+                <div class="text-xs text-stone-500">total {fmtNum(d.peso_total_neto)} kg</div>
               </div>
             </div>
-            <div class="pt-3 border-t border-stone-100 flex items-end justify-between">
-              <div>
-                <div class="kpi-label">Ingreso (con −{Math.round(DESBASTE*100)}% desbaste)</div>
-                <div class="text-xl font-bold tabular-nums">{fmtBs(d.ingreso_bs)}</div>
-                <div class="text-xs text-stone-500">USD {fmtNum(Math.round(d.ingreso_bs / USD_RATE))}</div>
-              </div>
-              <div class="text-xs text-right">
-                {d.por_partidario.length > 0 && (
-                  <div class="space-y-0.5">
-                    <div class="kpi-label mb-0.5">Partidarios</div>
-                    {d.por_partidario.map(p => (
-                      <div class="text-stone-700"><span class="font-medium">{p.label}</span>: {p.cabezas}</div>
-                    ))}
-                  </div>
-                )}
+            <div class="mt-4 pt-3 border-t border-stone-100">
+              <div class="kpi-label">Ingreso bruto</div>
+              <div class="flex items-baseline gap-2">
+                <span class="text-2xl font-bold tabular-nums text-stone-900">{fmtBs(d.ingreso_bs)}</span>
+                <span class="text-sm text-stone-500 tabular-nums">USD {fmtNum(Math.round(d.ingreso_bs / USD_RATE))}</span>
               </div>
             </div>
           </div>
