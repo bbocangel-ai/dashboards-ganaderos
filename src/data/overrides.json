@@ -37,7 +37,7 @@
     { "id": "BB-V3", "partidario_id": "BB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
     { "id": "BB-V4", "partidario_id": "BB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
 
-    { "id": "MB-V1", "partidario_id": "MB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" }
+    { "id": "MB-V1", "partidario_id": "MB", "categoria": "TL", "last_peso": 370, "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05 a 370 kg" }
   ],
 
   "ventas_split": {
@@ -66,7 +66,7 @@
         { "comprador": "Frigosi", "cabezas": 45, "peso_bruto_prom": 503, "peso_neto_prom": 478, "bs_kg": 23, "fecha": "2026-05-06" }
       ],
       "partidario_destino": {
-        "MB": "Roberto Caldas (confinamiento)"
+        "MB": "Frigosi"
       }
     }
   }
