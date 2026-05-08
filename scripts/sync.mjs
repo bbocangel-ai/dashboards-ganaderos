@@ -715,6 +715,19 @@ async function main() {
         nota: split.nota || null,
         destinos,
       };
+      // Mapeo opcional partidario → destino: aplica bs_kg/fecha/comprador
+      // específicos a cada partidario row (sobreescribe el avg ponderado).
+      if (split.partidario_destino) {
+        for (const row of s.por_partidario) {
+          const compradorName = split.partidario_destino[row.key];
+          if (!compradorName) continue;
+          const dest = destinos.find(d => d.comprador === compradorName);
+          if (!dest) continue;
+          row.bs_kg = dest.bs_kg;
+          row.fecha_venta = dest.fecha;
+          row.comprador = dest.comprador;
+        }
+      }
       // Override del header: cabezas, peso_prom, ingreso vienen del split
       const totalCab = destinos.reduce((x, d) => x + d.cabezas, 0);
       const totalBrutoKg = destinos.reduce((x, d) => x + d.peso_total_bruto, 0);

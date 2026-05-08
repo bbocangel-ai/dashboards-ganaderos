@@ -48,7 +48,12 @@
       "destinos": [
         { "comprador": "Frigosi", "cabezas": 45, "peso_bruto_prom": 504, "peso_neto_prom": 479, "bs_kg": 23,   "fecha": "2026-05-03" },
         { "comprador": "Roberto Caldas (confinamiento)", "cabezas": 300, "peso_bruto_prom": 415, "peso_neto_prom": 394, "bs_kg": 23.5, "fecha": "2026-05-04" }
-      ]
+      ],
+      "partidario_destino": {
+        "DB": "Frigosi",
+        "BB": "Roberto Caldas (confinamiento)",
+        "MB": "Roberto Caldas (confinamiento)"
+      }
     },
     "DADOS - 0 - 07/05/26 05:23": {
       "nota": "Venta repartida entre 2 compradores",

@@ -65,6 +65,10 @@ export type GroupRow = {
   ingreso_fecha_min: string | null;
   last_fecha_max: string | null;
   origenes: string[];
+  // Override opcional desde split: bs_kg, fecha y comprador específicos
+  bs_kg?: number | null;
+  fecha_venta?: string | null;
+  comprador?: string | null;
 };
 
 export type SplitDestino = {

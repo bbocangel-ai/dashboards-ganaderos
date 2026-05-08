@@ -130,64 +130,72 @@ const ingreso_total_bs = peso_neto_total * precio;
           <tbody>
             <tr>
               <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Cantidad</td>
-              {sesion.por_partidario.map(g => <td class="font-bold text-base text-stone-900 tabular-nums">{fmtNum(g.cabezas)} <span class="text-xs font-normal text-stone-500">cab</span></td>)}
+              {sesion.por_partidario.map(g => <td class="text-sm font-bold text-stone-900 tabular-nums whitespace-nowrap">{fmtNum(g.cabezas)} <span class="font-normal text-stone-500">cab</span></td>)}
             </tr>
+            {sesion.por_partidario.some(g => g.comprador) && (
+              <tr>
+                <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Comprador</td>
+                {sesion.por_partidario.map(g => <td class="text-sm text-stone-700 whitespace-nowrap">{g.comprador || '—'}</td>)}
+              </tr>
+            )}
             <tr>
               <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Fecha ingreso</td>
-              {sesion.por_partidario.map(g => <td class="font-mono text-xs text-stone-700">{fmtFecha(g.ingreso_fecha_min) || '—'}</td>)}
+              {sesion.por_partidario.map(g => <td class="text-sm tabular-nums text-stone-700 whitespace-nowrap">{fmtFecha(g.ingreso_fecha_min) || '—'}</td>)}
             </tr>
             <tr>
               <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Bs/cab compra</td>
-              {sesion.por_partidario.map(g => <td class="tabular-nums text-stone-700">{g.precio_compra_bs_prom != null ? fmtBs(g.precio_compra_bs_prom) : '—'}</td>)}
+              {sesion.por_partidario.map(g => <td class="text-sm tabular-nums text-stone-700 whitespace-nowrap">{g.precio_compra_bs_prom != null ? fmtBs(g.precio_compra_bs_prom) : '—'}</td>)}
             </tr>
             <tr>
               <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Peso entrada</td>
-              {sesion.por_partidario.map(g => <td class="tabular-nums">{fmtNum(g.peso_ingreso_prom, 1)} kg</td>)}
+              {sesion.por_partidario.map(g => <td class="text-sm tabular-nums whitespace-nowrap">{fmtNum(g.peso_ingreso_prom, 1)} kg</td>)}
             </tr>
             <tr>
               <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Días en campo</td>
-              {sesion.por_partidario.map(g => <td class="tabular-nums text-stone-600">{g.dias_prom} d</td>)}
+              {sesion.por_partidario.map(g => <td class="text-sm tabular-nums text-stone-600 whitespace-nowrap">{g.dias_prom} d</td>)}
             </tr>
             <tr>
               <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Fecha venta</td>
-              {sesion.por_partidario.map(g => <td class="font-mono text-xs text-stone-700">{fmtFecha(g.last_fecha_max) || '—'}</td>)}
+              {sesion.por_partidario.map(g => <td class="text-sm tabular-nums text-stone-700 whitespace-nowrap">{fmtFecha(g.fecha_venta || g.last_fecha_max) || '—'}</td>)}
             </tr>
             <tr>
               <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Peso venta bruto</td>
-              {sesion.por_partidario.map(g => <td class="tabular-nums font-medium">{fmtNum(g.peso_prom, 1)} kg</td>)}
+              {sesion.por_partidario.map(g => <td class="text-sm tabular-nums font-medium whitespace-nowrap">{fmtNum(g.peso_prom, 1)} kg</td>)}
             </tr>
             <tr>
               <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Peso venta neto (−5%)</td>
-              {sesion.por_partidario.map(g => <td class="tabular-nums font-medium">{fmtNum(g.peso_neto_prom, 1)} kg</td>)}
+              {sesion.por_partidario.map(g => <td class="text-sm tabular-nums font-medium whitespace-nowrap">{fmtNum(g.peso_neto_prom, 1)} kg</td>)}
             </tr>
             <tr>
               <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Ganancia / cab</td>
               {sesion.por_partidario.map(g => (
-                <td class={`tabular-nums font-semibold ${g.ganancia_kg_prom >= 0 ? 'stat-up' : 'stat-down'}`}>
+                <td class={`text-sm tabular-nums font-semibold whitespace-nowrap ${g.ganancia_kg_prom >= 0 ? 'stat-up' : 'stat-down'}`}>
                   {g.ganancia_kg_prom >= 0 ? '+' : ''}{fmtNum(g.ganancia_kg_prom, 1)} kg
                 </td>
               ))}
             </tr>
             <tr>
               <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">GMD</td>
-              {sesion.por_partidario.map(g => <td class="tabular-nums">{g.gmd_prom != null ? fmtNum(g.gmd_prom, 3) : '—'}</td>)}
+              {sesion.por_partidario.map(g => <td class="text-sm tabular-nums whitespace-nowrap">{g.gmd_prom != null ? fmtNum(g.gmd_prom, 3) : '—'}</td>)}
             </tr>
             <tr>
               <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Bs/kg venta</td>
-              {sesion.por_partidario.map(g => <td class="tabular-nums">{fmtNum(precio, 2)}</td>)}
+              {sesion.por_partidario.map(g => <td class="text-sm tabular-nums whitespace-nowrap">{fmtNum(g.bs_kg ?? precio, 2)}</td>)}
             </tr>
             <tr class="bg-emerald-50/40">
               <td class="font-bold text-stone-900 bg-emerald-50 sticky left-0 z-10 whitespace-nowrap">Ingreso bruto</td>
               {sesion.por_partidario.map(g => {
-                const ingreso = Math.round(g.peso_neto_total * precio);
-                return <td class="tabular-nums font-bold text-stone-900">{fmtBs(ingreso)}</td>;
+                const p = g.bs_kg ?? precio;
+                const ingreso = Math.round(g.peso_neto_total * p);
+                return <td class="text-sm tabular-nums font-bold text-stone-900 whitespace-nowrap">{fmtBs(ingreso)}</td>;
               })}
             </tr>
             <tr>
               <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Ingreso USD</td>
               {sesion.por_partidario.map(g => {
-                const ingreso = Math.round(g.peso_neto_total * precio);
-                return <td class="tabular-nums text-stone-600">USD {fmtNum(Math.round(ingreso / USD_RATE))}</td>;
+                const p = g.bs_kg ?? precio;
+                const ingreso = Math.round(g.peso_neto_total * p);
+                return <td class="text-sm tabular-nums text-stone-600 whitespace-nowrap">USD {fmtNum(Math.round(ingreso / USD_RATE))}</td>;
               })}
             </tr>
           </tbody>
@@ -218,7 +226,7 @@ const ingreso_total_bs = peso_neto_total * precio;
           </tr>
           <tr>
             <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Fecha ingreso</td>
-            {sesion.por_proveedor.map(g => <td class="font-mono text-xs text-stone-700">{fmtFecha(g.ingreso_fecha_min) || '—'}</td>)}
+            {sesion.por_proveedor.map(g => <td class="text-sm tabular-nums text-stone-700 whitespace-nowrap">{fmtFecha(g.ingreso_fecha_min) || '—'}</td>)}
           </tr>
           <tr>
             <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Bs/cab compra</td>
@@ -234,7 +242,7 @@ const ingreso_total_bs = peso_neto_total * precio;
           </tr>
           <tr>
             <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Fecha venta</td>
-            {sesion.por_proveedor.map(g => <td class="font-mono text-xs text-stone-700">{fmtFecha(g.last_fecha_max) || '—'}</td>)}
+            {sesion.por_proveedor.map(g => <td class="text-sm tabular-nums text-stone-700 whitespace-nowrap">{fmtFecha(g.last_fecha_max) || '—'}</td>)}
           </tr>
           <tr>
             <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Peso venta bruto</td>

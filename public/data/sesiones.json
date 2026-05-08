@@ -242,7 +242,10 @@
         "last_fecha_max": "2026-05-04",
         "origenes": [
           "NANCHI"
-        ]
+        ],
+        "bs_kg": 23,
+        "fecha_venta": "2026-05-03",
+        "comprador": "Frigosi"
       },
       {
         "key": "BB",
@@ -262,7 +265,10 @@
         "origenes": [
           "NANCHI",
           "GUIT"
-        ]
+        ],
+        "bs_kg": 23.5,
+        "fecha_venta": "2026-05-04",
+        "comprador": "Roberto Caldas (confinamiento)"
       },
       {
         "key": "MB",
@@ -281,7 +287,10 @@
         "last_fecha_max": "2025-12-03",
         "origenes": [
           "NANCHI"
-        ]
+        ],
+        "bs_kg": 23.5,
+        "fecha_venta": "2026-05-04",
+        "comprador": "Roberto Caldas (confinamiento)"
       }
     ],
     "por_proveedor": [
