@@ -1,76 +1,55 @@
 {
   "_doc": {
-    "compras": "Override cantidad real por código de RACAS (chips caídos / discrepancias).",
-    "ghost_animals": "Animales que existen físicamente pero no están en SisGado. Se inyectan en sync con el partidario y peso indicado. peso puede ser número o 'promedio'.",
-    "ventas_split": "Una sesión de venta SisGado se reparte en múltiples compradores con datos exactos (cabezas, peso bruto/neto, Bs/kg, fecha). Key = sesion_descripcion exacta de SisGado."
+    "compras": "Override cantidad real por código de RACAS.",
+    "ghost_animals": "Animales explícitos (uno por uno) con vendido_en_sesion específico.",
+    "partidario_total_targets": "Targets declarativos por partidario × categoría. Sync auto-genera los ghosts ACTIVOS (no vendidos) que faltan para llegar al target. Los ghosts vendidos definidos abajo cuentan en el total.",
+    "ventas_split": "Una venta SisGado se reparte en N compradores con datos exactos."
   },
 
   "compras": {},
 
+  "partidario_total_targets": {
+    "MA": { "VQ": 104, "TL": 0 },
+    "MB": { "VQ": 65,  "TL": 2 },
+    "DB": { "VQ": 24,  "TL": 11 },
+    "BB": { "VQ": 36,  "TL": 7 },
+    "FB": { "VQ": 14,  "TL": 0 }
+  },
+
   "ghost_animals": [
-    { "id": "MA-G1", "partidario_id": "MA", "categoria": "VQ", "peso": 379, "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:23", "nota": "vendido 05/05" },
-    { "id": "MA-G2", "partidario_id": "MA", "categoria": "VQ", "peso": 382, "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:23", "nota": "vendido 05/05" },
+    { "id": "MA-V1", "partidario_id": "MA", "categoria": "VQ", "peso": 379, "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:23", "nota": "vendido 05/05" },
+    { "id": "MA-V2", "partidario_id": "MA", "categoria": "VQ", "peso": 382, "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:23", "nota": "vendido 05/05" },
 
-    { "id": "FB-G1", "partidario_id": "FB", "categoria": "VQ", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:23", "nota": "vendido 05/05" },
-    { "id": "FB-G2", "partidario_id": "FB", "categoria": "VQ", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:23", "nota": "vendido 05/05" },
-    { "id": "FB-G3", "partidario_id": "FB", "categoria": "VQ", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:23", "nota": "vendido 05/05" },
+    { "id": "FB-V1", "partidario_id": "FB", "categoria": "VQ", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:23", "nota": "vendido 05/05" },
 
-    { "id": "DB-G1", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
-    { "id": "DB-G2", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
-    { "id": "DB-G3", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
-    { "id": "DB-G4", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
-    { "id": "DB-G5", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
-    { "id": "DB-G6", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
+    { "id": "DB-V1", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
+    { "id": "DB-V2", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
+    { "id": "DB-V3", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
+    { "id": "DB-V4", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
+    { "id": "DB-V5", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
+    { "id": "DB-V6", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
 
-    { "id": "BB-G1", "partidario_id": "BB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
-    { "id": "BB-G2", "partidario_id": "BB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
-    { "id": "BB-G3", "partidario_id": "BB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
-    { "id": "BB-G4", "partidario_id": "BB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
+    { "id": "BB-V1", "partidario_id": "BB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
+    { "id": "BB-V2", "partidario_id": "BB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
+    { "id": "BB-V3", "partidario_id": "BB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
+    { "id": "BB-V4", "partidario_id": "BB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
 
-    { "id": "MB-G1", "partidario_id": "MB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" }
+    { "id": "MB-V1", "partidario_id": "MB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" }
   ],
 
   "ventas_split": {
     "DADOS - 0 - 07/05/26 05:22": {
       "nota": "Venta repartida entre 2 compradores",
       "destinos": [
-        {
-          "comprador": "Frigosi",
-          "cabezas": 45,
-          "peso_bruto_prom": 504,
-          "peso_neto_prom": 479,
-          "bs_kg": 23,
-          "fecha": "2026-05-03"
-        },
-        {
-          "comprador": "Roberto Caldas (confinamiento)",
-          "cabezas": 300,
-          "peso_bruto_prom": 415,
-          "peso_neto_prom": 394,
-          "bs_kg": 23.5,
-          "fecha": "2026-05-04"
-        }
+        { "comprador": "Frigosi", "cabezas": 45, "peso_bruto_prom": 504, "peso_neto_prom": 479, "bs_kg": 23,   "fecha": "2026-05-03" },
+        { "comprador": "Roberto Caldas (confinamiento)", "cabezas": 300, "peso_bruto_prom": 415, "peso_neto_prom": 394, "bs_kg": 23.5, "fecha": "2026-05-04" }
       ]
     },
     "DADOS - 0 - 07/05/26 05:23": {
       "nota": "Venta repartida entre 2 compradores",
       "destinos": [
-        {
-          "comprador": "Roberto Caldas (confinamiento)",
-          "cabezas": 300,
-          "peso_bruto_prom": 426,
-          "peso_neto_prom": 405,
-          "bs_kg": 23.5,
-          "fecha": "2026-05-05"
-        },
-        {
-          "comprador": "Frigosi",
-          "cabezas": 45,
-          "peso_bruto_prom": 503,
-          "peso_neto_prom": 478,
-          "bs_kg": 23,
-          "fecha": "2026-05-06"
-        }
+        { "comprador": "Roberto Caldas (confinamiento)", "cabezas": 300, "peso_bruto_prom": 426, "peso_neto_prom": 405, "bs_kg": 23.5, "fecha": "2026-05-05" },
+        { "comprador": "Frigosi", "cabezas": 45, "peso_bruto_prom": 503, "peso_neto_prom": 478, "bs_kg": 23, "fecha": "2026-05-06" }
       ]
     }
   }

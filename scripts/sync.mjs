@@ -434,7 +434,9 @@ async function main() {
     }
 
     let nextGhostId = -1;
-    for (const g of ghostList) {
+
+    // Función inline para crear un ghost (reusada para explícitos y auto-generados)
+    function makeGhost(g) {
       const cat = g.categoria || null;
       const pid = g.partidario_id;
       const partidario_nombre = PARTIDARIOS[pid] || pid;
@@ -446,9 +448,9 @@ async function main() {
       if (firstP === 'promedio' || firstP == null) firstP = promedio(pid, cat, 'first_peso', sesion);
       if (lastP  === 'promedio' || lastP  == null) lastP  = promedio(pid, cat, 'last_peso',  sesion);
 
-      const ghost = {
+      return {
         id_animal: nextGhostId--,
-        nro: g.nro || `${pid}-G${Math.abs(nextGhostId + 1)}`,
+        nro: g.id || g.nro || `${pid}-G${Math.abs(nextGhostId + 1)}`,
         sexo: g.sexo || tpl?.sexo || null,
         categoria: cat,
         estancia: g.estancia || tpl?.estancia || 'LFA',
@@ -465,21 +467,84 @@ async function main() {
         first_peso: firstP,
         last_fecha: g.last_fecha || tpl?.last_fecha || null,
         last_peso: lastP,
-        last_trabajo_tipo: g.vendido_en_sesion ? 'VT' : (tpl?.last_trabajo_tipo || null),
+        last_trabajo_tipo: sesion ? 'VT' : (tpl?.last_trabajo_tipo || null),
         last_trabajo_precio_bs_kg: null,
-        last_sesion: g.vendido_en_sesion || null,
+        last_sesion: sesion,
         n_pesajes: 1,
         dias_en_campo: g.dias_en_campo || tpl?.dias_en_campo || 0,
         ganancia_kg: Math.round((lastP - firstP) * 10) / 10,
         gmd_kg: null,
-        salida: g.vendido_en_sesion ? 'VT' : null,
-        vendido: !!g.vendido_en_sesion,
+        salida: sesion ? 'VT' : null,
+        vendido: !!sesion,
         ghost: true,
         ghost_nota: g.nota || null,
       };
-      animales.push(ghost);
     }
-    console.log(`  +${ghostList.length} ghost animals inyectados`);
+
+    for (const g of ghostList) {
+      animales.push(makeGhost(g));
+    }
+    console.log(`  +${ghostList.length} ghost animals explícitos inyectados`);
+
+    // Auto-generación: completar hasta el target TOTAL por partidario.
+    // El total del partidario va a coincidir con la suma de cat targets;
+    // la distribución vq/tl se asigna priorizando déficit por categoría.
+    const targets = overrides.partidario_total_targets || {};
+    function inferCat(a) {
+      if (a.ghost) return a.categoria || 'VQ';
+      const raza = String(a.raza_descripcion || '').toUpperCase();
+      if (/\bTOR(?!\w)|TORILLO/.test(raza)) return 'TL';
+      return 'VQ';
+    }
+    let autoCount = 0;
+    for (const [pid, catTargets] of Object.entries(targets)) {
+      const totalTarget = Object.values(catTargets).reduce((s, n) => s + (n || 0), 0);
+      const partAnimals = animales.filter(a => a.partidario_id === pid);
+      const totalCurrent = partAnimals.length;
+      const needed = totalTarget - totalCurrent;
+      if (needed <= 0) {
+        if (needed < 0) console.log(`  ⚠ ${pid} tiene ${totalCurrent} (target ${totalTarget}, ${-needed} de más)`);
+        continue;
+      }
+      // Por cat: deficit = max(0, target - current)
+      const currentByCat = {};
+      for (const a of partAnimals) {
+        const c = inferCat(a);
+        currentByCat[c] = (currentByCat[c] || 0) + 1;
+      }
+      const deficits = {};
+      for (const [cat, t] of Object.entries(catTargets)) {
+        deficits[cat] = Math.max(0, (t || 0) - (currentByCat[cat] || 0));
+      }
+      let remaining = needed;
+      for (const [cat, deficit] of Object.entries(deficits)) {
+        const toAdd = Math.min(deficit, remaining);
+        for (let i = 0; i < toAdd; i++) {
+          animales.push(makeGhost({
+            id: `${pid}-${cat}-A${i+1}`,
+            partidario_id: pid,
+            categoria: cat,
+            peso: 'promedio',
+            nota: `auto-generado (target ${pid} total ${totalTarget})`,
+          }));
+          autoCount++;
+        }
+        remaining -= toAdd;
+      }
+      // Default leftover a VQ
+      for (let i = 0; i < remaining; i++) {
+        animales.push(makeGhost({
+          id: `${pid}-EXTRA-A${i+1}`,
+          partidario_id: pid,
+          categoria: 'VQ',
+          peso: 'promedio',
+          nota: `auto-generado (default VQ)`,
+        }));
+        autoCount++;
+      }
+      console.log(`  ${pid}: total ${totalCurrent} → ${totalTarget} (+${needed} ghosts)`);
+    }
+    if (autoCount > 0) console.log(`  +${autoCount} ghost animals auto-generados`);
   }
 
   // Sessions (corral jobs)

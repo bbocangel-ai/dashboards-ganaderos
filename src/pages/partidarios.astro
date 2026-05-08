@@ -1,55 +1,151 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { aggPartidarios, fmtNum, fmtFecha, fmtBs } from '../lib/data';
+import { aggPartidarios, animales, overrides, fmtNum, fmtFecha, fmtBs } from '../lib/data';
 
 const partidarios = aggPartidarios();
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const targets = overrides.partidario_total_targets || {};
+
+// Per partidario: count actual breakdown by inferred cat (vq vs tl)
+function inferCat(a: any): 'VQ' | 'TL' {
+  if (a.ghost) return (a.categoria === 'TL' ? 'TL' : 'VQ');
+  const raza = String(a.raza_descripcion || '').toUpperCase();
+  if (/\bTOR(?!\w)|TORILLO/.test(raza)) return 'TL';
+  return 'VQ';
+}
+
+function statsForPartidario(pid: string) {
+  const ms = animales.filter(a => a.partidario_id === pid);
+  const vq = ms.filter(a => inferCat(a) === 'VQ').length;
+  const tl = ms.filter(a => inferCat(a) === 'TL').length;
+  const vendidos = ms.filter(a => a.vendido).length;
+  const activos = ms.length - vendidos;
+  return { total: ms.length, vq, tl, vendidos, activos };
+}
+
 const totalCab = partidarios.reduce((s, p) => s + p.cabezas_efectivas, 0);
-const totalSg  = partidarios.reduce((s, p) => s + p.cabezas_sisgado, 0);
 const totalGan = partidarios.reduce((s, p) => s + p.kg_totales_ganados, 0);
+const totalSold = partidarios.reduce((s, p) => s + statsForPartidario(p.id).vendidos, 0);
 
 const catColor: Record<string, string> = {
-  VQ: 'bg-pink-100 text-pink-800',
-  TL: 'bg-sky-100 text-sky-800',
-  TO: 'bg-indigo-100 text-indigo-800',
-  TR: 'bg-amber-100 text-amber-800',
-  TA: 'bg-amber-100 text-amber-800',
-  NV: 'bg-violet-100 text-violet-800',
+  VQ: 'pill-pink', TL: 'pill-sky', TO: 'pill-violet',
+  TR: 'pill-amber', TA: 'pill-amber', NV: 'pill-violet',
+};
+
+// Cards header per partidario use a different accent color
+const accentByPartidario: Record<string, string> = {
+  BB: 'card-accent-emerald',
+  DB: 'card-accent-sky',
+  MB: 'card-accent-violet',
+  MA: 'card-accent-amber',
+  FB: 'card-accent-rose',
 };
 ---
 <Layout title="Partidarios">
-  <div class="flex items-end justify-between mb-6">
+  <header class="page-header flex items-end justify-between gap-4">
     <div>
-      <h2 class="text-lg font-semibold text-stone-900">Partidarios / Inversionistas</h2>
-      <p class="text-sm text-stone-500">Cada compra (línea de RACAS) detallada por categoría y mes — totales rolled up por inversionista</p>
+      <h1 class="page-title">Partidarios / Inversionistas</h1>
+      <p class="page-subtitle">Cabezas, peso y ganancia por inversionista — comparado contra tu informe</p>
     </div>
-    <div class="text-right text-xs text-stone-500">
-      {fmtNum(totalCab)} cabezas (efectivas) · {fmtNum(totalSg)} en SisGado · {fmtNum(totalGan)} kg ganados
+    <div class="grid grid-cols-3 gap-2 text-right">
+      <div>
+        <div class="kpi-label">Cabezas</div>
+        <div class="text-xl font-bold tabular-nums">{fmtNum(totalCab)}</div>
+      </div>
+      <div>
+        <div class="kpi-label">Vendidas</div>
+        <div class="text-xl font-bold tabular-nums text-emerald-700">{fmtNum(totalSold)}</div>
+      </div>
+      <div>
+        <div class="kpi-label">Kg ganados</div>
+        <div class="text-xl font-bold tabular-nums">{fmtNum(totalGan)}</div>
+      </div>
     </div>
-  </div>
+  </header>
 
-  <div class="space-y-8">
+  <div class="space-y-6">
     {partidarios.map(p => {
-      const tieneOverride = p.cabezas_efectivas !== p.cabezas_sisgado;
+      const stats = statsForPartidario(p.id);
+      const target = targets[p.id] || {};
+      const targetVQ = target.VQ || 0;
+      const targetTL = target.TL || 0;
+      const targetTotal = targetVQ + targetTL;
+      const totalPct = (n: number) => stats.total > 0 ? (n / stats.total) * 100 : 0;
+      const vendidosPct = totalPct(stats.vendidos);
+      const accent = accentByPartidario[p.id] || 'card-accent-brand';
       return (
-      <section class="card">
-        <header class="px-5 py-4 border-b border-stone-200 flex items-center justify-between">
-          <div>
-            <h3 class="text-base font-bold text-stone-900">{p.nombre}</h3>
-            <p class="text-xs text-stone-500">
-              {p.id} · {p.compras.length} compra{p.compras.length === 1 ? '' : 's'} · ingresó por primera vez el {fmtFecha(p.ingreso_fecha_min) || '—'}
-            </p>
+      <section class={`card ${accent} overflow-hidden`}>
+        <header class="px-5 sm:px-6 py-4 border-b border-stone-100 flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-lg bg-stone-900 text-white flex items-center justify-center font-bold text-sm">{p.id}</div>
+            <div>
+              <h2 class="text-lg font-bold text-stone-900 leading-tight">{p.nombre}</h2>
+              <p class="text-xs text-stone-500">
+                {p.compras.length} compra{p.compras.length === 1 ? '' : 's'} · ingresó por primera vez {fmtFecha(p.ingreso_fecha_min) || '—'}
+              </p>
+            </div>
           </div>
-          <div class="text-right">
-            <div class="text-2xl font-bold text-stone-900">{fmtNum(p.cabezas_efectivas)}</div>
-            <div class="text-xs text-stone-500">
-              cabezas total
-              {tieneOverride && (
-                <span class="ml-1 text-amber-600">(SisGado: {fmtNum(p.cabezas_sisgado)})</span>
+
+          <div class="flex items-center gap-6">
+            <div class="text-right">
+              <div class="kpi-label">Total cabezas</div>
+              <div class="text-3xl font-bold tabular-nums tracking-tight">{fmtNum(stats.total)}</div>
+              {targetTotal > 0 && stats.total !== targetTotal && (
+                <div class="text-[11px] text-amber-700">target {targetTotal}, off por {Math.abs(stats.total - targetTotal)}</div>
               )}
+            </div>
+            <div class="text-right border-l border-stone-200 pl-6">
+              <div class="kpi-label">Vendidas</div>
+              <div class="text-3xl font-bold tabular-nums tracking-tight text-emerald-700">{fmtNum(stats.vendidos)}</div>
+              <div class="text-[11px] text-stone-500">{fmtNum(stats.activos)} activas</div>
             </div>
           </div>
         </header>
+
+        <div class="px-5 sm:px-6 py-4 grid lg:grid-cols-2 gap-6 border-b border-stone-100 bg-stone-50/30">
+          <!-- Distribución vq/tl -->
+          <div>
+            <div class="kpi-label mb-2">Distribución por categoría</div>
+            <div class="bar-track mb-2">
+              {stats.vq > 0 && <div class="bg-pink-400" style={`width: ${(stats.vq/stats.total)*100}%`} title={`${stats.vq} vaquillas`}></div>}
+              {stats.tl > 0 && <div class="bg-sky-500" style={`width: ${(stats.tl/stats.total)*100}%`} title={`${stats.tl} torillos`}></div>}
+            </div>
+            <div class="flex items-center gap-4 text-xs">
+              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-pink-400"></span><span class="font-semibold tabular-nums">{stats.vq}</span> vaquillas {targetVQ > 0 && <span class="text-stone-400">(target {targetVQ})</span>}</span>
+              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-sky-500"></span><span class="font-semibold tabular-nums">{stats.tl}</span> torillos {targetTL > 0 && <span class="text-stone-400">(target {targetTL})</span>}</span>
+            </div>
+          </div>
+
+          <!-- KPIs perf -->
+          <div class="grid grid-cols-3 gap-4">
+            <div>
+              <div class="kpi-label">Peso ingreso</div>
+              <div class="text-base font-bold tabular-nums">{fmtNum(p.peso_ingreso_prom, 0)} kg</div>
+            </div>
+            <div>
+              <div class="kpi-label">Peso actual</div>
+              <div class="text-base font-bold tabular-nums">{fmtNum(p.peso_actual_prom, 0)} kg</div>
+            </div>
+            <div>
+              <div class="kpi-label">GMD</div>
+              <div class="text-base font-bold tabular-nums">{p.gmd_prom != null ? fmtNum(p.gmd_prom, 3) : '—'}</div>
+            </div>
+            <div>
+              <div class="kpi-label">Ganancia / cab</div>
+              <div class={`text-base font-bold tabular-nums ${p.ganancia_kg_prom >= 0 ? 'stat-up' : 'stat-down'}`}>
+                {p.ganancia_kg_prom >= 0 ? '+' : ''}{fmtNum(p.ganancia_kg_prom, 1)} kg
+              </div>
+            </div>
+            <div>
+              <div class="kpi-label">Días en campo</div>
+              <div class="text-base font-bold tabular-nums">{p.dias_prom > 0 ? p.dias_prom + ' d' : '—'}</div>
+            </div>
+            <div>
+              <div class="kpi-label">Kg ganados (total)</div>
+              <div class="text-base font-bold tabular-nums">{fmtNum(p.kg_totales_ganados)}</div>
+            </div>
+          </div>
+        </div>
 
         <div class="overflow-x-auto">
           <table class="tbl">
@@ -57,25 +153,19 @@ const catColor: Record<string, string> = {
               <tr>
                 <th>Compra</th>
                 <th>Mes</th>
-                <th>Categoría</th>
+                <th>Cat</th>
                 <th>Origen</th>
-                <th class="num">Cab. real</th>
-                <th class="num">Cab. SisGado</th>
+                <th class="num">Cab</th>
                 <th class="num">Bs/cab</th>
                 <th class="num">Peso ing.</th>
                 <th class="num">Peso act.</th>
                 <th class="num">Ganancia</th>
                 <th class="num">GMD</th>
-                <th class="num">Días</th>
                 <th class="num">Vendidas</th>
               </tr>
             </thead>
             <tbody>
-              {p.compras.map(c => {
-                const overOk = c.cabezas_real != null;
-                const realMayor = overOk && c.cabezas_real! > c.cabezas_sisgado;
-                const realMenor = overOk && c.cabezas_real! < c.cabezas_sisgado;
-                return (
+              {p.compras.map(c => (
                 <tr class="clickable" onclick={`location.href='${base}/compras/${encodeURIComponent(c.raza_codigo)}'`}>
                   <td class="font-mono text-xs">
                     <a href={base + '/compras/' + encodeURIComponent(c.raza_codigo)} class="block hover:text-brand-700">
@@ -84,44 +174,27 @@ const catColor: Record<string, string> = {
                     </a>
                   </td>
                   <td class="text-xs">{c.mes || '—'}</td>
-                  <td>
-                    <span class={'pill ' + (catColor[c.categoria || ''] || 'bg-stone-100 text-stone-700')}>
-                      {c.categoria || '—'}
-                    </span>
-                  </td>
-                  <td class="text-xs text-stone-600 max-w-xs truncate" title={c.origenes.join(', ')}>
+                  <td><span class={catColor[c.categoria || ''] || 'pill-stone'}>{c.categoria || '—'}</span></td>
+                  <td class="text-xs text-stone-600 max-w-[180px] truncate" title={c.origenes.join(', ')}>
                     {c.origenes.length > 0 ? c.origenes.slice(0, 2).join(', ') : '—'}
                     {c.origenes.length > 2 && <span class="text-stone-400"> +{c.origenes.length - 2}</span>}
                   </td>
-                  <td class="num font-semibold">
-                    {overOk ? fmtNum(c.cabezas_real!) : fmtNum(c.cabezas_sisgado)}
-                    {realMayor && <span class="ml-1 text-[10px] text-emerald-700 uppercase font-bold" title={c.override_nota || 'Más cabezas reales que en SisGado (chips caídos / sin identificar)'}>+{c.cabezas_real! - c.cabezas_sisgado}</span>}
-                    {realMenor && <span class="ml-1 text-[10px] text-rose-700 uppercase font-bold" title={c.override_nota || ''}>−{c.cabezas_sisgado - c.cabezas_real!}</span>}
-                  </td>
+                  <td class="num font-bold">{fmtNum(c.cabezas_efectivas)}</td>
+                  <td class="num text-stone-600">{c.precio_compra_bs_prom != null ? fmtBs(c.precio_compra_bs_prom) : '—'}</td>
+                  <td class="num text-stone-600">{fmtNum(c.peso_ingreso_prom, 0)} kg</td>
+                  <td class="num">{fmtNum(c.peso_actual_prom, 0)} kg</td>
                   <td class="num">
-                    <span class={realMayor || realMenor ? 'text-amber-600' : 'text-stone-500'}>{fmtNum(c.cabezas_sisgado)}</span>
-                  </td>
-                  <td class="num">{c.precio_compra_bs_prom != null ? fmtBs(c.precio_compra_bs_prom) : '—'}</td>
-                  <td class="num">{fmtNum(c.peso_ingreso_prom, 1)} kg</td>
-                  <td class="num">{fmtNum(c.peso_actual_prom, 1)} kg</td>
-                  <td class="num">
-                    <span class={c.ganancia_kg_prom >= 0 ? 'text-emerald-700 font-medium' : 'text-rose-700 font-medium'}>
-                      {c.ganancia_kg_prom >= 0 ? '+' : ''}{fmtNum(c.ganancia_kg_prom, 1)} kg
+                    <span class={c.ganancia_kg_prom >= 0 ? 'stat-up font-semibold' : 'stat-down font-semibold'}>
+                      {c.ganancia_kg_prom >= 0 ? '+' : ''}{fmtNum(c.ganancia_kg_prom, 0)} kg
                     </span>
                   </td>
                   <td class="num">{c.gmd_prom != null ? fmtNum(c.gmd_prom, 3) : '—'}</td>
-                  <td class="num text-stone-500">{c.dias_prom > 0 ? c.dias_prom + ' d' : '—'}</td>
                   <td class="num">
-                    {c.vendidos > 0 ? (
-                      <span class="text-emerald-700 font-medium">{c.vendidos}</span>
-                    ) : '—'}
-                    {c.activos > 0 && c.vendidos > 0 && (
-                      <span class="text-stone-400 text-xs"> / {c.activos} act.</span>
-                    )}
+                    {c.vendidos > 0 ? <span class="text-emerald-700 font-semibold">{c.vendidos}</span> : <span class="text-stone-300">0</span>}
+                    {c.activos > 0 && c.vendidos > 0 && <span class="text-stone-400 text-xs"> / {c.activos}a</span>}
                   </td>
                 </tr>
-                );
-              })}
+              ))}
             </tbody>
           </table>
         </div>
@@ -129,21 +202,16 @@ const catColor: Record<string, string> = {
     )})}
   </div>
 
-  <div class="mt-6 card p-5 bg-stone-50/50 border-stone-200">
-    <h4 class="text-sm font-semibold text-stone-900 mb-2">¿La cantidad real no coincide con SisGado?</h4>
-    <p class="text-sm text-stone-600 mb-3">
-      Es normal — chips caídos, animales sin identificar, errores de carga. La cantidad real puede ser <strong>mayor o menor</strong> que la de SisGado.
-      Para sobreescribirla, editá <code>src/data/overrides.json</code> usando el código de RACAS:
+  <div class="mt-8 card p-5 bg-stone-50/50">
+    <h4 class="text-sm font-bold text-stone-900 mb-2">Cómo ajustar las cantidades reales</h4>
+    <p class="text-xs text-stone-600 mb-2">
+      Editá <code>src/data/overrides.json</code>. Para fijar el total de un partidario por categoría:
     </p>
-    <pre class="bg-white rounded-lg p-3 text-xs font-mono text-stone-800 border border-stone-200 overflow-x-auto"><code>{`{
-  "compras": {
-    "06": { "cabezas_real": 28, "nota": "se cayó un chip, recuperado" },
-    "BB": { "cabezas_real": 25, "nota": "real conteo del corral 06/05" }
-  }
+    <pre class="bg-white rounded-lg p-3 text-xs font-mono text-stone-800 border border-stone-200 overflow-x-auto"><code>{`"partidario_total_targets": {
+  "BB": { "VQ": 36, "TL": 7 }
 }`}</code></pre>
     <p class="text-xs text-stone-500 mt-3">
-      Después corré <code>actualizar.cmd</code> (o solo <code>npm run build &amp;&amp; git push</code>).
-      <span class="ml-2"><span class="text-emerald-700 font-semibold">+N</span> = más reales que SisGado · <span class="text-rose-700 font-semibold">−N</span> = menos reales</span>
+      Sync auto-genera ghosts hasta llegar al total — animales que están físicamente pero no en SisGado por chips caídos / sin identificar.
     </p>
   </div>
 </Layout>

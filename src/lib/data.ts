@@ -11,7 +11,10 @@ import overridesRaw from '../data/overrides.json';
 
 export const pesajesByAnimal = pesajesByAnimalRaw as Record<string, [string, number][]>;
 
-type Overrides = { compras: Record<string, { cabezas_real?: number; nota?: string }> };
+type Overrides = {
+  compras: Record<string, { cabezas_real?: number; nota?: string }>;
+  partidario_total_targets?: Record<string, Record<string, number>>;
+};
 export const overrides = (overridesRaw as unknown as Overrides);
 
 export type Animal = {

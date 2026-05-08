@@ -9,21 +9,11 @@
     "fecha_min": "2025-08-06",
     "fecha_max": "2026-05-05",
     "n": 345,
-    "peso_sum": 185475,
+    "peso_sum": 184850,
     "peso_min": 180.5,
     "peso_max": 481,
     "peso_prom": 436,
     "por_partidario": [
-      {
-        "key": "FB",
-        "label": "Fabio Bocangel",
-        "cabezas": 3,
-        "peso_prom": 312.5,
-        "peso_neto_total": 891,
-        "peso_ingreso_prom": 220,
-        "ganancia_kg_prom": 92.5,
-        "dias_prom": 338
-      },
       {
         "key": "MA",
         "label": "Moira Eguez Avila",
@@ -43,6 +33,16 @@
         "peso_ingreso_prom": 256,
         "ganancia_kg_prom": 182,
         "dias_prom": 369
+      },
+      {
+        "key": "FB",
+        "label": "Fabio Bocangel",
+        "cabezas": 1,
+        "peso_prom": 312.5,
+        "peso_neto_total": 297,
+        "peso_ingreso_prom": 220,
+        "ganancia_kg_prom": 92.5,
+        "dias_prom": 338
       }
     ],
     "por_proveedor": [
@@ -87,16 +87,6 @@
         "dias_prom": 369
       },
       {
-        "key": "SJ ABEL",
-        "label": "SJ ABEL",
-        "cabezas": 3,
-        "peso_prom": 312.5,
-        "peso_neto_total": 891,
-        "peso_ingreso_prom": 220,
-        "ganancia_kg_prom": 92.5,
-        "dias_prom": 338
-      },
-      {
         "key": "SJ LUIS ANEZ",
         "label": "SJ LUIS ANEZ",
         "cabezas": 2,
@@ -115,6 +105,16 @@
         "peso_ingreso_prom": 142,
         "ganancia_kg_prom": 275,
         "dias_prom": 1146
+      },
+      {
+        "key": "SJ ABEL",
+        "label": "SJ ABEL",
+        "cabezas": 1,
+        "peso_prom": 312.5,
+        "peso_neto_total": 297,
+        "peso_ingreso_prom": 220,
+        "ganancia_kg_prom": 92.5,
+        "dias_prom": 338
       }
     ],
     "por_categoria": [
@@ -131,25 +131,15 @@
       {
         "key": "VQ",
         "label": "VQ",
-        "cabezas": 5,
-        "peso_prom": 339.7,
-        "peso_neto_total": 1614,
-        "peso_ingreso_prom": 284.2,
-        "ganancia_kg_prom": 55.5,
-        "dias_prom": 306
+        "cabezas": 3,
+        "peso_prom": 357.8,
+        "peso_neto_total": 1020,
+        "peso_ingreso_prom": 327,
+        "ganancia_kg_prom": 30.8,
+        "dias_prom": 285
       }
     ],
     "por_raza": [
-      {
-        "key": "04",
-        "label": "FB MAR VAQ 6",
-        "cabezas": 3,
-        "peso_prom": 312.5,
-        "peso_neto_total": 891,
-        "peso_ingreso_prom": 220,
-        "ganancia_kg_prom": 92.5,
-        "dias_prom": 338
-      },
       {
         "key": "05",
         "label": "MA MAR VAQ 128",
@@ -169,6 +159,16 @@
         "peso_ingreso_prom": 256,
         "ganancia_kg_prom": 182,
         "dias_prom": 369
+      },
+      {
+        "key": "04",
+        "label": "FB MAR VAQ 6",
+        "cabezas": 1,
+        "peso_prom": 312.5,
+        "peso_neto_total": 297,
+        "peso_ingreso_prom": 220,
+        "ganancia_kg_prom": 92.5,
+        "dias_prom": 338
       }
     ],
     "split": {

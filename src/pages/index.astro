@@ -1,65 +1,137 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Kpi from '../components/Kpi.astro';
-import { aggGlobal, trabajosOrdenados, trabajosPorTipo, fmtFecha, fmtNum } from '../lib/data';
+import { aggGlobal, trabajosOrdenados, trabajosPorTipo, aggVentas, totalesVentas, fmtFecha, fmtNum, fmtBs } from '../lib/data';
+import { USD_RATE } from '../lib/config';
 
 const g = aggGlobal();
-const ultimas = trabajosOrdenados(10);
+const ultimas = trabajosOrdenados(8);
 const porTipo = trabajosPorTipo();
+const ventas = aggVentas();
+const t = totalesVentas(ventas);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const tiposColor: Record<string, string> = {
+  CTRL:  'pill-sky',
+  VTA:   'pill-emerald',
+  VT:    'pill-emerald',
+  VNT:   'pill-emerald',
+  ING:   'pill-amber',
+  DOSIS: 'pill-violet',
+  DS:    'pill-violet',
+  AUT:   'pill-stone',
+  REFG:  'pill-rose',
+  REFUG: 'pill-rose',
+};
 ---
 <Layout title="Resumen">
-  <h2 class="text-lg font-semibold text-stone-900 mb-4">Vista general</h2>
+  <header class="page-header">
+    <h1 class="page-title">Resumen</h1>
+    <p class="page-subtitle">Vista general del operativo ganadero</p>
+  </header>
 
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-    <Kpi label="Animales activos" value={fmtNum(g.total_cabezas)} sub="con al menos 1 pesaje" />
-    <Kpi label="Peso prom. actual" value={fmtNum(g.peso_prom_actual, 1) + ' kg'} sub="último pesaje por animal" />
-    <Kpi label="GMD promedio" value={g.gmd_prom != null ? fmtNum(g.gmd_prom, 3) + ' kg/d' : '—'} sub="ganancia diaria entre 1er y último pesaje" />
-    <Kpi label="Kg ganados (total)" value={fmtNum(g.total_kg_ganados) + ' kg'} sub="suma sobre todos los animales" />
-    <Kpi label="Cabezas vendidas" value={fmtNum(g.cabezas_vendidas)} sub="sesiones tipo VT/VTA/VNT" />
-    <Kpi label="Autoconsumo" value={fmtNum(g.autoconsumo)} sub="cabezas en sesiones AUT" />
-    <Kpi label="Refugo" value={fmtNum(g.refugo)} sub="cabezas en sesiones REFG" />
-    <Kpi label="Sesiones de corral" value={fmtNum(g.n_sesiones)} sub="trabajos registrados" />
-  </div>
-
-  <div class="grid lg:grid-cols-2 gap-6">
-    <div class="table-wrap">
-      <div class="px-5 py-3 border-b border-stone-200 flex items-center justify-between">
-        <h3 class="font-semibold text-stone-900">Últimos trabajos de corral</h3>
-        <a href={import.meta.env.BASE_URL.replace(/\/$/, '') + '/trabajos'} class="text-xs text-brand-600 hover:underline">Ver todos →</a>
+  <!-- KPIs principales -->
+  <section class="mb-8">
+    <h2 class="section-title">Indicadores</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="kpi card-accent-brand">
+        <div class="kpi-label">Animales activos</div>
+        <div class="kpi-value">{fmtNum(g.total_cabezas)}</div>
+        <div class="kpi-sub">{fmtNum(g.cabezas_vendidas)} vendidos · {fmtNum(g.autoconsumo + g.refugo)} salidos</div>
       </div>
-      <table class="tbl">
-        <thead><tr><th>Fecha</th><th>Tipo</th><th class="num">Cab</th><th class="num">Peso prom</th><th>Detalle</th></tr></thead>
-        <tbody>
-          {ultimas.map(s => (
+      <div class="kpi card-accent-sky">
+        <div class="kpi-label">Peso prom. actual</div>
+        <div class="kpi-value">{fmtNum(g.peso_prom_actual, 1)}<span class="text-lg font-medium text-stone-400 ml-1">kg</span></div>
+        <div class="kpi-sub">último pesaje por animal</div>
+      </div>
+      <div class="kpi card-accent-emerald">
+        <div class="kpi-label">GMD promedio</div>
+        <div class="kpi-value">{g.gmd_prom != null ? fmtNum(g.gmd_prom, 3) : '—'}<span class="text-lg font-medium text-stone-400 ml-1">kg/d</span></div>
+        <div class="kpi-sub">ganancia diaria global</div>
+      </div>
+      <div class="kpi card-accent-amber">
+        <div class="kpi-label">Kg ganados total</div>
+        <div class="kpi-value">{fmtNum(g.total_kg_ganados)}<span class="text-lg font-medium text-stone-400 ml-1">kg</span></div>
+        <div class="kpi-sub">suma sobre todos los animales</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ventas summary -->
+  <section class="mb-8">
+    <div class="flex items-end justify-between mb-3">
+      <h2 class="section-title mb-0">Ventas históricas</h2>
+      <a href={base + '/ventas'} class="btn-link">Ver detalle →</a>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <div class="kpi">
+        <div class="kpi-label">Sesiones de venta</div>
+        <div class="kpi-value">{fmtNum(t.n_ventas)}</div>
+        <div class="kpi-sub">{fmtNum(t.n_con_precio_real)} con Bs/kg real</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Cabezas vendidas</div>
+        <div class="kpi-value">{fmtNum(t.cabezas)}</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-label">Peso neto vendido</div>
+        <div class="kpi-value">{fmtNum(t.peso_neto)}<span class="text-lg font-medium text-stone-400 ml-1">kg</span></div>
+        <div class="kpi-sub">con −5% desbaste</div>
+      </div>
+      <div class="kpi card-accent-emerald">
+        <div class="kpi-label">Ingreso bruto</div>
+        <div class="kpi-value">{fmtBs(t.ingreso_bs)}</div>
+        <div class="kpi-sub">USD {fmtNum(t.ingreso_usd)} a {USD_RATE} Bs/USD</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Últimos trabajos + Trabajos por tipo -->
+  <div class="grid lg:grid-cols-3 gap-6">
+    <div class="lg:col-span-2">
+      <div class="flex items-end justify-between mb-3">
+        <h2 class="section-title mb-0">Últimos trabajos de corral</h2>
+        <a href={base + '/trabajos'} class="btn-link">Ver todos →</a>
+      </div>
+      <div class="table-wrap">
+        <table class="tbl">
+          <thead>
             <tr>
-              <td class="font-mono text-xs">{fmtFecha(s.fecha_max)}</td>
-              <td><span class="pill bg-brand-100 text-brand-800">{s.trabajo_tipo || '?'}</span></td>
-              <td class="num">{fmtNum(s.n)}</td>
-              <td class="num">{s.peso_prom != null ? fmtNum(s.peso_prom, 1) + ' kg' : '—'}</td>
-              <td class="text-stone-500 text-xs truncate max-w-xs">{s.trabajo_detalle}</td>
+              <th>Fecha</th>
+              <th>Tipo</th>
+              <th class="num">Cab</th>
+              <th class="num">Peso prom</th>
+              <th>Detalle</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {ultimas.map(s => (
+              <tr>
+                <td class="font-mono text-xs whitespace-nowrap">{fmtFecha(s.fecha_max)}</td>
+                <td><span class={tiposColor[s.trabajo_tipo || ''] || 'pill-stone'}>{s.trabajo_tipo || '?'}</span></td>
+                <td class="num font-bold">{fmtNum(s.n)}</td>
+                <td class="num">{s.peso_prom != null ? fmtNum(s.peso_prom, 0) + ' kg' : '—'}</td>
+                <td class="text-stone-600 text-xs truncate max-w-[200px]">{s.trabajo_detalle}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    <div class="table-wrap">
-      <div class="px-5 py-3 border-b border-stone-200">
-        <h3 class="font-semibold text-stone-900">Trabajos por tipo</h3>
+    <div>
+      <h2 class="section-title">Por tipo de trabajo</h2>
+      <div class="space-y-2">
+        {porTipo.map(t => (
+          <div class="card p-3 flex items-center justify-between gap-3">
+            <span class={tiposColor[t.tipo] || 'pill-stone'}>{t.tipo}</span>
+            <div class="flex-1 text-xs text-stone-600 truncate">{t.tipo_label}</div>
+            <div class="text-right">
+              <div class="text-sm font-bold tabular-nums">{fmtNum(t.cabezas)}</div>
+              <div class="text-[10px] text-stone-400">{fmtNum(t.n_sesiones)} ses.</div>
+            </div>
+          </div>
+        ))}
       </div>
-      <table class="tbl">
-        <thead><tr><th>Tipo</th><th>Descripción</th><th class="num">Sesiones</th><th class="num">Cabezas</th></tr></thead>
-        <tbody>
-          {porTipo.map(t => (
-            <tr>
-              <td><span class="pill bg-brand-100 text-brand-800">{t.tipo}</span></td>
-              <td class="text-stone-600 text-xs">{t.tipo_label}</td>
-              <td class="num">{fmtNum(t.n_sesiones)}</td>
-              <td class="num font-semibold">{fmtNum(t.cabezas)}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
     </div>
   </div>
 </Layout>
