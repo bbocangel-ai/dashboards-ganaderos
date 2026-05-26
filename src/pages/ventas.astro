@@ -55,7 +55,14 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
             <td class="font-mono text-xs whitespace-nowrap">{fmtFecha(v.fecha_max)}</td>
             <td><span class="pill bg-emerald-100 text-emerald-800">{v.trabajo_tipo}</span></td>
             <td class="num font-semibold">{fmtNum(v.n)}</td>
-            <td class="num">{v.peso_prom != null ? fmtNum(v.peso_prom, 1) + ' kg' : '—'}</td>
+            <td class="num">
+              {v.peso_prom != null ? (
+                <>
+                  <div class="font-medium">{fmtNum(v.peso_prom, 1)} kg <span class="text-[10px] font-normal text-stone-400">bruto</span></div>
+                  <div class="text-xs text-stone-500">{fmtNum(v.peso_prom * 0.95, 1)} kg <span class="text-[10px] text-stone-400">neto</span></div>
+                </>
+              ) : '—'}
+            </td>
             <td class="num text-stone-500">{fmtNum(v.peso_total_bruto)} kg</td>
             <td class="num">{fmtNum(v.peso_total_neto)} kg</td>
             <td class="num">

@@ -39,16 +39,21 @@ const ingreso_total_bs = peso_neto_total * precio;
 
   <section class="mb-7">
     <h2 class="section-title">Indicadores de la venta</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
       <div class="kpi card-accent-brand">
         <div class="kpi-label">Cabezas</div>
         <div class="kpi-value">{fmtNum(sesion.n)}</div>
         <div class="kpi-sub">en esta venta</div>
       </div>
       <div class="kpi card-accent-sky">
-        <div class="kpi-label">Peso prom</div>
+        <div class="kpi-label">Peso bruto prom</div>
         <div class="kpi-value">{sesion.peso_prom != null ? fmtNum(sesion.peso_prom, 1) : '—'}<span class="text-base font-medium text-stone-400 ml-1">kg</span></div>
-        <div class="kpi-sub">bruto · neto {fmtNum((sesion.peso_prom||0) * (1-DESBASTE), 1)} kg (−{Math.round(DESBASTE*100)}%)</div>
+        <div class="kpi-sub">por cabeza</div>
+      </div>
+      <div class="kpi card-accent-violet">
+        <div class="kpi-label">Peso neto prom</div>
+        <div class="kpi-value">{sesion.peso_prom != null ? fmtNum(sesion.peso_prom * (1 - DESBASTE), 1) : '—'}<span class="text-base font-medium text-stone-400 ml-1">kg</span></div>
+        <div class="kpi-sub">con −{Math.round(DESBASTE*100)}% de desbaste</div>
       </div>
       <div class="kpi card-accent-amber">
         <div class="kpi-label">Bs/kg</div>
