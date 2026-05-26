@@ -144,6 +144,19 @@ const ingreso_total_bs = peso_neto_total * precio;
               </tr>
             )}
             <tr>
+              <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Origen (proveedor)</td>
+              {sesion.por_partidario.map(g => (
+                <td class="text-sm text-stone-700" title={g.origenes.join(', ')}>
+                  {g.origenes.length === 0 ? '—' : (
+                    <>
+                      <div>{g.origenes.slice(0, 2).join(', ')}</div>
+                      {g.origenes.length > 2 && <div class="text-xs text-stone-500">+{g.origenes.length - 2} más</div>}
+                    </>
+                  )}
+                </td>
+              ))}
+            </tr>
+            <tr>
               <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Fecha ingreso</td>
               {sesion.por_partidario.map(g => <td class="text-sm tabular-nums text-stone-700 whitespace-nowrap">{fmtFecha(g.ingreso_fecha_min) || '—'}</td>)}
             </tr>
