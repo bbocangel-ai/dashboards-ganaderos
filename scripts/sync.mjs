@@ -729,6 +729,19 @@ async function main() {
           row.fecha_venta = dest.fecha;
           row.comprador = dest.comprador;
         }
+      } else if (destinos.length === 1) {
+        // Si hay un solo comprador, todos los partidarios y proveedores van ahí
+        const dest = destinos[0];
+        for (const row of s.por_partidario) {
+          row.bs_kg = dest.bs_kg;
+          row.fecha_venta = dest.fecha;
+          row.comprador = dest.comprador;
+        }
+        for (const row of s.por_proveedor) {
+          row.bs_kg = dest.bs_kg;
+          row.fecha_venta = dest.fecha;
+          row.comprador = dest.comprador;
+        }
       }
       // Override del header: cabezas, peso_prom, ingreso vienen del split
       const totalCab = destinos.reduce((x, d) => x + d.cabezas, 0);

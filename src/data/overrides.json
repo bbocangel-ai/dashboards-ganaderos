@@ -41,6 +41,12 @@
   ],
 
   "ventas_split": {
+    "DADOS - 0 - 26/05/26 06:07": {
+      "nota": "Venta vaquillas a Inducarne",
+      "destinos": [
+        { "comprador": "Inducarne", "cabezas": 73, "peso_bruto_prom": 408.8, "peso_neto_prom": 388, "bs_kg": 21, "fecha": "2026-05-23" }
+      ]
+    },
     "DADOS - 0 - 06/05/26 19:32": {
       "nota": "Venta vaquillas a Inducarne",
       "destinos": [

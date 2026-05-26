@@ -32,7 +32,10 @@
         "origenes": [
           "SJ ABEL",
           "SJ LUIS ANEZ"
-        ]
+        ],
+        "bs_kg": 21,
+        "fecha_venta": "2026-05-23",
+        "comprador": "Inducarne"
       },
       {
         "key": "MA",
@@ -51,7 +54,10 @@
         "last_fecha_max": "2026-05-23",
         "origenes": [
           "SJ ABEL"
-        ]
+        ],
+        "bs_kg": 21,
+        "fecha_venta": "2026-05-23",
+        "comprador": "Inducarne"
       },
       {
         "key": "BB",
@@ -70,7 +76,10 @@
         "last_fecha_max": "2026-05-23",
         "origenes": [
           "SJ ABEL"
-        ]
+        ],
+        "bs_kg": 21,
+        "fecha_venta": "2026-05-23",
+        "comprador": "Inducarne"
       },
       {
         "key": "DB",
@@ -90,7 +99,10 @@
         "origenes": [
           "SJ LUIS ANEZ",
           "SJ ABEL"
-        ]
+        ],
+        "bs_kg": 21,
+        "fecha_venta": "2026-05-23",
+        "comprador": "Inducarne"
       }
     ],
     "por_proveedor": [
@@ -111,7 +123,10 @@
         "last_fecha_max": "2026-05-23",
         "origenes": [
           "SJ ABEL"
-        ]
+        ],
+        "bs_kg": 21,
+        "fecha_venta": "2026-05-23",
+        "comprador": "Inducarne"
       },
       {
         "key": "SJ LUIS ANEZ",
@@ -130,7 +145,10 @@
         "last_fecha_max": "2026-05-23",
         "origenes": [
           "SJ LUIS ANEZ"
-        ]
+        ],
+        "bs_kg": 21,
+        "fecha_venta": "2026-05-23",
+        "comprador": "Inducarne"
       },
       {
         "key": "NOGALES",
@@ -149,7 +167,10 @@
         "last_fecha_max": "2026-05-23",
         "origenes": [
           "NOGALES"
-        ]
+        ],
+        "bs_kg": 21,
+        "fecha_venta": "2026-05-23",
+        "comprador": "Inducarne"
       },
       {
         "key": "COBJ RODEO",
@@ -168,7 +189,10 @@
         "last_fecha_max": "2026-05-23",
         "origenes": [
           "COBJ RODEO"
-        ]
+        ],
+        "bs_kg": 21,
+        "fecha_venta": "2026-05-23",
+        "comprador": "Inducarne"
       },
       {
         "key": "CESPEDES",
@@ -187,7 +211,10 @@
         "last_fecha_max": "2026-05-23",
         "origenes": [
           "CESPEDES"
-        ]
+        ],
+        "bs_kg": 21,
+        "fecha_venta": "2026-05-23",
+        "comprador": "Inducarne"
       }
     ],
     "por_categoria": [
@@ -295,6 +322,26 @@
         ]
       }
     ],
+    "split": {
+      "nota": "Venta vaquillas a Inducarne",
+      "destinos": [
+        {
+          "comprador": "Inducarne",
+          "cabezas": 73,
+          "peso_prom_bruto": 408.8,
+          "peso_prom_neto": 388,
+          "peso_total_bruto": 29842,
+          "peso_total_neto": 28324,
+          "bs_kg": 21,
+          "fecha": "2026-05-23",
+          "ingreso_bs": 594804
+        }
+      ]
+    },
+    "peso_neto_total": 28324,
+    "peso_bruto_total": 29842,
+    "ingreso_bs_total": 594804,
+    "precio_avg_bs_kg": 21,
     "slug": "dados-0-26-05-26-06-07"
   },
   {
@@ -898,7 +945,10 @@
         "origenes": [
           "SJ LUIS ANEZ",
           "SJ ABEL"
-        ]
+        ],
+        "bs_kg": 21.1,
+        "fecha_venta": "2026-04-25",
+        "comprador": "Inducarne"
       },
       {
         "key": "FB",
@@ -917,7 +967,10 @@
         "last_fecha_max": "2026-04-25",
         "origenes": [
           "SJ LUIS ANEZ"
-        ]
+        ],
+        "bs_kg": 21.1,
+        "fecha_venta": "2026-04-25",
+        "comprador": "Inducarne"
       }
     ],
     "por_proveedor": [
@@ -938,7 +991,10 @@
         "last_fecha_max": "2026-04-25",
         "origenes": [
           "SJ LUIS ANEZ"
-        ]
+        ],
+        "bs_kg": 21.1,
+        "fecha_venta": "2026-04-25",
+        "comprador": "Inducarne"
       },
       {
         "key": "SJ ABEL",
@@ -957,7 +1013,10 @@
         "last_fecha_max": "2026-04-25",
         "origenes": [
           "SJ ABEL"
-        ]
+        ],
+        "bs_kg": 21.1,
+        "fecha_venta": "2026-04-25",
+        "comprador": "Inducarne"
       }
     ],
     "por_categoria": [
