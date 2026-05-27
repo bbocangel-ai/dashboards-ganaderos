@@ -4,41 +4,48 @@ import { trabajosOrdenados, trabajosPorTipo, fmtFecha, fmtNum } from '../lib/dat
 
 const todos = trabajosOrdenados();
 const porTipo = trabajosPorTipo();
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 const tiposColor: Record<string, string> = {
-  CTRL:  'bg-sky-100 text-sky-800',
-  VTA:   'bg-emerald-100 text-emerald-800',
-  VT:    'bg-emerald-100 text-emerald-800',
-  VNT:   'bg-emerald-100 text-emerald-800',
-  ING:   'bg-amber-100 text-amber-800',
-  DOSIS: 'bg-violet-100 text-violet-800',
-  DS:    'bg-violet-100 text-violet-800',
-  AUT:   'bg-orange-100 text-orange-800',
-  REFG:  'bg-rose-100 text-rose-800',
-  REFUG: 'bg-rose-100 text-rose-800',
+  CTRL:    'pill-sky',
+  VTA:     'pill-emerald',
+  VT:      'pill-emerald',
+  VNT:     'pill-emerald',
+  ING:     'pill-amber',
+  DOSIS:   'pill-violet',
+  DS:      'pill-violet',
+  SANIDAD: 'pill-violet',
+  SAN:     'pill-violet',
+  AUT:     'pill-stone',
+  REFG:    'pill-rose',
+  REFUG:   'pill-rose',
 };
 ---
 <Layout title="Trabajos de corral">
-  <div class="flex items-end justify-between mb-6">
+  <header class="page-header flex items-end justify-between gap-4">
     <div>
-      <h2 class="text-lg font-semibold text-stone-900">Trabajos de corral</h2>
-      <p class="text-sm text-stone-500">Cada sesión de pesaje subida a SisGado, ordenada por fecha</p>
+      <h1 class="page-title">Trabajos de corral</h1>
+      <p class="page-subtitle">Cada sesión subida a SisGado — click para ver detalle</p>
     </div>
     <div class="text-right text-xs text-stone-500">
       {fmtNum(todos.length)} sesiones registradas
     </div>
-  </div>
+  </header>
 
-  <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 mb-8">
-    {porTipo.map(t => (
-      <div class="kpi">
-        <div class="kpi-label">{t.tipo}</div>
-        <div class="kpi-value">{fmtNum(t.cabezas)}</div>
-        <div class="kpi-sub">{fmtNum(t.n_sesiones)} sesiones · {t.tipo_label}</div>
-      </div>
-    ))}
-  </div>
+  <section class="mb-8">
+    <h2 class="section-title">Por tipo</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
+      {porTipo.map(t => (
+        <div class="kpi">
+          <div class="kpi-label">{t.tipo}</div>
+          <div class="kpi-value">{fmtNum(t.cabezas)}</div>
+          <div class="kpi-sub">{fmtNum(t.n_sesiones)} sesiones · {t.tipo_label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
 
+  <h2 class="section-title">Todos los trabajos</h2>
   <div class="table-wrap">
     <table class="tbl">
       <thead>
@@ -50,20 +57,22 @@ const tiposColor: Record<string, string> = {
           <th class="num">Peso min</th>
           <th class="num">Peso max</th>
           <th>Detalle</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         {todos.map(s => {
-          const cls = tiposColor[s.trabajo_tipo || ''] || 'bg-stone-100 text-stone-600';
+          const cls = tiposColor[s.trabajo_tipo || ''] || 'pill-stone';
           return (
-            <tr>
-              <td class="font-mono text-xs whitespace-nowrap">{fmtFecha(s.fecha_max)}</td>
-              <td><span class={'pill ' + cls}>{s.trabajo_tipo || 'SIN'}</span></td>
-              <td class="num font-semibold">{fmtNum(s.n)}</td>
+            <tr class="clickable" onclick={`location.href='${base}/trabajos/${s.slug}'`}>
+              <td class="text-sm tabular-nums whitespace-nowrap">{fmtFecha(s.fecha_max)}</td>
+              <td><span class={cls}>{s.trabajo_tipo || 'SIN'}</span></td>
+              <td class="num font-bold">{fmtNum(s.n)}</td>
               <td class="num">{s.peso_prom != null ? fmtNum(s.peso_prom, 1) + ' kg' : '—'}</td>
               <td class="num text-stone-500">{s.peso_min != null ? fmtNum(s.peso_min, 1) : '—'}</td>
               <td class="num text-stone-500">{s.peso_max != null ? fmtNum(s.peso_max, 1) : '—'}</td>
               <td class="text-stone-600 text-xs">{s.trabajo_detalle}</td>
+              <td><a href={base + '/trabajos/' + s.slug} class="text-brand-600 text-xs hover:underline font-semibold">ver →</a></td>
             </tr>
           );
         })}

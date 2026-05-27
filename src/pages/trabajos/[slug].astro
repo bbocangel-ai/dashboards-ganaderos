@@ -1,0 +1,371 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Kpi from '../../components/Kpi.astro';
+import { sesiones, fmtNum, fmtFecha, fmtBs, type GroupRow } from '../../lib/data';
+import { DESBASTE, PRECIO_VENTA_BS_KG, USD_RATE } from '../../lib/config';
+
+export async function getStaticPaths() {
+  return sesiones.map(s => ({ params: { slug: s.slug }, props: { sesion: s } }));
+}
+
+const { sesion } = Astro.props;
+const isSale = ['VT', 'VTA', 'VNT'].includes(sesion.trabajo_tipo || '');
+const isExit = isSale || ['AUT', 'REFG', 'REFUG'].includes(sesion.trabajo_tipo || '');
+
+const tipoColor: Record<string, string> = {
+  CTRL:  'pill-sky',
+  VTA:   'pill-emerald',  VT: 'pill-emerald',  VNT: 'pill-emerald',
+  ING:   'pill-amber',
+  DOSIS: 'pill-violet',   DS: 'pill-violet',   SANIDAD: 'pill-violet', SAN: 'pill-violet',
+  AUT:   'pill-stone',
+  REFG:  'pill-rose',     REFUG: 'pill-rose',
+};
+const tipoPill = tipoColor[sesion.trabajo_tipo || ''] || 'pill-stone';
+
+// Sale-related calcs (used only when isSale)
+const precio = sesion.precio_venta_bs_kg ?? sesion.precio_avg_bs_kg ?? PRECIO_VENTA_BS_KG;
+const precioEstimado = sesion.precio_venta_bs_kg == null && sesion.precio_avg_bs_kg == null;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function ingresoBs(g: GroupRow) {
+  return Math.round(g.peso_neto_total * precio);
+}
+
+const peso_bruto_total = (sesion.peso_prom || 0) * sesion.n;
+const peso_neto_total = peso_bruto_total * (1 - DESBASTE);
+const ingreso_total_bs = peso_neto_total * precio;
+
+const backHref = isSale ? base + '/ventas' : base + '/trabajos';
+const backLabel = isSale ? '← Volver a Ventas' : '← Volver a Trabajos';
+const tituloSeccion = isSale ? 'Indicadores de la venta' : 'Indicadores del trabajo';
+---
+<Layout title={`${sesion.trabajo_tipo_label || 'Trabajo'} · ${fmtFecha(sesion.fecha_max)}`}>
+  <a href={backHref} class="btn-link">{backLabel}</a>
+
+  <header class="page-header mt-2">
+    <div class="flex items-center gap-3 mb-2">
+      <span class={tipoPill}>{sesion.trabajo_tipo || 'SIN TIPO'}</span>
+      {sesion.trabajo_tipo_label && <span class="text-xs text-stone-500">{sesion.trabajo_tipo_label}</span>}
+      <span class="text-xs text-stone-500 font-mono">{fmtFecha(sesion.fecha_max)}</span>
+    </div>
+    <h1 class="page-title">{sesion.trabajo_detalle}</h1>
+    <p class="page-subtitle font-mono text-xs">{sesion.sesion}</p>
+  </header>
+
+  <section class="mb-7">
+    <h2 class="section-title">{tituloSeccion}</h2>
+    <div class={`grid grid-cols-2 md:grid-cols-3 ${isSale ? 'lg:grid-cols-5' : 'lg:grid-cols-4'} gap-3`}>
+      <div class="kpi card-accent-brand">
+        <div class="kpi-label">Cabezas</div>
+        <div class="kpi-value">{fmtNum(sesion.n)}</div>
+        <div class="kpi-sub">{isSale ? 'en esta venta' : 'en este trabajo'}</div>
+      </div>
+      <div class="kpi card-accent-sky">
+        <div class="kpi-label">Peso bruto prom</div>
+        <div class="kpi-value">{sesion.peso_prom != null ? fmtNum(sesion.peso_prom, 1) : '—'}<span class="text-base font-medium text-stone-400 ml-1">kg</span></div>
+        <div class="kpi-sub">por cabeza{sesion.peso_min != null && sesion.peso_max != null ? ` · ${fmtNum(sesion.peso_min, 0)}–${fmtNum(sesion.peso_max, 0)} kg` : ''}</div>
+      </div>
+      <div class="kpi card-accent-violet">
+        <div class="kpi-label">Peso neto prom</div>
+        <div class="kpi-value">{sesion.peso_prom != null ? fmtNum(sesion.peso_prom * (1 - DESBASTE), 1) : '—'}<span class="text-base font-medium text-stone-400 ml-1">kg</span></div>
+        <div class="kpi-sub">con −{Math.round(DESBASTE*100)}% de desbaste</div>
+      </div>
+      {isSale && (
+        <div class="kpi card-accent-amber">
+          <div class="kpi-label">Bs/kg</div>
+          <div class="kpi-value">{(sesion.split && sesion.split.destinos.length > 1) ? 'split' : fmtNum(precio, 1)}</div>
+          <div class="kpi-sub">{(sesion.split && sesion.split.destinos.length > 1) ? 'distinto por comprador' : (precioEstimado ? 'estimado' : 'real')}</div>
+        </div>
+      )}
+      {isSale ? (
+        <div class="kpi card-accent-emerald">
+          <div class="kpi-label">Ingreso bruto</div>
+          <div class="kpi-value">{sesion.split ? fmtBs(sesion.split.destinos.reduce((s,d) => s + d.ingreso_bs, 0)) : fmtBs(Math.round(ingreso_total_bs))}</div>
+          <div class="kpi-sub">USD {fmtNum(Math.round((sesion.split ? sesion.split.destinos.reduce((s,d) => s + d.ingreso_bs, 0) : ingreso_total_bs) / USD_RATE))}</div>
+        </div>
+      ) : (
+        <div class="kpi card-accent-amber">
+          <div class="kpi-label">Tipo</div>
+          <div class="kpi-value text-xl">{sesion.trabajo_tipo_label || sesion.trabajo_tipo || 'Sin tipo'}</div>
+          <div class="kpi-sub">trabajo de corral</div>
+        </div>
+      )}
+    </div>
+  </section>
+
+  {sesion.split && (
+    <section class="mb-6">
+      <h3 class="section-title">Compradores</h3>
+      <div class="grid md:grid-cols-2 gap-4 mb-2">
+        {sesion.split.destinos.map(d => (
+          <div class="card p-5">
+            <div class="flex items-center justify-between mb-3">
+              <h4 class="font-bold text-stone-900 text-base">{d.comprador}</h4>
+              <span class="text-xs text-stone-500 font-mono">{fmtFecha(d.fecha)}</span>
+            </div>
+            <div class="grid grid-cols-2 gap-y-3 gap-x-4 text-sm">
+              <div>
+                <div class="kpi-label">Cantidad</div>
+                <div class="text-2xl font-bold tabular-nums">{fmtNum(d.cabezas)} <span class="text-sm font-normal text-stone-500">cab</span></div>
+              </div>
+              <div>
+                <div class="kpi-label">Bs/kg</div>
+                <div class="text-2xl font-bold tabular-nums">{d.bs_kg != null ? fmtNum(d.bs_kg, 1) : '—'}</div>
+              </div>
+              <div>
+                <div class="kpi-label">Peso bruto / cab</div>
+                <div class="text-base font-semibold tabular-nums">{fmtNum(d.peso_prom_bruto, 0)} kg</div>
+                <div class="text-xs text-stone-500">total {fmtNum(d.peso_total_bruto)} kg</div>
+              </div>
+              <div>
+                <div class="kpi-label">Peso neto / cab (−{Math.round(DESBASTE*100)}%)</div>
+                <div class="text-base font-semibold tabular-nums">{fmtNum(d.peso_prom_neto, 0)} kg</div>
+                <div class="text-xs text-stone-500">total {fmtNum(d.peso_total_neto)} kg</div>
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-stone-100">
+              <div class="kpi-label">Ingreso bruto</div>
+              <div class="flex items-baseline gap-2">
+                <span class="text-2xl font-bold tabular-nums text-stone-900">{fmtBs(d.ingreso_bs)}</span>
+                <span class="text-sm text-stone-500 tabular-nums">USD {fmtNum(Math.round(d.ingreso_bs / USD_RATE))}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- Por partidario (transpuesto: partidarios en columnas) -->
+  <section class="mb-6">
+    <h2 class="section-title">Por partidario</h2>
+    {sesion.por_partidario.length === 0 ? (
+      <div class="card p-6 text-center text-sm text-stone-400">
+        Ningún animal partidario en esta venta
+      </div>
+    ) : (
+      <div class="table-wrap overflow-x-auto">
+        <table class="tbl">
+          <thead>
+            <tr>
+              <th class="bg-stone-100/70 sticky left-0 z-10">&nbsp;</th>
+              {sesion.por_partidario.map(g => (
+                <th class="text-left">
+                  <div class="font-bold text-stone-900 normal-case tracking-normal text-sm whitespace-nowrap">{g.label}</div>
+                  <div class="text-[10px] font-medium text-stone-500 normal-case tracking-normal">{g.key}</div>
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Cantidad</td>
+              {sesion.por_partidario.map(g => <td class="text-sm font-bold text-stone-900 tabular-nums whitespace-nowrap">{fmtNum(g.cabezas)} <span class="font-normal text-stone-500">cab</span></td>)}
+            </tr>
+            {sesion.por_partidario.some(g => g.comprador) && (
+              <tr>
+                <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Comprador</td>
+                {sesion.por_partidario.map(g => <td class="text-sm text-stone-700 whitespace-nowrap">{g.comprador || '—'}</td>)}
+              </tr>
+            )}
+            <tr>
+              <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Origen (proveedor)</td>
+              {sesion.por_partidario.map(g => (
+                <td class="text-sm text-stone-700" title={g.origenes.join(', ')}>
+                  {g.origenes.length === 0 ? '—' : (
+                    <>
+                      <div>{g.origenes.slice(0, 2).join(', ')}</div>
+                      {g.origenes.length > 2 && <div class="text-xs text-stone-500">+{g.origenes.length - 2} más</div>}
+                    </>
+                  )}
+                </td>
+              ))}
+            </tr>
+            <tr>
+              <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Fecha ingreso</td>
+              {sesion.por_partidario.map(g => <td class="text-sm tabular-nums text-stone-700 whitespace-nowrap">{fmtFecha(g.ingreso_fecha_min) || '—'}</td>)}
+            </tr>
+            <tr>
+              <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Bs/cab compra</td>
+              {sesion.por_partidario.map(g => <td class="text-sm tabular-nums text-stone-700 whitespace-nowrap">{g.precio_compra_bs_prom != null ? fmtBs(g.precio_compra_bs_prom) : '—'}</td>)}
+            </tr>
+            <tr>
+              <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Peso entrada</td>
+              {sesion.por_partidario.map(g => <td class="text-sm tabular-nums whitespace-nowrap">{fmtNum(g.peso_ingreso_prom, 1)} kg</td>)}
+            </tr>
+            <tr>
+              <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Días en campo</td>
+              {sesion.por_partidario.map(g => <td class="text-sm tabular-nums text-stone-600 whitespace-nowrap">{g.dias_prom} d</td>)}
+            </tr>
+            <tr>
+              <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Fecha venta</td>
+              {sesion.por_partidario.map(g => <td class="text-sm tabular-nums text-stone-700 whitespace-nowrap">{fmtFecha(g.fecha_venta || g.last_fecha_max) || '—'}</td>)}
+            </tr>
+            <tr>
+              <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Peso venta bruto</td>
+              {sesion.por_partidario.map(g => <td class="text-sm tabular-nums font-medium whitespace-nowrap">{fmtNum(g.peso_prom, 1)} kg</td>)}
+            </tr>
+            <tr>
+              <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Peso venta neto (−5%)</td>
+              {sesion.por_partidario.map(g => <td class="text-sm tabular-nums font-medium whitespace-nowrap">{fmtNum(g.peso_neto_prom, 1)} kg</td>)}
+            </tr>
+            <tr>
+              <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Ganancia / cab</td>
+              {sesion.por_partidario.map(g => (
+                <td class={`text-sm tabular-nums font-semibold whitespace-nowrap ${g.ganancia_kg_prom >= 0 ? 'stat-up' : 'stat-down'}`}>
+                  {g.ganancia_kg_prom >= 0 ? '+' : ''}{fmtNum(g.ganancia_kg_prom, 1)} kg
+                </td>
+              ))}
+            </tr>
+            <tr>
+              <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">GMD</td>
+              {sesion.por_partidario.map(g => <td class="text-sm tabular-nums whitespace-nowrap">{g.gmd_prom != null ? fmtNum(g.gmd_prom, 3) : '—'}</td>)}
+            </tr>
+            {isSale && (
+              <>
+                <tr>
+                  <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Bs/kg venta</td>
+                  {sesion.por_partidario.map(g => <td class="text-sm tabular-nums whitespace-nowrap">{fmtNum(g.bs_kg ?? precio, 2)}</td>)}
+                </tr>
+                <tr class="bg-emerald-50/40">
+                  <td class="font-bold text-stone-900 bg-emerald-50 sticky left-0 z-10 whitespace-nowrap">Ingreso bruto</td>
+                  {sesion.por_partidario.map(g => {
+                    const p = g.bs_kg ?? precio;
+                    const ingreso = Math.round(g.peso_neto_total * p);
+                    return <td class="text-sm tabular-nums font-bold text-stone-900 whitespace-nowrap">{fmtBs(ingreso)}</td>;
+                  })}
+                </tr>
+                <tr>
+                  <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Ingreso USD</td>
+                  {sesion.por_partidario.map(g => {
+                    const p = g.bs_kg ?? precio;
+                    const ingreso = Math.round(g.peso_neto_total * p);
+                    return <td class="text-sm tabular-nums text-stone-600 whitespace-nowrap">USD {fmtNum(Math.round(ingreso / USD_RATE))}</td>;
+                  })}
+                </tr>
+              </>
+            )}
+          </tbody>
+        </table>
+      </div>
+    )}
+  </section>
+
+  <!-- Por proveedor (transpuesto: proveedores en columnas) -->
+  <section class="mb-6">
+    <h2 class="section-title">Por proveedor (origen)</h2>
+    <div class="table-wrap overflow-x-auto">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th class="bg-stone-100/70 sticky left-0 z-10">&nbsp;</th>
+            {sesion.por_proveedor.map(g => (
+              <th class="text-left">
+                <div class="font-bold text-stone-900 normal-case tracking-normal text-sm whitespace-nowrap max-w-[160px] truncate" title={g.label}>{g.label}</div>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Cantidad</td>
+            {sesion.por_proveedor.map(g => <td class="font-bold text-base text-stone-900 tabular-nums">{fmtNum(g.cabezas)} <span class="text-xs font-normal text-stone-500">cab</span></td>)}
+          </tr>
+          <tr>
+            <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Fecha ingreso</td>
+            {sesion.por_proveedor.map(g => <td class="text-sm tabular-nums text-stone-700 whitespace-nowrap">{fmtFecha(g.ingreso_fecha_min) || '—'}</td>)}
+          </tr>
+          <tr>
+            <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Bs/cab compra</td>
+            {sesion.por_proveedor.map(g => <td class="tabular-nums text-stone-700">{g.precio_compra_bs_prom != null ? fmtBs(g.precio_compra_bs_prom) : '—'}</td>)}
+          </tr>
+          <tr>
+            <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Peso entrada</td>
+            {sesion.por_proveedor.map(g => <td class="tabular-nums">{fmtNum(g.peso_ingreso_prom, 1)} kg</td>)}
+          </tr>
+          <tr>
+            <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Días en campo</td>
+            {sesion.por_proveedor.map(g => <td class="tabular-nums text-stone-600">{g.dias_prom} d</td>)}
+          </tr>
+          <tr>
+            <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Fecha venta</td>
+            {sesion.por_proveedor.map(g => <td class="text-sm tabular-nums text-stone-700 whitespace-nowrap">{fmtFecha(g.last_fecha_max) || '—'}</td>)}
+          </tr>
+          <tr>
+            <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Peso venta bruto</td>
+            {sesion.por_proveedor.map(g => <td class="tabular-nums font-medium">{fmtNum(g.peso_prom, 1)} kg</td>)}
+          </tr>
+          <tr>
+            <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Peso venta neto (−5%)</td>
+            {sesion.por_proveedor.map(g => <td class="tabular-nums font-medium">{fmtNum(g.peso_neto_prom, 1)} kg</td>)}
+          </tr>
+          <tr>
+            <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Ganancia / cab</td>
+            {sesion.por_proveedor.map(g => (
+              <td class={`tabular-nums font-semibold ${g.ganancia_kg_prom >= 0 ? 'stat-up' : 'stat-down'}`}>
+                {g.ganancia_kg_prom >= 0 ? '+' : ''}{fmtNum(g.ganancia_kg_prom, 1)} kg
+              </td>
+            ))}
+          </tr>
+          <tr>
+            <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">GMD</td>
+            {sesion.por_proveedor.map(g => <td class="tabular-nums">{g.gmd_prom != null ? fmtNum(g.gmd_prom, 3) : '—'}</td>)}
+          </tr>
+          {isSale && (
+            <>
+              <tr>
+                <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Bs/kg venta</td>
+                {sesion.por_proveedor.map(g => <td class="tabular-nums">{fmtNum(g.bs_kg ?? precio, 2)}</td>)}
+              </tr>
+              <tr class="bg-emerald-50/40">
+                <td class="font-bold text-stone-900 bg-emerald-50 sticky left-0 z-10 whitespace-nowrap">Ingreso bruto</td>
+                {sesion.por_proveedor.map(g => {
+                  const p = g.bs_kg ?? precio;
+                  const ingreso = Math.round(g.peso_neto_total * p);
+                  return <td class="tabular-nums font-bold text-stone-900">{fmtBs(ingreso)}</td>;
+                })}
+              </tr>
+              <tr>
+                <td class="font-semibold text-stone-700 bg-white sticky left-0 z-10 whitespace-nowrap">Ingreso USD</td>
+                {sesion.por_proveedor.map(g => {
+                  const p = g.bs_kg ?? precio;
+                  const ingreso = Math.round(g.peso_neto_total * p);
+                  return <td class="tabular-nums text-stone-600">USD {fmtNum(Math.round(ingreso / USD_RATE))}</td>;
+                })}
+              </tr>
+            </>
+          )}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Por categoria -->
+  <section>
+    <h2 class="section-title">Por categoría</h2>
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Categoría</th>
+            <th class="num">Cab</th>
+            <th class="num">Peso prom</th>
+            <th class="num">Peso neto total</th>
+            {isSale && <th class="num">Ingreso Bs</th>}
+          </tr>
+        </thead>
+        <tbody>
+          {sesion.por_categoria.map(g => (
+            <tr>
+              <td class="font-medium text-stone-900">{g.label}</td>
+              <td class="num font-semibold">{fmtNum(g.cabezas)}</td>
+              <td class="num">{fmtNum(g.peso_prom, 1)} kg</td>
+              <td class="num">{fmtNum(g.peso_neto_total)} kg</td>
+              {isSale && <td class="num font-medium">{fmtBs(ingresoBs(g))}</td>}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</Layout>

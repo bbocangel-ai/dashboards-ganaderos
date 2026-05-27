@@ -105,7 +105,7 @@ const tiposColor: Record<string, string> = {
           </thead>
           <tbody>
             {ultimas.map(s => (
-              <tr>
+              <tr class="clickable" onclick={`location.href='${base}/trabajos/${s.slug}'`}>
                 <td class="font-mono text-xs whitespace-nowrap">{fmtFecha(s.fecha_max)}</td>
                 <td><span class={tiposColor[s.trabajo_tipo || ''] || 'pill-stone'}>{s.trabajo_tipo || '?'}</span></td>
                 <td class="num font-bold">{fmtNum(s.n)}</td>
