@@ -9,6 +9,17 @@
 
   "animales_bajas": {},
 
+  "pesajes_cutoff": {
+    "_doc": "Filtra pesajes anteriores a una fecha (chips reciclados que tienen historial del dueño previo). Las claves de por_proveedor son substring case-insensitive del nombre del proveedor parseado.",
+    "por_proveedor": {
+      "NAYAR": "2026-05-01",
+      "SIV":   "2026-05-01",
+      "ROCCO": "2026-05-01"
+    },
+    "por_raza_codigo": {},
+    "por_animal_id": {}
+  },
+
   "sesion_price_overrides": {},
 
   "partidario_total_targets": {

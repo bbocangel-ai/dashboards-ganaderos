@@ -289,7 +289,7 @@ async function main() {
   db.detach();
 
   console.log('→ Parsing descriptions...');
-  const enriched = rows.map(r => {
+  let enriched = rows.map(r => {
     const local = parseLocal(r.LOCAL_DESCRIPCION);
     const rebanho = parseRebanho(r.REBANHO_DESCRIPCION);
     const lote = parseLote(r.LOTE_DESCRIPCION);
@@ -340,6 +340,43 @@ async function main() {
 
   // ---------- aggregations -------------------------------------------------
   console.log('→ Building aggregations...');
+
+  // ---------- pesajes cutoff (chips reciclados) ----------
+  // Algunos animales tienen pesajes anteriores de un dueño previo (cuando se
+  // recicla el chip y SisGado no recibió baja). Filtramos por proveedor / raza / id.
+  const overridesForCutoff = loadOverrides();
+  const cutoffsByProv = overridesForCutoff.pesajes_cutoff?.por_proveedor || {};
+  const cutoffsByRaca = overridesForCutoff.pesajes_cutoff?.por_raza_codigo || {};
+  const cutoffsByAnim = overridesForCutoff.pesajes_cutoff?.por_animal_id || {};
+  const hasAnyCutoff =
+    Object.keys(cutoffsByProv).length > 0 ||
+    Object.keys(cutoffsByRaca).length > 0 ||
+    Object.keys(cutoffsByAnim).length > 0;
+
+  if (hasAnyCutoff) {
+    const before = enriched.length;
+    enriched = enriched.filter(p => {
+      if (!p.fecha) return true;
+      // Por animal id (más específico)
+      const idCut = cutoffsByAnim[String(p.id_animal)];
+      if (idCut && p.fecha < idCut) return false;
+      // Por raza
+      const racaCut = p.raza_codigo ? cutoffsByRaca[p.raza_codigo] : null;
+      if (racaCut && p.fecha < racaCut) return false;
+      // Por proveedor (substring case-insensitive)
+      if (p.proveedor) {
+        const provUpper = p.proveedor.toUpperCase();
+        for (const [pattern, cutoffDate] of Object.entries(cutoffsByProv)) {
+          if (provUpper.includes(pattern.toUpperCase()) && p.fecha < cutoffDate) {
+            return false;
+          }
+        }
+      }
+      return true;
+    });
+    const dropped = before - enriched.length;
+    if (dropped > 0) console.log(`  ⚠ ${dropped} pesajes filtrados por cutoff (chips reciclados)`);
+  }
 
   // Per-animal: first/last weighing, days, GMD, sale info if last was a sale
   const byAnimal = new Map();
