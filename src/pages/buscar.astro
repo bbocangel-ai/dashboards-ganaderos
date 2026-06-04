@@ -1,0 +1,106 @@
+---
+import Layout from '../layouts/Layout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<Layout title="Buscar">
+  <header class="page-header">
+    <h1 class="page-title">Buscar animal</h1>
+    <p class="page-subtitle">Buscá por chip (NRO), partidario, origen o estado</p>
+  </header>
+
+  <div class="card p-5 mb-6">
+    <div class="relative">
+      <input
+        type="search"
+        id="q"
+        placeholder="Escribí un chip (ej. 963068000071525) o palabra clave..."
+        autofocus
+        class="w-full px-4 py-3 pr-12 text-base border border-stone-300 rounded-lg focus:border-brand-500 focus:ring-2 focus:ring-brand-200 focus:outline-none font-mono"
+      />
+      <span class="absolute right-3 top-1/2 -translate-y-1/2 text-stone-400 text-xl">🔍</span>
+    </div>
+    <div class="mt-3 flex flex-wrap gap-2 text-xs">
+      <span class="text-stone-500">Filtros rápidos:</span>
+      <button onclick="document.getElementById('q').value='BB'; runSearch();" class="text-brand-700 hover:underline font-semibold">Partidario BB</button>
+      <button onclick="document.getElementById('q').value='DB'; runSearch();" class="text-brand-700 hover:underline font-semibold">DB</button>
+      <button onclick="document.getElementById('q').value='MA'; runSearch();" class="text-brand-700 hover:underline font-semibold">MA</button>
+      <button onclick="document.getElementById('q').value='MB'; runSearch();" class="text-brand-700 hover:underline font-semibold">MB</button>
+      <button onclick="document.getElementById('q').value='FB'; runSearch();" class="text-brand-700 hover:underline font-semibold">FB</button>
+      <button onclick="document.getElementById('q').value='vendido'; runSearch();" class="text-brand-700 hover:underline font-semibold">Vendidos</button>
+      <button onclick="document.getElementById('q').value='baja'; runSearch();" class="text-brand-700 hover:underline font-semibold">Bajas</button>
+      <button onclick="document.getElementById('q').value='ghost'; runSearch();" class="text-brand-700 hover:underline font-semibold">Ghost</button>
+    </div>
+  </div>
+
+  <div id="status" class="text-sm text-stone-500 mb-3"></div>
+  <div id="results" class="space-y-1"></div>
+
+  <script define:vars={{ base }}>
+    let INDEX = null;
+    const elQ = document.getElementById('q');
+    const elStatus = document.getElementById('status');
+    const elResults = document.getElementById('results');
+    const MAX_RESULTS = 100;
+
+    async function loadIndex() {
+      elStatus.textContent = 'Cargando índice...';
+      const r = await fetch(base + '/data/search-index.json');
+      INDEX = await r.json();
+      elStatus.textContent = `Índice cargado · ${INDEX.length.toLocaleString('es-BO')} animales`;
+      runSearch();
+    }
+
+    function fmtFecha(s) {
+      if (!s) return '';
+      const [y, m, d] = s.split('-');
+      return `${d}/${m}/${y.slice(2)}`;
+    }
+
+    function runSearch() {
+      if (!INDEX) return;
+      const q = elQ.value.trim().toLowerCase();
+      if (!q) {
+        elResults.innerHTML = '';
+        elStatus.textContent = `Índice cargado · ${INDEX.length.toLocaleString('es-BO')} animales. Escribí algo arriba.`;
+        return;
+      }
+      let matches;
+      if (q === 'vendido' || q === 'vendidos') {
+        matches = INDEX.filter(a => a.v);
+      } else if (q === 'baja' || q === 'bajas') {
+        matches = INDEX.filter(a => a.salida === 'BAJA' || a.baja);
+      } else if (q === 'ghost') {
+        matches = INDEX.filter(a => a.g);
+      } else {
+        matches = INDEX.filter(a => {
+          const nro = String(a.nro || '').toLowerCase();
+          const pid = String(a.p || '').toLowerCase();
+          const pn = String(a.pn || '').toLowerCase();
+          const o = String(a.o || '').toLowerCase();
+          return nro.includes(q) || pid === q || pn.includes(q) || o.includes(q);
+        });
+      }
+      elStatus.textContent = `${matches.length.toLocaleString('es-BO')} resultado${matches.length === 1 ? '' : 's'}` +
+        (matches.length > MAX_RESULTS ? ` (mostrando primeros ${MAX_RESULTS})` : '');
+      const html = matches.slice(0, MAX_RESULTS).map(a => `
+        <a href="${base}/animales/${a.id}" class="block card card-hover p-3 flex items-center gap-3">
+          <div class="font-mono text-sm font-bold text-stone-900 min-w-[180px]">${a.nro || a.id}</div>
+          <div class="flex items-center gap-1.5 flex-wrap text-xs">
+            ${a.p ? `<span class="pill bg-brand-100 text-brand-800">${a.p}</span>` : ''}
+            ${a.g ? `<span class="pill bg-amber-100 text-amber-800">ghost</span>` : ''}
+            ${a.v ? `<span class="pill bg-emerald-100 text-emerald-800">vendido</span>` : ''}
+          </div>
+          <div class="flex-1 text-xs text-stone-600 truncate">${a.o || ''}</div>
+          <div class="text-sm font-medium tabular-nums whitespace-nowrap">${a.lp ? a.lp.toFixed(1) + ' kg' : '—'}</div>
+          <div class="text-xs text-stone-500 tabular-nums whitespace-nowrap">${fmtFecha(a.lf)}</div>
+          <div class="text-brand-600 font-semibold text-xs">ver →</div>
+        </a>
+      `).join('');
+      elResults.innerHTML = html || '<div class="card p-6 text-center text-sm text-stone-400">Sin resultados</div>';
+    }
+
+    window.runSearch = runSearch;
+    elQ.addEventListener('input', runSearch);
+    loadIndex();
+  </script>
+</Layout>

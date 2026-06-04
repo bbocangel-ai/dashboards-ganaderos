@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { animalesBajas, fmtFecha, fmtNum } from '../lib/data';
+
+const bajas = animalesBajas();
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Group by tipo for KPIs
+const porTipo: Record<string, number> = {};
+for (const b of bajas) {
+  const t = b.baja_tipo || 'baja';
+  porTipo[t] = (porTipo[t] || 0) + 1;
+}
+
+const tipoColor: Record<string, string> = {
+  muerte:   'pill-rose',
+  extravio: 'pill-amber',
+  robo:     'pill-violet',
+  baja:     'pill-stone',
+};
+
+// Sort by fecha desc
+bajas.sort((a, b) => (b.baja_fecha || '').localeCompare(a.baja_fecha || ''));
+---
+<Layout title="Bajas y muertes">
+  <header class="page-header flex items-end justify-between gap-4">
+    <div>
+      <h1 class="page-title">Bajas y muertes</h1>
+      <p class="page-subtitle">Animales fuera del sistema por muerte, extravío, robo u otra baja</p>
+    </div>
+    <div class="text-right">
+      <div class="kpi-label">Total bajas</div>
+      <div class="text-2xl font-bold tabular-nums">{fmtNum(bajas.length)}</div>
+    </div>
+  </header>
+
+  {Object.keys(porTipo).length > 0 && (
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+      {Object.entries(porTipo).map(([tipo, n]) => (
+        <div class="kpi">
+          <div class="kpi-label">{tipo}</div>
+          <div class="kpi-value">{fmtNum(n)}</div>
+          <div class="kpi-sub">cabezas</div>
+        </div>
+      ))}
+    </div>
+  )}
+
+  {bajas.length === 0 ? (
+    <div class="card p-8 text-center">
+      <div class="text-4xl mb-3">✓</div>
+      <h3 class="text-base font-semibold text-stone-900 mb-1">Sin bajas registradas</h3>
+      <p class="text-sm text-stone-500 mb-4">No hay animales marcados como muerte, extravío o baja en el sistema.</p>
+      <p class="text-xs text-stone-400">
+        Para registrar una baja, entrá al detalle de un animal (desde búsqueda o partidarios) y usá el botón "Dar de baja".
+      </p>
+    </div>
+  ) : (
+    <div class="table-wrap">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Chip / Nro</th>
+            <th>Partidario</th>
+            <th>Categoría</th>
+            <th>Origen</th>
+            <th class="num">Último peso</th>
+            <th>Fecha baja</th>
+            <th>Tipo</th>
+            <th>Nota</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {bajas.map(a => (
+            <tr class="clickable" onclick={`location.href='${base}/animales/${a.id_animal}'`}>
+              <td class="font-mono text-xs">
+                <a href={base + '/animales/' + a.id_animal} class="text-stone-900 hover:text-brand-700 hover:underline font-semibold">
+                  {a.nro || a.id_animal}
+                </a>
+              </td>
+              <td class="text-sm">
+                {a.partidario_id ? <span class="pill bg-brand-100 text-brand-800">{a.partidario_id}</span> : '—'}
+                {a.partidario && <span class="ml-2 text-stone-600">{a.partidario}</span>}
+              </td>
+              <td class="text-sm">{a.categoria || '—'}</td>
+              <td class="text-xs text-stone-600 max-w-[160px] truncate" title={a.proveedor || ''}>{a.proveedor || '—'}</td>
+              <td class="num">{fmtNum(a.last_peso, 1)} kg</td>
+              <td class="text-sm tabular-nums">{fmtFecha(a.baja_fecha) || '—'}</td>
+              <td><span class={tipoColor[a.baja_tipo || 'baja'] || 'pill-stone'}>{a.baja_tipo || 'baja'}</span></td>
+              <td class="text-xs text-stone-600 max-w-[200px] truncate" title={a.baja_nota || ''}>{a.baja_nota || '—'}</td>
+              <td><a href={base + '/animales/' + a.id_animal} class="text-brand-600 text-xs hover:underline font-semibold">ver →</a></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )}
+
+  <div class="mt-8 card p-5 bg-stone-50/50">
+    <h4 class="text-sm font-bold text-stone-900 mb-2">¿Cómo registro una baja?</h4>
+    <ol class="text-sm text-stone-600 space-y-1 list-decimal list-inside ml-2">
+      <li>Buscá el animal por su chip (icono 🔍 arriba) o entrá desde <code>/partidarios</code></li>
+      <li>En el detalle del animal, abajo hay un botón <strong>"Copiar al portapapeles"</strong></li>
+      <li>Editás <code>src/data/overrides.json</code> y pegás el snippet en la sección <code>animales_bajas</code></li>
+      <li>Ajustás la fecha, tipo (<code>muerte</code> / <code>extravio</code> / <code>robo</code> / <code>baja</code>) y nota</li>
+      <li>Corrés <code>actualizar.cmd</code></li>
+    </ol>
+  </div>
+</Layout>

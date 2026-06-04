@@ -385,6 +385,7 @@ async function main() {
     }
   }
   const overrides = loadOverrides();
+  const bajas = overrides.animales_bajas || {};
 
   const SALIDAS = new Set(['VT', 'VTA', 'VNT', 'AUT', 'REFG', 'REFUG']);
   let animales = [...byAnimal.values()].map(a => {
@@ -403,6 +404,26 @@ async function main() {
       ghost: false,
     };
   });
+
+  // Aplicar bajas (animales_bajas en overrides). Key = nro (chip)
+  const bajaByNro = {};
+  for (const [nro, info] of Object.entries(bajas)) {
+    bajaByNro[String(nro).trim()] = info;
+  }
+  let nBajas = 0;
+  for (const a of animales) {
+    const baja = a.nro ? bajaByNro[String(a.nro).trim()] : null;
+    if (baja) {
+      a.baja = true;
+      a.baja_fecha = baja.fecha || null;
+      a.baja_tipo = baja.tipo || 'muerte';
+      a.baja_nota = baja.nota || null;
+      a.salida = a.salida || 'BAJA';
+      a.vendido = false; // baja no es vendido
+      nBajas++;
+    }
+  }
+  if (nBajas > 0) console.log(`  ${nBajas} animales marcados como baja`);
 
   // ---------- ghost animals (chips caídos) ----------
   // Se inyectan al stream de animales con peso resuelto. Si peso === "promedio",
@@ -772,6 +793,21 @@ async function main() {
   };
   writeFileSync(join(OUT_DIR, 'meta.json'), JSON.stringify(meta, null, 2));
   writeFileSync(join(OUT_DIR, 'pesajes.json'), JSON.stringify(enriched));
+
+  // Search index — lightweight para búsqueda client-side
+  const searchIndex = animales.map(a => ({
+    id: a.id_animal,
+    nro: a.nro,
+    p: a.partidario_id,
+    pn: a.partidario,
+    s: a.sexo,
+    o: a.proveedor,
+    lp: a.last_peso,
+    lf: a.last_fecha,
+    v: a.vendido ? 1 : 0,
+    g: a.ghost ? 1 : 0,
+  }));
+  writeFileSync(join(OUT_DIR, 'search-index.json'), JSON.stringify(searchIndex));
 
   // pesajes-by-animal.json — formato compacto { id_animal: [[fecha,peso], ...] }
   const byAnimalPesajes = {};

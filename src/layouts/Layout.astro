@@ -12,6 +12,7 @@ const navItems = [
   { href: '/partidarios',  label: 'Partidarios', icon: 'users' },
   { href: '/ventas',       label: 'Ventas',      icon: 'tag' },
   { href: '/trabajos',     label: 'Trabajos',    icon: 'clipboard' },
+  { href: '/bajas',        label: 'Bajas',       icon: 'x' },
 ];
 const current = Astro.url.pathname.replace(base, '') || '/';
 
@@ -55,6 +56,14 @@ const ageWarn = ageH > 24;
         </a>
 
         <div class="flex items-center gap-2">
+          <a
+            href={base + '/buscar'}
+            class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border border-stone-200 bg-white text-stone-700 hover:border-brand-300 hover:bg-brand-50 hover:text-brand-900 transition"
+            title="Buscar animal por chip"
+          >
+            <span class="text-base leading-none">🔍</span>
+            <span class="hidden sm:inline">Buscar</span>
+          </a>
           <a
             href={base + '/actualizar'}
             class={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium border transition ${

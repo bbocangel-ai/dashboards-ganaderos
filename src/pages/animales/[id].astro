@@ -4,11 +4,9 @@ import { animales, pesajesByAnimal, fmtNum, fmtFecha, fmtBs } from '../../lib/da
 import { bigChart } from '../../lib/sparkline';
 
 export async function getStaticPaths() {
-  // Solo generamos páginas para animales con partidario (drill-down desde compras).
-  // Los demás se accederían con un `[id].html` client-side si se necesita.
-  return animales
-    .filter(a => a.partidario_id)
-    .map(a => ({ params: { id: String(a.id_animal) }, props: { animal: a } }));
+  // Genera página para CADA animal (partidarios + resto, para que el
+  // buscador siempre tenga drill-down).
+  return animales.map(a => ({ params: { id: String(a.id_animal) }, props: { animal: a } }));
 }
 
 const { animal: a } = Astro.props;
@@ -27,6 +25,20 @@ const filas = pesajes.map((p, i) => {
 }).reverse();
 ---
 <Layout title={`Animal ${a.nro || a.id_animal}`}>
+  {a.baja && (
+    <div class="card card-accent-rose p-4 mb-4 flex items-start gap-3">
+      <div class="text-2xl">⚠️</div>
+      <div class="flex-1">
+        <div class="font-bold text-rose-900 text-sm uppercase tracking-wide">Animal dado de baja</div>
+        <div class="text-stone-700 mt-1 text-sm">
+          {a.baja_tipo ? a.baja_tipo.charAt(0).toUpperCase() + a.baja_tipo.slice(1) : 'Baja'}
+          {a.baja_fecha && <> el <strong>{fmtFecha(a.baja_fecha)}</strong></>}
+          {a.baja_nota && <> · <span class="text-stone-500">{a.baja_nota}</span></>}
+        </div>
+      </div>
+    </div>
+  )}
+
   {racaSlug && (
     <a href={base + '/compras/' + encodeURIComponent(racaSlug)} class="text-xs text-brand-600 hover:underline">
       ← {a.raza_descripcion || 'Compra'}
@@ -40,6 +52,8 @@ const filas = pesajes.map((p, i) => {
         {a.categoria && <span class="pill bg-pink-100 text-pink-800">{a.categoria}</span>}
         {a.sexo && <span class="pill bg-stone-100 text-stone-700">Sexo {a.sexo}</span>}
         {a.estancia && <span class="pill bg-stone-100 text-stone-700">{a.estancia}</span>}
+        {a.baja && <span class="pill bg-rose-100 text-rose-800">BAJA</span>}
+        {a.ghost && <span class="pill bg-amber-100 text-amber-800">GHOST</span>}
       </div>
       <h2 class="text-2xl font-bold text-stone-900 tabular-nums">N° {a.nro || a.id_animal}</h2>
       {a.proveedor && <p class="text-sm text-stone-500">Origen: <span class="font-medium text-stone-700">{a.proveedor}</span></p>}
@@ -102,4 +116,35 @@ const filas = pesajes.map((p, i) => {
       </table>
     </div>
   </section>
+
+  {!a.baja && a.nro && (
+    <section class="mt-8">
+      <h3 class="section-title">Dar de baja</h3>
+      <div class="card p-5">
+        <p class="text-sm text-stone-600 mb-3">
+          Si este animal murió, se extravió o salió por otra razón fuera de venta/autoconsumo,
+          agregalo a <code>src/data/overrides.json</code> en la sección <code>animales_bajas</code>:
+        </p>
+        <div class="bg-stone-900 text-stone-100 rounded-lg p-4 text-xs font-mono overflow-x-auto whitespace-pre" id="baja-snippet">
+{`"animales_bajas": {
+  "${a.nro}": {
+    "fecha": "${new Date().toISOString().slice(0, 10)}",
+    "tipo": "muerte",
+    "nota": "describir causa"
+  }
+}`}
+        </div>
+        <div class="flex items-center gap-3 mt-3">
+          <button onclick={`navigator.clipboard.writeText(document.getElementById('baja-snippet').innerText.trim()); this.textContent='✓ Copiado';`}
+            class="btn-primary">
+            📋 Copiar al portapapeles
+          </button>
+          <span class="text-xs text-stone-500">Pegá en overrides.json y corré <code>actualizar.cmd</code></span>
+        </div>
+        <p class="text-xs text-stone-400 mt-3">
+          Tipos válidos: <code>muerte</code> · <code>extravio</code> · <code>robo</code> · <code>baja</code>
+        </p>
+      </div>
+    </section>
+  )}
 </Layout>

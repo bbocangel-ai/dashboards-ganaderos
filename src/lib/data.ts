@@ -47,7 +47,17 @@ export type Animal = {
   last_sesion: string | null;
   ghost?: boolean;
   ghost_nota?: string | null;
+  baja?: boolean;
+  baja_fecha?: string | null;
+  baja_tipo?: string | null;
+  baja_nota?: string | null;
 };
+
+export type AnimalBaja = Animal & { baja: true; baja_fecha: string | null; baja_tipo: string; baja_nota: string | null };
+
+export function animalesBajas(): AnimalBaja[] {
+  return animales.filter(a => a.baja) as AnimalBaja[];
+}
 
 export type GroupRow = {
   key: string;

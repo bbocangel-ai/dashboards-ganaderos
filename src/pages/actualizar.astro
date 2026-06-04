@@ -9,11 +9,29 @@ const fmt = generatedDate.toLocaleString('es-BO', { dateStyle: 'long', timeStyle
   <h2 class="text-2xl font-bold text-stone-900 mb-1">Actualizar dashboards</h2>
   <p class="text-sm text-stone-500 mb-8">Última sincronización: <strong>{fmt}</strong></p>
 
+  <div class="card card-accent-emerald p-6 mb-6">
+    <div class="flex items-center gap-3 mb-3">
+      <span class="text-2xl">⚡</span>
+      <h3 class="text-base font-bold text-stone-900">Auto-sync (recomendado, lo configurás una vez)</h3>
+    </div>
+    <p class="text-sm text-stone-600 mb-3">
+      Te olvidás del <code>actualizar.cmd</code>. Una tarea programada de Windows lo corre cada 30 min en background.
+    </p>
+    <ol class="space-y-2 text-sm text-stone-700 list-decimal list-inside ml-2 mb-3">
+      <li>Doble-click en <code>setup-auto-sync.cmd</code> en la carpeta del repo</li>
+      <li>Te pregunta S/N — apretá <strong>S</strong> y Enter</li>
+      <li>Windows registra la tarea. Listo, podés cerrar el CMD.</li>
+    </ol>
+    <p class="text-xs text-stone-500">
+      A partir de ahí, cada 30 min se sincroniza solo. Cuando subas un trabajo a SisGado, en máximo 30 min ya está en el dashboard.
+    </p>
+  </div>
+
   <div class="grid lg:grid-cols-2 gap-6">
     <div class="card p-6">
       <div class="flex items-center gap-3 mb-3">
         <span class="w-8 h-8 rounded-full bg-brand-100 text-brand-700 font-bold flex items-center justify-center">1</span>
-        <h3 class="text-base font-semibold text-stone-900">Doble-click al script</h3>
+        <h3 class="text-base font-semibold text-stone-900">Sync manual (si querés ya)</h3>
       </div>
       <p class="text-sm text-stone-600 mb-4">
         Hacé doble-click en <code>actualizar.cmd</code> dentro del repo. El script:
