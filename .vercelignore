@@ -1,0 +1,7 @@
+dist
+node_modules
+.astro
+.git
+.github
+*.cmd
+*.log
