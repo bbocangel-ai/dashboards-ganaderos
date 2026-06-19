@@ -15,7 +15,7 @@
 
   "sesion_origen_fallback": {
     "_doc": "Para animales sin LOCAL asignado en SisGado, asigna origen repartiendo round-robin entre los origenes listados.",
-    "DADOS - 0 - 19/06/26 11:11": ["SJ ABEL", "SJ LUIS ANEZ"]
+    "DADOS - 0 - 19/06/26 11:11": ["SJ ABEL", "SJ LUIS ANEZ", "ROJAS MONT", "CARMEN RIB CONCE", "CESPEDES", "CHIQUI"]
   },
 
   "pesajes_cutoff": {
