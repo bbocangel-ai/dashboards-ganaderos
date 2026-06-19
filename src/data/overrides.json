@@ -54,6 +54,12 @@
   ],
 
   "ventas_split": {
+    "DADOS - 0 - 19/06/26 11:11": {
+      "nota": "Venta vaquillas cría a Rodrigo Vaca Diez (comercial: Abelardo)",
+      "destinos": [
+        { "comprador": "Rodrigo Vaca Diez", "cabezas": 190, "peso_bruto_prom": 376, "peso_neto_prom": 357, "bs_kg": 20, "fecha": "2026-06-18" }
+      ]
+    },
     "DADOS - 0 - 26/05/26 06:07": {
       "nota": "Venta vaquillas a Inducarne",
       "destinos": [
