@@ -10,9 +10,12 @@
   "animales_bajas": {},
 
   "animal_partidario_overrides": {
-    "_doc": "Asignar manualmente un animal (por chip NRO) a un partidario. Útil cuando se cae el chip y se identifica por el numero de paleta. Valores válidos: BB, DB, MA, MB, FB.",
-    "964001060600347": "FB",
-    "982000415356333": "BB"
+    "_doc": "Asignar manualmente un animal (por chip NRO) a un partidario. Útil cuando se cae el chip y se identifica por el numero de paleta. Valores válidos: BB, DB, MA, MB, FB."
+  },
+
+  "sesion_origen_fallback": {
+    "_doc": "Para animales sin LOCAL asignado en SisGado, asigna origen repartiendo round-robin entre los origenes listados.",
+    "DADOS - 0 - 19/06/26 11:11": ["SJ ABEL", "SJ LUIS ANEZ"]
   },
 
   "pesajes_cutoff": {

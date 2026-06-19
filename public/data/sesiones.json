@@ -36,51 +36,53 @@
         "bs_kg": 20,
         "fecha_venta": "2026-06-18",
         "comprador": "Rodrigo Vaca Diez"
-      },
+      }
+    ],
+    "por_proveedor": [
       {
-        "key": "BB",
-        "label": "Bruno Bocangel",
-        "cabezas": 1,
-        "peso_prom": 353,
-        "peso_neto_total": 335,
-        "peso_neto_prom": 335.3,
-        "peso_bruto_total": 353,
-        "peso_ingreso_prom": 353,
-        "ganancia_kg_prom": 0,
-        "gmd_prom": null,
-        "dias_prom": 0,
-        "precio_compra_bs_prom": 437646,
-        "ingreso_fecha_min": "2026-05-16",
+        "key": "SJ LUIS ANEZ",
+        "label": "SJ LUIS ANEZ",
+        "cabezas": 93,
+        "peso_prom": 376.2,
+        "peso_neto_total": 33234,
+        "peso_neto_prom": 357.4,
+        "peso_bruto_total": 34983,
+        "peso_ingreso_prom": 366,
+        "ganancia_kg_prom": 10.2,
+        "gmd_prom": 0.445,
+        "dias_prom": 24,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
         "last_fecha_max": "2026-06-18",
         "origenes": [
-          "ROCCO"
+          "SJ LUIS ANEZ"
         ],
         "bs_kg": 20,
         "fecha_venta": "2026-06-18",
         "comprador": "Rodrigo Vaca Diez"
       },
       {
-        "key": "FB",
-        "label": "Fabio Bocangel",
-        "cabezas": 1,
-        "peso_prom": 365,
-        "peso_neto_total": 347,
-        "peso_neto_prom": 346.8,
-        "peso_bruto_total": 365,
-        "peso_ingreso_prom": 365,
-        "ganancia_kg_prom": 0,
-        "gmd_prom": null,
-        "dias_prom": 0,
-        "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "key": "SJ ABEL",
+        "label": "SJ ABEL",
+        "cabezas": 92,
+        "peso_prom": 377.6,
+        "peso_neto_total": 32998,
+        "peso_neto_prom": 358.7,
+        "peso_bruto_total": 34735,
+        "peso_ingreso_prom": 370.5,
+        "ganancia_kg_prom": 7,
+        "gmd_prom": 0.444,
+        "dias_prom": 17,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
         "last_fecha_max": "2026-06-18",
-        "origenes": [],
+        "origenes": [
+          "SJ ABEL"
+        ],
         "bs_kg": 20,
         "fecha_venta": "2026-06-18",
         "comprador": "Rodrigo Vaca Diez"
-      }
-    ],
-    "por_proveedor": [
+      },
       {
         "key": "ROCCO",
         "label": "ROCCO",
@@ -98,50 +100,6 @@
         "last_fecha_max": "2026-06-18",
         "origenes": [
           "ROCCO"
-        ],
-        "bs_kg": 20,
-        "fecha_venta": "2026-06-18",
-        "comprador": "Rodrigo Vaca Diez"
-      },
-      {
-        "key": "SJ LUIS ANEZ",
-        "label": "SJ LUIS ANEZ",
-        "cabezas": 3,
-        "peso_prom": 351.3,
-        "peso_neto_total": 1001,
-        "peso_neto_prom": 333.8,
-        "peso_bruto_total": 1054,
-        "peso_ingreso_prom": 180.5,
-        "ganancia_kg_prom": 170.8,
-        "gmd_prom": 0.401,
-        "dias_prom": 429,
-        "precio_compra_bs_prom": 4721,
-        "ingreso_fecha_min": "2025-09-30",
-        "last_fecha_max": "2026-06-18",
-        "origenes": [
-          "SJ LUIS ANEZ"
-        ],
-        "bs_kg": 20,
-        "fecha_venta": "2026-06-18",
-        "comprador": "Rodrigo Vaca Diez"
-      },
-      {
-        "key": "SJ ABEL",
-        "label": "SJ ABEL",
-        "cabezas": 1,
-        "peso_prom": 350,
-        "peso_neto_total": 333,
-        "peso_neto_prom": 332.5,
-        "peso_bruto_total": 350,
-        "peso_ingreso_prom": 170.5,
-        "ganancia_kg_prom": 179.5,
-        "gmd_prom": 0.372,
-        "dias_prom": 482,
-        "precio_compra_bs_prom": 2982,
-        "ingreso_fecha_min": "2025-03-29",
-        "last_fecha_max": "2026-06-18",
-        "origenes": [
-          "SJ ABEL"
         ],
         "bs_kg": 20,
         "fecha_venta": "2026-06-18",
@@ -1690,23 +1648,6 @@
         "bs_kg": 23,
         "fecha_venta": "2026-05-06",
         "comprador": "Frigosi"
-      },
-      {
-        "key": "BB",
-        "label": "Bruno Bocangel",
-        "cabezas": 1,
-        "peso_prom": 272,
-        "peso_neto_total": 258,
-        "peso_neto_prom": 258.4,
-        "peso_bruto_total": 272,
-        "peso_ingreso_prom": 272,
-        "ganancia_kg_prom": 0,
-        "gmd_prom": null,
-        "dias_prom": 0,
-        "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
-        "last_fecha_max": "2026-02-05",
-        "origenes": []
       }
     ],
     "por_proveedor": [

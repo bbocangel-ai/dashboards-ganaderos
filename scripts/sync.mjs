@@ -474,6 +474,29 @@ async function main() {
   if (nReasignados > 0) console.log(`  ${nReasignados} animales reasignados a partidario por chip`);
   if (noEncontrados.length > 0) console.log(`  ⚠ chips no encontrados en SisGado: ${noEncontrados.join(', ')}`);
 
+  // Aplicar fallback de origen por sesión (sesion_origen_fallback).
+  // Para animales sin LOCAL en SisGado, asigna origen repartiendo round-robin
+  // entre los proveedores listados.
+  const sesionOrigFallback = overrides.sesion_origen_fallback || {};
+  let nOrigFallback = 0;
+  for (const [sesion, origenes] of Object.entries(sesionOrigFallback)) {
+    if (sesion.startsWith('_') || !Array.isArray(origenes) || origenes.length === 0) continue;
+    const sinOrig = animales
+      .filter(a => !a.proveedor && a.last_sesion === sesion)
+      .sort((a, b) => a.id_animal - b.id_animal);
+    sinOrig.forEach((a, i) => {
+      a.proveedor = origenes[i % origenes.length];
+      a.proveedor_fallback = true;
+      nOrigFallback++;
+    });
+    if (sinOrig.length > 0) {
+      const dist = {};
+      sinOrig.forEach(a => dist[a.proveedor] = (dist[a.proveedor] || 0) + 1);
+      console.log(`  ${sinOrig.length} animales en ${sesion} → ${Object.entries(dist).map(([k,v]) => k+':'+v).join(', ')}`);
+    }
+  }
+  if (nOrigFallback > 0) console.log(`  ${nOrigFallback} origenes asignados por fallback`);
+
   // Aplicar bajas (animales_bajas en overrides). Key = nro (chip)
   const bajaByNro = {};
   for (const [nro, info] of Object.entries(bajas)) {
