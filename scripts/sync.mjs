@@ -442,6 +442,38 @@ async function main() {
     };
   });
 
+  // Aplicar reasignación de partidario por chip (animal_partidario_overrides).
+  // Útil cuando se cae el chip y se identifica por número de paleta.
+  // SisGado a veces tiene el mismo chip con prefijos (A) y (B) — ambos quedan asignados.
+  const partOverrides = overrides.animal_partidario_overrides || {};
+  const normalizeChip = (s) => String(s).replace(/[^0-9]/g, '');
+  let nReasignados = 0;
+  let noEncontrados = [];
+  for (const [nro, pid] of Object.entries(partOverrides)) {
+    if (nro.startsWith('_')) continue; // skip _doc
+    const nroDigits = normalizeChip(nro);
+    // Match si los dígitos del nro buscado terminan igual que los del animal,
+    // o viceversa (uno puede tener más prefijo país que el otro)
+    const targets = animales.filter(a => {
+      if (!a.nro) return false;
+      const aDigits = normalizeChip(a.nro);
+      if (!aDigits) return false;
+      return nroDigits.endsWith(aDigits) || aDigits.endsWith(nroDigits);
+    });
+    if (targets.length === 0) {
+      noEncontrados.push(nro);
+      continue;
+    }
+    for (const t of targets) {
+      t.partidario_id = pid;
+      t.partidario = PARTIDARIOS[pid] || pid;
+      t.partidario_override = true;
+      nReasignados++;
+    }
+  }
+  if (nReasignados > 0) console.log(`  ${nReasignados} animales reasignados a partidario por chip`);
+  if (noEncontrados.length > 0) console.log(`  ⚠ chips no encontrados en SisGado: ${noEncontrados.join(', ')}`);
+
   // Aplicar bajas (animales_bajas en overrides). Key = nro (chip)
   const bajaByNro = {};
   for (const [nro, info] of Object.entries(bajas)) {

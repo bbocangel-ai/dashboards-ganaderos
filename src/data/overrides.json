@@ -9,6 +9,12 @@
 
   "animales_bajas": {},
 
+  "animal_partidario_overrides": {
+    "_doc": "Asignar manualmente un animal (por chip NRO) a un partidario. Útil cuando se cae el chip y se identifica por el numero de paleta. Valores válidos: BB, DB, MA, MB, FB.",
+    "964001060600347": "FB",
+    "982000415356333": "BB"
+  },
+
   "pesajes_cutoff": {
     "_doc": "Filtra pesajes anteriores a una fecha (chips reciclados que tienen historial del dueño previo). Las claves de por_proveedor son substring case-insensitive del nombre del proveedor parseado.",
     "por_proveedor": {

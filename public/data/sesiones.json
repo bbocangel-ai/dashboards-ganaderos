@@ -36,6 +36,48 @@
         "bs_kg": 20,
         "fecha_venta": "2026-06-18",
         "comprador": "Rodrigo Vaca Diez"
+      },
+      {
+        "key": "BB",
+        "label": "Bruno Bocangel",
+        "cabezas": 1,
+        "peso_prom": 353,
+        "peso_neto_total": 335,
+        "peso_neto_prom": 335.3,
+        "peso_bruto_total": 353,
+        "peso_ingreso_prom": 353,
+        "ganancia_kg_prom": 0,
+        "gmd_prom": null,
+        "dias_prom": 0,
+        "precio_compra_bs_prom": 437646,
+        "ingreso_fecha_min": "2026-05-16",
+        "last_fecha_max": "2026-06-18",
+        "origenes": [
+          "ROCCO"
+        ],
+        "bs_kg": 20,
+        "fecha_venta": "2026-06-18",
+        "comprador": "Rodrigo Vaca Diez"
+      },
+      {
+        "key": "FB",
+        "label": "Fabio Bocangel",
+        "cabezas": 1,
+        "peso_prom": 365,
+        "peso_neto_total": 347,
+        "peso_neto_prom": 346.8,
+        "peso_bruto_total": 365,
+        "peso_ingreso_prom": 365,
+        "ganancia_kg_prom": 0,
+        "gmd_prom": null,
+        "dias_prom": 0,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": null,
+        "last_fecha_max": "2026-06-18",
+        "origenes": [],
+        "bs_kg": 20,
+        "fecha_venta": "2026-06-18",
+        "comprador": "Rodrigo Vaca Diez"
       }
     ],
     "por_proveedor": [
@@ -1648,6 +1690,23 @@
         "bs_kg": 23,
         "fecha_venta": "2026-05-06",
         "comprador": "Frigosi"
+      },
+      {
+        "key": "BB",
+        "label": "Bruno Bocangel",
+        "cabezas": 1,
+        "peso_prom": 272,
+        "peso_neto_total": 258,
+        "peso_neto_prom": 258.4,
+        "peso_bruto_total": 272,
+        "peso_ingreso_prom": 272,
+        "ganancia_kg_prom": 0,
+        "gmd_prom": null,
+        "dias_prom": 0,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": null,
+        "last_fecha_max": "2026-02-05",
+        "origenes": []
       }
     ],
     "por_proveedor": [
