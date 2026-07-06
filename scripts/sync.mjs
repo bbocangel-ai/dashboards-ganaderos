@@ -474,26 +474,68 @@ async function main() {
   if (nReasignados > 0) console.log(`  ${nReasignados} animales reasignados a partidario por chip`);
   if (noEncontrados.length > 0) console.log(`  ⚠ chips no encontrados en SisGado: ${noEncontrados.join(', ')}`);
 
+  // Aplicar reasignación de origen por sesión (sesion_origen_reasignacion).
+  // Cambia proveedores existentes por otros. Format:
+  //   { "sesion_desc": { "PROVEEDOR_ORIGINAL": "PROVEEDOR_NUEVO", ... } }
+  const sesionOrigReasig = overrides.sesion_origen_reasignacion || {};
+  let nReasignados_orig = 0;
+  for (const [sesion, mapping] of Object.entries(sesionOrigReasig)) {
+    if (sesion.startsWith('_') || typeof mapping !== 'object') continue;
+    for (const a of animales) {
+      if (a.last_sesion !== sesion || !a.proveedor) continue;
+      const upper = a.proveedor.toUpperCase();
+      for (const [orig, nuevo] of Object.entries(mapping)) {
+        if (orig.startsWith('_')) continue;
+        if (upper.includes(orig.toUpperCase())) {
+          a.proveedor = nuevo;
+          a.proveedor_reasignado = true;
+          nReasignados_orig++;
+          break;
+        }
+      }
+    }
+  }
+  if (nReasignados_orig > 0) console.log(`  ${nReasignados_orig} orígenes reasignados`);
+
   // Aplicar fallback de origen por sesión (sesion_origen_fallback).
-  // Para animales sin LOCAL en SisGado, asigna origen repartiendo round-robin
-  // entre los proveedores listados.
+  // Format A: array de proveedores (round-robin equal)
+  //   { "sesion_desc": ["PROV1", "PROV2", ...] }
+  // Format B: objeto con cantidad exacta por proveedor
+  //   { "sesion_desc": { "PROV1": 15, "PROV2": 10, ... } }
   const sesionOrigFallback = overrides.sesion_origen_fallback || {};
   let nOrigFallback = 0;
-  for (const [sesion, origenes] of Object.entries(sesionOrigFallback)) {
-    if (sesion.startsWith('_') || !Array.isArray(origenes) || origenes.length === 0) continue;
+  for (const [sesion, config] of Object.entries(sesionOrigFallback)) {
+    if (sesion.startsWith('_')) continue;
     const sinOrig = animales
       .filter(a => !a.proveedor && a.last_sesion === sesion)
       .sort((a, b) => a.id_animal - b.id_animal);
-    sinOrig.forEach((a, i) => {
-      a.proveedor = origenes[i % origenes.length];
-      a.proveedor_fallback = true;
-      nOrigFallback++;
-    });
-    if (sinOrig.length > 0) {
-      const dist = {};
-      sinOrig.forEach(a => dist[a.proveedor] = (dist[a.proveedor] || 0) + 1);
-      console.log(`  ${sinOrig.length} animales en ${sesion} → ${Object.entries(dist).map(([k,v]) => k+':'+v).join(', ')}`);
+    if (sinOrig.length === 0) continue;
+
+    if (Array.isArray(config)) {
+      // Round-robin equal
+      if (config.length === 0) continue;
+      sinOrig.forEach((a, i) => {
+        a.proveedor = config[i % config.length];
+        a.proveedor_fallback = true;
+        nOrigFallback++;
+      });
+    } else if (typeof config === 'object') {
+      // Cantidades exactas
+      const queue = [];
+      for (const [prov, count] of Object.entries(config)) {
+        if (prov.startsWith('_')) continue;
+        for (let i = 0; i < count; i++) queue.push(prov);
+      }
+      const provs = Object.keys(config).filter(k => !k.startsWith('_'));
+      sinOrig.forEach((a, i) => {
+        a.proveedor = queue[i] || provs[i % provs.length];
+        a.proveedor_fallback = true;
+        nOrigFallback++;
+      });
     }
+    const dist = {};
+    sinOrig.forEach(a => dist[a.proveedor] = (dist[a.proveedor] || 0) + 1);
+    console.log(`  ${sinOrig.length} animales en ${sesion} → ${Object.entries(dist).map(([k,v]) => k+':'+v).join(', ')}`);
   }
   if (nOrigFallback > 0) console.log(`  ${nOrigFallback} origenes asignados por fallback`);
 
@@ -530,9 +572,14 @@ async function main() {
         if (ms.length > 0) {
           return Math.round((ms.reduce((s, a) => s + (a[field] || 0), 0) / ms.length) * 10) / 10;
         }
+        // 2) Si no hay partidarios en la sesión, usar promedio de TODA la sesión
+        // (representa mejor la venta actual que un promedio general del partidario)
+        const sesionAnimals = animales.filter(a => a.last_sesion === sesion);
+        if (sesionAnimals.length > 0) {
+          return Math.round((sesionAnimals.reduce((s, a) => s + (a[field] || 0), 0) / sesionAnimals.length) * 10) / 10;
+        }
       }
-      // 2) Por partidario (la categoria real en SisGado es NI casi siempre, así que
-      //    no filtramos por categoría — el partidario mismo tiene su perfil de peso)
+      // 3) Por partidario general
       const ms = animales.filter(a => a.partidario_id === partidario_id);
       if (ms.length === 0) return 0;
       return Math.round((ms.reduce((s, a) => s + (a[field] || 0), 0) / ms.length) * 10) / 10;
@@ -563,7 +610,13 @@ async function main() {
       if (firstP === 'promedio' || firstP == null) firstP = promedio(pid, cat, 'first_peso', sesion);
       if (lastP  === 'promedio' || lastP  == null) lastP  = promedio(pid, cat, 'last_peso',  sesion);
 
-      const dias = g.dias_en_campo ?? tpl?.dias_en_campo ?? 0;
+      let dias = g.dias_en_campo;
+      if (dias == null) {
+        // Cascada: sesion avg → template → 0
+        dias = promedio(pid, cat, 'dias_en_campo', sesion);
+        if (!dias || dias === 0) dias = tpl?.dias_en_campo ?? 0;
+      }
+      dias = Math.round(dias);
       const ganancia = Math.round((lastP - firstP) * 10) / 10;
       const gmd = dias > 0 ? Math.round((ganancia / dias) * 1000) / 1000 : null;
 
