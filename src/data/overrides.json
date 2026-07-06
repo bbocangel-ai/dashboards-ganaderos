@@ -17,8 +17,8 @@
     "_doc": "Para animales sin LOCAL en SisGado. Formato A: array de proveedores (round-robin equal). Formato B: objeto {proveedor: cantidad} para reparto exacto.",
     "DADOS - 0 - 19/06/26 11:11": ["SJ ABEL", "SJ LUIS ANEZ", "ROJAS MONT", "CARMEN RIB CONCE", "CESPEDES", "CHIQUI"],
     "DADOS - 0 - 06/07/26 18:20": {
-      "FERCOGAN": 34,
-      "GUIT": 33
+      "FERCOGAN": 32,
+      "GUIT": 32
     }
   },
 
@@ -71,18 +71,21 @@
     { "id": "BB-V3", "partidario_id": "BB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
     { "id": "BB-V4", "partidario_id": "BB", "categoria": "TL", "peso": "promedio", "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05" },
 
-    { "id": "MB-V1", "partidario_id": "MB", "categoria": "TL", "last_peso": 370, "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05 a 370 kg" },
-
-    { "id": "DB-J1", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "proveedor": "NANCHI", "vendido_en_sesion": "DADOS - 0 - 06/07/26 18:20", "nota": "vendido 06/07 Frigosi" },
-    { "id": "DB-J2", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "proveedor": "NANCHI", "vendido_en_sesion": "DADOS - 0 - 06/07/26 18:20", "nota": "vendido 06/07 Frigosi" },
-    { "id": "DB-J3", "partidario_id": "DB", "categoria": "TL", "peso": "promedio", "proveedor": "NANCHI", "vendido_en_sesion": "DADOS - 0 - 06/07/26 18:20", "nota": "vendido 06/07 Frigosi" }
+    { "id": "MB-V1", "partidario_id": "MB", "categoria": "TL", "last_peso": 370, "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05 a 370 kg" }
   ],
+
+  "sesion_animal_reasignacion": {
+    "_doc": "Toma N animales ya existentes en una sesion (los primeros sin partidario y sin origen) y les asigna partidario+proveedor. NO agrega cabezas.",
+    "DADOS - 0 - 06/07/26 18:20": [
+      { "cantidad": 3, "partidario_id": "DB", "proveedor": "NANCHI" }
+    ]
+  },
 
   "ventas_split": {
     "DADOS - 0 - 06/07/26 18:20": {
       "nota": "Venta torillos pesados a Frigosi",
       "destinos": [
-        { "comprador": "Frigosi", "cabezas": 91, "peso_bruto_prom": 526, "peso_neto_prom": 500, "bs_kg": 21.5, "fecha": "2026-07-06" }
+        { "comprador": "Frigosi", "cabezas": 88, "peso_bruto_prom": 526, "peso_neto_prom": 500, "bs_kg": 21.5, "fecha": "2026-07-06" }
       ]
     },
     "DADOS - 0 - 19/06/26 11:11": {

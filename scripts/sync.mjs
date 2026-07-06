@@ -497,6 +497,35 @@ async function main() {
   }
   if (nReasignados_orig > 0) console.log(`  ${nReasignados_orig} orígenes reasignados`);
 
+  // Aplicar reasignación de animales existentes (sesion_animal_reasignacion).
+  // Toma N animales sin partidario y sin origen de una sesión y les asigna
+  // partidario_id y proveedor. NO crea animales nuevos.
+  const sesionAnimalReasig = overrides.sesion_animal_reasignacion || {};
+  let nAnimalReasig = 0;
+  for (const [sesion, entries] of Object.entries(sesionAnimalReasig)) {
+    if (sesion.startsWith('_') || !Array.isArray(entries)) continue;
+    // Candidatos: sin partidario y sin origen, en la sesión
+    let candidatos = animales
+      .filter(a => a.last_sesion === sesion && !a.partidario_id && !a.proveedor)
+      .sort((a, b) => a.id_animal - b.id_animal);
+    for (const entry of entries) {
+      const n = entry.cantidad || 0;
+      const pid = entry.partidario_id;
+      const prov = entry.proveedor;
+      if (!pid || !prov || n <= 0) continue;
+      const chunk = candidatos.slice(0, n);
+      for (const a of chunk) {
+        a.partidario_id = pid;
+        a.partidario = PARTIDARIOS[pid] || pid;
+        a.proveedor = prov;
+        a.partidario_reasignado = true;
+        nAnimalReasig++;
+      }
+      candidatos = candidatos.slice(n);
+    }
+  }
+  if (nAnimalReasig > 0) console.log(`  ${nAnimalReasig} animales reasignados a partidario+proveedor de sesión`);
+
   // Aplicar fallback de origen por sesión (sesion_origen_fallback).
   // Format A: array de proveedores (round-robin equal)
   //   { "sesion_desc": ["PROV1", "PROV2", ...] }
