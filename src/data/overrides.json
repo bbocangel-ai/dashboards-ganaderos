@@ -17,12 +17,8 @@
     "_doc": "Para animales sin LOCAL en SisGado. Formato A: array de proveedores (round-robin equal). Formato B: objeto {proveedor: cantidad} para reparto exacto.",
     "DADOS - 0 - 19/06/26 11:11": ["SJ ABEL", "SJ LUIS ANEZ", "ROJAS MONT", "CARMEN RIB CONCE", "CESPEDES", "CHIQUI"],
     "DADOS - 0 - 06/07/26 18:20": {
-      "FERCOGAN": 15,
-      "GUIT": 15,
-      "COBJ RODEO": 12,
-      "LAS CHIVAS": 10,
-      "GONZALO": 8,
-      "CARLOS": 7
+      "FERCOGAN": 34,
+      "GUIT": 33
     }
   },
 
