@@ -474,6 +474,28 @@ async function main() {
   if (nReasignados > 0) console.log(`  ${nReasignados} animales reasignados a partidario por chip`);
   if (noEncontrados.length > 0) console.log(`  ⚠ chips no encontrados en SisGado: ${noEncontrados.join(', ')}`);
 
+  // Aplicar mapping de LOCAL/proveedor a partidario (local_partidario_mapping).
+  // Cuando un LOCAL representa un partidario (ej. DIEGO TOR MARZO - TAVERA),
+  // se cambia partidario_id + proveedor real (el origen).
+  const localPartMap = overrides.local_partidario_mapping || {};
+  let nLocalMapped = 0;
+  for (const a of animales) {
+    if (!a.proveedor) continue;
+    const upper = a.proveedor.toUpperCase();
+    for (const [pattern, mapping] of Object.entries(localPartMap)) {
+      if (pattern.startsWith('_')) continue;
+      if (upper.includes(pattern.toUpperCase())) {
+        a.partidario_id = mapping.partidario_id;
+        a.partidario = PARTIDARIOS[mapping.partidario_id] || mapping.partidario_id;
+        a.proveedor = mapping.proveedor;
+        a.local_mapped = true;
+        nLocalMapped++;
+        break;
+      }
+    }
+  }
+  if (nLocalMapped > 0) console.log(`  ${nLocalMapped} animales mapeados de LOCAL a partidario`);
+
   // Aplicar reasignación de origen por sesión (sesion_origen_reasignacion).
   // Cambia proveedores existentes por otros. Format:
   //   { "sesion_desc": { "PROVEEDOR_ORIGINAL": "PROVEEDOR_NUEVO", ... } }
@@ -567,6 +589,28 @@ async function main() {
     console.log(`  ${sinOrig.length} animales en ${sesion} → ${Object.entries(dist).map(([k,v]) => k+':'+v).join(', ')}`);
   }
   if (nOrigFallback > 0) console.log(`  ${nOrigFallback} origenes asignados por fallback`);
+
+  // Post-procesamiento: para animales con proveedor pero sin fecha_ingreso o
+  // sin proveedor_precio_bs, copiar de un template con el mismo proveedor.
+  // Cubre casos donde asignamos proveedor via fallback/reasignacion/mapping.
+  const templateByProv = new Map();
+  for (const a of animales) {
+    if (!a.proveedor) continue;
+    if (!a.ingreso_fecha && !a.proveedor_precio_bs) continue;
+    if (!templateByProv.has(a.proveedor)) {
+      templateByProv.set(a.proveedor, a);
+    }
+  }
+  let nHydrated = 0;
+  for (const a of animales) {
+    if (!a.proveedor) continue;
+    if (a.ingreso_fecha && a.proveedor_precio_bs) continue;
+    const tpl = templateByProv.get(a.proveedor);
+    if (!tpl) continue;
+    if (!a.ingreso_fecha && tpl.ingreso_fecha) { a.ingreso_fecha = tpl.ingreso_fecha; nHydrated++; }
+    if (!a.proveedor_precio_bs && tpl.proveedor_precio_bs) { a.proveedor_precio_bs = tpl.proveedor_precio_bs; }
+  }
+  if (nHydrated > 0) console.log(`  ${nHydrated} animales completados con fecha/precio del template del proveedor`);
 
   // Aplicar bajas (animales_bajas en overrides). Key = nro (chip)
   const bajaByNro = {};

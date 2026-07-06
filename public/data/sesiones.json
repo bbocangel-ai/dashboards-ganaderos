@@ -17,20 +17,21 @@
       {
         "key": "DB",
         "label": "Diego Bocangel",
-        "cabezas": 3,
-        "peso_prom": 522.7,
-        "peso_neto_total": 1490,
-        "peso_neto_prom": 496.5,
-        "peso_bruto_total": 1568,
-        "peso_ingreso_prom": 155.3,
-        "ganancia_kg_prom": 367.3,
+        "cabezas": 4,
+        "peso_prom": 529,
+        "peso_neto_total": 2010,
+        "peso_neto_prom": 502.6,
+        "peso_bruto_total": 2116,
+        "peso_ingreso_prom": 159.8,
+        "ganancia_kg_prom": 369.3,
         "gmd_prom": 0.447,
-        "dias_prom": 822,
-        "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "dias_prom": 826,
+        "precio_compra_bs_prom": 5540,
+        "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2026-07-06",
         "origenes": [
-          "NANCHI"
+          "NANCHI",
+          "TAVERA"
         ],
         "bs_kg": 21.5,
         "fecha_venta": "2026-07-06",
@@ -50,7 +51,7 @@
         "ganancia_kg_prom": 181.9,
         "gmd_prom": 0.683,
         "dias_prom": 284,
-        "precio_compra_bs_prom": 83254,
+        "precio_compra_bs_prom": 24646,
         "ingreso_fecha_min": "2025-03-23",
         "last_fecha_max": "2026-07-06",
         "origenes": [
@@ -72,7 +73,7 @@
         "ganancia_kg_prom": 277.3,
         "gmd_prom": 0.533,
         "dias_prom": 560,
-        "precio_compra_bs_prom": 255495,
+        "precio_compra_bs_prom": 55363,
         "ingreso_fecha_min": "2025-05-01",
         "last_fecha_max": "2026-07-06",
         "origenes": [
@@ -95,7 +96,7 @@
         "gmd_prom": 0.489,
         "dias_prom": 724,
         "precio_compra_bs_prom": 5540,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2026-07-06",
         "origenes": [
           "NANCHI"
@@ -105,8 +106,8 @@
         "comprador": "Frigosi"
       },
       {
-        "key": "DIEGO MARZO - TAVERA",
-        "label": "DIEGO MARZO - TAVERA",
+        "key": "TAVERA",
+        "label": "TAVERA",
         "cabezas": 1,
         "peso_prom": 548,
         "peso_neto_total": 521,
@@ -117,10 +118,10 @@
         "gmd_prom": 0.447,
         "dias_prom": 838,
         "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2026-07-06",
         "origenes": [
-          "DIEGO MARZO - TAVERA"
+          "TAVERA"
         ],
         "bs_kg": 21.5,
         "fecha_venta": "2026-07-06",
@@ -140,12 +141,12 @@
         "ganancia_kg_prom": 234.7,
         "gmd_prom": 0.603,
         "dias_prom": 436,
-        "precio_compra_bs_prom": 148265,
+        "precio_compra_bs_prom": 37890,
         "ingreso_fecha_min": "2025-03-23",
         "last_fecha_max": "2026-07-06",
         "origenes": [
           "NANCHI",
-          "DIEGO MARZO - TAVERA",
+          "TAVERA",
           "FERCOGAN",
           "GUIT"
         ]
@@ -270,8 +271,8 @@
         "ganancia_kg_prom": 4.1,
         "gmd_prom": 0.377,
         "dias_prom": 11,
-        "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "precio_compra_bs_prom": 5316,
+        "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2026-06-18",
         "origenes": [
           "ROJAS MONT"
@@ -314,8 +315,8 @@
         "ganancia_kg_prom": 3.5,
         "gmd_prom": 0.527,
         "dias_prom": 7,
-        "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "precio_compra_bs_prom": 4112,
+        "ingreso_fecha_min": "2025-04-04",
         "last_fecha_max": "2026-06-18",
         "origenes": [
           "CESPEDES"
@@ -382,7 +383,7 @@
         "ganancia_kg_prom": 8.4,
         "gmd_prom": 0.444,
         "dias_prom": 20,
-        "precio_compra_bs_prom": 245042,
+        "precio_compra_bs_prom": 20941,
         "ingreso_fecha_min": "2025-03-29",
         "last_fecha_max": "2026-06-18",
         "origenes": [
@@ -518,19 +519,20 @@
       {
         "key": "DB",
         "label": "Diego Bocangel",
-        "cabezas": 1,
-        "peso_prom": 522,
-        "peso_neto_total": 496,
-        "peso_neto_prom": 495.9,
-        "peso_bruto_total": 522,
-        "peso_ingreso_prom": 287,
-        "ganancia_kg_prom": 235,
-        "gmd_prom": 0.59,
-        "dias_prom": 398,
+        "cabezas": 2,
+        "peso_prom": 393.5,
+        "peso_neto_total": 748,
+        "peso_neto_prom": 373.8,
+        "peso_bruto_total": 787,
+        "peso_ingreso_prom": 233.3,
+        "ganancia_kg_prom": 160.3,
+        "gmd_prom": 0.348,
+        "dias_prom": 602,
         "precio_compra_bs_prom": 5540,
         "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2026-06-03",
         "origenes": [
+          "TAVERA",
           "NANCHI"
         ]
       }
@@ -651,8 +653,8 @@
         ]
       },
       {
-        "key": "DIEGO MARZO - TAVERA",
-        "label": "DIEGO MARZO - TAVERA",
+        "key": "TAVERA",
+        "label": "TAVERA",
         "cabezas": 1,
         "peso_prom": 265,
         "peso_neto_total": 252,
@@ -663,10 +665,10 @@
         "gmd_prom": 0.106,
         "dias_prom": 805,
         "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2026-06-03",
         "origenes": [
-          "DIEGO MARZO - TAVERA"
+          "TAVERA"
         ]
       },
       {
@@ -726,7 +728,7 @@
         "last_fecha_max": "2026-06-03",
         "origenes": [
           "NAYAR SIV",
-          "DIEGO MARZO - TAVERA",
+          "TAVERA",
           "NANCHI",
           "GUIT",
           "FERCOGAN",
@@ -3962,6 +3964,25 @@
     "peso_prom": 235.4,
     "por_partidario": [
       {
+        "key": "DB",
+        "label": "Diego Bocangel",
+        "cabezas": 2,
+        "peso_prom": 222,
+        "peso_neto_total": 422,
+        "peso_neto_prom": 210.9,
+        "peso_bruto_total": 444,
+        "peso_ingreso_prom": 169.5,
+        "ganancia_kg_prom": 52.5,
+        "gmd_prom": 0.083,
+        "dias_prom": 635,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2025-11-06",
+        "last_fecha_max": "2025-12-15",
+        "origenes": [
+          "TAVERA"
+        ]
+      },
+      {
         "key": "FB",
         "label": "Fabio Bocangel",
         "cabezas": 1,
@@ -4002,8 +4023,8 @@
         ]
       },
       {
-        "key": "DIEGO MARZO - TAVERA",
-        "label": "DIEGO MARZO - TAVERA",
+        "key": "TAVERA",
+        "label": "TAVERA",
         "cabezas": 2,
         "peso_prom": 222,
         "peso_neto_total": 422,
@@ -4017,7 +4038,7 @@
         "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2025-12-15",
         "origenes": [
-          "DIEGO MARZO - TAVERA"
+          "TAVERA"
         ]
       },
       {
@@ -4095,7 +4116,7 @@
         "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2025-12-15",
         "origenes": [
-          "DIEGO MARZO - TAVERA",
+          "TAVERA",
           "MARZO. TAVERA + WALTER ANEZ",
           "GRY",
           "NANCHI",
@@ -4549,7 +4570,7 @@
         "gmd_prom": 0.5,
         "dias_prom": 210,
         "precio_compra_bs_prom": 5540,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2025-11-27",
         "origenes": [
           "NANCHI"
@@ -4570,7 +4591,7 @@
         "gmd_prom": 0.507,
         "dias_prom": 89,
         "precio_compra_bs_prom": 5400,
-        "ingreso_fecha_min": "2025-05-01",
+        "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2025-12-01",
         "origenes": [
           "NANCHI",
@@ -5712,7 +5733,7 @@
         "gmd_prom": 0.162,
         "dias_prom": 173,
         "precio_compra_bs_prom": 5540,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2025-10-21",
         "origenes": [
           "NANCHI"
@@ -5852,7 +5873,7 @@
         "gmd_prom": 0.178,
         "dias_prom": 169,
         "precio_compra_bs_prom": 5540,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2025-10-17",
         "origenes": [
           "NANCHI"
@@ -5873,7 +5894,7 @@
         "gmd_prom": 0.253,
         "dias_prom": 187,
         "precio_compra_bs_prom": 5540,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2025-10-17",
         "origenes": [
           "NANCHI"
@@ -6028,7 +6049,7 @@
         "gmd_prom": 0.211,
         "dias_prom": 161,
         "precio_compra_bs_prom": 5540,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2025-10-09",
         "origenes": [
           "NANCHI"
@@ -6049,7 +6070,7 @@
         "gmd_prom": 0.358,
         "dias_prom": 329,
         "precio_compra_bs_prom": 5540,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2025-10-09",
         "origenes": [
           "NANCHI"
@@ -6382,7 +6403,7 @@
         "gmd_prom": 0.266,
         "dias_prom": 139,
         "precio_compra_bs_prom": 5540,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2025-09-17",
         "origenes": [
           "NANCHI"
@@ -6403,7 +6424,7 @@
         "gmd_prom": 0.339,
         "dias_prom": 240,
         "precio_compra_bs_prom": 5540,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2025-09-19",
         "origenes": [
           "NANCHI"
@@ -6640,7 +6661,7 @@
         "gmd_prom": 0.155,
         "dias_prom": 103,
         "precio_compra_bs_prom": 5540,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2025-08-12",
         "origenes": [
           "NANCHI"
@@ -6661,7 +6682,7 @@
         "gmd_prom": 0.155,
         "dias_prom": 103,
         "precio_compra_bs_prom": 5540,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2025-08-12",
         "origenes": [
           "NANCHI"
@@ -7530,7 +7551,7 @@
         "gmd_prom": null,
         "dias_prom": 0,
         "precio_compra_bs_prom": 5540,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2025-05-01",
         "origenes": [
           "NANCHI"
@@ -7551,7 +7572,7 @@
         "gmd_prom": null,
         "dias_prom": 0,
         "precio_compra_bs_prom": 5540,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2025-05-01",
         "origenes": [
           "NANCHI"
@@ -8159,7 +8180,7 @@
         "gmd_prom": 0.412,
         "dias_prom": 328,
         "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2025-02-11",
         "origenes": [
           "MARZO. TAVERA + WALTER ANEZ"
@@ -8180,7 +8201,7 @@
         "gmd_prom": 0.465,
         "dias_prom": 219,
         "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2025-02-11",
         "origenes": [
           "PESADOS",
@@ -8305,7 +8326,27 @@
     "peso_min": 202,
     "peso_max": 268,
     "peso_prom": 231.2,
-    "por_partidario": [],
+    "por_partidario": [
+      {
+        "key": "DB",
+        "label": "Diego Bocangel",
+        "cabezas": 2,
+        "peso_prom": 248.5,
+        "peso_neto_total": 472,
+        "peso_neto_prom": 236.1,
+        "peso_bruto_total": 497,
+        "peso_ingreso_prom": 186.5,
+        "ganancia_kg_prom": 62,
+        "gmd_prom": 0.473,
+        "dias_prom": 131,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2025-11-06",
+        "last_fecha_max": "2024-07-29",
+        "origenes": [
+          "TAVERA"
+        ]
+      }
+    ],
     "por_proveedor": [
       {
         "key": "MARZO. TAVERA + WALTER ANEZ",
@@ -8320,7 +8361,7 @@
         "gmd_prom": 0.464,
         "dias_prom": 131,
         "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2024-07-29",
         "origenes": [
           "MARZO. TAVERA + WALTER ANEZ"
@@ -8346,8 +8387,8 @@
         ]
       },
       {
-        "key": "DIEGO MARZO - TAVERA",
-        "label": "DIEGO MARZO - TAVERA",
+        "key": "TAVERA",
+        "label": "TAVERA",
         "cabezas": 2,
         "peso_prom": 248.5,
         "peso_neto_total": 472,
@@ -8358,10 +8399,10 @@
         "gmd_prom": 0.473,
         "dias_prom": 131,
         "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2024-07-29",
         "origenes": [
-          "DIEGO MARZO - TAVERA"
+          "TAVERA"
         ]
       },
       {
@@ -8398,13 +8439,13 @@
         "gmd_prom": 0.249,
         "dias_prom": 116,
         "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2024-07-29",
         "origenes": [
           "TROPA BRUNO",
           "NUEVOS",
           "MARZO. TAVERA + WALTER ANEZ",
-          "DIEGO MARZO - TAVERA"
+          "TAVERA"
         ]
       }
     ],
@@ -8478,7 +8519,7 @@
         "gmd_prom": 0.258,
         "dias_prom": 97,
         "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2024-06-25",
         "origenes": [
           "MARZO. TAVERA + WALTER ANEZ"
@@ -8499,7 +8540,7 @@
         "gmd_prom": 0.514,
         "dias_prom": 212,
         "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2024-06-25",
         "origenes": [
           "TROPA DIEGO",
@@ -8718,7 +8759,7 @@
         "gmd_prom": 0.611,
         "dias_prom": 61,
         "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2024-05-20",
         "origenes": [
           "MARZO. TAVERA + WALTER ANEZ"
@@ -8739,7 +8780,7 @@
         "gmd_prom": 0.5,
         "dias_prom": 51,
         "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2024-05-20",
         "origenes": [
           "MARZO. TAVERA + WALTER ANEZ"
@@ -8776,7 +8817,7 @@
         "gmd_prom": 0.745,
         "dias_prom": 326,
         "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2024-05-08",
         "origenes": [
           "MARZO. TAVERA + WALTER ANEZ"
@@ -8797,7 +8838,7 @@
         "gmd_prom": 0.654,
         "dias_prom": 53,
         "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2024-05-08",
         "origenes": [
           "MARZO. TAVERA + WALTER ANEZ"
@@ -9164,7 +9205,7 @@
         "gmd_prom": 0.723,
         "dias_prom": 249,
         "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2024-02-21",
         "origenes": [
           "MARZO. TAVERA + WALTER ANEZ"
@@ -9185,7 +9226,7 @@
         "gmd_prom": 0.552,
         "dias_prom": 253,
         "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2024-02-21",
         "origenes": [
           "TROPA MAURICIO CASTEDO",
@@ -9325,7 +9366,7 @@
         "gmd_prom": 0.64,
         "dias_prom": 197,
         "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2024-02-21",
         "origenes": [
           "MARZO. TAVERA + WALTER ANEZ"
@@ -9346,7 +9387,7 @@
         "gmd_prom": 0.611,
         "dias_prom": 271,
         "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": null,
+        "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2024-02-21",
         "origenes": [
           "TROPA MAURICIO CASTEDO",
