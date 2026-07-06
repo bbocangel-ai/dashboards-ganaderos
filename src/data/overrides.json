@@ -76,10 +76,10 @@
 
   "local_partidario_mapping": {
     "_doc": "Cuando el LOCAL/proveedor parseado corresponde a un partidario (no a un proveedor real), reasigna: partidario+proveedor real (origen). Pattern es substring case-insensitive.",
-    "DIEGO MARZO": { "partidario_id": "DB", "proveedor": "TAVERA" },
-    "DIEGO TOR": { "partidario_id": "DB", "proveedor": "TAVERA" },
-    "BRUNO TORILLOS": { "partidario_id": "BB", "proveedor": "TAVERA" },
-    "BRUNO TOR": { "partidario_id": "BB", "proveedor": "TAVERA" }
+    "DIEGO MARZO": { "partidario_id": "DB", "proveedor": "NANCHI" },
+    "DIEGO TOR": { "partidario_id": "DB", "proveedor": "NANCHI" },
+    "BRUNO TORILLOS": { "partidario_id": "BB", "proveedor": "NANCHI" },
+    "BRUNO TOR": { "partidario_id": "BB", "proveedor": "NANCHI" }
   },
 
   "sesion_animal_reasignacion": {

@@ -30,8 +30,7 @@
         "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2026-07-06",
         "origenes": [
-          "NANCHI",
-          "TAVERA"
+          "NANCHI"
         ],
         "bs_kg": 21.5,
         "fecha_venta": "2026-07-06",
@@ -86,42 +85,20 @@
       {
         "key": "NANCHI",
         "label": "NANCHI",
-        "cabezas": 4,
-        "peso_prom": 522.5,
-        "peso_neto_total": 1986,
-        "peso_neto_prom": 496.4,
-        "peso_bruto_total": 2090,
-        "peso_ingreso_prom": 181,
-        "ganancia_kg_prom": 341.5,
-        "gmd_prom": 0.489,
-        "dias_prom": 724,
+        "cabezas": 5,
+        "peso_prom": 527.6,
+        "peso_neto_total": 2506,
+        "peso_neto_prom": 501.2,
+        "peso_bruto_total": 2638,
+        "peso_ingreso_prom": 179.4,
+        "ganancia_kg_prom": 348.2,
+        "gmd_prom": 0.48,
+        "dias_prom": 747,
         "precio_compra_bs_prom": 5540,
         "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2026-07-06",
         "origenes": [
           "NANCHI"
-        ],
-        "bs_kg": 21.5,
-        "fecha_venta": "2026-07-06",
-        "comprador": "Frigosi"
-      },
-      {
-        "key": "TAVERA",
-        "label": "TAVERA",
-        "cabezas": 1,
-        "peso_prom": 548,
-        "peso_neto_total": 521,
-        "peso_neto_prom": 520.6,
-        "peso_bruto_total": 548,
-        "peso_ingreso_prom": 173,
-        "ganancia_kg_prom": 375,
-        "gmd_prom": 0.447,
-        "dias_prom": 838,
-        "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": "2025-11-06",
-        "last_fecha_max": "2026-07-06",
-        "origenes": [
-          "TAVERA"
         ],
         "bs_kg": 21.5,
         "fecha_venta": "2026-07-06",
@@ -141,12 +118,11 @@
         "ganancia_kg_prom": 234.7,
         "gmd_prom": 0.603,
         "dias_prom": 436,
-        "precio_compra_bs_prom": 37890,
+        "precio_compra_bs_prom": 37523,
         "ingreso_fecha_min": "2025-03-23",
         "last_fecha_max": "2026-07-06",
         "origenes": [
           "NANCHI",
-          "TAVERA",
           "FERCOGAN",
           "GUIT"
         ]
@@ -532,7 +508,6 @@
         "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2026-06-03",
         "origenes": [
-          "TAVERA",
           "NANCHI"
         ]
       }
@@ -636,39 +611,20 @@
       {
         "key": "NANCHI",
         "label": "NANCHI",
-        "cabezas": 3,
-        "peso_prom": 503,
-        "peso_neto_total": 1434,
-        "peso_neto_prom": 477.9,
-        "peso_bruto_total": 1509,
-        "peso_ingreso_prom": 305.3,
-        "ganancia_kg_prom": 197.7,
-        "gmd_prom": 0.497,
-        "dias_prom": 398,
+        "cabezas": 4,
+        "peso_prom": 443.5,
+        "peso_neto_total": 1685,
+        "peso_neto_prom": 421.3,
+        "peso_bruto_total": 1774,
+        "peso_ingreso_prom": 273.9,
+        "ganancia_kg_prom": 169.6,
+        "gmd_prom": 0.399,
+        "dias_prom": 500,
         "precio_compra_bs_prom": 5540,
         "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2026-06-03",
         "origenes": [
           "NANCHI"
-        ]
-      },
-      {
-        "key": "TAVERA",
-        "label": "TAVERA",
-        "cabezas": 1,
-        "peso_prom": 265,
-        "peso_neto_total": 252,
-        "peso_neto_prom": 251.8,
-        "peso_bruto_total": 265,
-        "peso_ingreso_prom": 179.5,
-        "ganancia_kg_prom": 85.5,
-        "gmd_prom": 0.106,
-        "dias_prom": 805,
-        "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": "2025-11-06",
-        "last_fecha_max": "2026-06-03",
-        "origenes": [
-          "TAVERA"
         ]
       },
       {
@@ -723,12 +679,11 @@
         "ganancia_kg_prom": 76.5,
         "gmd_prom": 0.48,
         "dias_prom": 166,
-        "precio_compra_bs_prom": 320199,
+        "precio_compra_bs_prom": 319016,
         "ingreso_fecha_min": "2025-03-23",
         "last_fecha_max": "2026-06-03",
         "origenes": [
           "NAYAR SIV",
-          "TAVERA",
           "NANCHI",
           "GUIT",
           "FERCOGAN",
@@ -3975,11 +3930,11 @@
         "ganancia_kg_prom": 52.5,
         "gmd_prom": 0.083,
         "dias_prom": 635,
-        "precio_compra_bs_prom": null,
+        "precio_compra_bs_prom": 5540,
         "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2025-12-15",
         "origenes": [
-          "TAVERA"
+          "NANCHI"
         ]
       },
       {
@@ -4023,22 +3978,22 @@
         ]
       },
       {
-        "key": "TAVERA",
-        "label": "TAVERA",
-        "cabezas": 2,
-        "peso_prom": 222,
-        "peso_neto_total": 422,
-        "peso_neto_prom": 210.9,
-        "peso_bruto_total": 444,
-        "peso_ingreso_prom": 169.5,
-        "ganancia_kg_prom": 52.5,
-        "gmd_prom": 0.083,
-        "dias_prom": 635,
-        "precio_compra_bs_prom": null,
+        "key": "NANCHI",
+        "label": "NANCHI",
+        "cabezas": 3,
+        "peso_prom": 246,
+        "peso_neto_total": 701,
+        "peso_neto_prom": 233.7,
+        "peso_bruto_total": 738,
+        "peso_ingreso_prom": 210,
+        "ganancia_kg_prom": 36,
+        "gmd_prom": 0.059,
+        "dias_prom": 499,
+        "precio_compra_bs_prom": 5540,
         "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2025-12-15",
         "origenes": [
-          "TAVERA"
+          "NANCHI"
         ]
       },
       {
@@ -4058,25 +4013,6 @@
         "last_fecha_max": "2025-12-15",
         "origenes": [
           "MARZO. TAVERA + WALTER ANEZ"
-        ]
-      },
-      {
-        "key": "NANCHI",
-        "label": "NANCHI",
-        "cabezas": 1,
-        "peso_prom": 294,
-        "peso_neto_total": 279,
-        "peso_neto_prom": 279.3,
-        "peso_bruto_total": 294,
-        "peso_ingreso_prom": 291,
-        "ganancia_kg_prom": 3,
-        "gmd_prom": 0.013,
-        "dias_prom": 228,
-        "precio_compra_bs_prom": 5540,
-        "ingreso_fecha_min": "2025-11-06",
-        "last_fecha_max": "2025-12-15",
-        "origenes": [
-          "NANCHI"
         ]
       },
       {
@@ -4112,14 +4048,13 @@
         "ganancia_kg_prom": -41.2,
         "gmd_prom": 0.04,
         "dias_prom": 406,
-        "precio_compra_bs_prom": 5519,
+        "precio_compra_bs_prom": 5520,
         "ingreso_fecha_min": "2025-11-06",
         "last_fecha_max": "2025-12-15",
         "origenes": [
-          "TAVERA",
+          "NANCHI",
           "MARZO. TAVERA + WALTER ANEZ",
           "GRY",
-          "NANCHI",
           "ROJAS MONT"
         ]
       }
@@ -8339,11 +8274,11 @@
         "ganancia_kg_prom": 62,
         "gmd_prom": 0.473,
         "dias_prom": 131,
-        "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": "2025-11-06",
+        "precio_compra_bs_prom": 5540,
+        "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2024-07-29",
         "origenes": [
-          "TAVERA"
+          "NANCHI"
         ]
       }
     ],
@@ -8387,8 +8322,8 @@
         ]
       },
       {
-        "key": "TAVERA",
-        "label": "TAVERA",
+        "key": "NANCHI",
+        "label": "NANCHI",
         "cabezas": 2,
         "peso_prom": 248.5,
         "peso_neto_total": 472,
@@ -8398,11 +8333,11 @@
         "ganancia_kg_prom": 62,
         "gmd_prom": 0.473,
         "dias_prom": 131,
-        "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": "2025-11-06",
+        "precio_compra_bs_prom": 5540,
+        "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2024-07-29",
         "origenes": [
-          "TAVERA"
+          "NANCHI"
         ]
       },
       {
@@ -8438,14 +8373,14 @@
         "ganancia_kg_prom": 40.1,
         "gmd_prom": 0.249,
         "dias_prom": 116,
-        "precio_compra_bs_prom": null,
-        "ingreso_fecha_min": "2025-11-06",
+        "precio_compra_bs_prom": 5540,
+        "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2024-07-29",
         "origenes": [
           "TROPA BRUNO",
           "NUEVOS",
           "MARZO. TAVERA + WALTER ANEZ",
-          "TAVERA"
+          "NANCHI"
         ]
       }
     ],

@@ -594,12 +594,22 @@ async function main() {
   // sin proveedor_precio_bs, copiar de un template con el mismo proveedor.
   // Cubre casos donde asignamos proveedor via fallback/reasignacion/mapping.
   const templateByProv = new Map();
+  const partialByProv = new Map();
   for (const a of animales) {
     if (!a.proveedor) continue;
-    if (!a.ingreso_fecha && !a.proveedor_precio_bs) continue;
-    if (!templateByProv.has(a.proveedor)) {
-      templateByProv.set(a.proveedor, a);
+    const hasFecha = !!a.ingreso_fecha;
+    const hasPrecio = !!a.proveedor_precio_bs;
+    if (!hasFecha && !hasPrecio) continue;
+    // Preferir templates COMPLETOS (con fecha Y precio)
+    if (hasFecha && hasPrecio) {
+      if (!templateByProv.has(a.proveedor)) templateByProv.set(a.proveedor, a);
+    } else {
+      if (!partialByProv.has(a.proveedor)) partialByProv.set(a.proveedor, a);
     }
+  }
+  // Fallback: si no hay template completo, usar el parcial
+  for (const [prov, a] of partialByProv) {
+    if (!templateByProv.has(prov)) templateByProv.set(prov, a);
   }
   let nHydrated = 0;
   for (const a of animales) {
