@@ -17,15 +17,15 @@
       {
         "key": "DB",
         "label": "Diego Bocangel",
-        "cabezas": 4,
-        "peso_prom": 529,
-        "peso_neto_total": 2010,
-        "peso_neto_prom": 502.6,
-        "peso_bruto_total": 2116,
-        "peso_ingreso_prom": 159.8,
-        "ganancia_kg_prom": 369.3,
+        "cabezas": 3,
+        "peso_prom": 522.7,
+        "peso_neto_total": 1490,
+        "peso_neto_prom": 496.5,
+        "peso_bruto_total": 1568,
+        "peso_ingreso_prom": 155.3,
+        "ganancia_kg_prom": 367.3,
         "gmd_prom": 0.447,
-        "dias_prom": 826,
+        "dias_prom": 822,
         "precio_compra_bs_prom": 5540,
         "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2026-07-06",
@@ -495,15 +495,15 @@
       {
         "key": "DB",
         "label": "Diego Bocangel",
-        "cabezas": 2,
-        "peso_prom": 393.5,
-        "peso_neto_total": 748,
-        "peso_neto_prom": 373.8,
-        "peso_bruto_total": 787,
-        "peso_ingreso_prom": 233.3,
-        "ganancia_kg_prom": 160.3,
-        "gmd_prom": 0.348,
-        "dias_prom": 602,
+        "cabezas": 1,
+        "peso_prom": 522,
+        "peso_neto_total": 496,
+        "peso_neto_prom": 495.9,
+        "peso_bruto_total": 522,
+        "peso_ingreso_prom": 287,
+        "ganancia_kg_prom": 235,
+        "gmd_prom": 0.59,
+        "dias_prom": 398,
         "precio_compra_bs_prom": 5540,
         "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2026-06-03",
@@ -3918,25 +3918,6 @@
     "peso_max": 315,
     "peso_prom": 235.4,
     "por_partidario": [
-      {
-        "key": "DB",
-        "label": "Diego Bocangel",
-        "cabezas": 2,
-        "peso_prom": 222,
-        "peso_neto_total": 422,
-        "peso_neto_prom": 210.9,
-        "peso_bruto_total": 444,
-        "peso_ingreso_prom": 169.5,
-        "ganancia_kg_prom": 52.5,
-        "gmd_prom": 0.083,
-        "dias_prom": 635,
-        "precio_compra_bs_prom": 5540,
-        "ingreso_fecha_min": "2025-11-06",
-        "last_fecha_max": "2025-12-15",
-        "origenes": [
-          "NANCHI"
-        ]
-      },
       {
         "key": "FB",
         "label": "Fabio Bocangel",
@@ -8261,27 +8242,7 @@
     "peso_min": 202,
     "peso_max": 268,
     "peso_prom": 231.2,
-    "por_partidario": [
-      {
-        "key": "DB",
-        "label": "Diego Bocangel",
-        "cabezas": 2,
-        "peso_prom": 248.5,
-        "peso_neto_total": 472,
-        "peso_neto_prom": 236.1,
-        "peso_bruto_total": 497,
-        "peso_ingreso_prom": 186.5,
-        "ganancia_kg_prom": 62,
-        "gmd_prom": 0.473,
-        "dias_prom": 131,
-        "precio_compra_bs_prom": 5540,
-        "ingreso_fecha_min": "2025-04-11",
-        "last_fecha_max": "2024-07-29",
-        "origenes": [
-          "NANCHI"
-        ]
-      }
-    ],
+    "por_partidario": [],
     "por_proveedor": [
       {
         "key": "MARZO. TAVERA + WALTER ANEZ",

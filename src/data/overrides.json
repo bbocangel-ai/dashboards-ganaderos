@@ -74,12 +74,12 @@
     { "id": "MB-V1", "partidario_id": "MB", "categoria": "TL", "last_peso": 370, "vendido_en_sesion": "DADOS - 0 - 07/05/26 05:22", "nota": "vendido 04/05 a 370 kg" }
   ],
 
-  "local_partidario_mapping": {
-    "_doc": "Cuando el LOCAL/proveedor parseado corresponde a un partidario (no a un proveedor real), reasigna: partidario+proveedor real (origen). Pattern es substring case-insensitive.",
-    "DIEGO MARZO": { "partidario_id": "DB", "proveedor": "NANCHI" },
-    "DIEGO TOR": { "partidario_id": "DB", "proveedor": "NANCHI" },
-    "BRUNO TORILLOS": { "partidario_id": "BB", "proveedor": "NANCHI" },
-    "BRUNO TOR": { "partidario_id": "BB", "proveedor": "NANCHI" }
+  "local_proveedor_mapping": {
+    "_doc": "Consolida LOCAIS con nombres confusos hacia un proveedor limpio. NO cambia partidario. Pattern substring case-insensitive.",
+    "DIEGO MARZO": "NANCHI",
+    "DIEGO TOR": "NANCHI",
+    "BRUNO TORILLOS": "NANCHI",
+    "BRUNO TOR": "NANCHI"
   },
 
   "sesion_animal_reasignacion": {

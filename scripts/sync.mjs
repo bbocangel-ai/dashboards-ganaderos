@@ -474,27 +474,24 @@ async function main() {
   if (nReasignados > 0) console.log(`  ${nReasignados} animales reasignados a partidario por chip`);
   if (noEncontrados.length > 0) console.log(`  ⚠ chips no encontrados en SisGado: ${noEncontrados.join(', ')}`);
 
-  // Aplicar mapping de LOCAL/proveedor a partidario (local_partidario_mapping).
-  // Cuando un LOCAL representa un partidario (ej. DIEGO TOR MARZO - TAVERA),
-  // se cambia partidario_id + proveedor real (el origen).
-  const localPartMap = overrides.local_partidario_mapping || {};
+  // Aplicar mapping de LOCAL a proveedor (local_proveedor_mapping).
+  // Consolida nombres confusos hacia proveedores limpios. NO toca partidario.
+  const localProvMap = overrides.local_proveedor_mapping || {};
   let nLocalMapped = 0;
   for (const a of animales) {
     if (!a.proveedor) continue;
     const upper = a.proveedor.toUpperCase();
-    for (const [pattern, mapping] of Object.entries(localPartMap)) {
+    for (const [pattern, newProv] of Object.entries(localProvMap)) {
       if (pattern.startsWith('_')) continue;
       if (upper.includes(pattern.toUpperCase())) {
-        a.partidario_id = mapping.partidario_id;
-        a.partidario = PARTIDARIOS[mapping.partidario_id] || mapping.partidario_id;
-        a.proveedor = mapping.proveedor;
+        a.proveedor = newProv;
         a.local_mapped = true;
         nLocalMapped++;
         break;
       }
     }
   }
-  if (nLocalMapped > 0) console.log(`  ${nLocalMapped} animales mapeados de LOCAL a partidario`);
+  if (nLocalMapped > 0) console.log(`  ${nLocalMapped} proveedores consolidados por LOCAL mapping`);
 
   // Aplicar reasignación de origen por sesión (sesion_origen_reasignacion).
   // Cambia proveedores existentes por otros. Format:
