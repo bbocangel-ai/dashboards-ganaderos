@@ -64,6 +64,19 @@ const ageWarn = ageH > 24;
             <span class="text-base leading-none">🔍</span>
             <span class="hidden sm:inline">Buscar</span>
           </a>
+
+          <!-- Botón "Sincronizar ahora" — solo funciona si sync-server.cmd está corriendo -->
+          <button
+            id="sync-now-btn"
+            type="button"
+            data-help-href={base + '/actualizar'}
+            class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold border border-brand-300 bg-brand-50 text-brand-900 hover:bg-brand-100 transition disabled:opacity-60 disabled:cursor-not-allowed"
+            title="Sincronizar SisGado ahora (necesita sync-server.cmd corriendo)"
+          >
+            <span id="sync-now-icon">⚡</span>
+            <span id="sync-now-label" class="hidden sm:inline">Sincronizar</span>
+          </button>
+
           <a
             href={base + '/actualizar'}
             class={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium border transition ${
@@ -78,6 +91,110 @@ const ageWarn = ageH > 24;
             {ageWarn && <span class="ml-1">↻</span>}
           </a>
         </div>
+
+        <!-- Modal simple para status del sync -->
+        <div id="sync-modal" class="hidden fixed inset-0 bg-stone-900/60 backdrop-blur-sm z-50 items-center justify-center p-4">
+          <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6">
+            <div class="flex items-center gap-3 mb-4">
+              <span id="sync-modal-icon" class="text-3xl">⏳</span>
+              <div>
+                <h3 id="sync-modal-title" class="text-lg font-bold text-stone-900">Sincronizando</h3>
+                <p id="sync-modal-sub" class="text-sm text-stone-500">Esto tarda ~1-2 minutos</p>
+              </div>
+            </div>
+            <div id="sync-modal-log" class="bg-stone-900 text-stone-100 rounded-lg p-3 text-xs font-mono max-h-48 overflow-auto mb-4 hidden whitespace-pre-wrap"></div>
+            <div class="flex items-center justify-end gap-2">
+              <button id="sync-modal-close" class="px-4 py-2 rounded-lg text-sm font-semibold bg-stone-100 text-stone-700 hover:bg-stone-200 transition">Cerrar</button>
+              <button id="sync-modal-reload" class="hidden px-4 py-2 rounded-lg text-sm font-semibold bg-brand-600 text-white hover:bg-brand-700 transition">Refrescar página</button>
+            </div>
+          </div>
+        </div>
+
+        <script is:inline>
+        (function() {
+          const SYNC_URL = 'http://localhost:3131';
+          const btn = document.getElementById('sync-now-btn');
+          const icon = document.getElementById('sync-now-icon');
+          const label = document.getElementById('sync-now-label');
+          const modal = document.getElementById('sync-modal');
+          const modalIcon = document.getElementById('sync-modal-icon');
+          const modalTitle = document.getElementById('sync-modal-title');
+          const modalSub = document.getElementById('sync-modal-sub');
+          const modalLog = document.getElementById('sync-modal-log');
+          const modalClose = document.getElementById('sync-modal-close');
+          const modalReload = document.getElementById('sync-modal-reload');
+          if (!btn) return;
+
+          let serverAvailable = false;
+
+          function openModal() { modal.classList.remove('hidden'); modal.classList.add('flex'); }
+          function closeModal() { modal.classList.add('hidden'); modal.classList.remove('flex'); modalLog.classList.add('hidden'); modalLog.textContent = ''; modalReload.classList.add('hidden'); }
+          modalClose.addEventListener('click', closeModal);
+          modalReload.addEventListener('click', () => location.reload());
+
+          async function checkStatus() {
+            try {
+              const controller = new AbortController();
+              setTimeout(() => controller.abort(), 2000);
+              const r = await fetch(SYNC_URL + '/status', { signal: controller.signal });
+              const data = await r.json();
+              if (data.ok) {
+                serverAvailable = true;
+                btn.classList.remove('opacity-60');
+                icon.textContent = '⚡';
+                label.textContent = 'Sincronizar';
+              }
+            } catch (e) {
+              serverAvailable = false;
+              btn.classList.add('opacity-60');
+              icon.textContent = '💤';
+              label.textContent = 'Sync offline';
+            }
+          }
+
+          async function doSync() {
+            if (!serverAvailable) {
+              // No hay server. Abrir la pagina de instrucciones
+              location.href = btn.dataset.helpHref;
+              return;
+            }
+            openModal();
+            modalIcon.textContent = '⏳';
+            modalTitle.textContent = 'Sincronizando SisGado';
+            modalSub.textContent = 'Corriendo actualizar.cmd en tu PC... (~1-2 min)';
+            btn.disabled = true;
+            try {
+              const r = await fetch(SYNC_URL + '/sync', { method: 'POST' });
+              const data = await r.json();
+              if (data.ok) {
+                modalIcon.textContent = '✅';
+                modalTitle.textContent = 'Sync completo';
+                modalSub.textContent = 'Terminó en ' + data.duration_s + 's. El deploy tarda ~1 min más.';
+                modalLog.textContent = (data.stdout || '').slice(-1500);
+                modalLog.classList.remove('hidden');
+                modalReload.classList.remove('hidden');
+                // Auto reload en 60 segundos
+                setTimeout(() => { if (!modal.classList.contains('hidden')) location.reload(); }, 60000);
+              } else {
+                modalIcon.textContent = '❌';
+                modalTitle.textContent = 'Error en el sync';
+                modalSub.textContent = data.error || 'Revisá el log';
+                modalLog.textContent = (data.stderr || data.stdout || '');
+                modalLog.classList.remove('hidden');
+              }
+            } catch (e) {
+              modalIcon.textContent = '❌';
+              modalTitle.textContent = 'No pude conectar al server';
+              modalSub.textContent = e.message;
+            }
+            btn.disabled = false;
+          }
+
+          btn.addEventListener('click', doSync);
+          checkStatus();
+          setInterval(checkStatus, 30000);
+        })();
+        </script>
       </div>
 
       <nav class="max-w-7xl mx-auto px-2 sm:px-4 flex gap-1 overflow-x-auto pb-2">

@@ -9,76 +9,68 @@ const fmt = generatedDate.toLocaleString('es-BO', { dateStyle: 'long', timeStyle
   <h2 class="text-2xl font-bold text-stone-900 mb-1">Actualizar dashboards</h2>
   <p class="text-sm text-stone-500 mb-8">Última sincronización: <strong>{fmt}</strong></p>
 
-  <div class="card card-accent-emerald p-6 mb-6">
+  <!-- Opción principal: botón en el header -->
+  <div class="card card-accent-brand p-6 mb-6">
     <div class="flex items-center gap-3 mb-3">
       <span class="text-2xl">⚡</span>
-      <h3 class="text-base font-bold text-stone-900">Auto-sync (recomendado, lo configurás una vez)</h3>
+      <h3 class="text-base font-bold text-stone-900">Botón "Sincronizar" (la más rápida)</h3>
     </div>
     <p class="text-sm text-stone-600 mb-3">
-      Te olvidás del <code>actualizar.cmd</code>. Una tarea programada de Windows lo corre cada 30 min en background.
+      Arriba a la derecha en el header tenés un botón <strong>⚡ Sincronizar</strong>. Un click y listo — te muestra el progreso en un modal.
+    </p>
+    <p class="text-sm text-stone-600 mb-3">
+      Para que funcione, tenés que tener el servidor local corriendo. Configuralo <strong>una sola vez</strong>:
     </p>
     <ol class="space-y-2 text-sm text-stone-700 list-decimal list-inside ml-2 mb-3">
-      <li>Doble-click en <code>setup-auto-sync.cmd</code> en la carpeta del repo</li>
-      <li>Te pregunta S/N — apretá <strong>S</strong> y Enter</li>
-      <li>Windows registra la tarea. Listo, podés cerrar el CMD.</li>
+      <li>Doble-click en <code>sync-server.cmd</code> en la carpeta del repo</li>
+      <li>Se abre una ventana negra que dice "Sync server corriendo en http://localhost:3131"</li>
+      <li><strong>Dejala abierta</strong>. Cerrarla apaga el server.</li>
+      <li>Volvé al dashboard. El botón ⚡ se pone activo.</li>
+      <li>Cuando quieras sincronizar → click al botón → esperás ~1-2 min → se refresca solo.</li>
     </ol>
-    <p class="text-xs text-stone-500">
-      A partir de ahí, cada 30 min se sincroniza solo. Cuando subas un trabajo a SisGado, en máximo 30 min ya está en el dashboard.
-    </p>
+    <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-xs text-emerald-900">
+      <strong>Tip para que arranque solo con la PC:</strong> Presioná <code>Win + R</code>, escribí <code>shell:startup</code>, Enter. En esa carpeta pegá un acceso directo a <code>sync-server-startup.cmd</code>. Con eso el server arranca solo cada vez que prendés la PC.
+    </div>
   </div>
 
-  <div class="grid lg:grid-cols-2 gap-6">
-    <div class="card p-6">
+  <div class="grid lg:grid-cols-2 gap-6 mb-6">
+    <div class="card card-accent-emerald p-6">
       <div class="flex items-center gap-3 mb-3">
-        <span class="w-8 h-8 rounded-full bg-brand-100 text-brand-700 font-bold flex items-center justify-center">1</span>
-        <h3 class="text-base font-semibold text-stone-900">Sync manual (si querés ya)</h3>
+        <span class="text-2xl">⏰</span>
+        <h3 class="text-base font-semibold text-stone-900">Auto-sync cada 30 min</h3>
       </div>
-      <p class="text-sm text-stone-600 mb-4">
-        Hacé doble-click en <code>actualizar.cmd</code> dentro del repo. El script:
+      <p class="text-sm text-stone-600 mb-3">
+        Complementa el botón: Windows sincroniza solo en background cada 30 min.
       </p>
       <ol class="space-y-2 text-sm text-stone-700 list-decimal list-inside ml-2">
-        <li>Lee SisGado y regenera los JSONs</li>
-        <li>Hace commit con la fecha y hora</li>
-        <li>Pushea a GitHub</li>
-        <li>GitHub Pages reconstruye y publica en ~1 min</li>
+        <li>Doble-click en <code>setup-auto-sync.cmd</code></li>
+        <li>Apretá <strong>S</strong> y Enter</li>
+        <li>Listo. Windows lo corre solo.</li>
       </ol>
-      <div class="mt-5 p-3 bg-stone-50 rounded-lg border border-stone-200 font-mono text-xs">
-        <div class="text-stone-500">📂 Ubicación:</div>
-        <div class="mt-1 text-stone-800 break-all">C:\Users\Usuario\OneDrive\Desktop\PLANTA\dashboards-ganaderos\actualizar.cmd</div>
-      </div>
     </div>
 
     <div class="card p-6">
       <div class="flex items-center gap-3 mb-3">
-        <span class="w-8 h-8 rounded-full bg-brand-100 text-brand-700 font-bold flex items-center justify-center">2</span>
-        <h3 class="text-base font-semibold text-stone-900">Crear acceso directo en escritorio</h3>
+        <span class="text-2xl">🖱️</span>
+        <h3 class="text-base font-semibold text-stone-900">Sync manual (sin server)</h3>
       </div>
-      <p class="text-sm text-stone-600 mb-4">Para que tengas un botón "Actualizar" en tu desktop:</p>
+      <p class="text-sm text-stone-600 mb-3">
+        Si el server no está corriendo, doble-click a <code>actualizar.cmd</code>.
+      </p>
       <ol class="space-y-2 text-sm text-stone-700 list-decimal list-inside ml-2">
-        <li>Click derecho sobre <code>actualizar.cmd</code></li>
-        <li>Seleccioná <strong>"Enviar a → Escritorio (crear acceso directo)"</strong></li>
-        <li>Renombrá el acceso directo a <strong>"Actualizar Dashboards"</strong></li>
-        <li>Listo: doble-click en el escritorio cada vez que subís un trabajo a SisGado</li>
+        <li>Lee SisGado y regenera JSONs</li>
+        <li>Commit + push a GitHub</li>
+        <li>Vercel/Pages rebuild en ~1 min</li>
       </ol>
     </div>
+  </div>
 
-    <div class="card p-6 lg:col-span-2 bg-amber-50 border-amber-200">
-      <h3 class="text-base font-semibold text-amber-900 mb-2">⚠️ Antes de actualizar</h3>
-      <ul class="space-y-1.5 text-sm text-amber-900 list-disc list-inside ml-2">
-        <li>Asegurate de haber subido el trabajo en SisGado primero</li>
-        <li>Cerrá la planilla Excel <code>ReportesPesajesBrunoBocangel.xlsx</code> si está abierta (no afecta el sync, pero igual)</li>
-        <li>Necesitás conexión a internet para el push</li>
-      </ul>
-    </div>
-
-    <div class="card p-6 lg:col-span-2">
-      <h3 class="text-base font-semibold text-stone-900 mb-3">Manual (si el .cmd falla)</h3>
-      <p class="text-sm text-stone-600 mb-3">Abrí PowerShell o CMD en la carpeta del repo:</p>
-      <pre class="bg-stone-900 text-stone-100 rounded-lg p-4 text-xs font-mono overflow-x-auto">cd C:\Users\Usuario\OneDrive\Desktop\PLANTA\dashboards-ganaderos
-npm run sync
-git add -A
-git commit -m "sync"
-git push</pre>
-    </div>
+  <div class="card p-6 bg-amber-50 border-amber-200">
+    <h3 class="text-base font-semibold text-amber-900 mb-2">⚠️ Antes de sincronizar</h3>
+    <ul class="space-y-1.5 text-sm text-amber-900 list-disc list-inside ml-2">
+      <li>Asegurate de haber subido el trabajo en SisGado primero</li>
+      <li>Cerrá la planilla Excel <code>ReportesPesajesBrunoBocangel.xlsx</code> si está abierta</li>
+      <li>Necesitás conexión a internet para el push</li>
+    </ul>
   </div>
 </Layout>
