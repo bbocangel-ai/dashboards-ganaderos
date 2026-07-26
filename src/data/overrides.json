@@ -90,6 +90,12 @@
   },
 
   "ventas_split": {
+    "DADOS - 0 - 26/07/26 07:33": {
+      "nota": "Venta vaquillas a Inducarne 19,8 Bs/kg",
+      "destinos": [
+        { "comprador": "Inducarne", "cabezas": 79, "peso_bruto_prom": 415, "peso_neto_prom": 394, "bs_kg": 19.8, "fecha": "2026-07-24" }
+      ]
+    },
     "DADOS - 0 - 06/07/26 18:20": {
       "nota": "Venta torillos pesados a Frigosi",
       "destinos": [

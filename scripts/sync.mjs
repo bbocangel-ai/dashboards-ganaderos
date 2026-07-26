@@ -192,6 +192,13 @@ function parseLote(desc) {
       out.tipo_label = TIPOS_TRABAJO[upper];
       break;
     }
+    // Match prefix con VT/VTA seguido de otras letras pegadas (ej VTVAQ)
+    const prefixMatch = upper.match(/^(VTA|VT|VNT)[A-Z]/);
+    if (prefixMatch) {
+      out.tipo = prefixMatch[1];
+      out.tipo_label = TIPOS_TRABAJO[prefixMatch[1]];
+      break;
+    }
   }
   out.categoria = parseCategoria(resto);
   out.detalle = resto;
@@ -199,7 +206,9 @@ function parseLote(desc) {
   // Bs/kg solo cuando es venta. Aceptamos formatos: 21,5  21.5  24  24BS
   // Filtramos rango razonable [10..50] para no agarrar cantidades.
   if (out.tipo === 'VT' || out.tipo === 'VTA' || out.tipo === 'VNT') {
-    const matches = [...resto.matchAll(/\b(\d{1,2}(?:[,.]\d{1,2})?)\s*(?:BS)?\b/gi)];
+    // Match numero (con decimal opcional) seguido opcionalmente de B/BS
+    // Ej: "21,5" "24" "24BS" "19.8B" "20BS"
+    const matches = [...resto.matchAll(/(?<![\d.,])(\d{1,2}(?:[,.]\d{1,2})?)\s*B?S?(?![A-Z0-9])/gi)];
     for (const m of matches) {
       const n = parseFloat(m[1].replace(',', '.'));
       if (n >= 10 && n <= 50) { out.precio_venta_bs_kg = n; break; }
