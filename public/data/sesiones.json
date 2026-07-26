@@ -130,16 +130,16 @@
       {
         "key": "SJ LUIS ANEZ",
         "label": "SJ LUIS ANEZ",
-        "cabezas": 18,
-        "peso_prom": 418,
-        "peso_neto_total": 7148,
-        "peso_neto_prom": 397.1,
-        "peso_bruto_total": 7524,
-        "peso_ingreso_prom": 233.9,
-        "ganancia_kg_prom": 184.1,
+        "cabezas": 25,
+        "peso_prom": 413.2,
+        "peso_neto_total": 9813,
+        "peso_neto_prom": 392.5,
+        "peso_bruto_total": 10329,
+        "peso_ingreso_prom": 280.6,
+        "ganancia_kg_prom": 132.6,
         "gmd_prom": 0.488,
-        "dias_prom": 378,
-        "precio_compra_bs_prom": 4721,
+        "dias_prom": 272,
+        "precio_compra_bs_prom": 125940,
         "ingreso_fecha_min": "2025-09-30",
         "last_fecha_max": "2026-07-24",
         "origenes": [
@@ -166,28 +166,6 @@
         "last_fecha_max": "2026-07-24",
         "origenes": [
           "CRM RIB CONCE"
-        ],
-        "bs_kg": 19.8,
-        "fecha_venta": "2026-07-24",
-        "comprador": "Inducarne"
-      },
-      {
-        "key": "ROCCO",
-        "label": "ROCCO",
-        "cabezas": 7,
-        "peso_prom": 400.7,
-        "peso_neto_total": 2665,
-        "peso_neto_prom": 380.7,
-        "peso_bruto_total": 2805,
-        "peso_ingreso_prom": 400.7,
-        "ganancia_kg_prom": 0,
-        "gmd_prom": null,
-        "dias_prom": 0,
-        "precio_compra_bs_prom": 437646,
-        "ingreso_fecha_min": "2026-05-16",
-        "last_fecha_max": "2026-07-24",
-        "origenes": [
-          "ROCCO"
         ],
         "bs_kg": 19.8,
         "fecha_venta": "2026-07-24",
@@ -327,8 +305,7 @@
           "SJ LUIS ANEZ",
           "SIV ABL",
           "NOGALES",
-          "CRM RIB CONCE",
-          "ROCCO"
+          "CRM RIB CONCE"
         ]
       }
     ],
