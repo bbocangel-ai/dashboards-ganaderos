@@ -154,11 +154,44 @@ const ageWarn = ageH > 24;
 
           async function doSync() {
             if (!serverAvailable) {
-              // No hay server. Abrir la pagina de instrucciones
-              location.href = btn.dataset.helpHref;
+              // Server offline — mostrar modal con instrucciones
+              openModal();
+              modalIcon.textContent = '💤';
+              modalTitle.textContent = 'Sync server no está corriendo';
+              modalSub.textContent = 'Necesitás arrancarlo en tu PC (una sola vez)';
+              modalLog.textContent =
+                'PASO 1 — Abrí el Explorador de archivos y andá a:\n' +
+                '   C:\\Users\\Usuario\\OneDrive\\Desktop\\PLANTA\\dashboards-ganaderos\\\n\n' +
+                'PASO 2 — Doble-click en sync-server.cmd\n\n' +
+                'PASO 3 — Se abre una ventana negra que dice:\n' +
+                '   "Sync server corriendo en http://localhost:3131"\n\n' +
+                'PASO 4 — Dejala minimizada, NO la cierres.\n\n' +
+                'PASO 5 — Volvé acá, apretá "Reintentar" abajo.\n' +
+                '   El boton se pone verde (⚡ Sincronizar).\n\n' +
+                'PASO 6 — Ahora si, click al boton y va a funcionar.';
+              modalLog.classList.remove('hidden');
+              // Reemplazar boton "Refrescar" por "Reintentar"
+              modalReload.textContent = 'Reintentar conexión';
+              modalReload.classList.remove('hidden');
+              modalReload.onclick = async () => {
+                modalReload.textContent = 'Verificando...';
+                await checkStatus();
+                if (serverAvailable) {
+                  modalIcon.textContent = '✅';
+                  modalTitle.textContent = 'Server detectado';
+                  modalSub.textContent = 'Ya podés cerrar este mensaje y apretar Sincronizar';
+                  modalReload.textContent = 'Refrescar página';
+                  modalReload.onclick = () => location.reload();
+                } else {
+                  modalReload.textContent = 'Reintentar conexión';
+                  modalSub.textContent = 'Aún no lo detecto. Verificá que la ventana negra siga abierta.';
+                }
+              };
               return;
             }
             openModal();
+            modalReload.textContent = 'Refrescar página';
+            modalReload.onclick = () => location.reload();
             modalIcon.textContent = '⏳';
             modalTitle.textContent = 'Sincronizando SisGado';
             modalSub.textContent = 'Corriendo actualizar.cmd en tu PC... (~1-2 min)';
