@@ -515,7 +515,8 @@ async function main() {
       for (const [orig, nuevo] of Object.entries(mapping)) {
         if (orig.startsWith('_')) continue;
         if (upper.includes(orig.toUpperCase())) {
-          a.proveedor = nuevo;
+          // Si el valor es null/vacio, sacar el origen
+          a.proveedor = nuevo || null;
           a.proveedor_reasignado = true;
           nReasignados_orig++;
           break;

@@ -194,28 +194,6 @@
         "comprador": "Inducarne"
       },
       {
-        "key": "SIV ABL",
-        "label": "SIV ABL",
-        "cabezas": 6,
-        "peso_prom": 399.7,
-        "peso_neto_total": 2278,
-        "peso_neto_prom": 379.7,
-        "peso_bruto_total": 2398,
-        "peso_ingreso_prom": 399.7,
-        "ganancia_kg_prom": 0,
-        "gmd_prom": null,
-        "dias_prom": 0,
-        "precio_compra_bs_prom": 4601,
-        "ingreso_fecha_min": "2025-11-06",
-        "last_fecha_max": "2026-07-24",
-        "origenes": [
-          "SIV ABL"
-        ],
-        "bs_kg": 19.8,
-        "fecha_venta": "2026-07-24",
-        "comprador": "Inducarne"
-      },
-      {
         "key": "NOGALES",
         "label": "NOGALES",
         "cabezas": 4,
@@ -303,7 +281,6 @@
           "FERCOGAN",
           "SJ ABEL",
           "SJ LUIS ANEZ",
-          "SIV ABL",
           "NOGALES",
           "CRM RIB CONCE"
         ]
