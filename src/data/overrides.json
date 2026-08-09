@@ -31,6 +31,10 @@
     "DADOS - 0 - 26/07/26 07:33": {
       "ROCCO": "SJ LUIS ANEZ",
       "SIV ABL": ""
+    },
+    "DADOS - 0 - 08/08/26 09:45": {
+      "ROCCO": "GUIT",
+      "NAYAR SIV": "GUIT"
     }
   },
 
@@ -94,6 +98,12 @@
   },
 
   "ventas_split": {
+    "DADOS - 0 - 08/08/26 09:45": {
+      "nota": "Venta torillos a Frigosi 21 Bs/kg",
+      "destinos": [
+        { "comprador": "Frigosi", "cabezas": 45, "peso_bruto_prom": 527, "peso_neto_prom": 501, "bs_kg": 21, "fecha": "2026-08-04" }
+      ]
+    },
     "DADOS - 0 - 26/07/26 07:33": {
       "nota": "Venta vaquillas a Inducarne 19,8 Bs/kg",
       "destinos": [
