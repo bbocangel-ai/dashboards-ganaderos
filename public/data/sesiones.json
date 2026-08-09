@@ -61,44 +61,44 @@
         "comprador": "Frigosi"
       },
       {
-        "key": "FERCOGAN",
-        "label": "FERCOGAN",
-        "cabezas": 19,
-        "peso_prom": 535,
-        "peso_neto_total": 9657,
-        "peso_neto_prom": 508.3,
-        "peso_bruto_total": 10165,
-        "peso_ingreso_prom": 245.2,
-        "ganancia_kg_prom": 289.8,
-        "gmd_prom": 0.465,
-        "dias_prom": 628,
-        "precio_compra_bs_prom": 5330,
-        "ingreso_fecha_min": "2025-05-01",
+        "key": "NANCHI",
+        "label": "NANCHI",
+        "cabezas": 20,
+        "peso_prom": 535.5,
+        "peso_neto_total": 10174,
+        "peso_neto_prom": 508.7,
+        "peso_bruto_total": 10709,
+        "peso_ingreso_prom": 249,
+        "ganancia_kg_prom": 286.5,
+        "gmd_prom": 0.466,
+        "dias_prom": 620,
+        "precio_compra_bs_prom": 5540,
+        "ingreso_fecha_min": "2025-04-11",
         "last_fecha_max": "2026-08-04",
         "origenes": [
-          "FERCOGAN"
+          "NANCHI"
         ],
         "bs_kg": 21,
         "fecha_venta": "2026-08-04",
         "comprador": "Frigosi"
       },
       {
-        "key": "NANCHI",
-        "label": "NANCHI",
-        "cabezas": 2,
-        "peso_prom": 532,
-        "peso_neto_total": 1011,
-        "peso_neto_prom": 505.4,
-        "peso_bruto_total": 1064,
-        "peso_ingreso_prom": 308.5,
-        "ganancia_kg_prom": 223.5,
-        "gmd_prom": 0.486,
+        "key": "FERCOGAN",
+        "label": "FERCOGAN",
+        "cabezas": 1,
+        "peso_prom": 520,
+        "peso_neto_total": 494,
+        "peso_neto_prom": 494,
+        "peso_bruto_total": 520,
+        "peso_ingreso_prom": 297,
+        "ganancia_kg_prom": 223,
+        "gmd_prom": 0.485,
         "dias_prom": 460,
-        "precio_compra_bs_prom": 5540,
-        "ingreso_fecha_min": "2025-04-11",
+        "precio_compra_bs_prom": 5330,
+        "ingreso_fecha_min": "2025-05-01",
         "last_fecha_max": "2026-08-04",
         "origenes": [
-          "NANCHI"
+          "FERCOGAN"
         ],
         "bs_kg": 21,
         "fecha_venta": "2026-08-04",
@@ -118,13 +118,13 @@
         "ganancia_kg_prom": 223.9,
         "gmd_prom": 0.556,
         "dias_prom": 433,
-        "precio_compra_bs_prom": 42686,
+        "precio_compra_bs_prom": 42770,
         "ingreso_fecha_min": "2025-03-23",
         "last_fecha_max": "2026-08-04",
         "origenes": [
-          "FERCOGAN",
           "NANCHI",
-          "GUIT"
+          "GUIT",
+          "FERCOGAN"
         ]
       }
     ],
