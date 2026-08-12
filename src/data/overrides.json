@@ -39,6 +39,10 @@
     "DADOS - 0 - 08/08/26 09:45": {
       "ROCCO": "GUIT",
       "NAYAR SIV": "GUIT"
+    },
+    "DADOS - 0 - 11/08/26 19:54": {
+      "SIV ABL": "",
+      "ROCCO": ""
     }
   },
 
@@ -102,6 +106,12 @@
   },
 
   "ventas_split": {
+    "DADOS - 0 - 11/08/26 19:54": {
+      "nota": "Venta vaquillas via Abelardo (comercial)",
+      "destinos": [
+        { "comprador": "Vía Abelardo", "cabezas": 110, "peso_bruto_prom": 351, "peso_neto_prom": 333, "bs_kg": 21, "fecha": "2026-08-12" }
+      ]
+    },
     "DADOS - 0 - 08/08/26 09:45": {
       "nota": "Venta torillos a Frigosi 21 Bs/kg",
       "destinos": [
