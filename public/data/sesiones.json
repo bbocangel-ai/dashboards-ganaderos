@@ -451,6 +451,160 @@
         ]
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "BB||SJ LUIS ANEZ",
+        "partidario_key": "BB",
+        "partidario_label": "Bruno Bocangel",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 3,
+        "peso_prom": 379,
+        "peso_neto_total": 1080,
+        "peso_neto_prom": 360.1,
+        "peso_bruto_total": 1137,
+        "peso_ingreso_prom": 184.2,
+        "ganancia_kg_prom": 194.8,
+        "gmd_prom": 0.375,
+        "dias_prom": 519,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2026-09-03"
+      },
+      {
+        "key": "DB||SJ LUIS ANEZ",
+        "partidario_key": "DB",
+        "partidario_label": "Diego Bocangel",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 2,
+        "peso_prom": 386,
+        "peso_neto_total": 733,
+        "peso_neto_prom": 366.7,
+        "peso_bruto_total": 772,
+        "peso_ingreso_prom": 229,
+        "ganancia_kg_prom": 157,
+        "gmd_prom": 0.356,
+        "dias_prom": 441,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2026-09-03"
+      },
+      {
+        "key": "DB||SJ ABEL",
+        "partidario_key": "DB",
+        "partidario_label": "Diego Bocangel",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 1,
+        "peso_prom": 392,
+        "peso_neto_total": 372,
+        "peso_neto_prom": 372.4,
+        "peso_bruto_total": 392,
+        "peso_ingreso_prom": 175.5,
+        "ganancia_kg_prom": 216.5,
+        "gmd_prom": 0.388,
+        "dias_prom": 558,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2026-09-03"
+      },
+      {
+        "key": "FB||SJ ABEL",
+        "partidario_key": "FB",
+        "partidario_label": "Fabio Bocangel",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 1,
+        "peso_prom": 397,
+        "peso_neto_total": 377,
+        "peso_neto_prom": 377.2,
+        "peso_bruto_total": 397,
+        "peso_ingreso_prom": 175,
+        "ganancia_kg_prom": 222,
+        "gmd_prom": 0.397,
+        "dias_prom": 559,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2026-09-03"
+      },
+      {
+        "key": "MA||SJ ABEL",
+        "partidario_key": "MA",
+        "partidario_label": "Moira Eguez Avila",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 6,
+        "peso_prom": 433,
+        "peso_neto_total": 2468,
+        "peso_neto_prom": 411.4,
+        "peso_bruto_total": 2598,
+        "peso_ingreso_prom": 166.1,
+        "ganancia_kg_prom": 266.9,
+        "gmd_prom": 0.478,
+        "dias_prom": 559,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2026-09-03"
+      },
+      {
+        "key": "MA||SJ LUIS ANEZ",
+        "partidario_key": "MA",
+        "partidario_label": "Moira Eguez Avila",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 3,
+        "peso_prom": 398,
+        "peso_neto_total": 1134,
+        "peso_neto_prom": 378.1,
+        "peso_bruto_total": 1194,
+        "peso_ingreso_prom": 145.5,
+        "ganancia_kg_prom": 252.5,
+        "gmd_prom": 0.452,
+        "dias_prom": 559,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2026-09-03"
+      },
+      {
+        "key": "MB||SJ LUIS ANEZ",
+        "partidario_key": "MB",
+        "partidario_label": "Moira Bocangel",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 3,
+        "peso_prom": 385.3,
+        "peso_neto_total": 1098,
+        "peso_neto_prom": 366.1,
+        "peso_bruto_total": 1156,
+        "peso_ingreso_prom": 198.3,
+        "ganancia_kg_prom": 187,
+        "gmd_prom": 0.393,
+        "dias_prom": 467,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2026-09-03"
+      },
+      {
+        "key": "MB||SJ ABEL",
+        "partidario_key": "MB",
+        "partidario_label": "Moira Bocangel",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 2,
+        "peso_prom": 418.5,
+        "peso_neto_total": 795,
+        "peso_neto_prom": 397.6,
+        "peso_bruto_total": 837,
+        "peso_ingreso_prom": 179,
+        "ganancia_kg_prom": 239.5,
+        "gmd_prom": 0.429,
+        "dias_prom": 558,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2026-09-03"
+      }
+    ],
     "slug": "dados-0-07-09-26-19-17"
   },
   {
@@ -709,6 +863,52 @@
         "origenes": []
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "FB||null",
+        "partidario_key": "FB",
+        "partidario_label": "Fabio Bocangel",
+        "origen_key": null,
+        "origen_label": "Sin origen",
+        "cabezas": 1,
+        "peso_prom": 358,
+        "peso_neto_total": 340,
+        "peso_neto_prom": 340.1,
+        "peso_bruto_total": 358,
+        "peso_ingreso_prom": 358,
+        "ganancia_kg_prom": 0,
+        "gmd_prom": null,
+        "dias_prom": 0,
+        "precio_compra_bs_prom": 4601,
+        "ingreso_fecha_min": "2025-11-06",
+        "last_fecha_max": "2026-08-11",
+        "bs_kg": 21,
+        "fecha_venta": "2026-08-12",
+        "comprador": "Vía Abelardo"
+      },
+      {
+        "key": "MA||SJ ABEL",
+        "partidario_key": "MA",
+        "partidario_label": "Moira Eguez Avila",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 1,
+        "peso_prom": 344,
+        "peso_neto_total": 327,
+        "peso_neto_prom": 326.8,
+        "peso_bruto_total": 344,
+        "peso_ingreso_prom": 180.5,
+        "ganancia_kg_prom": 163.5,
+        "gmd_prom": 0.305,
+        "dias_prom": 536,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2026-08-11",
+        "bs_kg": 21,
+        "fecha_venta": "2026-08-12",
+        "comprador": "Vía Abelardo"
+      }
+    ],
     "split": {
       "nota": "Venta vaquillas via Abelardo (comercial)",
       "destinos": [
@@ -879,6 +1079,30 @@
         "origenes": [
           "NANCHI"
         ]
+      }
+    ],
+    "por_partidario_origen": [
+      {
+        "key": "DB||NANCHI",
+        "partidario_key": "DB",
+        "partidario_label": "Diego Bocangel",
+        "origen_key": "NANCHI",
+        "origen_label": "NANCHI",
+        "cabezas": 1,
+        "peso_prom": 530,
+        "peso_neto_total": 504,
+        "peso_neto_prom": 503.5,
+        "peso_bruto_total": 530,
+        "peso_ingreso_prom": 287,
+        "ganancia_kg_prom": 243,
+        "gmd_prom": 0.528,
+        "dias_prom": 460,
+        "precio_compra_bs_prom": 5540,
+        "ingreso_fecha_min": "2025-04-11",
+        "last_fecha_max": "2026-08-04",
+        "bs_kg": 21,
+        "fecha_venta": "2026-08-04",
+        "comprador": "Frigosi"
       }
     ],
     "split": {
@@ -1288,6 +1512,140 @@
         ]
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "BB||SJ LUIS ANEZ",
+        "partidario_key": "BB",
+        "partidario_label": "Bruno Bocangel",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 1,
+        "peso_prom": 390,
+        "peso_neto_total": 371,
+        "peso_neto_prom": 370.5,
+        "peso_bruto_total": 390,
+        "peso_ingreso_prom": 153.5,
+        "ganancia_kg_prom": 236.5,
+        "gmd_prom": 0.457,
+        "dias_prom": 518,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2026-07-24",
+        "bs_kg": 19.8,
+        "fecha_venta": "2026-07-24",
+        "comprador": "Inducarne"
+      },
+      {
+        "key": "DB||SJ LUIS ANEZ",
+        "partidario_key": "DB",
+        "partidario_label": "Diego Bocangel",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 1,
+        "peso_prom": 391,
+        "peso_neto_total": 371,
+        "peso_neto_prom": 371.5,
+        "peso_bruto_total": 391,
+        "peso_ingreso_prom": 257,
+        "ganancia_kg_prom": 134,
+        "gmd_prom": 0.372,
+        "dias_prom": 360,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2026-07-24",
+        "bs_kg": 19.8,
+        "fecha_venta": "2026-07-24",
+        "comprador": "Inducarne"
+      },
+      {
+        "key": "FB||SJ ABEL",
+        "partidario_key": "FB",
+        "partidario_label": "Fabio Bocangel",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 1,
+        "peso_prom": 444,
+        "peso_neto_total": 422,
+        "peso_neto_prom": 421.8,
+        "peso_bruto_total": 444,
+        "peso_ingreso_prom": 157,
+        "ganancia_kg_prom": 287,
+        "gmd_prom": 0.555,
+        "dias_prom": 517,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2026-07-24",
+        "bs_kg": 19.8,
+        "fecha_venta": "2026-07-24",
+        "comprador": "Inducarne"
+      },
+      {
+        "key": "MA||SJ ABEL",
+        "partidario_key": "MA",
+        "partidario_label": "Moira Eguez Avila",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 2,
+        "peso_prom": 433.5,
+        "peso_neto_total": 824,
+        "peso_neto_prom": 411.8,
+        "peso_bruto_total": 867,
+        "peso_ingreso_prom": 168.3,
+        "ganancia_kg_prom": 265.3,
+        "gmd_prom": 0.513,
+        "dias_prom": 517,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2026-07-24",
+        "bs_kg": 19.8,
+        "fecha_venta": "2026-07-24",
+        "comprador": "Inducarne"
+      },
+      {
+        "key": "MA||SJ LUIS ANEZ",
+        "partidario_key": "MA",
+        "partidario_label": "Moira Eguez Avila",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 1,
+        "peso_prom": 400,
+        "peso_neto_total": 380,
+        "peso_neto_prom": 380,
+        "peso_bruto_total": 400,
+        "peso_ingreso_prom": 143,
+        "ganancia_kg_prom": 257,
+        "gmd_prom": 0.497,
+        "dias_prom": 517,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2026-07-24",
+        "bs_kg": 19.8,
+        "fecha_venta": "2026-07-24",
+        "comprador": "Inducarne"
+      },
+      {
+        "key": "MB||SJ ABEL",
+        "partidario_key": "MB",
+        "partidario_label": "Moira Bocangel",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 2,
+        "peso_prom": 430,
+        "peso_neto_total": 817,
+        "peso_neto_prom": 408.5,
+        "peso_bruto_total": 860,
+        "peso_ingreso_prom": 192,
+        "ganancia_kg_prom": 238,
+        "gmd_prom": 0.46,
+        "dias_prom": 518,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2026-07-24",
+        "bs_kg": 19.8,
+        "fecha_venta": "2026-07-24",
+        "comprador": "Inducarne"
+      }
+    ],
     "split": {
       "nota": "Venta vaquillas a Inducarne 19,8 Bs/kg",
       "destinos": [
@@ -1440,6 +1798,30 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [
+      {
+        "key": "DB||NANCHI",
+        "partidario_key": "DB",
+        "partidario_label": "Diego Bocangel",
+        "origen_key": "NANCHI",
+        "origen_label": "NANCHI",
+        "cabezas": 3,
+        "peso_prom": 522.7,
+        "peso_neto_total": 1490,
+        "peso_neto_prom": 496.5,
+        "peso_bruto_total": 1568,
+        "peso_ingreso_prom": 155.3,
+        "ganancia_kg_prom": 367.3,
+        "gmd_prom": 0.447,
+        "dias_prom": 822,
+        "precio_compra_bs_prom": 5540,
+        "ingreso_fecha_min": "2025-04-11",
+        "last_fecha_max": "2026-07-06",
+        "bs_kg": 21.5,
+        "fecha_venta": "2026-07-06",
+        "comprador": "Frigosi"
+      }
+    ],
     "split": {
       "nota": "Venta torillos pesados a Frigosi",
       "destinos": [
@@ -1706,6 +2088,52 @@
         ]
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "MA||SJ LUIS ANEZ",
+        "partidario_key": "MA",
+        "partidario_label": "Moira Eguez Avila",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 2,
+        "peso_prom": 352,
+        "peso_neto_total": 669,
+        "peso_neto_prom": 334.4,
+        "peso_bruto_total": 704,
+        "peso_ingreso_prom": 164.8,
+        "ganancia_kg_prom": 187.3,
+        "gmd_prom": 0.389,
+        "dias_prom": 482,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2026-06-18",
+        "bs_kg": 20,
+        "fecha_venta": "2026-06-18",
+        "comprador": "Rodrigo Vaca Diez"
+      },
+      {
+        "key": "MA||SJ ABEL",
+        "partidario_key": "MA",
+        "partidario_label": "Moira Eguez Avila",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 1,
+        "peso_prom": 350,
+        "peso_neto_total": 333,
+        "peso_neto_prom": 332.5,
+        "peso_bruto_total": 350,
+        "peso_ingreso_prom": 170.5,
+        "ganancia_kg_prom": 179.5,
+        "gmd_prom": 0.372,
+        "dias_prom": 482,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2026-06-18",
+        "bs_kg": 20,
+        "fecha_venta": "2026-06-18",
+        "comprador": "Rodrigo Vaca Diez"
+      }
+    ],
     "split": {
       "nota": "Venta vaquillas cría a Rodrigo Vaca Diez (comercial: Abelardo)",
       "destinos": [
@@ -1786,6 +2214,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-05-06-26-11-54"
   },
   {
@@ -1986,6 +2415,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-05-06-26-11-18"
   },
   {
@@ -2066,6 +2496,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-04-06-26-05-56"
   },
   {
@@ -2242,6 +2673,65 @@
         ]
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "BB||NAYAR SIV",
+        "partidario_key": "BB",
+        "partidario_label": "Bruno Bocangel",
+        "origen_key": "NAYAR SIV",
+        "origen_label": "NAYAR SIV",
+        "cabezas": 1,
+        "peso_prom": 158,
+        "peso_neto_total": 150,
+        "peso_neto_prom": 150.1,
+        "peso_bruto_total": 158,
+        "peso_ingreso_prom": 158,
+        "ganancia_kg_prom": 0,
+        "gmd_prom": null,
+        "dias_prom": 0,
+        "precio_compra_bs_prom": 405594,
+        "ingreso_fecha_min": "2026-05-18",
+        "last_fecha_max": "2026-05-26"
+      },
+      {
+        "key": "DB||NAYAR SIV",
+        "partidario_key": "DB",
+        "partidario_label": "Diego Bocangel",
+        "origen_key": "NAYAR SIV",
+        "origen_label": "NAYAR SIV",
+        "cabezas": 1,
+        "peso_prom": 190,
+        "peso_neto_total": 181,
+        "peso_neto_prom": 180.5,
+        "peso_bruto_total": 190,
+        "peso_ingreso_prom": 190,
+        "ganancia_kg_prom": 0,
+        "gmd_prom": null,
+        "dias_prom": 0,
+        "precio_compra_bs_prom": 405594,
+        "ingreso_fecha_min": "2026-05-18",
+        "last_fecha_max": "2026-05-26"
+      },
+      {
+        "key": "MB||NAYAR SIV",
+        "partidario_key": "MB",
+        "partidario_label": "Moira Bocangel",
+        "origen_key": "NAYAR SIV",
+        "origen_label": "NAYAR SIV",
+        "cabezas": 2,
+        "peso_prom": 173.3,
+        "peso_neto_total": 329,
+        "peso_neto_prom": 164.6,
+        "peso_bruto_total": 347,
+        "peso_ingreso_prom": 173.3,
+        "ganancia_kg_prom": 0,
+        "gmd_prom": null,
+        "dias_prom": 0,
+        "precio_compra_bs_prom": 405594,
+        "ingreso_fecha_min": "2026-05-18",
+        "last_fecha_max": "2026-05-26"
+      }
+    ],
     "slug": "dados-0-04-06-26-05-58"
   },
   {
@@ -2340,6 +2830,27 @@
         "origenes": [
           "NAYAR SIV"
         ]
+      }
+    ],
+    "por_partidario_origen": [
+      {
+        "key": "MB||NAYAR SIV",
+        "partidario_key": "MB",
+        "partidario_label": "Moira Bocangel",
+        "origen_key": "NAYAR SIV",
+        "origen_label": "NAYAR SIV",
+        "cabezas": 75,
+        "peso_prom": 160.4,
+        "peso_neto_total": 11430,
+        "peso_neto_prom": 152.4,
+        "peso_bruto_total": 12032,
+        "peso_ingreso_prom": 160.4,
+        "ganancia_kg_prom": 0,
+        "gmd_prom": null,
+        "dias_prom": 0,
+        "precio_compra_bs_prom": 405594,
+        "ingreso_fecha_min": "2026-05-18",
+        "last_fecha_max": "2026-05-26"
       }
     ],
     "slug": "dados-0-04-06-26-06-01"
@@ -2480,6 +2991,46 @@
         ]
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "DB||NAYAR SIV",
+        "partidario_key": "DB",
+        "partidario_label": "Diego Bocangel",
+        "origen_key": "NAYAR SIV",
+        "origen_label": "NAYAR SIV",
+        "cabezas": 51,
+        "peso_prom": 163.7,
+        "peso_neto_total": 7932,
+        "peso_neto_prom": 155.5,
+        "peso_bruto_total": 8350,
+        "peso_ingreso_prom": 163.7,
+        "ganancia_kg_prom": 0,
+        "gmd_prom": null,
+        "dias_prom": 0,
+        "precio_compra_bs_prom": 405594,
+        "ingreso_fecha_min": "2026-05-18",
+        "last_fecha_max": "2026-05-26"
+      },
+      {
+        "key": "MA||NAYAR SIV",
+        "partidario_key": "MA",
+        "partidario_label": "Moira Eguez Avila",
+        "origen_key": "NAYAR SIV",
+        "origen_label": "NAYAR SIV",
+        "cabezas": 97,
+        "peso_prom": 159.8,
+        "peso_neto_total": 14729,
+        "peso_neto_prom": 151.8,
+        "peso_bruto_total": 15505,
+        "peso_ingreso_prom": 159.8,
+        "ganancia_kg_prom": 0,
+        "gmd_prom": null,
+        "dias_prom": 0,
+        "precio_compra_bs_prom": 405594,
+        "ingreso_fecha_min": "2026-05-18",
+        "last_fecha_max": "2026-05-26"
+      }
+    ],
     "slug": "dados-0-04-06-26-06-04"
   },
   {
@@ -2580,6 +3131,27 @@
         ]
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "BB||NAYAR SIV",
+        "partidario_key": "BB",
+        "partidario_label": "Bruno Bocangel",
+        "origen_key": "NAYAR SIV",
+        "origen_label": "NAYAR SIV",
+        "cabezas": 45,
+        "peso_prom": 157.9,
+        "peso_neto_total": 6750,
+        "peso_neto_prom": 150,
+        "peso_bruto_total": 7106,
+        "peso_ingreso_prom": 157.9,
+        "ganancia_kg_prom": 0,
+        "gmd_prom": null,
+        "dias_prom": 0,
+        "precio_compra_bs_prom": 405594,
+        "ingreso_fecha_min": "2026-05-18",
+        "last_fecha_max": "2026-05-26"
+      }
+    ],
     "slug": "dados-0-04-06-26-06-03"
   },
   {
@@ -2678,6 +3250,27 @@
         "origenes": [
           "NAYAR SIV"
         ]
+      }
+    ],
+    "por_partidario_origen": [
+      {
+        "key": "FB||NAYAR SIV",
+        "partidario_key": "FB",
+        "partidario_label": "Fabio Bocangel",
+        "origen_key": "NAYAR SIV",
+        "origen_label": "NAYAR SIV",
+        "cabezas": 9,
+        "peso_prom": 152.4,
+        "peso_neto_total": 1303,
+        "peso_neto_prom": 144.8,
+        "peso_bruto_total": 1372,
+        "peso_ingreso_prom": 152.4,
+        "ganancia_kg_prom": 0,
+        "gmd_prom": null,
+        "dias_prom": 0,
+        "precio_compra_bs_prom": 405594,
+        "ingreso_fecha_min": "2026-05-18",
+        "last_fecha_max": "2026-05-26"
       }
     ],
     "slug": "dados-0-04-06-26-06-02"
@@ -3005,6 +3598,184 @@
         ]
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "BB||SJ ABEL",
+        "partidario_key": "BB",
+        "partidario_label": "Bruno Bocangel",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 1,
+        "peso_prom": 375,
+        "peso_neto_total": 356,
+        "peso_neto_prom": 356.3,
+        "peso_bruto_total": 375,
+        "peso_ingreso_prom": 174.5,
+        "ganancia_kg_prom": 200.5,
+        "gmd_prom": 0.44,
+        "dias_prom": 456,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2026-05-23",
+        "bs_kg": 21,
+        "fecha_venta": "2026-05-23",
+        "comprador": "Inducarne"
+      },
+      {
+        "key": "BB||null",
+        "partidario_key": "BB",
+        "partidario_label": "Bruno Bocangel",
+        "origen_key": null,
+        "origen_label": "Sin origen",
+        "cabezas": 1,
+        "peso_prom": 422,
+        "peso_neto_total": 401,
+        "peso_neto_prom": 400.9,
+        "peso_bruto_total": 422,
+        "peso_ingreso_prom": 221,
+        "ganancia_kg_prom": 201,
+        "gmd_prom": 0.479,
+        "dias_prom": 420,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": null,
+        "last_fecha_max": "2026-05-23",
+        "bs_kg": 21,
+        "fecha_venta": "2026-05-23",
+        "comprador": "Inducarne"
+      },
+      {
+        "key": "DB||SJ LUIS ANEZ",
+        "partidario_key": "DB",
+        "partidario_label": "Diego Bocangel",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 1,
+        "peso_prom": 390,
+        "peso_neto_total": 371,
+        "peso_neto_prom": 370.5,
+        "peso_bruto_total": 390,
+        "peso_ingreso_prom": 144,
+        "ganancia_kg_prom": 246,
+        "gmd_prom": 0.541,
+        "dias_prom": 455,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2026-05-23",
+        "bs_kg": 21,
+        "fecha_venta": "2026-05-23",
+        "comprador": "Inducarne"
+      },
+      {
+        "key": "DB||SJ ABEL",
+        "partidario_key": "DB",
+        "partidario_label": "Diego Bocangel",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 1,
+        "peso_prom": 419,
+        "peso_neto_total": 398,
+        "peso_neto_prom": 398,
+        "peso_bruto_total": 419,
+        "peso_ingreso_prom": 152.5,
+        "ganancia_kg_prom": 266.5,
+        "gmd_prom": 0.586,
+        "dias_prom": 455,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2026-05-23",
+        "bs_kg": 21,
+        "fecha_venta": "2026-05-23",
+        "comprador": "Inducarne"
+      },
+      {
+        "key": "MA||SJ ABEL",
+        "partidario_key": "MA",
+        "partidario_label": "Moira Eguez Avila",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 6,
+        "peso_prom": 426,
+        "peso_neto_total": 2428,
+        "peso_neto_prom": 404.7,
+        "peso_bruto_total": 2556,
+        "peso_ingreso_prom": 171.6,
+        "ganancia_kg_prom": 254.4,
+        "gmd_prom": 0.558,
+        "dias_prom": 456,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2026-05-23",
+        "bs_kg": 21,
+        "fecha_venta": "2026-05-23",
+        "comprador": "Inducarne"
+      },
+      {
+        "key": "MB||SJ ABEL",
+        "partidario_key": "MB",
+        "partidario_label": "Moira Bocangel",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 5,
+        "peso_prom": 420.2,
+        "peso_neto_total": 1996,
+        "peso_neto_prom": 399.2,
+        "peso_bruto_total": 2101,
+        "peso_ingreso_prom": 170.5,
+        "ganancia_kg_prom": 249.7,
+        "gmd_prom": 0.547,
+        "dias_prom": 456,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2026-05-23",
+        "bs_kg": 21,
+        "fecha_venta": "2026-05-23",
+        "comprador": "Inducarne"
+      },
+      {
+        "key": "MB||null",
+        "partidario_key": "MB",
+        "partidario_label": "Moira Bocangel",
+        "origen_key": null,
+        "origen_label": "Sin origen",
+        "cabezas": 1,
+        "peso_prom": 368,
+        "peso_neto_total": 350,
+        "peso_neto_prom": 349.6,
+        "peso_bruto_total": 368,
+        "peso_ingreso_prom": 199.5,
+        "ganancia_kg_prom": 168.5,
+        "gmd_prom": 0.401,
+        "dias_prom": 420,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": null,
+        "last_fecha_max": "2026-05-23",
+        "bs_kg": 21,
+        "fecha_venta": "2026-05-23",
+        "comprador": "Inducarne"
+      },
+      {
+        "key": "MB||SJ LUIS ANEZ",
+        "partidario_key": "MB",
+        "partidario_label": "Moira Bocangel",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 1,
+        "peso_prom": 377,
+        "peso_neto_total": 358,
+        "peso_neto_prom": 358.2,
+        "peso_bruto_total": 377,
+        "peso_ingreso_prom": 153.5,
+        "ganancia_kg_prom": 223.5,
+        "gmd_prom": 0.49,
+        "dias_prom": 456,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2026-05-23",
+        "bs_kg": 21,
+        "fecha_venta": "2026-05-23",
+        "comprador": "Inducarne"
+      }
+    ],
     "split": {
       "nota": "Venta vaquillas a Inducarne",
       "destinos": [
@@ -3085,6 +3856,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-19-05-26-20-24"
   },
   {
@@ -3266,6 +4038,30 @@
         "origenes": [
           "NANCHI"
         ]
+      }
+    ],
+    "por_partidario_origen": [
+      {
+        "key": "MB||NANCHI",
+        "partidario_key": "MB",
+        "partidario_label": "Moira Bocangel",
+        "origen_key": "NANCHI",
+        "origen_label": "NANCHI",
+        "cabezas": 1,
+        "peso_prom": 438,
+        "peso_neto_total": 416,
+        "peso_neto_prom": 416.1,
+        "peso_bruto_total": 438,
+        "peso_ingreso_prom": 256,
+        "ganancia_kg_prom": 182,
+        "gmd_prom": 0.493,
+        "dias_prom": 369,
+        "precio_compra_bs_prom": 5540,
+        "ingreso_fecha_min": "2025-04-11",
+        "last_fecha_max": "2026-05-05",
+        "bs_kg": 23,
+        "fecha_venta": "2026-05-06",
+        "comprador": "Frigosi"
       }
     ],
     "split": {
@@ -3582,6 +4378,96 @@
         ]
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "BB||NANCHI",
+        "partidario_key": "BB",
+        "partidario_label": "Bruno Bocangel",
+        "origen_key": "NANCHI",
+        "origen_label": "NANCHI",
+        "cabezas": 5,
+        "peso_prom": 445.6,
+        "peso_neto_total": 2117,
+        "peso_neto_prom": 423.3,
+        "peso_bruto_total": 2228,
+        "peso_ingreso_prom": 257,
+        "ganancia_kg_prom": 188.6,
+        "gmd_prom": 0.501,
+        "dias_prom": 377,
+        "precio_compra_bs_prom": 5540,
+        "ingreso_fecha_min": "2025-04-11",
+        "last_fecha_max": "2026-05-04",
+        "bs_kg": 23.5,
+        "fecha_venta": "2026-05-04",
+        "comprador": "Roberto Caldas (confinamiento)"
+      },
+      {
+        "key": "BB||GUIT",
+        "partidario_key": "BB",
+        "partidario_label": "Bruno Bocangel",
+        "origen_key": "GUIT",
+        "origen_label": "GUIT",
+        "cabezas": 1,
+        "peso_prom": 373,
+        "peso_neto_total": 354,
+        "peso_neto_prom": 354.3,
+        "peso_bruto_total": 373,
+        "peso_ingreso_prom": 206,
+        "ganancia_kg_prom": 167,
+        "gmd_prom": 0.429,
+        "dias_prom": 389,
+        "precio_compra_bs_prom": 4500,
+        "ingreso_fecha_min": "2025-03-23",
+        "last_fecha_max": "2026-05-04",
+        "bs_kg": 23.5,
+        "fecha_venta": "2026-05-04",
+        "comprador": "Roberto Caldas (confinamiento)"
+      },
+      {
+        "key": "DB||NANCHI",
+        "partidario_key": "DB",
+        "partidario_label": "Diego Bocangel",
+        "origen_key": "NANCHI",
+        "origen_label": "NANCHI",
+        "cabezas": 7,
+        "peso_prom": 524,
+        "peso_neto_total": 3485,
+        "peso_neto_prom": 497.8,
+        "peso_bruto_total": 3668,
+        "peso_ingreso_prom": 303,
+        "ganancia_kg_prom": 221,
+        "gmd_prom": 0.601,
+        "dias_prom": 368,
+        "precio_compra_bs_prom": 5540,
+        "ingreso_fecha_min": "2025-04-11",
+        "last_fecha_max": "2026-05-04",
+        "bs_kg": 23,
+        "fecha_venta": "2026-05-03",
+        "comprador": "Frigosi"
+      },
+      {
+        "key": "MB||NAYAR SIV",
+        "partidario_key": "MB",
+        "partidario_label": "Moira Bocangel",
+        "origen_key": "NAYAR SIV",
+        "origen_label": "NAYAR SIV",
+        "cabezas": 1,
+        "peso_prom": 370,
+        "peso_neto_total": 352,
+        "peso_neto_prom": 351.5,
+        "peso_bruto_total": 370,
+        "peso_ingreso_prom": 264.7,
+        "ganancia_kg_prom": 105.3,
+        "gmd_prom": 0.337,
+        "dias_prom": 312,
+        "precio_compra_bs_prom": 405594,
+        "ingreso_fecha_min": "2026-05-18",
+        "last_fecha_max": "2026-05-26",
+        "bs_kg": 23.5,
+        "fecha_venta": "2026-05-04",
+        "comprador": "Roberto Caldas (confinamiento)"
+      }
+    ],
     "split": {
       "nota": "Venta repartida entre 2 compradores",
       "destinos": [
@@ -3821,6 +4707,74 @@
         ]
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "FB||SJ LUIS ANEZ",
+        "partidario_key": "FB",
+        "partidario_label": "Fabio Bocangel",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 4,
+        "peso_prom": 381,
+        "peso_neto_total": 1448,
+        "peso_neto_prom": 362,
+        "peso_bruto_total": 1524,
+        "peso_ingreso_prom": 209,
+        "ganancia_kg_prom": 172,
+        "gmd_prom": 0.637,
+        "dias_prom": 270,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2026-04-25",
+        "bs_kg": 21.1,
+        "fecha_venta": "2026-04-25",
+        "comprador": "Inducarne"
+      },
+      {
+        "key": "MA||SJ LUIS ANEZ",
+        "partidario_key": "MA",
+        "partidario_label": "Moira Eguez Avila",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 3,
+        "peso_prom": 380.7,
+        "peso_neto_total": 1085,
+        "peso_neto_prom": 361.6,
+        "peso_bruto_total": 1142,
+        "peso_ingreso_prom": 151.7,
+        "ganancia_kg_prom": 229,
+        "gmd_prom": 0.535,
+        "dias_prom": 428,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2026-04-25",
+        "bs_kg": 21.1,
+        "fecha_venta": "2026-04-25",
+        "comprador": "Inducarne"
+      },
+      {
+        "key": "MA||SJ ABEL",
+        "partidario_key": "MA",
+        "partidario_label": "Moira Eguez Avila",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 1,
+        "peso_prom": 381,
+        "peso_neto_total": 362,
+        "peso_neto_prom": 362,
+        "peso_bruto_total": 381,
+        "peso_ingreso_prom": 148,
+        "ganancia_kg_prom": 233,
+        "gmd_prom": 0.544,
+        "dias_prom": 428,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2026-04-25",
+        "bs_kg": 21.1,
+        "fecha_venta": "2026-04-25",
+        "comprador": "Inducarne"
+      }
+    ],
     "split": {
       "nota": "Venta vaquillas a Inducarne",
       "destinos": [
@@ -3959,6 +4913,27 @@
         "origenes": [
           "NANCHI"
         ]
+      }
+    ],
+    "por_partidario_origen": [
+      {
+        "key": "DB||NANCHI",
+        "partidario_key": "DB",
+        "partidario_label": "Diego Bocangel",
+        "origen_key": "NANCHI",
+        "origen_label": "NANCHI",
+        "cabezas": 1,
+        "peso_prom": 455,
+        "peso_neto_total": 432,
+        "peso_neto_prom": 432.3,
+        "peso_bruto_total": 455,
+        "peso_ingreso_prom": 267,
+        "ganancia_kg_prom": 188,
+        "gmd_prom": 0.54,
+        "dias_prom": 348,
+        "precio_compra_bs_prom": 5540,
+        "ingreso_fecha_min": "2025-04-11",
+        "last_fecha_max": "2026-04-14"
       }
     ],
     "slug": "dados-0-15-04-26-10-12"
@@ -4287,6 +5262,160 @@
         "origenes": []
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "BB||SJ LUIS ANEZ",
+        "partidario_key": "BB",
+        "partidario_label": "Bruno Bocangel",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 2,
+        "peso_prom": 307.5,
+        "peso_neto_total": 584,
+        "peso_neto_prom": 292.1,
+        "peso_bruto_total": 615,
+        "peso_ingreso_prom": 183.5,
+        "ganancia_kg_prom": 124,
+        "gmd_prom": 0.498,
+        "dias_prom": 270,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2026-02-05"
+      },
+      {
+        "key": "BB||null",
+        "partidario_key": "BB",
+        "partidario_label": "Bruno Bocangel",
+        "origen_key": null,
+        "origen_label": "Sin origen",
+        "cabezas": 1,
+        "peso_prom": 342,
+        "peso_neto_total": 325,
+        "peso_neto_prom": 324.9,
+        "peso_bruto_total": 342,
+        "peso_ingreso_prom": 233,
+        "ganancia_kg_prom": 109,
+        "gmd_prom": 0.571,
+        "dias_prom": 191,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": null,
+        "last_fecha_max": "2026-02-05"
+      },
+      {
+        "key": "DB||SJ LUIS ANEZ",
+        "partidario_key": "DB",
+        "partidario_label": "Diego Bocangel",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 3,
+        "peso_prom": 310.7,
+        "peso_neto_total": 885,
+        "peso_neto_prom": 295.1,
+        "peso_bruto_total": 932,
+        "peso_ingreso_prom": 151.8,
+        "ganancia_kg_prom": 158.8,
+        "gmd_prom": 0.472,
+        "dias_prom": 335,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2026-02-05"
+      },
+      {
+        "key": "FB||SJ LUIS ANEZ",
+        "partidario_key": "FB",
+        "partidario_label": "Fabio Bocangel",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 3,
+        "peso_prom": 319,
+        "peso_neto_total": 909,
+        "peso_neto_prom": 303.1,
+        "peso_bruto_total": 957,
+        "peso_ingreso_prom": 226.7,
+        "ganancia_kg_prom": 92.3,
+        "gmd_prom": 0.483,
+        "dias_prom": 191,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2026-02-05"
+      },
+      {
+        "key": "FB||null",
+        "partidario_key": "FB",
+        "partidario_label": "Fabio Bocangel",
+        "origen_key": null,
+        "origen_label": "Sin origen",
+        "cabezas": 3,
+        "peso_prom": 303.3,
+        "peso_neto_total": 865,
+        "peso_neto_prom": 288.2,
+        "peso_bruto_total": 910,
+        "peso_ingreso_prom": 253.7,
+        "ganancia_kg_prom": 49.7,
+        "gmd_prom": 0.731,
+        "dias_prom": 68,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2026-02-05"
+      },
+      {
+        "key": "MA||SJ LUIS ANEZ",
+        "partidario_key": "MA",
+        "partidario_label": "Moira Eguez Avila",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 2,
+        "peso_prom": 327,
+        "peso_neto_total": 621,
+        "peso_neto_prom": 310.7,
+        "peso_bruto_total": 654,
+        "peso_ingreso_prom": 152.3,
+        "ganancia_kg_prom": 174.8,
+        "gmd_prom": 0.5,
+        "dias_prom": 349,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2026-02-05"
+      },
+      {
+        "key": "MB||SJ LUIS ANEZ",
+        "partidario_key": "MB",
+        "partidario_label": "Moira Bocangel",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 4,
+        "peso_prom": 324.5,
+        "peso_neto_total": 1233,
+        "peso_neto_prom": 308.3,
+        "peso_bruto_total": 1298,
+        "peso_ingreso_prom": 169.6,
+        "ganancia_kg_prom": 154.9,
+        "gmd_prom": 0.475,
+        "dias_prom": 319,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2026-02-05"
+      },
+      {
+        "key": "MB||null",
+        "partidario_key": "MB",
+        "partidario_label": "Moira Bocangel",
+        "origen_key": null,
+        "origen_label": "Sin origen",
+        "cabezas": 1,
+        "peso_prom": 328,
+        "peso_neto_total": 312,
+        "peso_neto_prom": 311.6,
+        "peso_bruto_total": 328,
+        "peso_ingreso_prom": 267,
+        "ganancia_kg_prom": 61,
+        "gmd_prom": 0.897,
+        "dias_prom": 68,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": null,
+        "last_fecha_max": "2026-02-05"
+      }
+    ],
     "slug": "dados-0-24-03-26-09-17"
   },
   {
@@ -4581,6 +5710,84 @@
         ]
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "DB||SJ ABEL",
+        "partidario_key": "DB",
+        "partidario_label": "Diego Bocangel",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 1,
+        "peso_prom": 340,
+        "peso_neto_total": 323,
+        "peso_neto_prom": 323,
+        "peso_bruto_total": 340,
+        "peso_ingreso_prom": 179,
+        "ganancia_kg_prom": 161,
+        "gmd_prom": 0.476,
+        "dias_prom": 338,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2026-01-26"
+      },
+      {
+        "key": "FB||SJ ABEL",
+        "partidario_key": "FB",
+        "partidario_label": "Fabio Bocangel",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 1,
+        "peso_prom": 355,
+        "peso_neto_total": 337,
+        "peso_neto_prom": 337.3,
+        "peso_bruto_total": 355,
+        "peso_ingreso_prom": 177,
+        "ganancia_kg_prom": 178,
+        "gmd_prom": 0.527,
+        "dias_prom": 338,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2026-01-26"
+      },
+      {
+        "key": "MA||SJ ABEL",
+        "partidario_key": "MA",
+        "partidario_label": "Moira Eguez Avila",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 3,
+        "peso_prom": 380.7,
+        "peso_neto_total": 1085,
+        "peso_neto_prom": 361.6,
+        "peso_bruto_total": 1142,
+        "peso_ingreso_prom": 180.7,
+        "ganancia_kg_prom": 200,
+        "gmd_prom": 0.591,
+        "dias_prom": 339,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2026-01-26"
+      },
+      {
+        "key": "MB||SJ ABEL",
+        "partidario_key": "MB",
+        "partidario_label": "Moira Bocangel",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 4,
+        "peso_prom": 346,
+        "peso_neto_total": 1315,
+        "peso_neto_prom": 328.7,
+        "peso_bruto_total": 1384,
+        "peso_ingreso_prom": 184.6,
+        "ganancia_kg_prom": 161.4,
+        "gmd_prom": 0.476,
+        "dias_prom": 339,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2026-01-26"
+      }
+    ],
     "slug": "dados-0-11-02-26-19-24"
   },
   {
@@ -4661,6 +5868,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-11-02-26-19-21"
   },
   {
@@ -4781,6 +5989,27 @@
         ]
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "DB||NANCHI",
+        "partidario_key": "DB",
+        "partidario_label": "Diego Bocangel",
+        "origen_key": "NANCHI",
+        "origen_label": "NANCHI",
+        "cabezas": 1,
+        "peso_prom": 352,
+        "peso_neto_total": 334,
+        "peso_neto_prom": 334.4,
+        "peso_bruto_total": 352,
+        "peso_ingreso_prom": 256,
+        "ganancia_kg_prom": 96,
+        "gmd_prom": 0.361,
+        "dias_prom": 266,
+        "precio_compra_bs_prom": 5540,
+        "ingreso_fecha_min": "2025-04-11",
+        "last_fecha_max": "2026-01-22"
+      }
+    ],
     "slug": "dados-0-11-02-26-19-19"
   },
   {
@@ -4878,6 +6107,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-11-02-26-19-12"
   },
   {
@@ -4916,6 +6146,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-11-02-26-19-05"
   },
   {
@@ -4976,6 +6207,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-11-02-26-19-02"
   },
   {
@@ -5056,6 +6288,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-11-02-26-19-00"
   },
   {
@@ -5133,6 +6366,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-12-02-26-15-22"
   },
   {
@@ -5291,6 +6525,27 @@
         "origenes": [
           "ROJAS MONT"
         ]
+      }
+    ],
+    "por_partidario_origen": [
+      {
+        "key": "FB||ROJAS MONT",
+        "partidario_key": "FB",
+        "partidario_label": "Fabio Bocangel",
+        "origen_key": "ROJAS MONT",
+        "origen_label": "ROJAS MONT",
+        "cabezas": 1,
+        "peso_prom": 295,
+        "peso_neto_total": 280,
+        "peso_neto_prom": 280.3,
+        "peso_bruto_total": 295,
+        "peso_ingreso_prom": 256,
+        "ganancia_kg_prom": 39,
+        "gmd_prom": 0.001,
+        "dias_prom": 46006,
+        "precio_compra_bs_prom": 5316,
+        "ingreso_fecha_min": "2025-11-06",
+        "last_fecha_max": "2025-12-15"
       }
     ],
     "slug": "dados-0-17-12-25-19-42"
@@ -5468,6 +6723,27 @@
         "origenes": [
           "NANCHI"
         ]
+      }
+    ],
+    "por_partidario_origen": [
+      {
+        "key": "DB||NANCHI",
+        "partidario_key": "DB",
+        "partidario_label": "Diego Bocangel",
+        "origen_key": "NANCHI",
+        "origen_label": "NANCHI",
+        "cabezas": 1,
+        "peso_prom": 386,
+        "peso_neto_total": 367,
+        "peso_neto_prom": 366.7,
+        "peso_bruto_total": 386,
+        "peso_ingreso_prom": 302,
+        "ganancia_kg_prom": 84,
+        "gmd_prom": 0.389,
+        "dias_prom": 216,
+        "precio_compra_bs_prom": 5540,
+        "ingreso_fecha_min": "2025-04-11",
+        "last_fecha_max": "2025-12-03"
       }
     ],
     "slug": "dados-0-12-02-26-15-26"
@@ -5668,6 +6944,46 @@
         ]
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "DB||NANCHI",
+        "partidario_key": "DB",
+        "partidario_label": "Diego Bocangel",
+        "origen_key": "NANCHI",
+        "origen_label": "NANCHI",
+        "cabezas": 1,
+        "peso_prom": 341,
+        "peso_neto_total": 324,
+        "peso_neto_prom": 324,
+        "peso_bruto_total": 341,
+        "peso_ingreso_prom": 303,
+        "ganancia_kg_prom": 38,
+        "gmd_prom": 0.174,
+        "dias_prom": 218,
+        "precio_compra_bs_prom": 5540,
+        "ingreso_fecha_min": "2025-04-11",
+        "last_fecha_max": "2025-12-05"
+      },
+      {
+        "key": "MA||SJ ABEL",
+        "partidario_key": "MA",
+        "partidario_label": "Moira Eguez Avila",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 1,
+        "peso_prom": 351,
+        "peso_neto_total": 333,
+        "peso_neto_prom": 333.5,
+        "peso_bruto_total": 351,
+        "peso_ingreso_prom": 178.5,
+        "ganancia_kg_prom": 172.5,
+        "gmd_prom": 0.601,
+        "dias_prom": 287,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2025-12-05"
+      }
+    ],
     "slug": "dados-0-12-02-26-15-25"
   },
   {
@@ -5748,6 +7064,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-12-02-26-15-56"
   },
   {
@@ -5808,6 +7125,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-12-02-26-15-39"
   },
   {
@@ -5908,6 +7226,27 @@
         ]
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "DB||SJ LUIS ANEZ",
+        "partidario_key": "DB",
+        "partidario_label": "Diego Bocangel",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 1,
+        "peso_prom": 255,
+        "peso_neto_total": 242,
+        "peso_neto_prom": 242.3,
+        "peso_bruto_total": 255,
+        "peso_ingreso_prom": 144.5,
+        "ganancia_kg_prom": 110.5,
+        "gmd_prom": 0.395,
+        "dias_prom": 280,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2025-11-29"
+      }
+    ],
     "slug": "dados-0-12-02-26-15-59"
   },
   {
@@ -5988,6 +7327,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-12-02-26-15-54"
   },
   {
@@ -6221,6 +7561,84 @@
         ]
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "BB||SJ LUIS ANEZ",
+        "partidario_key": "BB",
+        "partidario_label": "Bruno Bocangel",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 3,
+        "peso_prom": 250.3,
+        "peso_neto_total": 713,
+        "peso_neto_prom": 237.8,
+        "peso_bruto_total": 751,
+        "peso_ingreso_prom": 143.8,
+        "ganancia_kg_prom": 106.5,
+        "gmd_prom": 0.412,
+        "dias_prom": 258,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2025-11-07"
+      },
+      {
+        "key": "DB||SJ LUIS ANEZ",
+        "partidario_key": "DB",
+        "partidario_label": "Diego Bocangel",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 3,
+        "peso_prom": 277,
+        "peso_neto_total": 789,
+        "peso_neto_prom": 263.2,
+        "peso_bruto_total": 831,
+        "peso_ingreso_prom": 156.3,
+        "ganancia_kg_prom": 120.7,
+        "gmd_prom": 0.466,
+        "dias_prom": 259,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2025-11-07"
+      },
+      {
+        "key": "MA||SJ LUIS ANEZ",
+        "partidario_key": "MA",
+        "partidario_label": "Moira Eguez Avila",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 10,
+        "peso_prom": 275.2,
+        "peso_neto_total": 2614,
+        "peso_neto_prom": 261.4,
+        "peso_bruto_total": 2752,
+        "peso_ingreso_prom": 153.2,
+        "ganancia_kg_prom": 122,
+        "gmd_prom": 0.472,
+        "dias_prom": 259,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2025-11-07"
+      },
+      {
+        "key": "MB||SJ LUIS ANEZ",
+        "partidario_key": "MB",
+        "partidario_label": "Moira Bocangel",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
+        "cabezas": 1,
+        "peso_prom": 286,
+        "peso_neto_total": 272,
+        "peso_neto_prom": 271.7,
+        "peso_bruto_total": 286,
+        "peso_ingreso_prom": 156.5,
+        "ganancia_kg_prom": 129.5,
+        "gmd_prom": 0.5,
+        "dias_prom": 259,
+        "precio_compra_bs_prom": 4721,
+        "ingreso_fecha_min": "2025-09-30",
+        "last_fecha_max": "2025-11-07"
+      }
+    ],
     "slug": "dados-0-26-11-25-11-10"
   },
   {
@@ -6279,6 +7697,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-26-11-25-11-06"
   },
   {
@@ -6554,6 +7973,103 @@
         ]
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "BB||SJ ABEL",
+        "partidario_key": "BB",
+        "partidario_label": "Bruno Bocangel",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 1,
+        "peso_prom": 297,
+        "peso_neto_total": 282,
+        "peso_neto_prom": 282.2,
+        "peso_bruto_total": 297,
+        "peso_ingreso_prom": 136,
+        "ganancia_kg_prom": 161,
+        "gmd_prom": 0.59,
+        "dias_prom": 273,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2025-11-21"
+      },
+      {
+        "key": "DB||SJ ABEL",
+        "partidario_key": "DB",
+        "partidario_label": "Diego Bocangel",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 1,
+        "peso_prom": 280,
+        "peso_neto_total": 266,
+        "peso_neto_prom": 266,
+        "peso_bruto_total": 280,
+        "peso_ingreso_prom": 164,
+        "ganancia_kg_prom": 116,
+        "gmd_prom": 0.425,
+        "dias_prom": 273,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2025-11-21"
+      },
+      {
+        "key": "MA||SJ ABEL",
+        "partidario_key": "MA",
+        "partidario_label": "Moira Eguez Avila",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 6,
+        "peso_prom": 291.5,
+        "peso_neto_total": 1662,
+        "peso_neto_prom": 276.9,
+        "peso_bruto_total": 1749,
+        "peso_ingreso_prom": 163.1,
+        "ganancia_kg_prom": 128.4,
+        "gmd_prom": 0.471,
+        "dias_prom": 273,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2025-11-21"
+      },
+      {
+        "key": "MA||null",
+        "partidario_key": "MA",
+        "partidario_label": "Moira Eguez Avila",
+        "origen_key": null,
+        "origen_label": "Sin origen",
+        "cabezas": 1,
+        "peso_prom": 295,
+        "peso_neto_total": 280,
+        "peso_neto_prom": 280.3,
+        "peso_bruto_total": 295,
+        "peso_ingreso_prom": 208,
+        "ganancia_kg_prom": 87,
+        "gmd_prom": 0.367,
+        "dias_prom": 237,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": null,
+        "last_fecha_max": "2025-11-21"
+      },
+      {
+        "key": "MB||SJ ABEL",
+        "partidario_key": "MB",
+        "partidario_label": "Moira Bocangel",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 14,
+        "peso_prom": 291.5,
+        "peso_neto_total": 3877,
+        "peso_neto_prom": 276.9,
+        "peso_bruto_total": 4081,
+        "peso_ingreso_prom": 172,
+        "ganancia_kg_prom": 119.5,
+        "gmd_prom": 0.438,
+        "dias_prom": 273,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2025-11-21"
+      }
+    ],
     "slug": "dados-0-26-11-25-11-05"
   },
   {
@@ -6634,6 +8150,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-26-11-25-11-25"
   },
   {
@@ -6694,6 +8211,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-26-11-25-11-22"
   },
   {
@@ -6714,6 +8232,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-26-11-25-11-17"
   },
   {
@@ -6774,6 +8293,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-26-11-25-10-48"
   },
   {
@@ -6854,6 +8374,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-25-11-25-19-34"
   },
   {
@@ -6914,6 +8435,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-25-11-25-20-14"
   },
   {
@@ -6974,6 +8496,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-25-11-25-20-21"
   },
   {
@@ -7012,6 +8535,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-25-11-25-20-24"
   },
   {
@@ -7090,6 +8614,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-25-11-25-20-16"
   },
   {
@@ -7150,6 +8675,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-25-11-25-19-22"
   },
   {
@@ -7170,6 +8696,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-25-11-25-19-26"
   },
   {
@@ -7250,6 +8777,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-25-11-25-19-19"
   },
   {
@@ -7310,6 +8838,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-15-11-25-07-17"
   },
   {
@@ -7348,6 +8877,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-15-11-25-07-19"
   },
   {
@@ -7386,6 +8916,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-15-11-25-07-21"
   },
   {
@@ -7424,6 +8955,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-15-11-25-07-22"
   },
   {
@@ -7444,6 +8976,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-15-11-25-07-25"
   },
   {
@@ -7504,6 +9037,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-15-11-25-07-27"
   },
   {
@@ -7564,6 +9098,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-15-11-25-06-53"
   },
   {
@@ -7702,6 +9237,27 @@
         ]
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "DB||SJ ABEL",
+        "partidario_key": "DB",
+        "partidario_label": "Diego Bocangel",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 1,
+        "peso_prom": 286,
+        "peso_neto_total": 272,
+        "peso_neto_prom": 271.7,
+        "peso_bruto_total": 286,
+        "peso_ingreso_prom": 186,
+        "ganancia_kg_prom": 100,
+        "gmd_prom": 0.571,
+        "dias_prom": 175,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2025-08-15"
+      }
+    ],
     "slug": "dados-0-15-11-25-06-57"
   },
   {
@@ -7762,6 +9318,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-15-11-25-06-59"
   },
   {
@@ -7822,6 +9379,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "aut-3-y-4"
   },
   {
@@ -7902,6 +9460,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-14-11-25-10-44"
   },
   {
@@ -7922,6 +9481,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-19-08-25-10-20"
   },
   {
@@ -7942,6 +9502,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-19-08-25-10-21"
   },
   {
@@ -8002,6 +9563,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-15-11-25-07-32"
   },
   {
@@ -8040,6 +9602,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-14-11-25-10-38"
   },
   {
@@ -8060,6 +9623,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-14-11-25-11-08"
   },
   {
@@ -8094,6 +9658,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-14-11-25-10-49"
   },
   {
@@ -8114,6 +9679,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-14-11-25-11-00"
   },
   {
@@ -8152,6 +9718,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-14-11-25-10-40"
   },
   {
@@ -8212,6 +9779,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-14-11-25-10-42"
   },
   {
@@ -8272,6 +9840,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-07-07-25-14-08"
   },
   {
@@ -8292,6 +9861,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-19-08-25-09-59"
   },
   {
@@ -8392,6 +9962,27 @@
         ]
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "MA||FERC",
+        "partidario_key": "MA",
+        "partidario_label": "Moira Eguez Avila",
+        "origen_key": "FERC",
+        "origen_label": "FERC",
+        "cabezas": 22,
+        "peso_prom": 234.9,
+        "peso_neto_total": 4909,
+        "peso_neto_prom": 223.1,
+        "peso_bruto_total": 5167,
+        "peso_ingreso_prom": 234.9,
+        "ganancia_kg_prom": 0,
+        "gmd_prom": null,
+        "dias_prom": 0,
+        "precio_compra_bs_prom": 4408,
+        "ingreso_fecha_min": "2025-05-14",
+        "last_fecha_max": "2025-05-22"
+      }
+    ],
     "slug": "dados-0-22-05-25-13-22"
   },
   {
@@ -8452,6 +10043,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-22-05-25-13-23"
   },
   {
@@ -8472,6 +10064,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-03-05-25-17-44"
   },
   {
@@ -8572,6 +10165,27 @@
         ]
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "BB||NANCHI",
+        "partidario_key": "BB",
+        "partidario_label": "Bruno Bocangel",
+        "origen_key": "NANCHI",
+        "origen_label": "NANCHI",
+        "cabezas": 1,
+        "peso_prom": 328,
+        "peso_neto_total": 312,
+        "peso_neto_prom": 311.6,
+        "peso_bruto_total": 328,
+        "peso_ingreso_prom": 328,
+        "ganancia_kg_prom": 0,
+        "gmd_prom": null,
+        "dias_prom": 0,
+        "precio_compra_bs_prom": 5540,
+        "ingreso_fecha_min": "2025-04-11",
+        "last_fecha_max": "2025-05-01"
+      }
+    ],
     "slug": "bb-tor-abr"
   },
   {
@@ -8592,6 +10206,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "mb-abr-tor"
   },
   {
@@ -8652,6 +10267,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ingreso-tor-nanchi-abr"
   },
   {
@@ -8712,6 +10328,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "fercogan-tor-may"
   },
   {
@@ -8772,6 +10389,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-03-05-25-17-58"
   },
   {
@@ -8930,6 +10548,46 @@
         ]
       }
     ],
+    "por_partidario_origen": [
+      {
+        "key": "MA||SJ ABEL",
+        "partidario_key": "MA",
+        "partidario_label": "Moira Eguez Avila",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 1,
+        "peso_prom": 168.5,
+        "peso_neto_total": 160,
+        "peso_neto_prom": 160.1,
+        "peso_bruto_total": 169,
+        "peso_ingreso_prom": 135,
+        "ganancia_kg_prom": 33.5,
+        "gmd_prom": 0.558,
+        "dias_prom": 60,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2025-04-22"
+      },
+      {
+        "key": "MB||SJ ABEL",
+        "partidario_key": "MB",
+        "partidario_label": "Moira Bocangel",
+        "origen_key": "SJ ABEL",
+        "origen_label": "SJ ABEL",
+        "cabezas": 3,
+        "peso_prom": 236.7,
+        "peso_neto_total": 675,
+        "peso_neto_prom": 224.8,
+        "peso_bruto_total": 710,
+        "peso_ingreso_prom": 178.8,
+        "ganancia_kg_prom": 57.8,
+        "gmd_prom": 0.969,
+        "dias_prom": 60,
+        "precio_compra_bs_prom": 2982,
+        "ingreso_fecha_min": "2025-03-29",
+        "last_fecha_max": "2025-04-22"
+      }
+    ],
     "slug": "dados-0-03-05-25-17-57"
   },
   {
@@ -8968,6 +10626,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-03-05-25-17-59"
   },
   {
@@ -9028,6 +10687,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "guit-mar-tor"
   },
   {
@@ -9048,6 +10708,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "rjc-vaq-abr"
   },
   {
@@ -9066,6 +10727,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-05-05-25-12-03"
   },
   {
@@ -9086,6 +10748,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-05-05-25-12-02"
   },
   {
@@ -9106,6 +10769,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-05-05-25-12-04"
   },
   {
@@ -9164,6 +10828,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ingreso-vaquillas-abelardo-feb"
   },
   {
@@ -9284,6 +10949,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-12-02-25-18-40"
   },
   {
@@ -9344,6 +11010,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-08-01-25-12-45"
   },
   {
@@ -9382,6 +11049,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-08-01-25-12-56"
   },
   {
@@ -9502,6 +11170,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-30-07-24-17-25"
   },
   {
@@ -9602,6 +11271,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-26-06-24-18-59"
   },
   {
@@ -9720,6 +11390,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-26-06-24-18-57"
   },
   {
@@ -9780,6 +11451,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-20-06-24-13-31"
   },
   {
@@ -9840,6 +11512,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-20-06-24-07-47"
   },
   {
@@ -9898,6 +11571,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-20-06-24-07-54"
   },
   {
@@ -9936,6 +11610,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-20-06-24-13-12"
   },
   {
@@ -9974,6 +11649,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-20-06-24-13-16"
   },
   {
@@ -9994,6 +11670,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-02-05-24-20-13"
   },
   {
@@ -10014,6 +11691,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-01-04-24-19-58"
   },
   {
@@ -10074,6 +11752,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-01-04-24-10-17"
   },
   {
@@ -10294,6 +11973,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-21-02-24-14-08"
   },
   {
@@ -10452,6 +12132,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-22-02-24-20-25"
   },
   {
@@ -10672,6 +12353,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-08-02-24-11-11"
   },
   {
@@ -10871,6 +12553,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-27-01-24-20-18"
   },
   {
@@ -11010,6 +12693,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-22-01-24-17-06"
   },
   {
@@ -11130,6 +12814,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-18-01-24-12-22"
   },
   {
@@ -11190,6 +12875,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-18-01-24-12-12"
   },
   {
@@ -11210,6 +12896,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-17-01-24-19-35"
   },
   {
@@ -11270,6 +12957,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-10-01-24-19-44"
   },
   {
@@ -11370,6 +13058,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-09-01-24-20-19"
   },
   {
@@ -11430,6 +13119,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-28-12-23-18-45"
   },
   {
@@ -11450,6 +13140,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-1-20-12-23-11-30"
   },
   {
@@ -11470,6 +13161,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-2-13-12-23-19-59"
   },
   {
@@ -11490,6 +13182,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-3-13-12-23-19-59"
   },
   {
@@ -11550,6 +13243,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-3-13-12-23-20-00"
   },
   {
@@ -11570,6 +13264,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-1-13-12-23-19-58"
   },
   {
@@ -11630,6 +13325,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-07-12-23-19-53"
   },
   {
@@ -11690,6 +13386,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-2-21-11-23-12-49"
   },
   {
@@ -11750,6 +13447,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-2-11-11-23-07-58"
   },
   {
@@ -11808,6 +13506,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "venta-inducarne-oct-12-3"
   },
   {
@@ -11888,6 +13587,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "silo-3-y-4-final-oct"
   },
   {
@@ -11968,6 +13668,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ctrl-peso-silo-1-y-2-25-10-23"
   },
   {
@@ -12048,6 +13749,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ctrl-peso-torillos-livianos"
   },
   {
@@ -12108,6 +13810,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ctrl-peso-silo-4-final-octubre"
   },
   {
@@ -12227,6 +13930,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ctrl-peso-vaquillas-octubre"
   },
   {
@@ -12327,6 +14031,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-3-13-10-23-14-40"
   },
   {
@@ -12387,6 +14092,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "silo-5-final"
   },
   {
@@ -12407,6 +14113,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-03-10-23-10-11"
   },
   {
@@ -12445,6 +14152,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ctrl-peso-silo-5-septiembre"
   },
   {
@@ -12463,6 +14171,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "control-peso-silo-1-septiembre"
   },
   {
@@ -12523,6 +14232,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "silo-6-ingreso"
   },
   {
@@ -12543,6 +14253,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "vaquillas-agosto-30-08-23-20"
   },
   {
@@ -12681,6 +14392,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ventas-vaquillas-inducarne"
   },
   {
@@ -12800,6 +14512,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "trabajo-sep-vaquillas-agosto"
   },
   {
@@ -12838,6 +14551,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-08-08-23-19-34"
   },
   {
@@ -12958,6 +14672,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ingreso-silos"
   },
   {
@@ -13058,6 +14773,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-2-04-08-23-18-11"
   },
   {
@@ -13114,6 +14830,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "tropa-separacion-peso"
   },
   {
@@ -13170,6 +14887,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-28-06-23-17-59"
   },
   {
@@ -13230,6 +14948,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "control-peso-rbo-walter-2-06-2"
   },
   {
@@ -13250,6 +14969,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-6-16-06-23-19-56"
   },
   {
@@ -13270,6 +14990,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-2-16-06-23-19-49"
   },
   {
@@ -13306,6 +15027,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "2-dosis-gangrena-ingreso-tor-m"
   },
   {
@@ -13406,6 +15128,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "sep-vaq-brnk-aft-gan-rab-09-0"
   },
   {
@@ -13524,6 +15247,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "vaq-mc-aft-gan-rab-mayo"
   },
   {
@@ -13582,6 +15306,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-2-04-05-23-20-38"
   },
   {
@@ -13642,6 +15367,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ingreso-tor-marzo-warnes-y-ch"
   },
   {
@@ -13702,6 +15428,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "control-peso-torillos-rbo"
   },
   {
@@ -13816,6 +15543,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-2-03-03-23-15-19"
   },
   {
@@ -13874,6 +15602,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-1-03-03-23-15-19"
   },
   {
@@ -13934,6 +15663,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "rbo-control-peso-imidocar"
   },
   {
@@ -14033,6 +15763,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "separacion-vaq-pesadas-24-11-2"
   },
   {
@@ -14109,6 +15840,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "branko-vaq-sepracion-23-11-22"
   },
   {
@@ -14167,6 +15899,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "mc3-vaq-23-11-22-19-20"
   },
   {
@@ -14243,6 +15976,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-5-23-11-22-19-19"
   },
   {
@@ -14303,6 +16037,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "control-mc2-23-11-22-19-17"
   },
   {
@@ -14363,6 +16098,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "rbo2-control-peso-23-11-22"
   },
   {
@@ -14423,6 +16159,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "control-peso-vaq-pesadas-23"
   },
   {
@@ -14483,6 +16220,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "mc1-pos-trigo-control-peso-2"
   },
   {
@@ -14539,6 +16277,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-24-10-22-18-59"
   },
   {
@@ -14599,6 +16338,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "autoconsumo-1-gangrena-2-19-10"
   },
   {
@@ -14615,6 +16355,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ingreso-animales-y-control-pes"
   },
   {
@@ -14694,6 +16435,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "control-peso-vaquillas-pesadas"
   },
   {
@@ -14754,6 +16496,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "mc2-separacion-30-08-22-18-1"
   },
   {
@@ -14812,6 +16555,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "mc3-27-08-22-18-00"
   },
   {
@@ -14911,6 +16655,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "vaquillas-pesadas-09-08-22-1"
   },
   {
@@ -14971,6 +16716,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-2-31-08-22-06-12"
   },
   {
@@ -15068,6 +16814,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-6-27-06-22-20-04"
   },
   {
@@ -15084,6 +16831,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-5-27-06-22-20-04"
   },
   {
@@ -15159,6 +16907,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-4-27-06-22-20-04"
   },
   {
@@ -15217,6 +16966,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-3-27-06-22-20-03"
   },
   {
@@ -15273,6 +17023,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-2-27-06-22-20-03"
   },
   {
@@ -15329,6 +17080,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-1-27-06-22-20-03"
   },
   {
@@ -15385,6 +17137,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-3-21-05-22-15-45"
   },
   {
@@ -15480,6 +17233,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "separacion-branko-vaq-8-04-22"
   },
   {
@@ -15536,6 +17290,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "sanidad-mc1-imidocar-28-04-2"
   },
   {
@@ -15592,6 +17347,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "sanidad-mc2-imidocar-28-04-22"
   },
   {
@@ -15691,6 +17447,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-20-04-22-19-07"
   },
   {
@@ -15747,6 +17504,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-1-12-04-22-17-45"
   },
   {
@@ -15803,6 +17561,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-1-12-04-22-17-43"
   },
   {
@@ -15819,6 +17578,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "tropa-mc1-control-peso-23-03-2"
   },
   {
@@ -15875,6 +17635,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "control-de-peso-tropa-raul-a-e"
   },
   {
@@ -15935,6 +17696,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "control-de-peso-vaq-pesadas-ch"
   },
   {
@@ -15951,6 +17713,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-3-15-03-22-19-50"
   },
   {
@@ -16028,6 +17791,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "tropa-gonzalo-tor-24-02-22"
   },
   {
@@ -16088,6 +17852,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "control-peso-febrero-chiqui"
   },
   {
@@ -16144,6 +17909,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-1-18-02-22-20-37"
   },
   {
@@ -16160,6 +17926,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "pesaje-manual-26-0-26-01-2"
   },
   {
@@ -16218,6 +17985,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-pesajes-0-26-01-22-1"
   },
   {
@@ -16274,6 +18042,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ingreso-tropa-vaquillas-daniel"
   },
   {
@@ -16392,6 +18161,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-0-10-11-21-14-29"
   },
   {
@@ -16492,6 +18262,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "dados-2-09-11-21-21-32"
   },
   {
@@ -16570,6 +18341,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "tropa-fernando-30-10-21-20-49"
   },
   {
@@ -16649,6 +18421,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "tropa-carlos-aftosa-09-11-2"
   },
   {
@@ -16727,6 +18500,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "venta-to-ito-a-confinamiento-2"
   },
   {
@@ -16827,6 +18601,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "control-peso-y-reparticion-rep"
   },
   {
@@ -16907,6 +18682,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "control-peso-reproduccion-05"
   },
   {
@@ -16984,6 +18760,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "crtl-peso-chiky-08-06-21-07"
   },
   {
@@ -17044,6 +18821,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ctrl-peso-aftosa-tropa-vaquill"
   },
   {
@@ -17104,6 +18882,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ctrl-vaquillas-peso-daniel-1"
   },
   {
@@ -17183,6 +18962,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ctrl-peso-daniel-vq-aft-gng-29"
   },
   {
@@ -17261,6 +19041,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ctrl-peso-carlos-y-division"
   },
   {
@@ -17319,6 +19100,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ctrl-peso-grn-daniel-az-12-0"
   },
   {
@@ -17375,6 +19157,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ctrl-peso-jesus-barbosa-05-0"
   },
   {
@@ -17433,6 +19216,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ctrl-peso-t-daniel-az-machos"
   },
   {
@@ -17512,6 +19296,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ctrl-peso-t-carlos-tor-14-0"
   },
   {
@@ -17592,6 +19377,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ctrl-peso-t-carlos-vaq-14-04-2"
   },
   {
@@ -17650,6 +19436,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "tropa-carlos-torillos-imid-23"
   },
   {
@@ -17729,6 +19516,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "tropa-vaquillas-24s-daniel-imi"
   },
   {
@@ -17787,6 +19575,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "tropa-carlos-vaquillas-1s-chip"
   },
   {
@@ -17847,6 +19636,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "tropa-carlos-vq-13-03-21-12"
   },
   {
@@ -17905,6 +19695,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "tropa-miguel-rueda-torillos-pa"
   },
   {
@@ -17923,6 +19714,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "tropa-miguel-rueda-torillos"
   },
   {
@@ -17943,6 +19735,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "tropa-vaquillas-carlos-aft-rba"
   },
   {
@@ -18039,6 +19832,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "aftosa-ctrl-peso-tropa-toril"
   },
   {
@@ -18059,6 +19853,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ctrl-peso-aft-rv-tr-alb-27"
   },
   {
@@ -18119,6 +19914,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "control-peso-y-profilaxis-corr"
   },
   {
@@ -18175,6 +19971,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "sexado-aft-sup-rv-mod-24-11"
   },
   {
@@ -18191,6 +19988,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "sexado-09-11-20"
   },
   {
@@ -18249,6 +20047,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ctrl-peso-l18-28-10-20"
   },
   {
@@ -18328,6 +20127,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ctrl-peso-corral-27-10-20"
   },
   {
@@ -18388,6 +20188,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "ctrl-peso-lote-20-26-10-20"
   },
   {
@@ -18448,6 +20249,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "miguel-nieme-25-09-20"
   },
   {
@@ -18508,6 +20310,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "miguel-nieme-ternetas-22-09-20"
   },
   {
@@ -18528,6 +20331,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "chiquitania-terneras-21-09-2"
   },
   {
@@ -18588,6 +20392,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "terneras-donald-lopez-16-09"
   },
   {
@@ -18648,6 +20453,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "sexado-san-rafael-14-09-20-1"
   },
   {
@@ -18668,6 +20474,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "rodrigo-nogales-vaquillas-11"
   },
   {
@@ -18728,6 +20535,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "orlando-aponte-hembras-09-09"
   },
   {
@@ -18788,6 +20596,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "rodrigo-suarez-hembras-09-09"
   },
   {
@@ -18848,6 +20657,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "sexado-orlando-aponte-09-09-2"
   },
   {
@@ -18906,6 +20716,7 @@
       }
     ],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "sexado-lt-20-y-18ss-08-09-20"
   },
   {
@@ -18924,6 +20735,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "1-camion-enzo-l-26-08-20-18"
   },
   {
@@ -18944,6 +20756,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "2-camion-beni-310-26-08-20-0"
   },
   {
@@ -18962,6 +20775,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "2-camion-enzo-l-26-08-20-18"
   },
   {
@@ -18980,6 +20794,7 @@
     "por_proveedor": [],
     "por_categoria": [],
     "por_raza": [],
+    "por_partidario_origen": [],
     "slug": "compra-beni-torillos-1-camion"
   }
 ]

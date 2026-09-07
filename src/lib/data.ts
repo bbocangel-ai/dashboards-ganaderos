@@ -81,6 +81,30 @@ export type GroupRow = {
   comprador?: string | null;
 };
 
+export type PartidarioOrigenRow = {
+  key: string;
+  partidario_key: string;
+  partidario_label: string;
+  origen_key: string | null;
+  origen_label: string;
+  cabezas: number;
+  peso_prom: number;
+  peso_neto_total: number;
+  peso_neto_prom: number;
+  peso_bruto_total: number;
+  peso_ingreso_prom: number;
+  ganancia_kg_prom: number;
+  gmd_prom: number | null;
+  dias_prom: number;
+  precio_compra_bs_prom: number | null;
+  ingreso_fecha_min: string | null;
+  last_fecha_max: string | null;
+  // Override opcional desde split: bs_kg, fecha y comprador específicos
+  bs_kg?: number | null;
+  fecha_venta?: string | null;
+  comprador?: string | null;
+};
+
 export type SplitDestino = {
   comprador: string;
   cabezas: number;
@@ -112,6 +136,7 @@ export type Sesion = {
   por_proveedor: GroupRow[];
   por_categoria: GroupRow[];
   por_raza: GroupRow[];
+  por_partidario_origen: PartidarioOrigenRow[];
   split?: { nota: string | null; destinos: SplitDestino[] };
 };
 

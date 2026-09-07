@@ -953,6 +953,63 @@ async function main() {
     });
   }
 
+  // Igual que group(), pero clave compuesta (partidario, origen). Un partidario
+  // con animales de 2+ orígenes en la misma venta queda en filas separadas en
+  // vez de mezclarse (promediarse) bajo una sola columna.
+  function groupPartidarioOrigen(animals) {
+    const m = new Map();
+    for (const a of animals) {
+      if (!a.partidario_id) continue;
+      const origenKey = a.proveedor || null;
+      const compositeKey = `${a.partidario_id}||${origenKey}`;
+      let g = m.get(compositeKey);
+      if (!g) {
+        g = {
+          key: compositeKey,
+          partidario_key: a.partidario_id,
+          partidario_label: a.partidario || a.partidario_id,
+          origen_key: origenKey,
+          origen_label: origenKey || 'Sin origen',
+          cabezas: 0, peso_bruto_sum: 0, peso_in_sum: 0, ganancia_sum: 0,
+          dias_sum: 0, gmd_sum: 0, gmd_n: 0,
+          precio_sum: 0, precio_n: 0,
+          ingreso_fecha_min: null, last_fecha_max: null,
+        };
+        m.set(compositeKey, g);
+      }
+      g.cabezas++;
+      g.peso_bruto_sum += a.last_peso;
+      g.peso_in_sum += a.first_peso;
+      g.ganancia_sum += a.ganancia_kg;
+      g.dias_sum += a.dias_en_campo;
+      if (a.gmd_kg != null) { g.gmd_sum += a.gmd_kg; g.gmd_n++; }
+      if (a.proveedor_precio_bs != null) { g.precio_sum += a.proveedor_precio_bs; g.precio_n++; }
+      if (a.ingreso_fecha && (!g.ingreso_fecha_min || a.ingreso_fecha < g.ingreso_fecha_min)) g.ingreso_fecha_min = a.ingreso_fecha;
+      if (a.last_fecha && (!g.last_fecha_max || a.last_fecha > g.last_fecha_max)) g.last_fecha_max = a.last_fecha;
+    }
+    return [...m.values()]
+      .map(g => ({
+        key: g.key,
+        partidario_key: g.partidario_key,
+        partidario_label: g.partidario_label,
+        origen_key: g.origen_key,
+        origen_label: g.origen_label,
+        cabezas: g.cabezas,
+        peso_prom: Math.round((g.peso_bruto_sum / g.cabezas) * 10) / 10,
+        peso_neto_total: Math.round(g.peso_bruto_sum * 0.95),
+        peso_neto_prom: Math.round((g.peso_bruto_sum / g.cabezas) * 0.95 * 10) / 10,
+        peso_bruto_total: Math.round(g.peso_bruto_sum),
+        peso_ingreso_prom: Math.round((g.peso_in_sum / g.cabezas) * 10) / 10,
+        ganancia_kg_prom: Math.round((g.ganancia_sum / g.cabezas) * 10) / 10,
+        gmd_prom: g.gmd_n > 0 ? Math.round((g.gmd_sum / g.gmd_n) * 1000) / 1000 : null,
+        dias_prom: g.cabezas > 0 ? Math.round(g.dias_sum / g.cabezas) : 0,
+        precio_compra_bs_prom: g.precio_n > 0 ? Math.round(g.precio_sum / g.precio_n) : null,
+        ingreso_fecha_min: g.ingreso_fecha_min,
+        last_fecha_max: g.last_fecha_max,
+      }))
+      .sort((a, b) => a.partidario_key.localeCompare(b.partidario_key) || b.cabezas - a.cabezas);
+  }
+
   const ventasSplit = overrides.ventas_split || {};
   const priceOverrides = overrides.sesion_price_overrides || {};
   for (const s of sesiones) {
@@ -964,6 +1021,7 @@ async function main() {
     s.por_proveedor  = group(animals, a => a.proveedor || null);
     s.por_categoria  = group(animals, a => a.categoria || null);
     s.por_raza       = group(animals, a => a.raza_codigo || a.raza_descripcion || null, a => a.raza_descripcion || a.raza_codigo || '');
+    s.por_partidario_origen = groupPartidarioOrigen(animals);
 
     // splits por comprador (si hay override)
     const split = ventasSplit[s.sesion];
@@ -985,6 +1043,15 @@ async function main() {
           row.fecha_venta = dest.fecha;
           row.comprador = dest.comprador;
         }
+        for (const row of s.por_partidario_origen) {
+          const compradorName = split.partidario_destino[row.partidario_key];
+          if (!compradorName) continue;
+          const dest = destinos.find(d => d.comprador === compradorName);
+          if (!dest) continue;
+          row.bs_kg = dest.bs_kg;
+          row.fecha_venta = dest.fecha;
+          row.comprador = dest.comprador;
+        }
       } else if (destinos.length === 1) {
         // Si hay un solo comprador, todos los partidarios y proveedores van ahí
         const dest = destinos[0];
@@ -994,6 +1061,11 @@ async function main() {
           row.comprador = dest.comprador;
         }
         for (const row of s.por_proveedor) {
+          row.bs_kg = dest.bs_kg;
+          row.fecha_venta = dest.fecha;
+          row.comprador = dest.comprador;
+        }
+        for (const row of s.por_partidario_origen) {
           row.bs_kg = dest.bs_kg;
           row.fecha_venta = dest.fecha;
           row.comprador = dest.comprador;
