@@ -57,7 +57,9 @@
     "por_animal_id": {}
   },
 
-  "sesion_price_overrides": {},
+  "sesion_price_overrides": {
+    "DADOS - 0 - 07/09/26 19:17": 22
+  },
 
   "partidario_total_targets": {
     "MA": { "VQ": 104, "TL": 0 },
