@@ -900,9 +900,14 @@ async function main() {
       g.dias_sum += a.dias_en_campo;
       if (a.gmd_kg != null) { g.gmd_sum += a.gmd_kg; g.gmd_n++; }
       if (a.proveedor_precio_bs != null) { g.precio_sum += a.proveedor_precio_bs; g.precio_n++; }
-      if (a.ingreso_fecha) {
-        if (!g.ingreso_fecha_min || a.ingreso_fecha < g.ingreso_fecha_min) g.ingreso_fecha_min = a.ingreso_fecha;
-        if (!g.ingreso_fecha_max || a.ingreso_fecha > g.ingreso_fecha_max) g.ingreso_fecha_max = a.ingreso_fecha;
+      // "Fecha ingreso" mostrada = primer pesaje real (first_fecha), NO a.ingreso_fecha.
+      // a.ingreso_fecha viene del texto libre de REBANHOS y es una fecha administrativa
+      // (cuándo se registró/cerró el lote), no necesariamente cuándo llegó el animal —
+      // puede ser meses posterior al primer pesaje real, dando "días en campo" que no
+      // cuadran con la fecha de ingreso mostrada.
+      if (a.first_fecha) {
+        if (!g.ingreso_fecha_min || a.first_fecha < g.ingreso_fecha_min) g.ingreso_fecha_min = a.first_fecha;
+        if (!g.ingreso_fecha_max || a.first_fecha > g.ingreso_fecha_max) g.ingreso_fecha_max = a.first_fecha;
       }
       if (a.last_fecha) {
         if (!g.last_fecha_min || a.last_fecha < g.last_fecha_min) g.last_fecha_min = a.last_fecha;
@@ -984,7 +989,8 @@ async function main() {
       g.dias_sum += a.dias_en_campo;
       if (a.gmd_kg != null) { g.gmd_sum += a.gmd_kg; g.gmd_n++; }
       if (a.proveedor_precio_bs != null) { g.precio_sum += a.proveedor_precio_bs; g.precio_n++; }
-      if (a.ingreso_fecha && (!g.ingreso_fecha_min || a.ingreso_fecha < g.ingreso_fecha_min)) g.ingreso_fecha_min = a.ingreso_fecha;
+      // Ver nota en group(): "Fecha ingreso" = primer pesaje real, no REBANHO.
+      if (a.first_fecha && (!g.ingreso_fecha_min || a.first_fecha < g.ingreso_fecha_min)) g.ingreso_fecha_min = a.first_fecha;
       if (a.last_fecha && (!g.last_fecha_max || a.last_fecha > g.last_fecha_max)) g.last_fecha_max = a.last_fecha;
     }
     return [...m.values()]

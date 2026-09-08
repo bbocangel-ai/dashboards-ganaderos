@@ -315,8 +315,11 @@ export function aggCompras(): Compra[] {
     if (a.dias_en_campo > 0) { g.dias_sum += a.dias_en_campo; g.dias_n++; }
     if (a.proveedor) g.origenes.add(a.proveedor);
     if (a.proveedor_precio_bs != null) { g.precio_sum += a.proveedor_precio_bs; g.precio_n++; }
-    if (a.ingreso_fecha) {
-      if (!g.ingreso_fecha_min || a.ingreso_fecha < g.ingreso_fecha_min) g.ingreso_fecha_min = a.ingreso_fecha;
+    // "Fecha ingreso" = primer pesaje real (first_fecha), no a.ingreso_fecha (REBANHO):
+    // esa es una fecha administrativa que puede ser meses posterior al ingreso físico
+    // real, y no cuadra con dias_en_campo (que sí usa first_fecha).
+    if (a.first_fecha) {
+      if (!g.ingreso_fecha_min || a.first_fecha < g.ingreso_fecha_min) g.ingreso_fecha_min = a.first_fecha;
     }
     if (a.vendido) g.vendidos++;
   }
