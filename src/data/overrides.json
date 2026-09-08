@@ -94,6 +94,7 @@
 
   "local_proveedor_mapping": {
     "_doc": "Consolida LOCAIS con nombres confusos hacia un proveedor limpio. NO cambia partidario. Pattern substring case-insensitive.",
+    "LUIS ANEZ SJ": "SJ LUIS ANEZ",
     "DIEGO MARZO": "NANCHI",
     "DIEGO TOR": "NANCHI",
     "BRUNO TORILLOS": "NANCHI",

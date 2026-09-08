@@ -320,8 +320,11 @@ async function main() {
       fecha,
       peso: r.PESAJE_PESO != null ? Number(r.PESAJE_PESO) : null,
       sesion: r.SESION_DESCRIPCION,
-      // proveedor (LOCAL)
-      proveedor: local.proveedor,
+      // proveedor (LOCAL = registro de compra). Si el animal no tiene LOCAL
+      // (sin registro de compra), usamos el proveedor de REBANHO (ingreso al
+      // rebaño) como respaldo — mejor mostrar ese origen que dejarlo vacío.
+      // Bs/cab compra queda null en ese caso porque REBANHO no trae precio.
+      proveedor: local.proveedor || rebanho.proveedor || null,
       proveedor_categoria: local.categoria,
       proveedor_cantidad: local.cantidad,
       proveedor_precio_bs: local.precio_bs,

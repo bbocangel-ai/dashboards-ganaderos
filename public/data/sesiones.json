@@ -26,10 +26,12 @@
         "ganancia_kg_prom": 96,
         "gmd_prom": 0.339,
         "dias_prom": 283,
-        "precio_compra_bs_prom": null,
+        "precio_compra_bs_prom": 4721,
         "ingreso_fecha_min": "2025-11-29",
         "last_fecha_max": "2026-09-08",
-        "origenes": []
+        "origenes": [
+          "SJ LUIS ANEZ"
+        ]
       }
     ],
     "por_proveedor": [
@@ -55,20 +57,39 @@
       {
         "key": "SJ LUIS ANEZ",
         "label": "SJ LUIS ANEZ",
-        "cabezas": 10,
-        "peso_prom": 361.7,
-        "peso_neto_total": 3436,
-        "peso_neto_prom": 343.6,
-        "peso_bruto_total": 3617,
-        "peso_ingreso_prom": 234.5,
-        "ganancia_kg_prom": 127.2,
-        "gmd_prom": 0.313,
-        "dias_prom": 406,
+        "cabezas": 11,
+        "peso_prom": 361.5,
+        "peso_neto_total": 3777,
+        "peso_neto_prom": 343.4,
+        "peso_bruto_total": 3976,
+        "peso_ingreso_prom": 237.1,
+        "ganancia_kg_prom": 124.4,
+        "gmd_prom": 0.316,
+        "dias_prom": 395,
         "precio_compra_bs_prom": 4721,
         "ingreso_fecha_min": "2025-07-29",
         "last_fecha_max": "2026-09-08",
         "origenes": [
           "SJ LUIS ANEZ"
+        ]
+      },
+      {
+        "key": "CHIPA ROJAS",
+        "label": "CHIPA ROJAS",
+        "cabezas": 7,
+        "peso_prom": 330.3,
+        "peso_neto_total": 2196,
+        "peso_neto_prom": 313.8,
+        "peso_bruto_total": 2312,
+        "peso_ingreso_prom": 291.6,
+        "ganancia_kg_prom": 38.7,
+        "gmd_prom": 0.157,
+        "dias_prom": 353,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2025-07-09",
+        "last_fecha_max": "2026-09-08",
+        "origenes": [
+          "CHIPA ROJAS"
         ]
       },
       {
@@ -218,12 +239,13 @@
         "ganancia_kg_prom": 92.4,
         "gmd_prom": 0.336,
         "dias_prom": 290,
-        "precio_compra_bs_prom": 17217,
+        "precio_compra_bs_prom": 17038,
         "ingreso_fecha_min": "2024-03-20",
         "last_fecha_max": "2026-09-08",
         "origenes": [
           "NANCHI",
           "NOGALES",
+          "CHIPA ROJAS",
           "SJ LUIS ANEZ",
           "CRM RIB CONCE",
           "SIV ABL",
@@ -247,19 +269,21 @@
         "ganancia_kg_prom": 96,
         "gmd_prom": 0.339,
         "dias_prom": 283,
-        "precio_compra_bs_prom": null,
+        "precio_compra_bs_prom": 4721,
         "ingreso_fecha_min": "2025-11-29",
         "last_fecha_max": "2026-09-08",
-        "origenes": []
+        "origenes": [
+          "SJ LUIS ANEZ"
+        ]
       }
     ],
     "por_partidario_origen": [
       {
-        "key": "FB||null",
+        "key": "FB||SJ LUIS ANEZ",
         "partidario_key": "FB",
         "partidario_label": "Fabio Bocangel",
-        "origen_key": null,
-        "origen_label": "Sin origen",
+        "origen_key": "SJ LUIS ANEZ",
+        "origen_label": "SJ LUIS ANEZ",
         "cabezas": 1,
         "peso_prom": 359,
         "peso_neto_total": 341,
@@ -269,7 +293,7 @@
         "ganancia_kg_prom": 96,
         "gmd_prom": 0.339,
         "dias_prom": 283,
-        "precio_compra_bs_prom": null,
+        "precio_compra_bs_prom": 4721,
         "ingreso_fecha_min": "2025-11-29",
         "last_fecha_max": "2026-09-08"
       }
@@ -506,6 +530,25 @@
         ]
       },
       {
+        "key": "CHIPA ROJAS",
+        "label": "CHIPA ROJAS",
+        "cabezas": 2,
+        "peso_prom": 404.5,
+        "peso_neto_total": 769,
+        "peso_neto_prom": 384.3,
+        "peso_bruto_total": 809,
+        "peso_ingreso_prom": 260.5,
+        "ganancia_kg_prom": 144,
+        "gmd_prom": 0.487,
+        "dias_prom": 296,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2025-11-11",
+        "last_fecha_max": "2026-09-03",
+        "origenes": [
+          "CHIPA ROJAS"
+        ]
+      },
+      {
         "key": "FERCOGAN",
         "label": "FERCOGAN",
         "cabezas": 1,
@@ -568,6 +611,7 @@
           "FERCOGAN",
           "GRY",
           "ROJAS MONT",
+          "CHIPA ROJAS",
           "ROCCO"
         ]
       }
@@ -966,6 +1010,28 @@
         "comprador": "Vía Abelardo"
       },
       {
+        "key": "CHIPA ROJAS",
+        "label": "CHIPA ROJAS",
+        "cabezas": 17,
+        "peso_prom": 353.2,
+        "peso_neto_total": 5704,
+        "peso_neto_prom": 335.5,
+        "peso_bruto_total": 6004,
+        "peso_ingreso_prom": 284.3,
+        "ganancia_kg_prom": 68.9,
+        "gmd_prom": 0.266,
+        "dias_prom": 322,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2025-07-09",
+        "last_fecha_max": "2026-08-11",
+        "origenes": [
+          "CHIPA ROJAS"
+        ],
+        "bs_kg": 21,
+        "fecha_venta": "2026-08-12",
+        "comprador": "Vía Abelardo"
+      },
+      {
         "key": "CRM RIB CONCE",
         "label": "CRM RIB CONCE",
         "cabezas": 15,
@@ -1097,6 +1163,7 @@
           "CESPEDES",
           "SJ ABEL",
           "SJ LUIS ANEZ",
+          "CHIPA ROJAS",
           "CRM RIB CONCE",
           "ROJAS MONT"
         ]
@@ -1250,16 +1317,16 @@
       {
         "key": "GUIT",
         "label": "GUIT",
-        "cabezas": 24,
-        "peso_prom": 521,
-        "peso_neto_total": 11879,
-        "peso_neto_prom": 495,
-        "peso_bruto_total": 12504,
-        "peso_ingreso_prom": 349.2,
-        "ganancia_kg_prom": 171.8,
-        "gmd_prom": 0.634,
-        "dias_prom": 277,
-        "precio_compra_bs_prom": 75356,
+        "cabezas": 22,
+        "peso_prom": 521.3,
+        "peso_neto_total": 10895,
+        "peso_neto_prom": 495.2,
+        "peso_bruto_total": 11468,
+        "peso_ingreso_prom": 352.2,
+        "ganancia_kg_prom": 169.1,
+        "gmd_prom": 0.645,
+        "dias_prom": 266,
+        "precio_compra_bs_prom": 81797,
         "ingreso_fecha_min": "2025-04-10",
         "last_fecha_max": "2026-08-04",
         "origenes": [
@@ -1273,19 +1340,41 @@
         "key": "NANCHI",
         "label": "NANCHI",
         "cabezas": 20,
-        "peso_prom": 535.5,
-        "peso_neto_total": 10174,
-        "peso_neto_prom": 508.7,
-        "peso_bruto_total": 10709,
-        "peso_ingreso_prom": 249,
-        "ganancia_kg_prom": 286.5,
-        "gmd_prom": 0.466,
-        "dias_prom": 620,
+        "peso_prom": 531,
+        "peso_neto_total": 10088,
+        "peso_neto_prom": 504.4,
+        "peso_bruto_total": 10619,
+        "peso_ingreso_prom": 260.5,
+        "ganancia_kg_prom": 270.4,
+        "gmd_prom": 0.474,
+        "dias_prom": 577,
         "precio_compra_bs_prom": 5540,
         "ingreso_fecha_min": "2024-05-08",
         "last_fecha_max": "2026-08-04",
         "origenes": [
           "NANCHI"
+        ],
+        "bs_kg": 21,
+        "fecha_venta": "2026-08-04",
+        "comprador": "Frigosi"
+      },
+      {
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 2,
+        "peso_prom": 563,
+        "peso_neto_total": 1070,
+        "peso_neto_prom": 534.9,
+        "peso_bruto_total": 1126,
+        "peso_ingreso_prom": 201.5,
+        "ganancia_kg_prom": 361.5,
+        "gmd_prom": 0.442,
+        "dias_prom": 818,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-08",
+        "last_fecha_max": "2026-08-04",
+        "origenes": [
+          "CASA BLANCA MAY"
         ],
         "bs_kg": 21,
         "fecha_venta": "2026-08-04",
@@ -1327,11 +1416,12 @@
         "ganancia_kg_prom": 223.9,
         "gmd_prom": 0.556,
         "dias_prom": 433,
-        "precio_compra_bs_prom": 42770,
+        "precio_compra_bs_prom": 44550,
         "ingreso_fecha_min": "2024-05-08",
         "last_fecha_max": "2026-08-04",
         "origenes": [
           "NANCHI",
+          "CASA BLANCA MAY",
           "GUIT",
           "FERCOGAN"
         ]
@@ -1964,13 +2054,13 @@
         "key": "DB",
         "label": "Diego Bocangel",
         "cabezas": 3,
-        "peso_prom": 522.7,
-        "peso_neto_total": 1490,
-        "peso_neto_prom": 496.5,
-        "peso_bruto_total": 1568,
-        "peso_ingreso_prom": 155.3,
-        "ganancia_kg_prom": 367.3,
-        "gmd_prom": 0.447,
+        "peso_prom": 529.3,
+        "peso_neto_total": 1509,
+        "peso_neto_prom": 502.9,
+        "peso_bruto_total": 1588,
+        "peso_ingreso_prom": 170,
+        "ganancia_kg_prom": 359.3,
+        "gmd_prom": 0.437,
         "dias_prom": 822,
         "precio_compra_bs_prom": 5540,
         "ingreso_fecha_min": "2024-03-20",
@@ -1985,18 +2075,40 @@
     ],
     "por_proveedor": [
       {
+        "key": "FERCOGAN",
+        "label": "FERCOGAN",
+        "cabezas": 40,
+        "peso_prom": 521.3,
+        "peso_neto_total": 19810,
+        "peso_neto_prom": 495.3,
+        "peso_bruto_total": 20853,
+        "peso_ingreso_prom": 278.1,
+        "ganancia_kg_prom": 243.2,
+        "gmd_prom": 0.565,
+        "dias_prom": 459,
+        "precio_compra_bs_prom": 55363,
+        "ingreso_fecha_min": "2024-05-08",
+        "last_fecha_max": "2026-07-06",
+        "origenes": [
+          "FERCOGAN"
+        ],
+        "bs_kg": 21.5,
+        "fecha_venta": "2026-07-06",
+        "comprador": "Frigosi"
+      },
+      {
         "key": "GUIT",
         "label": "GUIT",
-        "cabezas": 43,
+        "cabezas": 33,
         "peso_prom": 528.9,
-        "peso_neto_total": 21607,
+        "peso_neto_total": 16581,
         "peso_neto_prom": 502.5,
-        "peso_bruto_total": 22744,
-        "peso_ingreso_prom": 347,
-        "ganancia_kg_prom": 181.9,
-        "gmd_prom": 0.683,
-        "dias_prom": 284,
-        "precio_compra_bs_prom": 24646,
+        "peso_bruto_total": 17454,
+        "peso_ingreso_prom": 359.4,
+        "ganancia_kg_prom": 169.5,
+        "gmd_prom": 0.714,
+        "dias_prom": 253,
+        "precio_compra_bs_prom": 30751,
         "ingreso_fecha_min": "2025-04-10",
         "last_fecha_max": "2026-07-06",
         "origenes": [
@@ -2007,22 +2119,22 @@
         "comprador": "Frigosi"
       },
       {
-        "key": "FERCOGAN",
-        "label": "FERCOGAN",
-        "cabezas": 40,
-        "peso_prom": 523.2,
-        "peso_neto_total": 19881,
-        "peso_neto_prom": 497,
-        "peso_bruto_total": 20927,
-        "peso_ingreso_prom": 245.9,
-        "ganancia_kg_prom": 277.3,
-        "gmd_prom": 0.533,
-        "dias_prom": 560,
-        "precio_compra_bs_prom": 55363,
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 10,
+        "peso_prom": 534.4,
+        "peso_neto_total": 5077,
+        "peso_neto_prom": 507.7,
+        "peso_bruto_total": 5344,
+        "peso_ingreso_prom": 172.7,
+        "ganancia_kg_prom": 361.8,
+        "gmd_prom": 0.457,
+        "dias_prom": 791,
+        "precio_compra_bs_prom": null,
         "ingreso_fecha_min": "2024-05-01",
         "last_fecha_max": "2026-07-06",
         "origenes": [
-          "FERCOGAN"
+          "CASA BLANCA MAY"
         ],
         "bs_kg": 21.5,
         "fecha_venta": "2026-07-06",
@@ -2032,13 +2144,13 @@
         "key": "NANCHI",
         "label": "NANCHI",
         "cabezas": 5,
-        "peso_prom": 527.6,
-        "peso_neto_total": 2506,
-        "peso_neto_prom": 501.2,
-        "peso_bruto_total": 2638,
-        "peso_ingreso_prom": 179.4,
-        "ganancia_kg_prom": 348.2,
-        "gmd_prom": 0.48,
+        "peso_prom": 531.6,
+        "peso_neto_total": 2525,
+        "peso_neto_prom": 505,
+        "peso_bruto_total": 2658,
+        "peso_ingreso_prom": 188.2,
+        "ganancia_kg_prom": 343.4,
+        "gmd_prom": 0.474,
         "dias_prom": 747,
         "precio_compra_bs_prom": 5540,
         "ingreso_fecha_min": "2024-03-20",
@@ -2064,11 +2176,12 @@
         "ganancia_kg_prom": 234.7,
         "gmd_prom": 0.603,
         "dias_prom": 436,
-        "precio_compra_bs_prom": 37523,
+        "precio_compra_bs_prom": 41757,
         "ingreso_fecha_min": "2024-03-20",
         "last_fecha_max": "2026-07-06",
         "origenes": [
           "NANCHI",
+          "CASA BLANCA MAY",
           "FERCOGAN",
           "GUIT"
         ]
@@ -2083,13 +2196,13 @@
         "origen_key": "NANCHI",
         "origen_label": "NANCHI",
         "cabezas": 3,
-        "peso_prom": 522.7,
-        "peso_neto_total": 1490,
-        "peso_neto_prom": 496.5,
-        "peso_bruto_total": 1568,
-        "peso_ingreso_prom": 155.3,
-        "ganancia_kg_prom": 367.3,
-        "gmd_prom": 0.447,
+        "peso_prom": 529.3,
+        "peso_neto_total": 1509,
+        "peso_neto_prom": 502.9,
+        "peso_bruto_total": 1588,
+        "peso_ingreso_prom": 170,
+        "ganancia_kg_prom": 359.3,
+        "gmd_prom": 0.437,
         "dias_prom": 822,
         "precio_compra_bs_prom": 5540,
         "ingreso_fecha_min": "2024-03-20",
@@ -2587,6 +2700,25 @@
         ]
       },
       {
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 5,
+        "peso_prom": 478.6,
+        "peso_neto_total": 2273,
+        "peso_neto_prom": 454.7,
+        "peso_bruto_total": 2393,
+        "peso_ingreso_prom": 165,
+        "ganancia_kg_prom": 313.6,
+        "gmd_prom": 0.414,
+        "dias_prom": 757,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-01",
+        "last_fecha_max": "2026-06-03",
+        "origenes": [
+          "CASA BLANCA MAY"
+        ]
+      },
+      {
         "key": "ROCCO",
         "label": "ROCCO",
         "cabezas": 3,
@@ -2622,6 +2754,25 @@
         "last_fecha_max": "2026-06-03",
         "origenes": [
           "NANCHI"
+        ]
+      },
+      {
+        "key": "CHIPA ROJAS",
+        "label": "CHIPA ROJAS",
+        "cabezas": 2,
+        "peso_prom": 365,
+        "peso_neto_total": 694,
+        "peso_neto_prom": 346.8,
+        "peso_bruto_total": 730,
+        "peso_ingreso_prom": 299,
+        "ganancia_kg_prom": 66,
+        "gmd_prom": 0.067,
+        "dias_prom": 431,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-12-12",
+        "last_fecha_max": "2026-06-03",
+        "origenes": [
+          "CHIPA ROJAS"
         ]
       },
       {
@@ -2682,6 +2833,8 @@
         "origenes": [
           "NAYAR SIV",
           "NANCHI",
+          "CASA BLANCA MAY",
+          "CHIPA ROJAS",
           "GUIT",
           "FERCOGAN",
           "GRY",
@@ -4176,6 +4329,25 @@
     ],
     "por_proveedor": [
       {
+        "key": "CHIPA ROJAS",
+        "label": "CHIPA ROJAS",
+        "cabezas": 30,
+        "peso_prom": 414.2,
+        "peso_neto_total": 11806,
+        "peso_neto_prom": 393.5,
+        "peso_bruto_total": 12427,
+        "peso_ingreso_prom": 234.3,
+        "ganancia_kg_prom": 180,
+        "gmd_prom": 0.526,
+        "dias_prom": 357,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-08",
+        "last_fecha_max": "2026-05-05",
+        "origenes": [
+          "CHIPA ROJAS"
+        ]
+      },
+      {
         "key": "GUIT",
         "label": "GUIT",
         "cabezas": 25,
@@ -4211,6 +4383,25 @@
         "last_fecha_max": "2026-05-05",
         "origenes": [
           "FERCOGAN"
+        ]
+      },
+      {
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 6,
+        "peso_prom": 426.7,
+        "peso_neto_total": 2432,
+        "peso_neto_prom": 405.3,
+        "peso_bruto_total": 2560,
+        "peso_ingreso_prom": 161.3,
+        "ganancia_kg_prom": 265.4,
+        "gmd_prom": 0.365,
+        "dias_prom": 727,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-08",
+        "last_fecha_max": "2026-05-05",
+        "origenes": [
+          "CASA BLANCA MAY"
         ]
       },
       {
@@ -4269,6 +4460,25 @@
         "origenes": [
           "PESADOS"
         ]
+      },
+      {
+        "key": "LIMBERG STA MARIA MAY",
+        "label": "LIMBERG STA MARIA MAY",
+        "cabezas": 1,
+        "peso_prom": 410,
+        "peso_neto_total": 390,
+        "peso_neto_prom": 389.5,
+        "peso_bruto_total": 410,
+        "peso_ingreso_prom": 212,
+        "ganancia_kg_prom": 198,
+        "gmd_prom": 0.27,
+        "dias_prom": 733,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-02",
+        "last_fecha_max": "2026-05-05",
+        "origenes": [
+          "LIMBERG STA MARIA MAY"
+        ]
       }
     ],
     "por_categoria": [
@@ -4289,6 +4499,9 @@
         "last_fecha_max": "2026-05-05",
         "origenes": [
           "PESADOS",
+          "CASA BLANCA MAY",
+          "CHIPA ROJAS",
+          "LIMBERG STA MARIA MAY",
           "NANCHI",
           "GUIT",
           "FERCOGAN",
@@ -4516,6 +4729,25 @@
         ]
       },
       {
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 9,
+        "peso_prom": 490.3,
+        "peso_neto_total": 4192,
+        "peso_neto_prom": 465.8,
+        "peso_bruto_total": 4413,
+        "peso_ingreso_prom": 164.3,
+        "ganancia_kg_prom": 326,
+        "gmd_prom": 0.447,
+        "dias_prom": 728,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-01",
+        "last_fecha_max": "2026-05-04",
+        "origenes": [
+          "CASA BLANCA MAY"
+        ]
+      },
+      {
         "key": "NAYAR SIV",
         "label": "NAYAR SIV",
         "cabezas": 1,
@@ -4552,6 +4784,7 @@
         "ingreso_fecha_min": "2024-05-01",
         "last_fecha_max": "2026-05-04",
         "origenes": [
+          "CASA BLANCA MAY",
           "NANCHI",
           "GUIT",
           "FERCOGAN"
@@ -5265,7 +5498,8 @@
         "ingreso_fecha_min": "2025-07-29",
         "last_fecha_max": "2026-02-05",
         "origenes": [
-          "SJ LUIS ANEZ"
+          "SJ LUIS ANEZ",
+          "CARMEN RIB+CONCE"
         ]
       },
       {
@@ -5345,6 +5579,25 @@
         "origenes": [
           "SJ LUIS ANEZ"
         ]
+      },
+      {
+        "key": "CARMEN RIB+CONCE",
+        "label": "CARMEN RIB+CONCE",
+        "cabezas": 1,
+        "peso_prom": 301,
+        "peso_neto_total": 286,
+        "peso_neto_prom": 286,
+        "peso_bruto_total": 301,
+        "peso_ingreso_prom": 252,
+        "ganancia_kg_prom": 49,
+        "gmd_prom": 0.721,
+        "dias_prom": 68,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2025-11-29",
+        "last_fecha_max": "2026-02-05",
+        "origenes": [
+          "CARMEN RIB+CONCE"
+        ]
       }
     ],
     "por_categoria": [
@@ -5383,7 +5636,8 @@
         "ingreso_fecha_min": "2025-02-21",
         "last_fecha_max": "2026-02-05",
         "origenes": [
-          "SJ LUIS ANEZ"
+          "SJ LUIS ANEZ",
+          "CARMEN RIB+CONCE"
         ]
       }
     ],
@@ -5404,7 +5658,8 @@
         "ingreso_fecha_min": "2025-07-29",
         "last_fecha_max": "2026-02-05",
         "origenes": [
-          "SJ LUIS ANEZ"
+          "SJ LUIS ANEZ",
+          "CARMEN RIB+CONCE"
         ]
       },
       {
@@ -5617,19 +5872,38 @@
         "last_fecha_max": "2026-02-05"
       },
       {
+        "key": "FB||CARMEN RIB+CONCE",
+        "partidario_key": "FB",
+        "partidario_label": "Fabio Bocangel",
+        "origen_key": "CARMEN RIB+CONCE",
+        "origen_label": "CARMEN RIB+CONCE",
+        "cabezas": 1,
+        "peso_prom": 301,
+        "peso_neto_total": 286,
+        "peso_neto_prom": 286,
+        "peso_bruto_total": 301,
+        "peso_ingreso_prom": 252,
+        "ganancia_kg_prom": 49,
+        "gmd_prom": 0.721,
+        "dias_prom": 68,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2025-11-29",
+        "last_fecha_max": "2026-02-05"
+      },
+      {
         "key": "FB||null",
         "partidario_key": "FB",
         "partidario_label": "Fabio Bocangel",
         "origen_key": null,
         "origen_label": "Sin origen",
-        "cabezas": 2,
-        "peso_prom": 304.5,
-        "peso_neto_total": 579,
-        "peso_neto_prom": 289.3,
-        "peso_bruto_total": 609,
-        "peso_ingreso_prom": 249,
-        "ganancia_kg_prom": 55.5,
-        "gmd_prom": 0.817,
+        "cabezas": 1,
+        "peso_prom": 308,
+        "peso_neto_total": 293,
+        "peso_neto_prom": 292.6,
+        "peso_bruto_total": 308,
+        "peso_ingreso_prom": 246,
+        "ganancia_kg_prom": 62,
+        "gmd_prom": 0.912,
         "dias_prom": 68,
         "precio_compra_bs_prom": null,
         "ingreso_fecha_min": "2025-11-29",
@@ -6100,6 +6374,25 @@
         "origenes": [
           "GRY"
         ]
+      },
+      {
+        "key": "CHIPA ROJAS",
+        "label": "CHIPA ROJAS",
+        "cabezas": 1,
+        "peso_prom": 352,
+        "peso_neto_total": 334,
+        "peso_neto_prom": 334.4,
+        "peso_bruto_total": 352,
+        "peso_ingreso_prom": 263,
+        "ganancia_kg_prom": 89,
+        "gmd_prom": 0.52,
+        "dias_prom": 171,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2025-08-06",
+        "last_fecha_max": "2026-01-24",
+        "origenes": [
+          "CHIPA ROJAS"
+        ]
       }
     ],
     "por_categoria": [
@@ -6120,6 +6413,7 @@
         "last_fecha_max": "2026-01-24",
         "origenes": [
           "GUIT",
+          "CHIPA ROJAS",
           "GRY"
         ]
       }
@@ -6184,6 +6478,25 @@
         ]
       },
       {
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 1,
+        "peso_prom": 440,
+        "peso_neto_total": 418,
+        "peso_neto_prom": 418,
+        "peso_bruto_total": 440,
+        "peso_ingreso_prom": 223,
+        "ganancia_kg_prom": 217,
+        "gmd_prom": 0.348,
+        "dias_prom": 624,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-08",
+        "last_fecha_max": "2026-01-22",
+        "origenes": [
+          "CASA BLANCA MAY"
+        ]
+      },
+      {
         "key": "NANCHI",
         "label": "NANCHI",
         "cabezas": 1,
@@ -6220,6 +6533,7 @@
         "ingreso_fecha_min": "2024-05-08",
         "last_fecha_max": "2026-01-22",
         "origenes": [
+          "CASA BLANCA MAY",
           "NANCHI",
           "GUIT"
         ]
@@ -6322,6 +6636,25 @@
         "origenes": [
           "ROJAS MONT"
         ]
+      },
+      {
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 2,
+        "peso_prom": 393,
+        "peso_neto_total": 747,
+        "peso_neto_prom": 373.3,
+        "peso_bruto_total": 786,
+        "peso_ingreso_prom": 159.8,
+        "ganancia_kg_prom": 233.3,
+        "gmd_prom": 0.374,
+        "dias_prom": 625,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-01",
+        "last_fecha_max": "2026-01-19",
+        "origenes": [
+          "CASA BLANCA MAY"
+        ]
       }
     ],
     "por_categoria": [
@@ -6341,6 +6674,7 @@
         "ingreso_fecha_min": "2024-05-01",
         "last_fecha_max": "2026-01-19",
         "origenes": [
+          "CASA BLANCA MAY",
           "CRM RIB CONCE",
           "ROJAS MONT"
         ]
@@ -6423,6 +6757,25 @@
     "por_partidario": [],
     "por_proveedor": [
       {
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 2,
+        "peso_prom": 413.5,
+        "peso_neto_total": 786,
+        "peso_neto_prom": 392.8,
+        "peso_bruto_total": 827,
+        "peso_ingreso_prom": 160.8,
+        "ganancia_kg_prom": 252.8,
+        "gmd_prom": 0.411,
+        "dias_prom": 616,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-01",
+        "last_fecha_max": "2026-01-10",
+        "origenes": [
+          "CASA BLANCA MAY"
+        ]
+      },
+      {
         "key": "GUIT",
         "label": "GUIT",
         "cabezas": 2,
@@ -6459,6 +6812,7 @@
         "ingreso_fecha_min": "2024-05-01",
         "last_fecha_max": "2026-01-10",
         "origenes": [
+          "CASA BLANCA MAY",
           "GUIT"
         ]
       }
@@ -6663,6 +7017,25 @@
     ],
     "por_proveedor": [
       {
+        "key": "CHIPA ROJAS",
+        "label": "CHIPA ROJAS",
+        "cabezas": 92,
+        "peso_prom": 231,
+        "peso_neto_total": 20185,
+        "peso_neto_prom": 219.4,
+        "peso_bruto_total": 21248,
+        "peso_ingreso_prom": 283.6,
+        "ganancia_kg_prom": -52.6,
+        "gmd_prom": -0.062,
+        "dias_prom": 100,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-01",
+        "last_fecha_max": "2025-12-15",
+        "origenes": [
+          "CHIPA ROJAS"
+        ]
+      },
+      {
         "key": "GRY",
         "label": "GRY",
         "cabezas": 21,
@@ -6758,6 +7131,7 @@
         "origenes": [
           "NANCHI",
           "MARZO. TAVERA + WALTER ANEZ",
+          "CHIPA ROJAS",
           "GRY",
           "ROJAS MONT"
         ]
@@ -6882,6 +7256,25 @@
         ]
       },
       {
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 2,
+        "peso_prom": 380,
+        "peso_neto_total": 722,
+        "peso_neto_prom": 361,
+        "peso_bruto_total": 760,
+        "peso_ingreso_prom": 144.8,
+        "ganancia_kg_prom": 235.3,
+        "gmd_prom": 0.408,
+        "dias_prom": 578,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-01",
+        "last_fecha_max": "2025-12-03",
+        "origenes": [
+          "CASA BLANCA MAY"
+        ]
+      },
+      {
         "key": "NUEVOS",
         "label": "NUEVOS",
         "cabezas": 1,
@@ -6938,6 +7331,7 @@
         "last_fecha_max": "2025-12-05",
         "origenes": [
           "NUEVOS",
+          "CASA BLANCA MAY",
           "NANCHI",
           "GUIT",
           "FERCOGAN"
@@ -7099,6 +7493,25 @@
         ]
       },
       {
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 1,
+        "peso_prom": 465,
+        "peso_neto_total": 442,
+        "peso_neto_prom": 441.8,
+        "peso_bruto_total": 465,
+        "peso_ingreso_prom": 208,
+        "ganancia_kg_prom": 257,
+        "gmd_prom": 0.441,
+        "dias_prom": 583,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-01",
+        "last_fecha_max": "2025-12-05",
+        "origenes": [
+          "CASA BLANCA MAY"
+        ]
+      },
+      {
         "key": "NANCHI",
         "label": "NANCHI",
         "cabezas": 1,
@@ -7154,6 +7567,7 @@
         "ingreso_fecha_min": "2024-05-01",
         "last_fecha_max": "2025-12-05",
         "origenes": [
+          "CASA BLANCA MAY",
           "NANCHI",
           "GUIT",
           "FERCOGAN",
@@ -8106,6 +8520,25 @@
         "origenes": [
           "NOGALES"
         ]
+      },
+      {
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 1,
+        "peso_prom": 338,
+        "peso_neto_total": 321,
+        "peso_neto_prom": 321.1,
+        "peso_bruto_total": 338,
+        "peso_ingreso_prom": 169,
+        "ganancia_kg_prom": 169,
+        "gmd_prom": 0.306,
+        "dias_prom": 552,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-08",
+        "last_fecha_max": "2025-11-11",
+        "origenes": [
+          "CASA BLANCA MAY"
+        ]
       }
     ],
     "por_categoria": [
@@ -8125,6 +8558,7 @@
         "ingreso_fecha_min": "2024-05-08",
         "last_fecha_max": "2025-11-21",
         "origenes": [
+          "CASA BLANCA MAY",
           "CESPEDES",
           "SJ ABEL",
           "NOGALES"
@@ -8891,6 +9325,25 @@
     "por_partidario": [],
     "por_proveedor": [
       {
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 1,
+        "peso_prom": 384,
+        "peso_neto_total": 365,
+        "peso_neto_prom": 364.8,
+        "peso_bruto_total": 384,
+        "peso_ingreso_prom": 165.5,
+        "ganancia_kg_prom": 218.5,
+        "gmd_prom": 0.415,
+        "dias_prom": 526,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-01",
+        "last_fecha_max": "2025-10-09",
+        "origenes": [
+          "CASA BLANCA MAY"
+        ]
+      },
+      {
         "key": "NANCHI",
         "label": "NANCHI",
         "cabezas": 1,
@@ -8927,6 +9380,7 @@
         "ingreso_fecha_min": "2024-05-01",
         "last_fecha_max": "2025-10-09",
         "origenes": [
+          "CASA BLANCA MAY",
           "NANCHI"
         ]
       }
@@ -9191,7 +9645,27 @@
     "peso_max": 294,
     "peso_prom": 294,
     "por_partidario": [],
-    "por_proveedor": [],
+    "por_proveedor": [
+      {
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 1,
+        "peso_prom": 294,
+        "peso_neto_total": 279,
+        "peso_neto_prom": 279.3,
+        "peso_bruto_total": 294,
+        "peso_ingreso_prom": 213,
+        "ganancia_kg_prom": 81,
+        "gmd_prom": 0.161,
+        "dias_prom": 503,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-08",
+        "last_fecha_max": "2025-09-23",
+        "origenes": [
+          "CASA BLANCA MAY"
+        ]
+      }
+    ],
     "por_categoria": [
       {
         "key": "NI",
@@ -9208,7 +9682,9 @@
         "precio_compra_bs_prom": null,
         "ingreso_fecha_min": "2024-05-08",
         "last_fecha_max": "2025-09-23",
-        "origenes": []
+        "origenes": [
+          "CASA BLANCA MAY"
+        ]
       }
     ],
     "por_raza": [],
@@ -9253,6 +9729,25 @@
     "por_partidario": [],
     "por_proveedor": [
       {
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 1,
+        "peso_prom": 308,
+        "peso_neto_total": 293,
+        "peso_neto_prom": 292.6,
+        "peso_bruto_total": 308,
+        "peso_ingreso_prom": 137,
+        "ganancia_kg_prom": 171,
+        "gmd_prom": 0.343,
+        "dias_prom": 499,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-08",
+        "last_fecha_max": "2025-09-19",
+        "origenes": [
+          "CASA BLANCA MAY"
+        ]
+      },
+      {
         "key": "NANCHI",
         "label": "NANCHI",
         "cabezas": 1,
@@ -9289,6 +9784,7 @@
         "ingreso_fecha_min": "2024-05-08",
         "last_fecha_max": "2025-09-19",
         "origenes": [
+          "CASA BLANCA MAY",
           "NANCHI"
         ]
       }
@@ -10012,6 +10508,25 @@
         "origenes": [
           "GUIT"
         ]
+      },
+      {
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 1,
+        "peso_prom": 331,
+        "peso_neto_total": 314,
+        "peso_neto_prom": 314.5,
+        "peso_bruto_total": 331,
+        "peso_ingreso_prom": 174.5,
+        "ganancia_kg_prom": 156.5,
+        "gmd_prom": 0.361,
+        "dias_prom": 434,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-01",
+        "last_fecha_max": "2025-07-09",
+        "origenes": [
+          "CASA BLANCA MAY"
+        ]
       }
     ],
     "por_categoria": [
@@ -10031,6 +10546,7 @@
         "ingreso_fecha_min": "2024-05-01",
         "last_fecha_max": "2025-07-09",
         "origenes": [
+          "CASA BLANCA MAY",
           "GUIT"
         ]
       }
@@ -11105,6 +11621,25 @@
     "por_partidario": [],
     "por_proveedor": [
       {
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 2,
+        "peso_prom": 349,
+        "peso_neto_total": 663,
+        "peso_neto_prom": 331.6,
+        "peso_bruto_total": 698,
+        "peso_ingreso_prom": 204.8,
+        "ganancia_kg_prom": 144.3,
+        "gmd_prom": 0.504,
+        "dias_prom": 286,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-01",
+        "last_fecha_max": "2025-02-11",
+        "origenes": [
+          "CASA BLANCA MAY"
+        ]
+      },
+      {
         "key": "PESADOS",
         "label": "PESADOS",
         "cabezas": 1,
@@ -11201,7 +11736,8 @@
           "PESADOS",
           "NUEVOS",
           "BRUNO MARZO - TAVERA",
-          "MARZO. TAVERA + WALTER ANEZ"
+          "MARZO. TAVERA + WALTER ANEZ",
+          "CASA BLANCA MAY"
         ]
       }
     ],
@@ -11226,6 +11762,25 @@
     "por_partidario": [],
     "por_proveedor": [
       {
+        "key": "LIMBERG STA MARIA MAY",
+        "label": "LIMBERG STA MARIA MAY",
+        "cabezas": 3,
+        "peso_prom": 342,
+        "peso_neto_total": 975,
+        "peso_neto_prom": 324.9,
+        "peso_bruto_total": 1026,
+        "peso_ingreso_prom": 223.7,
+        "ganancia_kg_prom": 118.3,
+        "gmd_prom": 0.479,
+        "dias_prom": 247,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-02",
+        "last_fecha_max": "2025-01-04",
+        "origenes": [
+          "LIMBERG STA MARIA MAY"
+        ]
+      },
+      {
         "key": "NUEVOS",
         "label": "NUEVOS",
         "cabezas": 1,
@@ -11242,6 +11797,25 @@
         "last_fecha_max": "2025-01-04",
         "origenes": [
           "NUEVOS"
+        ]
+      },
+      {
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 1,
+        "peso_prom": 339,
+        "peso_neto_total": 322,
+        "peso_neto_prom": 322.1,
+        "peso_bruto_total": 339,
+        "peso_ingreso_prom": 206,
+        "ganancia_kg_prom": 133,
+        "gmd_prom": 0.536,
+        "dias_prom": 248,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-01",
+        "last_fecha_max": "2025-01-04",
+        "origenes": [
+          "CASA BLANCA MAY"
         ]
       }
     ],
@@ -11262,7 +11836,9 @@
         "ingreso_fecha_min": "2023-12-28",
         "last_fecha_max": "2025-01-04",
         "origenes": [
-          "NUEVOS"
+          "NUEVOS",
+          "CASA BLANCA MAY",
+          "LIMBERG STA MARIA MAY"
         ]
       }
     ],
@@ -11345,6 +11921,25 @@
         ]
       },
       {
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 3,
+        "peso_prom": 211,
+        "peso_neto_total": 601,
+        "peso_neto_prom": 200.5,
+        "peso_bruto_total": 633,
+        "peso_ingreso_prom": 196,
+        "ganancia_kg_prom": 15,
+        "gmd_prom": 0.183,
+        "dias_prom": 82,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-08",
+        "last_fecha_max": "2024-07-29",
+        "origenes": [
+          "CASA BLANCA MAY"
+        ]
+      },
+      {
         "key": "NUEVOS",
         "label": "NUEVOS",
         "cabezas": 2,
@@ -11422,7 +12017,8 @@
           "TROPA BRUNO",
           "NUEVOS",
           "MARZO. TAVERA + WALTER ANEZ",
-          "NANCHI"
+          "NANCHI",
+          "CASA BLANCA MAY"
         ]
       }
     ],
@@ -11620,6 +12216,25 @@
         "origenes": [
           "NUEVOS"
         ]
+      },
+      {
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 1,
+        "peso_prom": 182,
+        "peso_neto_total": 173,
+        "peso_neto_prom": 172.9,
+        "peso_bruto_total": 182,
+        "peso_ingreso_prom": 164,
+        "ganancia_kg_prom": 18,
+        "gmd_prom": 0.4,
+        "dias_prom": 45,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-08",
+        "last_fecha_max": "2024-06-22",
+        "origenes": [
+          "CASA BLANCA MAY"
+        ]
       }
     ],
     "por_categoria": [
@@ -11642,7 +12257,8 @@
           "TROPA DIEGO",
           "PESADOS",
           "TROPA CUERPO",
-          "NUEVOS"
+          "NUEVOS",
+          "CASA BLANCA MAY"
         ]
       }
     ],
@@ -11666,6 +12282,44 @@
     "peso_prom": 247.8,
     "por_partidario": [],
     "por_proveedor": [
+      {
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 11,
+        "peso_prom": 243.5,
+        "peso_neto_total": 2544,
+        "peso_neto_prom": 231.3,
+        "peso_bruto_total": 2678,
+        "peso_ingreso_prom": 212,
+        "ganancia_kg_prom": 31.5,
+        "gmd_prom": 0.629,
+        "dias_prom": 50,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-01",
+        "last_fecha_max": "2024-06-20",
+        "origenes": [
+          "CASA BLANCA MAY"
+        ]
+      },
+      {
+        "key": "LIMBERG STA MARIA MAY",
+        "label": "LIMBERG STA MARIA MAY",
+        "cabezas": 6,
+        "peso_prom": 260.3,
+        "peso_neto_total": 1484,
+        "peso_neto_prom": 247.3,
+        "peso_bruto_total": 1562,
+        "peso_ingreso_prom": 218.3,
+        "ganancia_kg_prom": 42,
+        "gmd_prom": 0.857,
+        "dias_prom": 49,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-02",
+        "last_fecha_max": "2024-06-20",
+        "origenes": [
+          "LIMBERG STA MARIA MAY"
+        ]
+      },
       {
         "key": "TROPA MAURICIO CASTEDO",
         "label": "TROPA MAURICIO CASTEDO",
@@ -11703,7 +12357,9 @@
         "ingreso_fecha_min": "2023-06-16",
         "last_fecha_max": "2024-06-20",
         "origenes": [
-          "TROPA MAURICIO CASTEDO"
+          "TROPA MAURICIO CASTEDO",
+          "CASA BLANCA MAY",
+          "LIMBERG STA MARIA MAY"
         ]
       }
     ],
@@ -11846,7 +12502,27 @@
     "peso_max": 269,
     "peso_prom": 167,
     "por_partidario": [],
-    "por_proveedor": [],
+    "por_proveedor": [
+      {
+        "key": "CASA BLANCA MAY",
+        "label": "CASA BLANCA MAY",
+        "cabezas": 13,
+        "peso_prom": 167,
+        "peso_neto_total": 2063,
+        "peso_neto_prom": 158.7,
+        "peso_bruto_total": 2172,
+        "peso_ingreso_prom": 167,
+        "ganancia_kg_prom": 0,
+        "gmd_prom": null,
+        "dias_prom": 0,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-01",
+        "last_fecha_max": "2024-05-08",
+        "origenes": [
+          "CASA BLANCA MAY"
+        ]
+      }
+    ],
     "por_categoria": [
       {
         "key": "NI",
@@ -11863,7 +12539,9 @@
         "precio_compra_bs_prom": null,
         "ingreso_fecha_min": "2024-05-01",
         "last_fecha_max": "2024-05-08",
-        "origenes": []
+        "origenes": [
+          "CASA BLANCA MAY"
+        ]
       }
     ],
     "por_raza": [],
@@ -11885,7 +12563,27 @@
     "peso_max": 267,
     "peso_prom": 249,
     "por_partidario": [],
-    "por_proveedor": [],
+    "por_proveedor": [
+      {
+        "key": "LIMBERG STA MARIA MAY",
+        "label": "LIMBERG STA MARIA MAY",
+        "cabezas": 2,
+        "peso_prom": 249,
+        "peso_neto_total": 473,
+        "peso_neto_prom": 236.6,
+        "peso_bruto_total": 498,
+        "peso_ingreso_prom": 249,
+        "ganancia_kg_prom": 0,
+        "gmd_prom": null,
+        "dias_prom": 0,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2024-05-02",
+        "last_fecha_max": "2024-05-02",
+        "origenes": [
+          "LIMBERG STA MARIA MAY"
+        ]
+      }
+    ],
     "por_categoria": [
       {
         "key": "NI",
@@ -11902,7 +12600,9 @@
         "precio_compra_bs_prom": null,
         "ingreso_fecha_min": "2024-05-02",
         "last_fecha_max": "2024-05-02",
-        "origenes": []
+        "origenes": [
+          "LIMBERG STA MARIA MAY"
+        ]
       }
     ],
     "por_raza": [],
@@ -12086,6 +12786,25 @@
         ]
       },
       {
+        "key": "LA FLAUTA",
+        "label": "LA FLAUTA",
+        "cabezas": 8,
+        "peso_prom": 319,
+        "peso_neto_total": 2424,
+        "peso_neto_prom": 303.1,
+        "peso_bruto_total": 2552,
+        "peso_ingreso_prom": 211.5,
+        "ganancia_kg_prom": 107.5,
+        "gmd_prom": 0.546,
+        "dias_prom": 197,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2023-08-08",
+        "last_fecha_max": "2024-02-21",
+        "origenes": [
+          "LA FLAUTA"
+        ]
+      },
+      {
         "key": "SILO 4 - - KG",
         "label": "SILO 4 - - KG",
         "cabezas": 7,
@@ -12121,6 +12840,25 @@
         "last_fecha_max": "2024-02-21",
         "origenes": [
           "PESADOS"
+        ]
+      },
+      {
+        "key": "RODEO MAY BENI",
+        "label": "RODEO MAY BENI",
+        "cabezas": 3,
+        "peso_prom": 363.3,
+        "peso_neto_total": 1036,
+        "peso_neto_prom": 345.2,
+        "peso_bruto_total": 1090,
+        "peso_ingreso_prom": 191.3,
+        "ganancia_kg_prom": 172,
+        "gmd_prom": 0.612,
+        "dias_prom": 281,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2023-05-16",
+        "last_fecha_max": "2024-02-21",
+        "origenes": [
+          "RODEO MAY BENI"
         ]
       },
       {
@@ -12225,7 +12963,9 @@
           "PESADOS",
           "SILO 6 - - KG",
           "SILO 5 - KG",
-          "MARZO. TAVERA + WALTER ANEZ"
+          "RODEO MAY BENI",
+          "MARZO. TAVERA + WALTER ANEZ",
+          "LA FLAUTA"
         ]
       }
     ],
@@ -12561,6 +13301,25 @@
         ]
       },
       {
+        "key": "LA FLAUTA",
+        "label": "LA FLAUTA",
+        "cabezas": 2,
+        "peso_prom": 311,
+        "peso_neto_total": 591,
+        "peso_neto_prom": 295.5,
+        "peso_bruto_total": 622,
+        "peso_ingreso_prom": 217.5,
+        "ganancia_kg_prom": 93.5,
+        "gmd_prom": 0.508,
+        "dias_prom": 184,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2023-08-08",
+        "last_fecha_max": "2024-02-08",
+        "origenes": [
+          "LA FLAUTA"
+        ]
+      },
+      {
         "key": "NUEVOS",
         "label": "NUEVOS",
         "cabezas": 1,
@@ -12577,6 +13336,25 @@
         "last_fecha_max": "2024-02-08",
         "origenes": [
           "NUEVOS"
+        ]
+      },
+      {
+        "key": "RODEO MAY BENI",
+        "label": "RODEO MAY BENI",
+        "cabezas": 1,
+        "peso_prom": 348,
+        "peso_neto_total": 331,
+        "peso_neto_prom": 330.6,
+        "peso_bruto_total": 348,
+        "peso_ingreso_prom": 203,
+        "ganancia_kg_prom": 145,
+        "gmd_prom": 0.614,
+        "dias_prom": 236,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2023-06-17",
+        "last_fecha_max": "2024-02-08",
+        "origenes": [
+          "RODEO MAY BENI"
         ]
       }
     ],
@@ -12605,7 +13383,9 @@
           "RBO2",
           "TROPA CUERPO",
           "PESADOS",
-          "SILO 5 - KG"
+          "RODEO MAY BENI",
+          "SILO 5 - KG",
+          "LA FLAUTA"
         ]
       }
     ],
@@ -12887,6 +13667,25 @@
         ]
       },
       {
+        "key": "LA FLAUTA",
+        "label": "LA FLAUTA",
+        "cabezas": 2,
+        "peso_prom": 334.5,
+        "peso_neto_total": 636,
+        "peso_neto_prom": 317.8,
+        "peso_bruto_total": 669,
+        "peso_ingreso_prom": 266.5,
+        "ganancia_kg_prom": 68,
+        "gmd_prom": 0.259,
+        "dias_prom": 263,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2023-05-04",
+        "last_fecha_max": "2024-01-22",
+        "origenes": [
+          "LA FLAUTA"
+        ]
+      },
+      {
         "key": "TROPA DIEGO",
         "label": "TROPA DIEGO",
         "cabezas": 1,
@@ -12926,7 +13725,8 @@
           "T - DANIEL",
           "TROPA DIEGO",
           "NUEVOS",
-          "TROPA BRANKO"
+          "TROPA BRANKO",
+          "LA FLAUTA"
         ]
       },
       {
@@ -12989,6 +13789,25 @@
         ]
       },
       {
+        "key": "RODEO MAY BENI",
+        "label": "RODEO MAY BENI",
+        "cabezas": 3,
+        "peso_prom": 228.3,
+        "peso_neto_total": 651,
+        "peso_neto_prom": 216.9,
+        "peso_bruto_total": 685,
+        "peso_ingreso_prom": 160.3,
+        "ganancia_kg_prom": 68,
+        "gmd_prom": 0.275,
+        "dias_prom": 247,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2023-05-16",
+        "last_fecha_max": "2024-01-18",
+        "origenes": [
+          "RODEO MAY BENI"
+        ]
+      },
+      {
         "key": "SILO 6 - - KG",
         "label": "SILO 6 - - KG",
         "cabezas": 2,
@@ -13044,6 +13863,44 @@
         "origenes": [
           "PESADOS"
         ]
+      },
+      {
+        "key": "LA FLAUTA",
+        "label": "LA FLAUTA",
+        "cabezas": 1,
+        "peso_prom": 254,
+        "peso_neto_total": 241,
+        "peso_neto_prom": 241.3,
+        "peso_bruto_total": 254,
+        "peso_ingreso_prom": 211,
+        "ganancia_kg_prom": 43,
+        "gmd_prom": 0.264,
+        "dias_prom": 163,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2023-08-08",
+        "last_fecha_max": "2024-01-18",
+        "origenes": [
+          "LA FLAUTA"
+        ]
+      },
+      {
+        "key": "MC",
+        "label": "MC",
+        "cabezas": 1,
+        "peso_prom": 265,
+        "peso_neto_total": 252,
+        "peso_neto_prom": 251.8,
+        "peso_bruto_total": 265,
+        "peso_ingreso_prom": 213,
+        "ganancia_kg_prom": 52,
+        "gmd_prom": 0.319,
+        "dias_prom": 163,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2023-08-08",
+        "last_fecha_max": "2024-01-18",
+        "origenes": [
+          "MC"
+        ]
       }
     ],
     "por_categoria": [
@@ -13065,8 +13922,11 @@
         "origenes": [
           "PESADOS",
           "TROPA CUERPO",
+          "RODEO MAY BENI",
           "SILO 6 - - KG",
-          "SILO 3 - -"
+          "SILO 3 - -",
+          "LA FLAUTA",
+          "MC"
         ]
       }
     ],
@@ -14142,6 +15002,25 @@
         "origenes": [
           "TROPA CHIQUI"
         ]
+      },
+      {
+        "key": "LA FLAUTA",
+        "label": "LA FLAUTA",
+        "cabezas": 1,
+        "peso_prom": 363,
+        "peso_neto_total": 345,
+        "peso_neto_prom": 344.8,
+        "peso_bruto_total": 363,
+        "peso_ingreso_prom": 319,
+        "ganancia_kg_prom": 44,
+        "gmd_prom": 0.273,
+        "dias_prom": 161,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2023-05-04",
+        "last_fecha_max": "2023-10-12",
+        "origenes": [
+          "LA FLAUTA"
+        ]
       }
     ],
     "por_categoria": [
@@ -14163,7 +15042,8 @@
         "origenes": [
           "T - DANIEL",
           "TROPA CHIQUI",
-          "TROPA BRANKO"
+          "TROPA BRANKO",
+          "LA FLAUTA"
         ]
       },
       {
@@ -14602,6 +15482,25 @@
         "origenes": [
           "SILO 1 > KG"
         ]
+      },
+      {
+        "key": "LA FLAUTA",
+        "label": "LA FLAUTA",
+        "cabezas": 1,
+        "peso_prom": 370,
+        "peso_neto_total": 352,
+        "peso_neto_prom": 351.5,
+        "peso_bruto_total": 370,
+        "peso_ingreso_prom": 332,
+        "ganancia_kg_prom": 38,
+        "gmd_prom": 0.358,
+        "dias_prom": 106,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2023-05-04",
+        "last_fecha_max": "2023-08-18",
+        "origenes": [
+          "LA FLAUTA"
+        ]
       }
     ],
     "por_categoria": [
@@ -14644,7 +15543,8 @@
           "TROPA BRANKO",
           "T - DANIEL",
           "SILO 1 > KG",
-          "TROPA MC+RBO"
+          "TROPA MC+RBO",
+          "LA FLAUTA"
         ]
       }
     ],
@@ -14724,6 +15624,25 @@
         "origenes": [
           "TROPA BRANKO"
         ]
+      },
+      {
+        "key": "MAURICIO CASTEDO",
+        "label": "MAURICIO CASTEDO",
+        "cabezas": 1,
+        "peso_prom": 346,
+        "peso_neto_total": 329,
+        "peso_neto_prom": 328.7,
+        "peso_bruto_total": 346,
+        "peso_ingreso_prom": 302,
+        "ganancia_kg_prom": 44,
+        "gmd_prom": 0.427,
+        "dias_prom": 103,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2023-05-04",
+        "last_fecha_max": "2023-08-15",
+        "origenes": [
+          "MAURICIO CASTEDO"
+        ]
       }
     ],
     "por_categoria": [
@@ -14745,7 +15664,8 @@
         "origenes": [
           "T - DANIEL",
           "TROPA BRANKO",
-          "TROPA MC+RBO"
+          "TROPA MC+RBO",
+          "MAURICIO CASTEDO"
         ]
       },
       {
@@ -14787,7 +15707,27 @@
     "peso_max": 195,
     "peso_prom": 195,
     "por_partidario": [],
-    "por_proveedor": [],
+    "por_proveedor": [
+      {
+        "key": "LA FLAUTA",
+        "label": "LA FLAUTA",
+        "cabezas": 1,
+        "peso_prom": 195,
+        "peso_neto_total": 185,
+        "peso_neto_prom": 185.3,
+        "peso_bruto_total": 195,
+        "peso_ingreso_prom": 195,
+        "ganancia_kg_prom": 0,
+        "gmd_prom": null,
+        "dias_prom": 0,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2023-08-08",
+        "last_fecha_max": "2023-08-08",
+        "origenes": [
+          "LA FLAUTA"
+        ]
+      }
+    ],
     "por_categoria": [
       {
         "key": "NI",
@@ -14804,7 +15744,9 @@
         "precio_compra_bs_prom": null,
         "ingreso_fecha_min": "2023-08-08",
         "last_fecha_max": "2023-08-08",
-        "origenes": []
+        "origenes": [
+          "LA FLAUTA"
+        ]
       }
     ],
     "por_raza": [],
@@ -15004,6 +15946,25 @@
         "origenes": [
           "RBO2"
         ]
+      },
+      {
+        "key": "RODEO MAY BENI",
+        "label": "RODEO MAY BENI",
+        "cabezas": 1,
+        "peso_prom": 162,
+        "peso_neto_total": 154,
+        "peso_neto_prom": 153.9,
+        "peso_bruto_total": 162,
+        "peso_ingreso_prom": 143,
+        "ganancia_kg_prom": 19,
+        "gmd_prom": 0.396,
+        "dias_prom": 48,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2023-05-16",
+        "last_fecha_max": "2023-07-03",
+        "origenes": [
+          "RODEO MAY BENI"
+        ]
       }
     ],
     "por_categoria": [
@@ -15025,7 +15986,8 @@
         "origenes": [
           "RBO2",
           "PESADOS",
-          "TROPA CUERPO"
+          "TROPA CUERPO",
+          "RODEO MAY BENI"
         ]
       }
     ],
@@ -15263,7 +16225,27 @@
     "peso_max": 268,
     "peso_prom": 175.2,
     "por_partidario": [],
-    "por_proveedor": [],
+    "por_proveedor": [
+      {
+        "key": "RODEO MAY BENI",
+        "label": "RODEO MAY BENI",
+        "cabezas": 5,
+        "peso_prom": 175.2,
+        "peso_neto_total": 832,
+        "peso_neto_prom": 166.4,
+        "peso_bruto_total": 876,
+        "peso_ingreso_prom": 175.2,
+        "ganancia_kg_prom": 0,
+        "gmd_prom": null,
+        "dias_prom": 0,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2023-05-16",
+        "last_fecha_max": "2023-05-16",
+        "origenes": [
+          "RODEO MAY BENI"
+        ]
+      }
+    ],
     "por_categoria": [
       {
         "key": "NI",
@@ -15280,7 +16262,9 @@
         "precio_compra_bs_prom": null,
         "ingreso_fecha_min": "2023-05-16",
         "last_fecha_max": "2023-05-16",
-        "origenes": []
+        "origenes": [
+          "RODEO MAY BENI"
+        ]
       }
     ],
     "por_raza": [],
@@ -15424,6 +16408,25 @@
         ]
       },
       {
+        "key": "MAYO MC3",
+        "label": "MAYO MC3",
+        "cabezas": 7,
+        "peso_prom": 358.4,
+        "peso_neto_total": 2384,
+        "peso_neto_prom": 340.5,
+        "peso_bruto_total": 2509,
+        "peso_ingreso_prom": 358.4,
+        "ganancia_kg_prom": 0,
+        "gmd_prom": null,
+        "dias_prom": 0,
+        "precio_compra_bs_prom": null,
+        "ingreso_fecha_min": "2023-05-04",
+        "last_fecha_max": "2023-05-04",
+        "origenes": [
+          "MAYO MC3"
+        ]
+      },
+      {
         "key": "TROPA BRANKO",
         "label": "TROPA BRANKO",
         "cabezas": 3,
@@ -15480,7 +16483,8 @@
         "last_fecha_max": "2023-05-04",
         "origenes": [
           "T - DANIEL",
-          "TROPA CHIQUI"
+          "TROPA CHIQUI",
+          "MAYO MC3"
         ]
       },
       {
